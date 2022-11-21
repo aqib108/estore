@@ -90,42 +90,29 @@
 			              </div>
 			              <!-- /.card-header -->
 			              <div class="card-body">
-			                <form id="post-form" class="form-horizontal label-left" action="{{ URL('admin/sliders') }}" enctype="multipart/form-data" method="POST"> 
+			                <form id="slider-form" class="form-horizontal label-left" action="{{ URL('admin/sliders') }}" enctype="multipart/form-data" method="POST"> 
 			                	{!! csrf_field() !!}
 			                	<input type="hidden" name="action" value="{{$action}}">
 			                	<input type="hidden" name="id" value="{{ isset($id) ? $id : '' }}">
 			                	<div class="card-body">
-			                			
-		                			@if(isset($row->featureImage->image) && $action=='edit')
-		                    			@php $fImage = asset('feature-images/'.$id.'/'.$row->featureImage->image); @endphp
-		                    		@else
-		                    			@php $fImage = '#'; @endphp
-		                    		@endif
-
-			                		<div class="form-group row">
-				                        <label class="col-sm-2 col-form-label">Feature Image</label>
+			                		@foreach($languages as $language)
+									<div class="form-group row">
+				                        <label class="col-sm-2 col-form-label">Name {{$language->name }}</label>
 				                        <div class="col-sm-6">
-				                        	<input type="file" class="form-control" name="feature_image" value="{{ $row->feature_image }}" {{ ($fImage == "#") ? 'required=""' : '' }} onchange="readURL(this)">
+				                        	<input type="text" class="form-control" placeholder="Enter Name {{$language->name }}" name="name[{{$language->short_name}}]" value="{{ $row->name }}" required="">
 				                        </div>
 				                    </div>
-
-				                    <div class="form-group row">
-				                    	<label class="col-sm-2 col-form-label"></label>
-				                    	<div class="col-sm-6">
-				                        	<img id="feature-image" src="{{$fImage}}" alt="your image" style="width: 100%;height: 100%;{{ ($fImage == '#') ? 'display: none;':''  }}" />
-				                        </div>
-				                    </div>
-
-				                    @if(isset($row->themeImage->image) && $action=='edit')
-		                    			@php $tImage = asset('theme-images/'.$id.'/'.$row->themeImage->image); @endphp
+									@endforeach
+				                    @if(isset($row->image) && $action=='edit')
+		                    			@php $tImage = asset('slider-images/'.$id.'/'.$row->image); @endphp
 		                    		@else
 		                    			@php $tImage = '#'; @endphp
 		                    		@endif
 
 			                		<div class="form-group row">
-				                        <label class="col-sm-2 col-form-label">Theme Image</label>
+				                        <label class="col-sm-2 col-form-label"> Image</label>
 				                        <div class="col-sm-6">
-				                        	<input type="file" class="form-control" name="theme_image" value="{{ $row->theme_image }}" {{ ($tImage == "#") ? 'required=""' : '' }} onchange="readURL2(this)">
+				                        	<input type="file" class="form-control" name="image" value="{{ $row->image }}" {{ ($tImage == "#") ? 'required=""' : '' }} onchange="readURL2(this)">
 				                        </div>
 				                    </div>
 
@@ -135,57 +122,14 @@
 				                        	<img id="theme-image" src="{{$tImage}}" alt="your image" style="width: 100%;height: 100%;{{ ($tImage == '#') ? 'display: none;':''  }}" />
 				                        </div>
 				                    </div>
-
-
+									@foreach($languages as $language)
 				                    <div class="form-group row">
-				                        <label class="col-sm-2 col-form-label">Title</label>
+				                        <label class="col-sm-2 col-form-label">Content {{$language->name}}</label>
 				                        <div class="col-sm-6">
-				                        	<input type="text" class="form-control" placeholder="Enter Title" name="title" value="{{ $row->title }}" required="">
+				                        	<textarea id="summernote" name="content[{{$language->short_name}}]">{{$row->description}}</textarea>
 				                        </div>
 				                    </div>
-
-				                    <div class="form-group row">
-				                        <label class="col-sm-2 col-form-label">URL</label>
-				                        <div class="col-sm-6">
-				                        	<input type="text" class="form-control" placeholder="Enter URL" name="url" value="{{ $row->url }}" required="">
-				                        </div>
-				                    </div>
-
-				                
-				                    <div class="form-group row">
-				                        <label class="col-sm-2 col-form-label">Short Description</label>
-				                        <div class="col-sm-6">
-				                        	<textarea class="form-control" name="short_description" placeholder="Enter Short Description" required="">{{$row->short_description}}</textarea>
-				                        </div>
-				                    </div>
-
-				                    <div class="form-group row">
-				                        <label class="col-sm-2 col-form-label">Content</label>
-				                        <div class="col-sm-6">
-				                        	<textarea id="summernote" name="description">{{$row->description}}</textarea>
-				                        </div>
-				                    </div>
-
-				                    <div class="form-group row">
-				                        <label class="col-sm-2 col-form-label">Slider Post</label>
-				                        <div class="col-sm-6">
-				                        	<select name="slider_post" class="custom-select rounded-0" required="">
-							                    <option value="1" {{ ($row->slider_post == 1) ? 'selected':''}}>Yes</option>
-							                    <option value="0" {{ ($row->slider_post == 0) ? 'selected':''}}>No</option>
-							                </select>
-				                        </div>
-				                    </div>
-
-				                    <div class="form-group row">
-				                        <label class="col-sm-2 col-form-label">Feature Post</label>
-				                        <div class="col-sm-6">
-				                        	<select name="feature" class="custom-select rounded-0" required="">
-							                    <option value="1" {{ ($row->feature == 1) ? 'selected':''}}>Yes</option>
-							                    <option value="0" {{ ($row->feature == 0) ? 'selected':''}}>No</option>
-							                </select>
-				                        </div>
-				                    </div>
-
+									@endforeach
 				                    <div class="form-group row">
 				                        <label class="col-sm-2 col-form-label">Status</label>
 				                        <div class="col-sm-6">
@@ -206,61 +150,10 @@
 
 				                    <hr>
 
-				                    <div class="form-group row">
-				                        <label class="col-sm-2 col-form-label">Meta Title</label>
-				                        <div class="col-sm-6">
-				                        	<input type="text" class="form-control" placeholder="Enter Meta Title" name="meta_title" value="{{ $row->meta_title }}">
-				                        </div>
-				                    </div>	
-
-				                    <div class="form-group row">
-				                        <label class="col-sm-2 col-form-label">Meta Description</label>
-				                        <div class="col-sm-6">
-				                        	<textarea class="form-control" name="meta_description" placeholder="Enter Description">{{$row->meta_description}}</textarea>
-				                        </div>
-				                    </div>
-
-				                    <div class="form-group row">
-				                        <label class="col-sm-2 col-form-label">Meta Keywords</label>
-				                        <div class="col-sm-6">
-				                        	<textarea class="form-control" name="meta_keywords" placeholder="Enter Meta Keywords">{{$row->meta_keywords}}</textarea>
-				                        </div>
-				                    </div>
-
 				                    <hr>
-
-			                    	<div class="form-group row">
-			                        	<label class="col-sm-2 col-form-label">Tags</label>
-			                        	<div class="col-sm-6">
-			                        		<select class="select2bs4 form-control" multiple="" name="tags[]">
-						                      @foreach($tags as $tag)
-						                      	@php 
-						                      		$selected = '';
-						                      		if( $action == 'edit' && $row->tags->contains('id',$tag->id) )
-						                      		{
-						                      			$selected = 'selected';
-						                      		}
-						                      	@endphp
-						                      	<option value="{{$tag->id}}" {{$selected}}>{{$tag->name}}</option>
-						                      @endforeach
-						                    </select>
-			                        	</div>
-				                    </div>
-
-			                    	<div class="form-group row">
-				                        <label class="col-sm-2 col-form-label">Category</label>
-				                        <div class="col-sm-10">
-				                        	<ul id="myUL">
-												 @foreach($categories as $key=>$category)
-												 	 @include('admin.sliders.sub_category_list',['category' => $category,'row',$row])
-												 @endforeach
-											</ul>
-				                        </div>
-				                    </div>
-				                    
 				                  	<div class="form-group text-right">
 				                  		<div class="col-sm-12">
-				                  			<a href="{{ URL('admin/pages') }}" class="btn btn-info" style="margin-right:05px;"> Cancel </a>
+				                  			<a href="{{ URL('admin/sliders') }}" class="btn btn-info" style="margin-right:05px;"> Cancel </a>
 				                  			<button type="submit" class="btn btn-primary float-right"> {{ ($action=='add') ? 'Save' : 'Update' }} </button>
 				                  		</div>
 				                  	</div>
@@ -306,7 +199,7 @@
 		  	$('.select2bs4').select2({
 		      theme: 'bootstrap4'
 		    })
-	    	$('#summernote').summernote({
+	    	$('textarea').summernote({
 	    		height: ($(window).height() - 300),
 			    callbacks: {
 			        onImageUpload: function(image) {
@@ -315,7 +208,7 @@
 			    }
 	    	})
 
-		  	$('#post-form').validate({
+		  	$('#slider-form').validate({
 			    rules: 
 			    {},
 			    errorElement: 'span',
@@ -368,20 +261,6 @@
 		        }
 		    });
 		 }
-		 function readURL(input) 
-		 {
-		  if (input.files && input.files[0]) 
-		  {
-		  	console.log(input.files[0]);
-		    var reader = new FileReader();
-		    reader.onload = function (e) 
-		    {
-			    $('#feature-image').css('display','block');
-	 		    $('#feature-image').attr('src', e.target.result);
-		    };
-		    reader.readAsDataURL(input.files[0]);
-		  }
-		}
 		function readURL2(input) 
 		 {
 		  if (input.files && input.files[0]) 
