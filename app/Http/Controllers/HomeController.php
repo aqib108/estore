@@ -64,7 +64,7 @@ class HomeController extends Controller
                             ->where('status',1)
                             ->get();
         }
-        //redirect to anther page sds
+        //redirect to anther page
         return view('home.search.posts',compact('posts'));
     }
     
