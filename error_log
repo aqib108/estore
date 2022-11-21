@@ -1,0 +1,30 @@
+[07-Jan-2022 14:06:08 UTC] WordPress database error Table 'techeofr_wp416.wpj8_aioseo_cache' doesn't exist for query DELETE FROM wpj8_aioseo_cache
+WHERE 1 = 1 AND
+	( `expiration` IS NOT NULL AND expiration <= '2022-01-07 14:06:08' )
+/* 1 = 1 */ made by do_action_ref_array('action_scheduler_run_queue'), WP_Hook->do_action, WP_Hook->apply_filters, ActionScheduler_QueueRunner->run, ActionScheduler_QueueRunner->do_batch, ActionScheduler_Abstract_QueueRunner->process_action, ActionScheduler_Action->execute, do_action_ref_array('aioseo_cache_prune'), WP_Hook->do_action, WP_Hook->apply_filters, AIOSEO\Plugin\Common\Utils\CachePrune->prune, AIOSEO\Plugin\Common\Utils\Database->run
+[10-Jan-2022 15:22:01 UTC] PHP Parse error:  syntax error, unexpected 'googl' (T_STRING), expecting ',' or ')' in /home/techeofr/public_html/wp-content/themes/evior/voteform.php on line 77
+[10-Jan-2022 15:22:04 UTC] PHP Parse error:  syntax error, unexpected 'googl' (T_STRING), expecting ',' or ')' in /home/techeofr/public_html/wp-content/themes/evior/voteform.php on line 77
+[10-Jan-2022 15:22:28 UTC] PHP Parse error:  syntax error, unexpected 'googl' (T_STRING), expecting ',' or ')' in /home/techeofr/public_html/wp-content/themes/evior/voteform.php on line 77
+[10-Jan-2022 15:22:58 UTC] PHP Parse error:  syntax error, unexpected 'googl' (T_STRING), expecting ',' or ')' in /home/techeofr/public_html/wp-content/themes/evior/voteform.php on line 77
+[10-Jan-2022 18:51:08 UTC] PHP Parse error:  syntax error, unexpected 'googl' (T_STRING), expecting ',' or ')' in /home/techeofr/public_html/wp-content/themes/evior/voteform.php on line 77
+[10-Jan-2022 18:51:10 UTC] PHP Parse error:  syntax error, unexpected 'googl' (T_STRING), expecting ',' or ')' in /home/techeofr/public_html/wp-content/themes/evior/voteform.php on line 77
+[10-Jan-2022 19:42:10 UTC] PHP Parse error:  syntax error, unexpected 'googl' (T_STRING), expecting ',' or ')' in /home/techeofr/public_html/wp-content/themes/evior/voteform.php on line 77
+[10-Jan-2022 19:44:01 UTC] PHP Parse error:  syntax error, unexpected 'googl' (T_STRING), expecting ',' or ')' in /home/techeofr/public_html/wp-content/themes/evior/voteform.php on line 77
+[10-Jan-2022 19:47:42 UTC] PHP Parse error:  syntax error, unexpected 'googl' (T_STRING), expecting ',' or ')' in /home/techeofr/public_html/wp-content/themes/evior/voteform.php on line 77
+[11-Jan-2022 13:14:51 UTC] PHP Parse error:  syntax error, unexpected 'googl' (T_STRING), expecting ',' or ')' in /home/techeofr/public_html/wp-content/themes/evior/voteform.php on line 77
+[11-Jan-2022 13:15:19 UTC] PHP Parse error:  syntax error, unexpected 'googl' (T_STRING), expecting ',' or ')' in /home/techeofr/public_html/wp-content/themes/evior/voteform.php on line 77
+[11-Jan-2022 13:15:23 UTC] PHP Parse error:  syntax error, unexpected 'googl' (T_STRING), expecting ',' or ')' in /home/techeofr/public_html/wp-content/themes/evior/voteform.php on line 77
+[11-Jan-2022 13:15:28 UTC] PHP Parse error:  syntax error, unexpected 'googl' (T_STRING), expecting ',' or ')' in /home/techeofr/public_html/wp-content/themes/evior/voteform.php on line 77
+[11-Jan-2022 13:15:34 UTC] PHP Parse error:  syntax error, unexpected 'googl' (T_STRING), expecting ',' or ')' in /home/techeofr/public_html/wp-content/themes/evior/voteform.php on line 77
+[13-Jan-2022 03:16:23 UTC] PHP Parse error:  syntax error, unexpected 'googl' (T_STRING), expecting ',' or ')' in /home/techeofr/public_html/wp-content/themes/evior/voteform.php on line 77
+[13-Jan-2022 03:16:59 UTC] PHP Parse error:  syntax error, unexpected 'googl' (T_STRING), expecting ',' or ')' in /home/techeofr/public_html/wp-content/themes/evior/voteform.php on line 77
+[13-Jan-2022 04:49:32 UTC] PHP Parse error:  syntax error, unexpected 'googl' (T_STRING), expecting ',' or ')' in /home/techeofr/public_html/wp-content/themes/evior/voteform.php on line 77
+[17-Jan-2022 20:48:29 UTC] PHP Warning:  Creating default object from empty value in /home/techeofr/public_html/wp-includes/nav-menu-template.php on line 386
+[17-Jan-2022 20:48:44 UTC] PHP Warning:  Creating default object from empty value in /home/techeofr/public_html/wp-includes/nav-menu-template.php on line 386
+[17-Jan-2022 20:48:44 UTC] PHP Warning:  Creating default object from empty value in /home/techeofr/public_html/wp-includes/nav-menu-template.php on line 386
+[17-Jan-2022 20:48:44 UTC] PHP Warning:  Creating default object from empty value in /home/techeofr/public_html/wp-includes/nav-menu-template.php on line 386
+[17-Jan-2022 20:48:44 UTC] PHP Warning:  Creating default object from empty value in /home/techeofr/public_html/wp-includes/nav-menu-template.php on line 386
+[17-Jan-2022 20:48:48 UTC] PHP Warning:  Creating default object from empty value in /home/techeofr/public_html/wp-includes/nav-menu-template.php on line 386
+[17-Jan-2022 20:48:48 UTC] PHP Warning:  Creating default object from empty value in /home/techeofr/public_html/wp-includes/nav-menu-template.php on line 386
+[17-Jan-2022 20:48:48 UTC] PHP Warning:  Creating default object from empty value in /home/techeofr/public_html/wp-includes/nav-menu-template.php on line 386
+[17-Jan-2022 20:48:48 UTC] PHP Warning:  Creating default object from empty value in /home/techeofr/public_html/wp-includes/nav-menu-template.php on line 386
