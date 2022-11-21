@@ -117,6 +117,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ URL('admin/sliders') }}" class="nav-link {{ $url_1 == 'sliders' ? 'active':'' }}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Sliders
+              </p>
+            </a>
+          </li>
 
         </ul>
       </nav>

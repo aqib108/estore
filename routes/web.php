@@ -48,8 +48,10 @@ Route::prefix('admin')->namespace('Admin')->group(static function()
         Route::resource('tags', '\App\Http\Controllers\Admin\TagsController');
         Route::resource('posts', '\App\Http\Controllers\Admin\PostsController');
         Route::resource('pages', '\App\Http\Controllers\Admin\PagesController');
+        Route::resource('sliders', '\App\Http\Controllers\Admin\SliderController');
         Route::post('pages/uploadimage', '\App\Http\Controllers\Admin\PagesController@uploadimage')->name('admin.pages.uploadimage');
         Route::post('posts/uploadimage', '\App\Http\Controllers\Admin\PostsController@uploadimage')->name('admin.posts.uploadimage');
+        Route::post('sliders/uploadimage', '\App\Http\Controllers\Admin\SliderController@uploadimage')->name('admin.sliders.uploadimage');
     });
 });
 
