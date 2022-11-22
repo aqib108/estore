@@ -9,7 +9,9 @@
   <link rel="stylesheet" href="{{asset('assets/admin/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('assets/admin/dist/css/adminlte.min.css')}}">
-@endpush
+ <!-- SummerNote -->
+ <link rel="stylesheet" href="{{asset('assets/admin/summernote/summernote-bs4.min.css')}}">
+  @endpush
 
 @section('content')
 	<!-- Content Wrapper. Contains page content -->
@@ -44,30 +46,66 @@
 			                <h3 class="card-title">Library Form</h3>
 			              </div>
 			              <!-- /.card-header -->
+						  @php 
+                          $types = array(
+							'English'=>['Book','Vedio','Audio','Image'],
+							'Arbic'=>['الكتب','فيديو','صوتي','صورة'],
+							'Urdu'=>['کتاب','ویڈیو','آڈیو','تصویر']
+						  )
+  
+						  @endphp
 			              <div class="card-body">
 			                <form id="user-form" action="{{ URL('admin/library') }}" enctype="multipart/form-data" method="POST"> 
 			                	{!! csrf_field() !!}
 			                	<input type="hidden" name="action" value="{{$action}}">
 			                	<input type="hidden" name="id" value="{{ isset($id) ? $id : '' }}">
+					            @foreach($types as $key=>$type)
+								@php 
+								$index = '';
+								$index = match($key){
+									'English'=>'en',
+									'Urdu'=>'ur',
+									'Arbic'=>'ar'
+								}
+								@endphp
+								    
 								<div class="form-group row">
-			                        <label class="col-sm-2 col-form-label">Library Type</label>
+			                        <label class="col-sm-2 col-form-label">Library Type in {{$key}}</label>
 			                        <div class="col-sm-6">
-			                        	<select class="form-control">
+			                        	<select class="form-control" name="type['{{$index}}']">
 											<option>Choose Type</option>
-											<option>Books</option>
-											<option>Video</option>
-											<option>Audio</option>
-											<option>Image</option>
+											@foreach($type as $t)
+											<option value="{{$t}}">{{$t}}</option>
+											@endforeach
 										</select>
 
 			                        </div>
 			                    </div>
+								@endforeach
+								
 			                  	<div class="form-group row">
 			                        <label class="col-sm-2 col-form-label">Media File</label>
 			                        <div class="col-sm-6">
 			                        	<input type="file" class="form-control"  name="file[]" >
 			                        </div>
 			                    </div>
+								@foreach($languages as $lang)
+			                  	<div class="form-group row">
+			                        <label class="col-sm-2 col-form-label">{{ $lang->name }} title</label>
+			                        <div class="col-sm-6">
+			                        	<input type="text" class="form-control" placeholder="Enter title" name="name[{{ $lang->short_name }}]" value="{{ isset($deptname[$lang->short_name]) ? $deptname[$lang->short_name] : '' }}">
+			                        </div>
+			                    </div>
+                               @endforeach
+							   @foreach($languages as $lang)
+							   <div class="form-group row">
+				                        <label class="col-sm-2 col-form-label">{{$lang->name}} Content</label>
+				                        <div class="col-sm-6">
+				                        	<textarea id="summernote" name="description[{{$lang->short_name}}]">{{isset($deptDescription[$lang->short_name]) ? $deptDescription[$lang->short_name] : '' }}</textarea>
+				                        </div>
+				                    </div>
+							    @endforeach
+								
 
 			        
 			                  	<div class="row">
@@ -106,6 +144,8 @@
 	<script src="{{asset('assets/admin/dist/js/adminlte.min.js')}}"></script>
 	<!-- AdminLTE for demo purposes -->
 	<script src="{{asset('assets/admin/dist/js/demo.js')}}"></script>
+	<!-- SummerNote -->
+	<script src="{{asset('assets/admin/summernote/summernote-bs4.min.js')}}"></script>
 	<!-- Page specific script -->
 	<script>
 	  $(function () {
@@ -156,6 +196,15 @@
 		      $(element).removeClass('is-invalid');
 		    }
 		  });
+		  
 		});
+		$('textarea').summernote({
+	    		height: ($(window).height() - 300),
+			    callbacks: {
+			        onImageUpload: function(image) {
+			            uploadImage(image[0]);
+			        }
+			    }
+	    	})
 	</script>
 @endpush

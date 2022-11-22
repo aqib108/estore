@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Admin\Language;
 use App\Models\Admin\Library;
 class LibraryController extends Controller
 {
@@ -29,6 +30,7 @@ class LibraryController extends Controller
             access_denied();
 
         $data = [];
+        $data['languages'] = Language::all();
         $data['row'] = new Library();
         $data['action'] = 'add';
         return View('admin.library.form',$data);

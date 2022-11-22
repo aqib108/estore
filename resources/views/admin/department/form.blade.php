@@ -64,7 +64,7 @@
 			                  	<div class="form-group row">
 			                        <label class="col-sm-2 col-form-label">{{ $lang->name }} Department Name</label>
 			                        <div class="col-sm-6">
-			                        	<input type="text" class="form-control" placeholder="Enter Role Name" name="name[{{ $lang->short_name }}]" value="{{ isset($deptname[$lang->short_name]) ? $deptname[$lang->short_name] : '' }}">
+			                        	<input type="text" class="form-control" placeholder="Enter Department Name" name="name[{{ $lang->short_name }}]" value="{{ isset($deptname[$lang->short_name]) ? $deptname[$lang->short_name] : '' }}">
 			                        </div>
 			                    </div>
                                @endforeach
