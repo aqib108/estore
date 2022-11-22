@@ -90,6 +90,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ URL('admin/department') }}" class="nav-link {{ $url_1 == 'categories' ? 'active':'' }}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Department
+              </p>
+            </a>
+          </li>
 
           <li class="nav-item">
             <a href="{{ URL('admin/tags') }}" class="nav-link {{ $url_1 == 'tags' ? 'active':'' }}">
@@ -105,6 +113,14 @@
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Posts
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ URL('admin/library') }}" class="nav-link {{ $url_1 == 'library' ? 'active':'' }}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Library
               </p>
             </a>
           </li>

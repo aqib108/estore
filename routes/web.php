@@ -52,6 +52,8 @@ Route::prefix('admin')->namespace('Admin')->group(static function()
         Route::post('pages/uploadimage', '\App\Http\Controllers\Admin\PagesController@uploadimage')->name('admin.pages.uploadimage');
         Route::post('posts/uploadimage', '\App\Http\Controllers\Admin\PostsController@uploadimage')->name('admin.posts.uploadimage');
         Route::post('sliders/uploadimage', '\App\Http\Controllers\Admin\SliderController@uploadimage')->name('admin.sliders.uploadimage');
+        Route::resource('department', '\App\Http\Controllers\Admin\DepartmentController');
+        Route::resource('library', '\App\Http\Controllers\Admin\LibraryController');
     });
 });
 
