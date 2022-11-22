@@ -51,11 +51,20 @@
 			                	{!! csrf_field() !!}
 			                	<input type="hidden" name="action" value="{{$action}}">
 			                	<input type="hidden" name="id" value="{{ isset($id) ? $id : '' }}">
-			                  	@foreach($languages as $lang)
+			                    @php
+								$deptname = [];
+								$deptDescription = []; 
+								if(!empty($row)){
+								$deptname = (array)json_decode($row->name);
+								$deptDescription = (array)json_decode($row->description);
+								}
+								
+								@endphp
+								@foreach($languages as $lang)
 			                  	<div class="form-group row">
 			                        <label class="col-sm-2 col-form-label">{{ $lang->name }} Department Name</label>
 			                        <div class="col-sm-6">
-			                        	<input type="text" class="form-control" placeholder="Enter Role Name" name="name[{{ $lang->short_name }}]" value="{{ $row->name }}">
+			                        	<input type="text" class="form-control" placeholder="Enter Role Name" name="name[{{ $lang->short_name }}]" value="{{ isset($deptname[$lang->short_name]) ? $deptname[$lang->short_name] : '' }}">
 			                        </div>
 			                    </div>
                                @endforeach
@@ -63,10 +72,29 @@
 							   <div class="form-group row">
 				                        <label class="col-sm-2 col-form-label">{{$lang->name}} Content</label>
 				                        <div class="col-sm-6">
-				                        	<textarea id="summernote" name="description[{{$lang->short_name}}]"></textarea>
+				                        	<textarea id="summernote" name="description[{{$lang->short_name}}]">{{isset($deptDescription[$lang->short_name]) ? $deptDescription[$lang->short_name] : '' }}</textarea>
 				                        </div>
 				                    </div>
 							    @endforeach
+								<div class="col-sm-4">
+				                      	<div class="form-group">
+				                      		<label>Status</label>
+					                        <br>
+				                         	<div class="icheck-primary d-inline">
+				                         		Active
+						                        <input type="radio" name="status" id="active-radio" value="1" {{ ($row->status==1) ? 'checked' : '' }}>
+						                        <label for="active-radio">
+						                        </label>
+					                      	</div>
+					                      	<div class="icheck-primary d-inline">
+					                      		In-Active
+						                        <input type="radio" name="status" id="in-active-radio" value="0" {{ ($row->status==0) ? 'checked' : '' }}>
+						                        <label for="in-active-radio">
+					                        	</label>
+					                      	</div>
+
+					                    </div>
+				                    </div>
 			                  	<div class="row">
 			                  		<div class="col-sm-12">
 			                  			<a href="{{ URL('admin/department') }}" class="btn btn-info"> Cancel </a>

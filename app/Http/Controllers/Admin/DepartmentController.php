@@ -26,7 +26,6 @@ class DepartmentController extends Controller
     if($request->ajax())
     {
         $db_record = Department::all();
-
         $datatable = Datatables::of($db_record);
         $datatable = $datatable->addIndexColumn();
        
@@ -39,13 +38,23 @@ class DepartmentController extends Controller
             }
             return $status;
         });
+        $datatable = $datatable->editColumn('name', function($row)
+        {
+            $name = json_decode($row->name);
+            return $name->en;
+        });
+        $datatable = $datatable->editColumn('description', function($row)
+        {
+            $description = json_decode($row->description);
+            return strip_tags($description->en);
+        });
         $datatable = $datatable->addColumn('action', function($row) use($hashids)
         {
             $actions = '<span class="actions">';
 
             if(have_right('edit-customer'))
             {
-                $actions .= '&nbsp;<a class="btn btn-primary" href="'.url("admin/customers/" .$hashids->encode($row->id).'/edit').'" title="Edit"><i class="far fa-edit"></i></a>';
+                $actions .= '&nbsp;<a class="btn btn-primary" href="'.url("admin/department/" .$hashids->encode($row->id).'/edit').'" title="Edit"><i class="far fa-edit"></i></a>';
             }
                 
             if(have_right('delete-customer'))
@@ -95,11 +104,34 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        $department = new Department();
-        $department->name = json_encode($request->name);
-        $department->description = json_encode($request->description);
-        $department->save();
+        $input = $request->all();
+        if($input['action'] == 'add')
+        {
+        $input['name'] = json_encode($request->name);
+        $input['description'] = json_encode($request->description);
+        $model = new Department();
+        $model->fill($input);
+        $model->save();
         return redirect('admin/department')->with('message','Data saved Successfully');
+        }
+        else
+        {
+            if(!have_right('edit-admin') || 0)
+                access_denied();
+
+            $hashids = new Hashids('',10);
+            $id = $input['id'];
+            $id = $hashids->decode($id)[0];
+            $model = Department::find($id);
+            $input['name'] = json_encode($request->name);
+            $input['description'] = json_encode($request->description); 
+            $model->fill($input);
+            $model->update();
+            return redirect('admin/department')->with('message','Data update Successfully');
+           
+           
+        }
+       
     }
 
     /**
@@ -121,7 +153,17 @@ class DepartmentController extends Controller
      */
     public function edit($id)
     {
-        //
+        if(!have_right('edit-customer'))
+            access_denied();
+
+        $data = [];
+        $data['id'] = $id;
+        $hashids = new Hashids('',10);
+        $id = $hashids->decode($id)[0];
+        $data['row'] = Department::find($id);
+        $data['languages'] = Language::all();
+        $data['action'] = 'edit';
+        return View('admin.department.form',$data);
     }
 
     /**
