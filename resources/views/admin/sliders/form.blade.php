@@ -95,16 +95,22 @@
 			                	<input type="hidden" name="action" value="{{$action}}">
 			                	<input type="hidden" name="id" value="{{ isset($id) ? $id : '' }}">
 			                	<div class="card-body">
+								@if($action=='edit')
+								@php 
+								$slidername = (array)json_decode($row->name);
+								$sliderContent = (array)json_decode($row->content);
+								@endphp
+								@endif
 			                		@foreach($languages as $language)
 									<div class="form-group row">
 				                        <label class="col-sm-2 col-form-label">Name {{$language->name }}</label>
 				                        <div class="col-sm-6">
-				                        	<input type="text" class="form-control" placeholder="Enter Name {{$language->name }}" name="name[{{$language->short_name}}]" value="{{ $row->name }}" required="">
+				                        	<input type="text" class="form-control" placeholder="Enter Name {{$language->name }}" name="name[{{$language->short_name}}]" value="{{isset($slidername[$language->short_name])?$slidername[$language->short_name]:''}}" required="">
 				                        </div>
 				                    </div>
 									@endforeach
 				                    @if(isset($row->image) && $action=='edit')
-		                    			@php $tImage = asset('slider-images/'.$id.'/'.$row->image); @endphp
+		                    			@php $tImage = asset('slider-images/'.$row->image); @endphp
 		                    		@else
 		                    			@php $tImage = '#'; @endphp
 		                    		@endif
@@ -126,7 +132,7 @@
 				                    <div class="form-group row">
 				                        <label class="col-sm-2 col-form-label">Content {{$language->name}}</label>
 				                        <div class="col-sm-6">
-				                        	<textarea id="summernote" name="content[{{$language->short_name}}]">{{$row->description}}</textarea>
+				                        	<textarea id="summernote" name="content[{{$language->short_name}}]">{{isset($sliderContent[$language->short_name])?$sliderContent[$language->short_name]:''}}</textarea>
 				                        </div>
 				                    </div>
 									@endforeach

@@ -29,6 +29,12 @@ class SliderController extends Controller
 
             $datatable = Datatables::of($db_record);
             $datatable = $datatable->addIndexColumn();
+            $datatable = $datatable->editColumn('name', function($row)
+            {
+                $slidername = (array)json_decode($row->name);
+                return $slidername['en'];
+
+            });
             $datatable = $datatable->editColumn('status', function($row)
             {
                 $status = '<span class="badge badge-danger">Disable</span>';
@@ -119,7 +125,7 @@ class SliderController extends Controller
             $model->status=$request->status;
             if($request->hasFile('image'))
             {
-                $timageName = 'slider-'.time().'.'.$request->image->extension();  
+                $timageName = 'slider-image'.time().'.'.$request->image->extension();  
                 if($request->image->move(public_path('slider-images/'), $timageName))
                 {
                     $model->image=$timageName;
@@ -128,21 +134,31 @@ class SliderController extends Controller
             $model->save();
             $msg = 'Data added Successfully';
         }
-        // else
-        // {
-        //     if(!have_right('edit-admin'))
-        //         access_denied();
+        else
+        {
+            if(!have_right('edit-admin'))
+                access_denied();
 
-        //     $id = $input['id'];
-        //     $hashids = new Hashids('',10);
-        //     $id = $hashids->decode($id)[0];
-        //     $model = Post::find($id);
-        //     $model->fill($input);
-        //     $model->update();
-        //     $msg = 'Data updated Successfully';
-        // }
+            $id = $input['id'];
+            $hashids = new Hashids('',10);
+            $id = $hashids->decode($id)[0];
+            $model = Slider::find($id);
+            $model->name=json_encode($request->name);
+            $model->content=json_encode($request->content);
+            $model->status=$request->status;
+            if($request->hasFile('image'))
+            {
+                $timageName = 'slider-image'.time().'.'.$request->image->extension();
+                if($request->image->move(public_path('slider-images/'), $timageName))
+                {
+                    $model->image=$timageName;
+                }   
+            }
+            $model->update();
+            $msg = 'Data updated Successfully';
+        }
 
-        return redirect('admin/posts')->with('message',$msg);
+        return redirect('admin/sliders')->with('message',$msg);
     }
 
     /**
@@ -164,7 +180,17 @@ class SliderController extends Controller
      */
     public function edit($id)
     {
-        //
+        if(!have_right('edit-admin'))
+            access_denied();
+
+        $data = [];
+        $data['id'] = $id;
+        $hashids = new Hashids('',10);
+        $id = $hashids->decode($id)[0];
+        $data['row'] = Slider::find($id);
+        $data['languages'] = Language::all();
+        $data['action'] = 'edit';
+        return View('admin.sliders.form',$data);
     }
 
     /**
@@ -187,7 +213,14 @@ class SliderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(!have_right('delete-admin'))
+        access_denied();
+
+        $data = [];
+        $hashids = new Hashids('',10);
+        $id = $hashids->decode($id)[0];
+        $data['row'] = Slider::destroy($id);
+        return redirect('admin/sliders')->with('message','Data deleted Successfully');
     }
 
     public function uploadimage(Request $request)
@@ -195,7 +228,7 @@ class SliderController extends Controller
         $imageName = 'slider'.time().'.'.$request->image->extension();  
         if($request->image->move(public_path('sliders-images'), $imageName))
         {
-            echo asset('sliders-images/'.$imageName);exit();
+            echo asset('slider-images/'.$imageName);exit();
         }
     } 
 }
