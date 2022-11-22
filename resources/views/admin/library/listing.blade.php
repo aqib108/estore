@@ -21,12 +21,12 @@
 		  <div class="container-fluid">
 		    <div class="row mb-2">
 		      <div class="col-sm-6">
-		        <h1 class="m-0">Posts</h1>
+		        <h1 class="m-0">Library</h1>
 		      </div><!-- /.col -->
 		      <div class="col-sm-6">
 		        <ol class="breadcrumb float-sm-right">
 		          <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-		          <li class="breadcrumb-item active">Posts</li>
+		          <li class="breadcrumb-item active">Library</li>
 		        </ol>
 		      </div><!-- /.col -->
 		    </div><!-- /.row -->
@@ -43,17 +43,16 @@
 				      <div class="card-header">
 				      	@if(have_right('add-admin'))
 					        <h3 class="card-title">
-					        	<a href="{{ URL('admin/posts/create') }}" class="btn btn-primary"> Add New </a>
+					        	<a href="{{ URL('admin/library/create') }}" class="btn btn-primary"> Add New </a>
 					        </h3>
 				        @endif
 				      </div>
 				      <div class="card-body">
-				        <table id="posts-datatable" class="table table-bordered table-striped" style="width:100%">
+				        <table id="tags-datatable" class="table table-bordered table-striped" style="width:100%">
 				          <thead>
 				              <tr>
 				                <th>ID</th>
-				                <th>Title</th>
-				                <th>URL</th>
+				                <th>Name</th>
 				                <th>Status</th>
 				                <th>Actions</th>
 				              </tr>
@@ -63,8 +62,7 @@
 				          <tfoot>
 				              <tr>
 				                <th>ID</th>
-				                <th>Title</th>
-				                <th>URL</th>
+				                <th>Name</th>
 				                <th>Status</th>
 				                <th>Actions</th>
 				              </tr>
@@ -105,7 +103,7 @@
 	<!-- Page specific script -->
 	<script>
 	  $(function () {
-	    $('#posts-datatable').dataTable(
+	    $('#tags-datatable').dataTable(
       	{
       		sort: false,
 			pageLength: 50,
@@ -119,11 +117,10 @@
 			// dom: 'Bfrtip',
 			lengthMenu: [[5, 10, 25, 50, 100, 200, -1], [5, 10, 25, 50, 100, 200, "All"]],
 			serverSide: true,
-			ajax: "{{ url('admin/posts') }}",
+			ajax: "{{ url('admin/tags') }}",
 			columns: [
 				{data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
-				{data: 'title', name: 'title'},
-				{data: 'url', name: 'url'},
+				{data: 'name', name: 'name'},
 				{data: 'status', name: 'status'},
 				{data: 'action', name: 'action', orderable: false, searchable: false},
 			]
