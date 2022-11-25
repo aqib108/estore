@@ -109,6 +109,15 @@ class DepartmentController extends Controller
         {
         $input['name'] = json_encode($request->name);
         $input['description'] = json_encode($request->description);
+        $input['url'] = isset($request->url) ? $request->url : null;
+        if($request->hasFile('image'))
+            {
+                $timageName = 'department-image'.time().'.'.$request->image->extension();  
+                if($request->image->move(public_path('department-image/'), $timageName))
+                {
+                    $input['file'] = $timageName;
+                }   
+            }
         $model = new Department();
         $model->fill($input);
         $model->save();
@@ -125,6 +134,15 @@ class DepartmentController extends Controller
             $model = Department::find($id);
             $input['name'] = json_encode($request->name);
             $input['description'] = json_encode($request->description); 
+            $input['url'] = isset($request->url) ? $request->url : null;
+            if($request->hasFile('image'))
+            {
+                $timageName = 'department-image'.time().'.'.$request->image->extension();  
+                if($request->image->move(public_path('department-image/'), $timageName))
+                {
+                    $input['file'] = $timageName;
+                }   
+            }
             $model->fill($input);
             $model->update();
             return redirect('admin/department')->with('message','Data update Successfully');

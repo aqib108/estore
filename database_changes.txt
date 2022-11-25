@@ -9,3 +9,14 @@ CREATE TABLE `library` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+//department table
+CREATE TABLE `departments` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf32_unicode_ci DEFAULT NULL,
+  `description` varchar(255) COLLATE utf32_unicode_ci DEFAULT NULL,
+  `file` varchar(255) COLLATE utf32_unicode_ci DEFAULT NULL,
+  `url` varchar(255) COLLATE utf32_unicode_ci DEFAULT NULL,
+  `status` tinyint(4) DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
