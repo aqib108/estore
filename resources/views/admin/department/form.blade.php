@@ -77,7 +77,7 @@
 				                    </div>
 							    @endforeach
 								<div class="form-group row">
-									<label class="col-sm-2 col-form-label">tumbnail</label>
+									<label class="col-sm-2 col-form-label">Url</label>
 									<div class="col-sm-6">
 										<input class="form-control" type="text" value="{{ $row?->url }}"  name="url"></textarea>
 									</div>
