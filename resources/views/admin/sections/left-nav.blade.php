@@ -82,6 +82,45 @@
             </li>
           @endif
 
+          <!-- Contact & subscriptions menus by saad  -->
+
+          @if(have_right('View-Contacts') || have_right('View-Subscriptions'))
+          <li class="nav-item {{ ($url_1 == 'contacts' || $url_1 == 'subscriptions' ) ? 'menu-open':'' }}">
+            <a href="#" class="nav-link {{ ($url_1 == 'contacts' || $url_1 == 'subscriptions' ) ? 'active':'' }}">
+              {{-- <i class="nav-icon fas fa-home"></i> --}}
+              <i class="nav-icon fas fa-folder"></i>
+              <p>
+                  Queries
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+
+            <ul class="nav nav-treeview">
+
+              @if(have_right('View-Contacts'))
+              <li class="nav-item">
+                <a href="{{ URL('admin/contacts') }}" class="nav-link {{ $url_1 == 'contacts' ? 'active':'' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Contacts</p>
+                </a>
+              </li>
+              @endif
+
+              @if(have_right('View-Subscriptions'))
+              <li class="nav-item">
+                <a href="{{ URL('admin/subscriptions') }}" class="nav-link {{ $url_1 == 'subscriptions' ? 'active':'' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Subscriptions</p>
+                </a>
+              </li>
+              @endif
+
+            </ul>
+
+          </li>
+        @endif
+
+
           <li class="nav-item">
             <a href="{{ URL('admin/categories') }}" class="nav-link {{ $url_1 == 'categories' ? 'active':'' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -95,6 +134,16 @@
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Department
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ URL('admin/donations') }}" class="nav-link {{ $url_1 == 'donations' ? 'active':'' }}">
+
+              <i class=" nav-icon fas fa-box"></i>
+              <p>
+                Donations
               </p>
             </a>
           </li>
@@ -116,14 +165,14 @@
               </p>
             </a>
           </li>
-          {{--  <li class="nav-item">
-            <a href="{{ URL('admin/library') }}" class="nav-link {{ $url_1 == 'library' ? 'active':'' }}">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Library
-              </p>
-            </a>
-          </li>  --}}
+          @if(have_right('View-Ceo-Message'))
+               <li class="nav-item">
+                 <a href="{{ URL('admin/ceomessage') }}" class="nav-link {{ $url_1 == 'ceomessage' ? 'active':'' }}">
+                   <i class="fas fa-tachometer-alt"></i>
+                   <p>Ceo Message</p>
+                 </a>
+               </li>
+          @endif
 
           <li class="nav-item">
             <a href="{{ URL('admin/pages') }}" class="nav-link {{ $url_1 == 'pages' ? 'active':'' }}">
