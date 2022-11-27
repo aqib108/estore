@@ -12,6 +12,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
+        "pion/laravel-chunk-upload": "^1.5",
         "vinkla/hashids": "^9.1",
         "yajra/laravel-datatables-oracle": "^9.19"
     },

@@ -47,7 +47,7 @@
 			              </div>
 			              <!-- /.card-header -->
 			              <div class="card-body">
-			                <form id="user-form" action="{{ URL('admin/department') }}" enctype="multipart/form-data" method="POST"> 
+			                <form id="department-form" action="{{ URL('admin/department') }}" enctype="multipart/form-data" method="POST"> 
 			                	{!! csrf_field() !!}
 			                	<input type="hidden" name="action" value="{{$action}}">
 			                	<input type="hidden" name="id" value="{{ isset($id) ? $id : '' }}">
@@ -64,7 +64,7 @@
 			                  	<div class="form-group row">
 			                        <label class="col-sm-2 col-form-label">{{ $lang->name }} Department Name</label>
 			                        <div class="col-sm-6">
-			                        	<input type="text" class="form-control" placeholder="Enter Role Name" name="name[{{ $lang->short_name }}]" value="{{ isset($deptname[$lang->short_name]) ? $deptname[$lang->short_name] : '' }}">
+			                        	<input type="text" class="form-control" placeholder="Enter Role Name" name="name[{{ $lang->short_name }}]" value="{{ isset($deptname[$lang->short_name]) ? $deptname[$lang->short_name] : '' }}" required>
 			                        </div>
 			                    </div>
                                @endforeach
@@ -72,7 +72,7 @@
 							   <div class="form-group row">
 				                        <label class="col-sm-2 col-form-label">{{$lang->name}} Content</label>
 				                        <div class="col-sm-6">
-				                        	<textarea id="summernote" name="description[{{$lang->short_name}}]">{{isset($deptDescription[$lang->short_name]) ? $deptDescription[$lang->short_name] : '' }}</textarea>
+				                        	<textarea id="summernote" name="description[{{$lang->short_name}}]" required>{{isset($deptDescription[$lang->short_name]) ? $deptDescription[$lang->short_name] : '' }}</textarea>
 				                        </div>
 				                    </div>
 							    @endforeach
@@ -136,53 +136,22 @@
 	<!-- Page specific script -->
 	<script>
 	  $(function () {
-	  	  $('[data-mask]').inputmask();
-		  bsCustomFileInput.init();
-		  $('#user-form').validate({
-		    rules: 
-		    {
-		      role_id: {
-		        required: true,
-		      },
-		      first_name: {
-		        required: true,
-		      },
-		      last_name: {
-		        required: true,
-		      },
-		      email: {
-		        required: true,
-		        email: true,
-		      },
-		      phone: {
-		        required: true,
-		      },
-		      password: {
-		        minlength: 8
-		      },
-		      repeat_password: {
-		        minlength: 8,
-		        equalTo : "#password"
-		      },
-		      dob: {
-		        required: true,
-		      },
-		      status: {
-		        required: true,
-		      }
-		    },
-		    errorElement: 'span',
-		    errorPlacement: function (error, element) {
-		      error.addClass('invalid-feedback');
-		      element.closest('.form-group').append(error);
-		    },
-		    highlight: function (element, errorClass, validClass) {
-		      $(element).addClass('is-invalid');
-		    },
-		    unhighlight: function (element, errorClass, validClass) {
-		      $(element).removeClass('is-invalid');
-		    }
-		  });
+
+		$('#department-form').validate({
+			rules: 
+			{},
+			errorElement: 'span',
+			errorPlacement: function (error, element) {
+			  error.addClass('invalid-feedback');
+			  element.closest('.form-group').append(error);
+			},
+			highlight: function (element, errorClass, validClass) {
+			  $(element).addClass('is-invalid');
+			},
+			unhighlight: function (element, errorClass, validClass) {
+			  $(element).removeClass('is-invalid');
+			}
+		});
 		});
 		$('textarea').summernote({
 	    		height: ($(window).height() - 300),

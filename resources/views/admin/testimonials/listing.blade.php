@@ -11,14 +11,6 @@
   <link rel="stylesheet" href="{{asset('assets/admin/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('assets/admin/dist/css/adminlte.min.css')}}">
-  <style>
-    div#library-datatable_length {
-    padding-top: 24px;
-    }
-    div#library-datatable_filter {
-    margin-top: -41px;
-    }
-</style>
 @endpush
 
 @section('content')
@@ -29,12 +21,12 @@
 		  <div class="container-fluid">
 		    <div class="row mb-2">
 		      <div class="col-sm-6">
-		        <h1 class="m-0">Library</h1>
+		        <h1 class="m-0">Testimonials</h1>
 		      </div><!-- /.col -->
 		      <div class="col-sm-6">
 		        <ol class="breadcrumb float-sm-right">
 		          <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-		          <li class="breadcrumb-item active">Library</li>
+		          <li class="breadcrumb-item active">Testimonials</li>
 		        </ol>
 		      </div><!-- /.col -->
 		    </div><!-- /.row -->
@@ -49,18 +41,20 @@
 				  <div class="col-12">
 				    <div class="card">
 				      <div class="card-header">
-				      	@if(have_right('add-library'))
+				      	@if(have_right('add-admin'))
 					        <h3 class="card-title">
-					        	{{-- <a href="{{ URL('admin/library/create') }}" class="btn btn-primary"> Add New </a> --}}
+					        	<a href="{{ URL('admin/testimonials/create') }}" class="btn btn-primary"> Add New </a>
 					        </h3>
 				        @endif
 				      </div>
 				      <div class="card-body">
-				        <table id="library-datatable" class="table table-bordered table-striped" style="width:100%">
+				        <table id="sliders-datatable" class="table table-bordered table-striped" style="width:100%">
 				          <thead>
 				              <tr>
 				                <th>ID</th>
-				                <th>Title English</th>
+				                <th>Name</th>
+				                <th>Message</th>
+				                <th>Status</th>
 				                <th>Actions</th>
 				              </tr>
 				          </thead>
@@ -68,9 +62,11 @@
 				          </tbody>
 				          <tfoot>
 				              <tr>
-                                  <th>ID</th>
-                                  <th>Title English</th>
-                                  <th>Actions</th>
+				                <th>ID</th>
+				                <th>Name</th>
+				                <th>Message</th>
+				                <th>Status</th>
+				                <th>Actions</th>
 				              </tr>
 				          </tfoot>
 				        </table>
@@ -109,7 +105,7 @@
 	<!-- Page specific script -->
 	<script>
 	  $(function () {
-	    $('#library-datatable').dataTable(
+	    $('#sliders-datatable').dataTable(
       	{
       		sort: false,
 			pageLength: 50,
@@ -120,27 +116,15 @@
 		        hideOverlayLoader();
 		    },
 			responsive: true,
-			dom: 'Blfrtip',
-            buttons: [
-                        {
-                            extend: 'pdf',
-                            text: '<i class="fa fa-file-pdf-o" aria-hidden="true" title="Library"></i>&nbsp;Export as PDF',
-                            title: 'Library',
-                            orientation: 'landscape',
-                            exportOptions: {
-                                columns: [0,1]
-                            },
-                            // customize : function(doc) {
-                            //     doc.content[1].table.widths = [ '2%', '10%', '10%'];
-                            // }
-                        }
-                    ],
+			// dom: 'Bfrtip',
 			lengthMenu: [[5, 10, 25, 50, 100, 200, -1], [5, 10, 25, 50, 100, 200, "All"]],
 			serverSide: true,
-			ajax: "{{ url('admin/library') }}",
+			ajax: "{{ url('admin/testimonials') }}",
 			columns: [
 				{data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
-				{data: 'title_english', name: 'title_english'},
+				{data: 'name', name: 'name'},
+				{data: 'message', name: 'message'},
+				{data: 'status', name: 'status'},
 				{data: 'action', name: 'action', orderable: false, searchable: false},
 			]
 	    }).on( 'length.dt', function () {

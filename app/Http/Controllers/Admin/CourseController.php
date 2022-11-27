@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Admin\Department;
+use App\Models\Admin\Course;
 use App\Models\Admin\Language;
 use Hash;
 use DataTables;
 use Hashids\Hashids;
-class DepartmentController extends Controller
+
+class CourseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,7 +26,7 @@ class DepartmentController extends Controller
     $hashids = new Hashids('',10);
     if($request->ajax())
     {
-        $db_record = Department::all();
+        $db_record = Course::all();
         $datatable = Datatables::of($db_record);
         $datatable = $datatable->addIndexColumn();
        
@@ -43,23 +44,18 @@ class DepartmentController extends Controller
             $name = json_decode($row->name);
             return $name->en;
         });
-        $datatable = $datatable->editColumn('description', function($row)
-        {
-            $description = json_decode($row->description);
-            return strip_tags($description->en);
-        });
         $datatable = $datatable->addColumn('action', function($row) use($hashids)
         {
             $actions = '<span class="actions">';
 
             if(have_right('edit-customer'))
             {
-                $actions .= '&nbsp;<a class="btn btn-primary" href="'.url("admin/department/" .$hashids->encode($row->id).'/edit').'" title="Edit"><i class="far fa-edit"></i></a>';
+                $actions .= '&nbsp;<a class="btn btn-primary" href="'.url("admin/courses/" .$hashids->encode($row->id).'/edit').'" title="Edit"><i class="far fa-edit"></i></a>';
             }
                 
             if(have_right('delete-admin'))
                 {
-                    $actions .= '<form method="POST" action="'.url("admin/department/" . $hashids->encode($row->id)).'" accept-charset="UTF-8" style="display:inline;">';
+                    $actions .= '<form method="POST" action="'.url("admin/courses/" . $hashids->encode($row->id)).'" accept-charset="UTF-8" style="display:inline;">';
                     $actions .= '<input type="hidden" name="_method" value="DELETE">';
                     $actions .= '<input name="_token" type="hidden" value="'.csrf_token().'">';
                     $actions .= '<button class="btn btn-danger" style="margin-left:02px;" onclick="return confirm(\'Are you sure you want to delete this record?\');" title="Delete">';
@@ -76,7 +72,7 @@ class DepartmentController extends Controller
         $datatable = $datatable->make(true);
         return $datatable;
     }
-        return view('admin.department.listing',$data);
+        return view('admin.courses.listing',$data);
     }
 
     /**
@@ -90,10 +86,10 @@ class DepartmentController extends Controller
             access_denied();
 
         $data = [];
-        $data['row'] = new Department();
+        $data['row'] = new Course();
         $data['languages'] = Language::all();
         $data['action'] = 'add';
-        return View('admin.department.form',$data);
+        return View('admin.courses.form',$data);
     }
 
     /**
@@ -109,10 +105,10 @@ class DepartmentController extends Controller
         {
         $input['name'] = json_encode($request->name);
         $input['description'] = json_encode($request->description);
-        $model = new Department();
+        $model = new Course();
         $model->fill($input);
         $model->save();
-        return redirect('admin/department')->with('message','Data saved Successfully');
+        return redirect('admin/courses')->with('message','Data saved Successfully');
         }
         else
         {
@@ -122,12 +118,12 @@ class DepartmentController extends Controller
             $hashids = new Hashids('',10);
             $id = $input['id'];
             $id = $hashids->decode($id)[0];
-            $model = Department::find($id);
+            $model = Course::find($id);
             $input['name'] = json_encode($request->name);
             $input['description'] = json_encode($request->description); 
             $model->fill($input);
             $model->update();
-            return redirect('admin/department')->with('message','Data update Successfully');
+            return redirect('admin/courses')->with('message','Data update Successfully');
            
            
         }
@@ -160,10 +156,10 @@ class DepartmentController extends Controller
         $data['id'] = $id;
         $hashids = new Hashids('',10);
         $id = $hashids->decode($id)[0];
-        $data['row'] = Department::find($id);
+        $data['row'] = Course::find($id);
         $data['languages'] = Language::all();
         $data['action'] = 'edit';
-        return View('admin.department.form',$data);
+        return View('admin.courses.form',$data);
     }
 
     /**
@@ -192,7 +188,7 @@ class DepartmentController extends Controller
         $data = [];
         $hashids = new Hashids('',10);
         $id = $hashids->decode($id)[0];
-        $data['row'] = Department::destroy($id);
-        return redirect('admin/department')->with('message','Data deleted Successfully');
+        $data['row'] = Course::destroy($id);
+        return redirect('admin/courses')->with('message','Data deleted Successfully');
     }
 }

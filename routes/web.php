@@ -49,11 +49,17 @@ Route::prefix('admin')->namespace('Admin')->group(static function()
         Route::resource('posts', '\App\Http\Controllers\Admin\PostsController');
         Route::resource('pages', '\App\Http\Controllers\Admin\PagesController');
         Route::resource('sliders', '\App\Http\Controllers\Admin\SliderController');
+        Route::resource('courses', '\App\Http\Controllers\Admin\CourseController');
+        Route::resource('testimonials', '\App\Http\Controllers\Admin\TestimonialController');
         Route::post('pages/uploadimage', '\App\Http\Controllers\Admin\PagesController@uploadimage')->name('admin.pages.uploadimage');
         Route::post('posts/uploadimage', '\App\Http\Controllers\Admin\PostsController@uploadimage')->name('admin.posts.uploadimage');
         Route::post('sliders/uploadimage', '\App\Http\Controllers\Admin\SliderController@uploadimage')->name('admin.sliders.uploadimage');
         Route::resource('department', '\App\Http\Controllers\Admin\DepartmentController');
+        // Route::resource('library', '\App\Http\Controllers\Admin\LibraryController');
+        //library route
+        Route::post('save-files-ajax/{libId}', '\App\Http\Controllers\Admin\LibraryController@saveFilesAjax');
         Route::resource('library', '\App\Http\Controllers\Admin\LibraryController');
+        Route::post('update-thumb-img/{id}', '\App\Http\Controllers\Admin\LibraryController@updateThumbImg');
     });
 });
 

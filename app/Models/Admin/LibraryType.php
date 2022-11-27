@@ -5,14 +5,12 @@ namespace App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Library extends Model
+class LibraryType extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
-
-    public function libraryType()
+    public function libraries()
     {
-        return $this->belongsTo(LibraryType::class);
+        return $this->hasMany(Library::class, 'type_id', 'id');
     }
 }

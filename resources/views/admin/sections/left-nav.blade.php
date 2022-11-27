@@ -91,7 +91,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ URL('admin/department') }}" class="nav-link {{ $url_1 == 'categories' ? 'active':'' }}">
+            <a href="{{ URL('admin/department') }}" class="nav-link {{ $url_1 == 'department' ? 'active':'' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Department
@@ -116,14 +116,14 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          {{--  <li class="nav-item">
             <a href="{{ URL('admin/library') }}" class="nav-link {{ $url_1 == 'library' ? 'active':'' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Library
               </p>
             </a>
-          </li>
+          </li>  --}}
 
           <li class="nav-item">
             <a href="{{ URL('admin/pages') }}" class="nav-link {{ $url_1 == 'pages' ? 'active':'' }}">
@@ -141,6 +141,80 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ URL('admin/testimonials') }}" class="nav-link {{ $url_1 == 'testimonials' ? 'active':'' }}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Testimonials
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ URL('admin/courses') }}" class="nav-link {{ $url_1 == 'courses' ? 'active':'' }}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Courses
+              </p>
+            </a>
+          </li>
+
+                  <!-- start of library section-->
+
+
+         @if(have_right('View-Library-Image') || have_right('View-Library-Video') || have_right('View-Library-Audio') || have_right('View-Library-Book') || have_right('View-Library-Document'))
+         <li class="nav-item {{ ($url_1 == 'library'  ) ? 'menu-open':'' }}">
+           <a href="#" class="nav-link {{ ($url_1 == 'library'  ) ? 'active':'' }}">
+            <i class="nav-icon fas fa-photo-video"></i>
+             <p>
+                 Library
+               <i class="right fas fa-angle-left"></i>
+
+             </p>
+           </a>
+
+           <ul class="nav nav-treeview">
+
+             @if(have_right('View-Library-Image'))
+             <li class="nav-item">
+               <a href="{{ URL('admin/library/1/edit') }}" class="nav-link {{ $url_1.$url_2 == 'library1' ? 'active':'' }}">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>Image</p>
+               </a>
+             </li>
+             @endif
+
+             @if(have_right('View-Library-Video'))
+             <li class="nav-item">
+               <a href="{{ URL('admin/library/2/edit') }}" class="nav-link {{ $url_1.$url_2 == 'library2' ? 'active':'' }}">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>Video</p>
+               </a>
+             </li>
+             @endif
+
+             @if(have_right('View-Library-Audio'))
+             <li class="nav-item">
+               <a href="{{ URL('admin/library/3/edit') }}" class="nav-link {{ $url_1.$url_2 == 'library3' ? 'active':'' }}">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>Audio</p>
+               </a>
+             </li>
+             @endif
+
+             @if(have_right('View-Library-Book'))
+             <li class="nav-item">
+               <a href="{{ URL('admin/library/4/edit') }}" class="nav-link {{ $url_1.$url_2 == 'library4' ? 'active':'' }}">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>Book Library</p>
+               </a>
+             </li>
+             @endif
+
+           </ul>
+
+         </li>
+       @endif
+        <!-- end of library section-->
 
         </ul>
       </nav>
