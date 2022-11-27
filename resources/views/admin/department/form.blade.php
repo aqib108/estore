@@ -64,7 +64,7 @@
 			                  	<div class="form-group row">
 			                        <label class="col-sm-2 col-form-label">{{ $lang->name }} Department Name</label>
 			                        <div class="col-sm-6">
-			                        	<input type="text" class="form-control" placeholder="Enter Role Name" name="name[{{ $lang->short_name }}]" value="{{ isset($deptname[$lang->short_name]) ? $deptname[$lang->short_name] : '' }}" required>
+			                        	<input type="text" class="form-control" placeholder="Enter Department Name" name="name[{{ $lang->short_name }}]" value="{{ isset($deptname[$lang->short_name]) ? $deptname[$lang->short_name] : '' }}">
 			                        </div>
 			                    </div>
                                @endforeach
@@ -76,6 +76,28 @@
 				                        </div>
 				                    </div>
 							    @endforeach
+								<div class="form-group row">
+									<label class="col-sm-2 col-form-label">tumbnail</label>
+									<div class="col-sm-6">
+										<input class="form-control" type="text" value="{{ $row?->url }}"  name="url"></textarea>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-2 col-form-label">Image</label>
+									<div class="col-sm-6">
+										<input class="form-control" type="file"  name="image"></textarea>
+									</div>
+								</div>
+								@if(isset($row->file) && $action=='edit')
+								@php $tImage = asset('department-images/'.$row->file); @endphp
+								<div class="form-group row">
+									<label class="col-sm-2 col-form-label">Image</label>
+									<div class="col-sm-6">
+										<img src="{{ $tImage }}"/>
+									</div>
+								</div>
+							   @endif
+							
 								<div class="col-sm-4">
 				                      	<div class="form-group">
 				                      		<label>Status</label>
@@ -101,6 +123,7 @@
 			                  			<button type="submit" class="btn btn-primary float-right"> {{ ($action=='add') ? 'Save' : 'Update' }} </button>
 			                  		</div>
 			                  	</div>
+								  
 			                </form>
 			              </div>
 			              <!-- /.card-body -->

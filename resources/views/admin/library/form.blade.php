@@ -497,6 +497,8 @@
 	<script src="{{asset('assets/admin/dist/js/adminlte.min.js')}}"></script>
 	<!-- AdminLTE for demo purposes -->
 	<script src="{{asset('assets/admin/dist/js/demo.js')}}"></script>
+	<!-- SummerNote -->
+	<script src="{{asset('assets/admin/summernote/summernote-bs4.min.js')}}"></script>
 	<!-- Page specific script -->
   <!-- SummerNote -->
   <script src="{{asset('assets/admin/summernote/summernote-bs4.min.js')}}"></script>
