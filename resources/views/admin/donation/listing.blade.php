@@ -12,11 +12,6 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/adminlte.min.css') }}">
 
-    <!-- for sweet alert  -->
-    {{-- <link rel="stylesheet" href="{{asset('assets/admin/sweetalert/sweetalert.css')}}"> --}}
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css">
-
     {{-- toggle bootstrap --}}
     <style>
         .switch {
@@ -176,7 +171,7 @@
     <script src="{{ asset('assets/admin/dist/js/demo.js') }}"></script>
     <!--sweat alert -->
     {{-- <script src="{{asset('assets/admin/sweetalert/sweetalert.min.js')}}"></script> --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Page specific script -->
     <script>
         $(function() {

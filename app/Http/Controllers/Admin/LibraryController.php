@@ -78,7 +78,6 @@ class LibraryController extends Controller
         //     access_denied();
 
         $data = [];
-        $data['languages'] = Language::all();
         $data['row'] = new Library();
         $data['action'] = 'add';
         $data['languages'] = Language::all();

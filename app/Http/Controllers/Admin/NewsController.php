@@ -140,6 +140,7 @@ class NewsController extends Controller
             $model->update();
             return redirect('admin/ceomessage')->with('message', 'Data updated Successfully');
     }
+    }
 
     /**
      * Display the specified resource.

@@ -145,6 +145,7 @@ class MagazineController extends Controller
                 $model->file= $filePath;
                 $file_url =  $model->file;
                 if (file_exists(public_path($file_url))) {
+                    if(isset($file_url))
                     unlink($file_url);
                 }
             } else {
@@ -155,6 +156,7 @@ class MagazineController extends Controller
                 $model->image = $imagePath;
                 $image_url =  $model->thumbnail_image;
                 if (file_exists(public_path($image_url))) {
+                    if(isset($image_url))
                     unlink($image_url);
                 }
             } else {
