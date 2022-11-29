@@ -63,6 +63,8 @@ Route::prefix('admin')->namespace('Admin')->group(static function()
         Route::get('featured-donation/{id}', [App\Http\Controllers\Admin\DonationController::class, 'setFeaturedDonation'])->name('admin.featured.donation');
         Route::resource('magazine-categories', '\App\Http\Controllers\Admin\MagazineCategoryController');
         Route::resource('magazines', '\App\Http\Controllers\Admin\MagazineController');
+        Route::resource('locations', '\App\Http\Controllers\Admin\LocationController');
+        Route::get('locations/featured-address/{id}', '\App\Http\Controllers\Admin\LocationController@setFeaturedAddress');
         //library route
         Route::post('save-files-ajax/{libId}', '\App\Http\Controllers\Admin\LibraryController@saveFilesAjax');
         Route::resource('library', '\App\Http\Controllers\Admin\LibraryController');
