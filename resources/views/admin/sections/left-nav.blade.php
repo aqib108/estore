@@ -114,6 +114,9 @@
                 </a>
               </li>
               @endif
+             
+              
+            
 
             </ul>
 
@@ -129,6 +132,7 @@
               </p>
             </a>
           </li>
+          
           <li class="nav-item">
             <a href="{{ URL('admin/department') }}" class="nav-link {{ $url_1 == 'department' ? 'active':'' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -156,7 +160,12 @@
               </p>
             </a>
           </li>
-
+          <li class="nav-item">
+            <a href="{{ URL('admin/news') }}" class="nav-link {{ $url_1 == 'news' ? 'active':'' }}">
+              <i class="far fa-circle nav-icon"></i>
+              <p>News Feeds</p>
+            </a>
+          </li>
           <li class="nav-item">
             <a href="{{ URL('admin/posts') }}" class="nav-link {{ $url_1 == 'posts' ? 'active':'' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
