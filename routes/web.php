@@ -59,6 +59,7 @@ Route::prefix('admin')->namespace('Admin')->group(static function()
         Route::resource('contacts', '\App\Http\Controllers\Admin\ContactController');
         Route::resource('subscriptions', '\App\Http\Controllers\Admin\SubscriptionController');
         Route::resource('donations', '\App\Http\Controllers\Admin\DonationController');
+        Route::resource('news', '\App\Http\Controllers\Admin\NewsController');
         Route::get('featured-donation/{id}', [App\Http\Controllers\Admin\DonationController::class, 'setFeaturedDonation'])->name('admin.featured.donation');
         Route::resource('magazine-categories', '\App\Http\Controllers\Admin\MagazineCategoryController');
         Route::resource('magazines', '\App\Http\Controllers\Admin\MagazineController');
