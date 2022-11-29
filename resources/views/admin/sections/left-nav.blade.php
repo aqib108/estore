@@ -120,6 +120,44 @@
           </li>
         @endif
 
+          {{-- Magazine section --}}
+         @if(have_right('View-Magazines-Category') || have_right('View-Magazines') )
+         <li class="nav-item {{ ($url_1 == 'magazines'|| $url_1=='magazine-categories') ? 'menu-open':'' }}">
+           <a href="#" class="nav-link {{ ($url_1 == 'magazine-categories' || $url_1 == 'magazines' ) ? 'active':'' }}">
+            <i class="nav-icon fas fa fa-book"></i>
+             <p>
+                 Magazine
+               <i class="right fas fa-angle-left"></i>
+
+             </p>
+           </a>
+
+           <ul class="nav nav-treeview">
+
+             @if(have_right('View-Magazines-Category'))
+             <li class="nav-item">
+               <a href="{{ URL('admin/magazine-categories') }}" class="nav-link {{ $url_1 == 'magazine-categories' ? 'active':'' }}">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>Magazines Category</p>
+               </a>
+             </li>
+             @endif
+
+             @if(have_right('View-Magazines'))
+             <li class="nav-item">
+               <a href="{{ URL('admin/magazines') }}" class="nav-link {{ $url_1== 'magazines' ? 'active':'' }}">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>Magazines</p>
+               </a>
+             </li>
+             @endif
+
+           </ul>
+
+         </li>
+       @endif
+
+        {{-- end magazine section --}}
 
           <li class="nav-item">
             <a href="{{ URL('admin/categories') }}" class="nav-link {{ $url_1 == 'categories' ? 'active':'' }}">
