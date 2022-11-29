@@ -52,7 +52,8 @@
 				          <thead>
 				              <tr>
 				                <th>ID</th>
-				                <th>Message Title</th>
+				                <th>News Title</th>
+								<th>Author Name</th>
 				                <th>Status</th>
 				                <th>Actions</th>
 				              </tr>
@@ -62,7 +63,8 @@
 				          <tfoot>
 				              <tr>
 				                <th>ID</th>
-				                <th>Message Title</th>
+								<th>News Title</th>
+								<th>Author Name</th>
 				                <th>Status</th>
 				                <th>Actions</th>
 				              </tr>
@@ -118,10 +120,11 @@
 			responsive: true,
 			lengthMenu: [[5, 10, 25, 50, 100, 200, -1], [5, 10, 25, 50, 100, 200, "All"]],
 			serverSide: true,
-			ajax: "{{ url('admin/ceomessage') }}",
+			ajax: "{{ url('admin/news') }}",
 			columns: [
 				{data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
-				{data: 'message_title', name: 'message_title'},
+				{data: 'title', name: 'title'},
+				{data: 'author_name', name: 'author_name'},
 				{data: 'status', name: 'status'},
 				{data: 'action', name: 'action', orderable: false, searchable: false},
 			]

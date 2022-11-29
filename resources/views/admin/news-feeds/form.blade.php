@@ -48,7 +48,18 @@
 			              <div class="card-header">
 			                <h3 class="card-title">News Form</h3>
 			              </div>
-
+                         @php
+						 $title = [];
+						 $author_name = [];
+						 $location = [];
+						 $content = []; 
+                         if(!empty($row)){
+								$title = (array)json_decode($row->title);
+								$author_name = (array)json_decode($row->author_name);
+								$location = (array)json_decode($row->location);
+								$content = (array)json_decode($row->content);
+						 }
+								@endphp
 			              <!-- /.card-header -->
 			              <div class="card-body">
 			                <form id="page-form" class="form-horizontal label-left" action="{{ URL('admin/news') }}" enctype="multipart/form-data" method="POST">
@@ -70,14 +81,21 @@
 
 										<div id="messagetitle" class="collapse" aria-labelledby="message-title-heading" data-parent="#accordionExample">
 											<div class="card-body">
+												
+												<div class="row">
 												@foreach($languages as $language)
-												<div class="form-group row">
-													<label class="col-sm-2 col-form-label">News Title in {{ $language->name }} <span class="text-red">*</span></label>
-													<div class="col-sm-6">
-														<input type="text" class="form-control" placeholder="Enter Message Title " name="title[{{$language->short_name}}]" value="{{ $row->message_title }}" required="">
+												
+													<div class="col-sm-4">
+														<div class="form-group ">
+														<label>News Title in {{ $language->name }} <span class="text-red">*</span></label>
+													        
+														<input type="text" class="form-control" placeholder="Enter Message Title in {{$language->name}} " name="title[{{$language->short_name}}]" value="{{ isset($title[$language->short_name]) ? $title[$language->short_name] : '' }}" required="">
+												
+														</div>
 													</div>
+												@endforeach
 												</div>
-                                                @endforeach
+                                            
 											</div>
 										</div>
 										<!-- For Image -->
@@ -91,14 +109,17 @@
 										</div>
 										<div id="newsauthor" class="collapse" aria-labelledby="message-title-heading" data-parent="#accordionExample">
 											<div class="card-body">
+											<div class="row">
 												@foreach($languages as $language)
-												<div class="form-group row">
-													<label class="col-sm-2 col-form-label">News Auther Name in {{ $language->name }} <span class="text-red">*</span></label>
-													<div class="col-sm-6">
-														<input type="text" class="form-control" placeholder="Author Name" name="author_name[{{$language->short_name}}]" value="{{ $row->message_title }}" required="">
+												
+													<div class="col-sm-4">
+														<div class="form-group ">
+														<label>Author Name in {{ $language->name }} <span class="text-red">*</span></label>													        
+														<input type="text" class="form-control" placeholder="Author Name in {{$language->name}} " name="author_name[{{$language->short_name}}]" value="{{ isset($author_name[$language->short_name]) ? $author_name[$language->short_name] : '' }}" required="">
+														</div>
 													</div>
+												@endforeach
 												</div>
-                                                @endforeach
 											</div>
 										</div>
 										<!--end of author name-->
@@ -112,14 +133,17 @@
 										</div>
 										<div id="newslocation" class="collapse" aria-labelledby="message-title-heading" data-parent="#accordionExample">
 											<div class="card-body">
+											<div class="row">
 												@foreach($languages as $language)
-												<div class="form-group row">
-													<label class="col-sm-2 col-form-label">Location in {{ $language->name }} <span class="text-red">*</span></label>
-													<div class="col-sm-6">
-														<input type="text" class="form-control" placeholder="location " name="location[{{$language->short_name}}]" value="{{ $row->message_title }}" required="">
+												
+													<div class="col-sm-4">
+														<div class="form-group ">
+														<label>Location in {{ $language->name }} <span class="text-red">*</span></label>        
+														<input type="text" class="form-control" placeholder="location in {{$language->name}} " name="location[{{$language->short_name}}]" value="{{ isset($location[$language->short_name]) ? $location[$language->short_name] : '' }}" required="">
+														</div>
 													</div>
+												@endforeach
 												</div>
-                                                @endforeach
 											</div>
 										</div>
 										<!--end of news location-->
@@ -137,7 +161,7 @@
 												<div class="form-group row">
 													<label class="col-sm-2 col-form-label">Image <span class="text-red">*</span></label>
 													<div class="col-sm-6">
-														<input type="File" class="form-control" placeholder="Enter Message Title " id="imageinpt" name="image" value="{{ $row->image }}" @if(!$row->image) required @endif>
+														<input type="File" class="form-control" placeholder="Enter Message Title " id="imageinpt" name="image" value="{{ $row->image }}">
 														<p>CEO image: 410*612</p>
 													</div>
 													<div class="col-sm-2">
@@ -173,31 +197,11 @@
 													<div class="col-sm-4">
 														<div class="form-group ">
 															<label class="col-form-label">News Content {{$language->name}} <span class="text-red">*</span></label>
-																<textarea id="summernote" name="message[{{$language->short_name}}]" required>{{isset($message[$language->short_name])?$message[$language->short_name]:''}}</textarea>
+																<textarea id="summernote" name="content[{{$language->short_name}}]" required>{{isset($content[$language->short_name])?$content[$language->short_name]:''}}</textarea>
 														</div>
 													</div>
 												@endforeach
-													{{--  <div class="col-sm-4">
-														<div class="form-group ">
-															<label class="form-label">Message (English) <span class="text-red">*</span></label>
-																<textarea id="summernote"  class="summernote " name="message_english" required>{{$row->message_english}}</textarea>
-														</div>
-													</div>
-													<div class="col-sm-4">
-														<div class="form-group">
-															<label class="form-label">Message (Urdu) <span class="text-red">*</span></label>
-															<textarea id="summernote"  class="summernote " name="message_urdu" required>{{$row->message_urdu}}</textarea>
-
-														</div>
-													</div>
-
-													<div class="col-sm-4">
-														<div class="form-group ">
-															<label class="form-label">Message (Arabic) <span class="text-red">*</span></label>
-															<textarea id="summernote"  class="summernote " name="message_arabic" required>{{$row->message_arabic}}</textarea>
-
-														</div>
-													</div>  --}}
+												
 												</div>
 
 											</div>
