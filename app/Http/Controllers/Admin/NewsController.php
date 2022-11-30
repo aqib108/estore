@@ -130,7 +130,7 @@ class NewsController extends Controller
         }
        
        
-    }
+    
     }
 
    

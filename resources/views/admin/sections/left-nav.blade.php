@@ -170,6 +170,14 @@ $url_3 = Request::segment(4);
                     </a>
                 </li>
                 @endif
+                @if(have_right('View-Location'))
+                <li class="nav-item">
+                    <a href="{{ URL('admin/classes') }}" class="nav-link {{ $url_1 == 'classes' ? 'active':'' }}">
+                        <i class="fas fa-tachometer-alt nav-icon"></i>
+                        <p>Classess</p>
+                    </a>
+                </li>
+                @endif
 
                 <li class="nav-item">
                     <a href="{{ URL('admin/categories') }}" class="nav-link {{ $url_1 == 'categories' ? 'active':'' }}">

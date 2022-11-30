@@ -50,19 +50,15 @@
 			              </div>
                          @php
 						 $title = [];
-						 $author_name = [];
-						 $location = [];
 						 $content = []; 
                          if(!empty($row)){
 								$title = (array)json_decode($row->title);
-								$author_name = (array)json_decode($row->author_name);
-								$location = (array)json_decode($row->location);
 								$content = (array)json_decode($row->content);
 						 }
 								@endphp
 			              <!-- /.card-header -->
 			              <div class="card-body">
-			                <form id="page-form" class="form-horizontal label-left" action="{{ URL('admin/news') }}" enctype="multipart/form-data" method="POST">
+			                <form id="page-form" class="form-horizontal label-left" action="{{ URL('admin/classes') }}" enctype="multipart/form-data" method="POST">
 			                	{!! csrf_field() !!}
 
 								<input type="hidden" name="action" value="{{$action}}">
@@ -103,22 +99,35 @@
 										<div class="card-header" id="title-heading">
 											<h2 class="mb-0">
 												<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#newsauthor" aria-expanded="true" aria-controls="messagetitle">
-													Author Name
+													Course title
 												</button>
 											</h2>
 										</div>
 										<div id="newsauthor" class="collapse" aria-labelledby="message-title-heading" data-parent="#accordionExample">
 											<div class="card-body">
 											<div class="row">
-												@foreach($languages as $language)
+												
 												
 													<div class="col-sm-4">
 														<div class="form-group ">
-														<label>Author Name in {{ $language->name }} <span class="text-red">*</span></label>													        
-														<input type="text" class="form-control" placeholder="Author Name in {{$language->name}} " name="author_name[{{$language->short_name}}]" value="{{ isset($author_name[$language->short_name]) ? $author_name[$language->short_name] : '' }}" required="">
+														<label>Course title <span class="text-red">*</span></label>													        
+														<select class="form-control" name="course_id" require>
+															<option value=''>choose</option>
+															@foreach($course as $cur)
+															@php
+															$c = json_decode($cur->name);
+															@endphp
+															@if(isset($row->course_id))
+															<option selected value="{{$cur->id}}">{{$c->en}}</option>
+															@else
+                                                            <option  value="{{$cur->id}}">{{$c->en}}</option>
+															@endif
+															@endforeach
+
+														</select>
 														</div>
 													</div>
-												@endforeach
+									
 												</div>
 											</div>
 										</div>
@@ -127,31 +136,28 @@
 										<div class="card-header" id="title-heading">
 											<h2 class="mb-0">
 												<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#newslocation" aria-expanded="true" aria-controls="messagetitle">
-													Location
+													url
 												</button>
 											</h2>
 										</div>
 										<div id="newslocation" class="collapse" aria-labelledby="message-title-heading" data-parent="#accordionExample">
 											<div class="card-body">
 											<div class="row">
-												@foreach($languages as $language)
-												
 													<div class="col-sm-4">
 														<div class="form-group ">
-														<label>Location in {{ $language->name }} <span class="text-red">*</span></label>        
-														<input type="text" class="form-control" placeholder="location in {{$language->name}} " name="location[{{$language->short_name}}]" value="{{ isset($location[$language->short_name]) ? $location[$language->short_name] : '' }}" required="">
+														<label>url <span class="text-red">*</span></label>        
+														<input type="url" class="form-control" placeholder="class url" name="url" value="{{ isset($row->url) ? $row->url : '' }}" >
 														</div>
 													</div>
-												@endforeach
 												</div>
 											</div>
 										</div>
 										<!--end of news location-->
 										<!-- For message title general  -->
-										<div class="card-header" style="display: none !important" id="title-heading">
+										<div class="card-header"  id="title-heading">
 											<h2 class="mb-0">
 												<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#image" aria-expanded="true" aria-controls="image">
-													Image
+													course file
 												</button>
 											</h2>
 										</div>
@@ -162,19 +168,13 @@
 													<label class="col-sm-2 col-form-label">Image <span class="text-red">*</span></label>
 													<div class="col-sm-6">
 														<input type="File" class="form-control" placeholder="Enter Message Title " id="imageinpt" name="image" value="{{ $row->image }}">
-														<p>CEO image: 410*612</p>
+														<p>Course file vedio or pdf</p>
 													</div>
 													<div class="col-sm-2">
-														@if($row->image)
-														<a href="{{ asset($row->image) }}" target="_blank">
-															<img src="{{ asset($row->image) }}" alt="" id="sample_image" width="100" height="100">
+														@if(isset($row->file))
+														<a href="{{ asset($row->file) }}" download> download file
 														</a>
-															<button class="btn btn-sm btn-danger d-block mt-2" id="clear_image" > clear Image</button>
-														@else
-															<a href="javascrit:void(0)" target="_blank">
-															 	<img id="sample_image" src="{{ asset('images/dummy-images/dummy.PNG') }}" alt="your image" width="60" height="60" />
-															</a>
-															<button class="btn btn-sm btn-danger d-block mt-2" id="clear_image" > clear Image</button>
+													
 													  	@endif
 													</div>
 												</div>
@@ -185,7 +185,7 @@
 										<div class="card-header" id="title-heading">
 											<h2 class="mb-0">
 												<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#message" aria-expanded="true" aria-controls="message">
-													News Content
+													Class Content
 												</button>
 											</h2>
 										</div>
@@ -210,7 +210,7 @@
 										<div class="card-header"  id="short-heading">
 											<h2 class="mb-0">
 												<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#general" aria-expanded="true" aria-controls="general">
-													News Status
+													Class Status
 												</button>
 											</h2>
 										</div>
