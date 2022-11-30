@@ -131,9 +131,7 @@ class NewsController extends Controller
        
        
     }
-    }
-
-   
+       
     public function edit($id)
     {
         if(!have_right('edit-customer'))
