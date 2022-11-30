@@ -68,6 +68,7 @@ Route::prefix('admin')->namespace('Admin')->group(static function()
         //library route
         Route::post('save-files-ajax/{libId}', '\App\Http\Controllers\Admin\LibraryController@saveFilesAjax');
         Route::resource('library', '\App\Http\Controllers\Admin\LibraryController');
+        Route::resource('classes', '\App\Http\Controllers\Admin\ClassesController');
         Route::post('update-thumb-img/{id}', '\App\Http\Controllers\Admin\LibraryController@updateThumbImg');
     });
 });
