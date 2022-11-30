@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\View;
 use App\Models\Admin\Post;
 use App\Models\Admin\Tag;
 use App\Models\Admin\Category;
+use App\Models\Admin\Language;
 use App\Models\Admin\PostTag;
 use App\Models\Admin\PostCategory;
 use App\Models\Admin\PostFeatureImage;
@@ -47,6 +48,12 @@ class PostsController extends Controller
                     $status = '<span class="badge badge-success">Active</span>';
                 }
                 return $status;
+            });
+            $datatable = $datatable->editColumn('title', function($row)
+            {
+                $title = (array)json_decode($row->title);
+                return $title['en'];
+
             });
             $datatable = $datatable->addColumn('action', function($row) use($hashids)
             {
@@ -90,6 +97,7 @@ class PostsController extends Controller
         $category = new Category();
         $data['categories'] = $category->rootCategories();
         $data['tags'] = Tag::where('status',1)->get();
+        $data['languages'] = Language::all();
         $data['action'] = 'add';
         return View('admin.posts.form',$data);
     }
@@ -107,6 +115,7 @@ class PostsController extends Controller
         $category = new Category();
         $data['categories'] = $category->rootCategories();
         $data['tags'] = Tag::where('status',1)->get();
+        $data['languages'] = Language::all();
         $data['action'] = 'edit';
         return View('admin.posts.form',$data);
     }
@@ -116,7 +125,6 @@ class PostsController extends Controller
         $input = $request->all();
 
         $validator = Validator::make($request->all(), [
-            'title' => 'required|string|max:255',
             'url' => 'required|string|max:255',
         ]);
 
@@ -131,9 +139,18 @@ class PostsController extends Controller
             if(!have_right('add-admin'))
                 access_denied();
 
-            $input['admin_id'] = auth()->user()->id;
             $model = new Post();
-            $model->fill($input);
+            $model->title=json_encode($request->title);
+            $model->short_description=json_encode($request->short_description);
+            $model->description=json_encode($request->description);
+            $model->url=$request->url;
+            $model->meta_title=$request->meta_title;
+            $model->meta_description=$request->meta_description;
+            $model->meta_keywords=$request->meta_keywords;
+            $model->slider_post=$request->slider_post;
+            $model->feature=$request->feature;
+            $model->status=$request->status;
+            $model->admin_id = auth()->user()->id;
             $model->save();
             $id = $model->id;
             $msg = 'Data added Successfully';
@@ -147,7 +164,17 @@ class PostsController extends Controller
             $hashids = new Hashids('',10);
             $id = $hashids->decode($id)[0];
             $model = Post::find($id);
-            $model->fill($input);
+            $model->title=json_encode($request->title);
+            $model->short_description=json_encode($request->short_description);
+            $model->description=json_encode($request->description);
+            $model->url=$request->url;
+            $model->meta_title=$request->meta_title;
+            $model->meta_description=$request->meta_description;
+            $model->meta_keywords=$request->meta_keywords;
+            $model->slider_post=$request->slider_post;
+            $model->feature=$request->feature;
+            $model->status=$request->status;
+            $model->admin_id = auth()->user()->id;
             $model->update();
             PostTag::where('post_id',$id)->delete();
             PostCategory::where('post_id',$id)->delete();
@@ -171,8 +198,8 @@ class PostsController extends Controller
         
         if($request->hasFile('feature_image'))
         {
-            $imageName = 'feature-'.$hashids->encode($id).'.'.$request->feature_image->extension();  
-            if($request->feature_image->move(public_path('feature-images/'.$hashids->encode($id)), $imageName))
+            $imageName = 'feature-'.time().'.'.$request->feature_image->extension();  
+            if($request->feature_image->move(public_path('feature-images/'), $imageName))
             {
                 if(!empty($model->featureImage))
                 {
@@ -187,8 +214,8 @@ class PostsController extends Controller
 
         if($request->hasFile('theme_image'))
         {
-            $timageName = 'theme-'.$hashids->encode($id).'.'.$request->theme_image->extension();  
-            if($request->theme_image->move(public_path('theme-images/'.$hashids->encode($id)), $timageName))
+            $timageName = 'theme-'.time().'.'.$request->theme_image->extension();  
+            if($request->theme_image->move(public_path('theme-images/'), $timageName))
             {
                 if(!empty($model->themeImage))
                 {
