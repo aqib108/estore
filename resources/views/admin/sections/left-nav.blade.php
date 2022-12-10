@@ -162,114 +162,56 @@ $url_3 = Request::segment(4);
 
                 {{-- end magazine section --}}
 
-                @if(have_right('View-Location'))
-                <li class="nav-item">
-                    <a href="{{ URL('admin/locations') }}" class="nav-link {{ $url_1 == 'locations' ? 'active':'' }}">
-                        <i class="fas fa-tachometer-alt nav-icon"></i>
-                        <p>Locations</p>
-                    </a>
-                </li>
-                @endif
-                @if(have_right('View-Location'))
-                <li class="nav-item">
-                    <a href="{{ URL('admin/classes') }}" class="nav-link {{ $url_1 == 'classes' ? 'active':'' }}">
-                        <i class="fas fa-tachometer-alt nav-icon"></i>
-                        <p>Classess</p>
-                    </a>
-                </li>
-                @endif
-
-                <li class="nav-item">
-                    <a href="{{ URL('admin/categories') }}" class="nav-link {{ $url_1 == 'categories' ? 'active':'' }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                {{-- Blog section --}}
+                @if(have_right('View-Magazines-Category') || have_right('View-Magazines') )
+                <li class="nav-item {{ ($url_1 == 'posts'|| $url_1=='categories' || $url_1=='tags' || $url_1=='news' ) ? 'menu-open':'' }}">
+                    <a href="#" class="nav-link {{ ($url_1 == 'categories' || $url_1 == 'posts' || $url_1=='tags' || $url_1=='news') ? 'active':'' }}">
+                        <i class="nav-icon fa fa-briefcase"></i>
                         <p>
-                            Categories
+                            Blog
+                            <i class="right fas fa-angle-left"></i>
+
                         </p>
                     </a>
-                </li>
 
-                <li class="nav-item">
-                    <a href="{{ URL('admin/department') }}" class="nav-link {{ $url_1 == 'department' ? 'active':'' }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Department
-                        </p>
-                    </a>
-                </li>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ URL('admin/posts') }}" class="nav-link {{ $url_1 == 'posts' ? 'active':'' }}">
+                                <i class="nav-icon far fa-circle"></i>
+                                <p>
+                                    Posts
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ URL('admin/categories') }}" class="nav-link {{ $url_1 == 'categories' ? 'active':'' }}">
+                                <i class="nav-icon far fa-circle"></i>
+                                <p>
+                                    Categories
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ URL('admin/tags') }}" class="nav-link {{ $url_1 == 'tags' ? 'active':'' }}">
+                                <i class="nav-icon far fa-circle"></i>
+                                <p>
+                                    Tags
+                                </p>
+                            </a>
+                        </li>
 
-                <li class="nav-item">
-                    <a href="{{ URL('admin/donations') }}" class="nav-link {{ $url_1 == 'donations' ? 'active':'' }}">
+                        <li class="nav-item">
+                            <a href="{{ URL('admin/news') }}" class="nav-link {{ $url_1 == 'news' ? 'active':'' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>News Feeds</p>
+                            </a>
+                        </li>
+                    </ul>
 
-                        <i class=" nav-icon fas fa-box"></i>
-                        <p>
-                            Donations
-                        </p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="{{ URL('admin/tags') }}" class="nav-link {{ $url_1 == 'tags' ? 'active':'' }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Tags
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ URL('admin/news') }}" class="nav-link {{ $url_1 == 'news' ? 'active':'' }}">
-                        <i class="fas fa-tachometer-alt nav-icon"></i>
-                        <p>News Feeds</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ URL('admin/posts') }}" class="nav-link {{ $url_1 == 'posts' ? 'active':'' }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Posts
-                        </p>
-                    </a>
-                </li>
-                @if(have_right('View-Ceo-Message'))
-                <li class="nav-item">
-                    <a href="{{ URL('admin/ceomessage') }}" class="nav-link {{ $url_1 == 'ceomessage' ? 'active':'' }}">
-                        <i class="fas fa-tachometer-alt"></i>
-                        <p>Ceo Message</p>
-                    </a>
                 </li>
                 @endif
 
-                <li class="nav-item">
-                    <a href="{{ URL('admin/pages') }}" class="nav-link {{ $url_1 == 'pages' ? 'active':'' }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Pages
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ URL('admin/sliders') }}" class="nav-link {{ $url_1 == 'sliders' ? 'active':'' }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Sliders
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ URL('admin/testimonials') }}" class="nav-link {{ $url_1 == 'testimonials' ? 'active':'' }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Testimonials
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ URL('admin/courses') }}" class="nav-link {{ $url_1 == 'courses' ? 'active':'' }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Courses
-                        </p>
-                    </a>
-                </li>
+                {{-- end Blog section --}}
 
                 <!-- start of library section-->
 
@@ -329,6 +271,113 @@ $url_3 = Request::segment(4);
                 @endif
                 <!-- end of library section-->
 
+                @if(have_right('View-Magazines-Category') || have_right('View-Magazines') )
+                <li class="nav-item {{ ($url_1 == 'courses'|| $url_1=='classes') ? 'menu-open':'' }}">
+                    <a href="#" class="nav-link {{ ($url_1 == 'classes' || $url_1 == 'courses' ) ? 'active':'' }}">
+                        <i class="nav-icon fa fa-users"></i>
+                        <p>
+                            Courses
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ URL('admin/courses') }}" class="nav-link {{ $url_1 == 'courses' ? 'active':'' }}">
+                                <i class="nav-icon far fa-circle"></i>
+                                <p>
+                                    Courses
+                                </p>
+                            </a>
+                        </li>
+                        @if(have_right('View-Class'))
+                        <li class="nav-item">
+                            <a href="{{ URL('admin/classes') }}" class="nav-link {{ $url_1 == 'classes' ? 'active':'' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Classess</p>
+                            </a>
+                        </li>
+                        @endif
+                    </ul>
+
+                </li>
+                @endif
+
+                @if(have_right('View-Magazines-Category') || have_right('View-Magazines') )
+                <li class="nav-item {{ ($url_1 == 'ceomessage'|| $url_1=='sliders' || $url_1 == 'pages' || $url_1 == 'testimonials') ? 'menu-open':'' }}">
+                    <a href="#" class="nav-link {{ ($url_1 == 'sliders' || $url_1 == 'ceomessage'|| $url_1 == 'pages'|| $url_1 == 'testimonials') ? 'active':'' }}">
+                        <i class="nav-icon fa fa-home"></i>
+                        <p>
+                            Home Setting
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+                        @if(have_right('View-Ceo-Message'))
+                        <li class="nav-item">
+                            <a href="{{ URL('admin/ceomessage') }}" class="nav-link {{ $url_1 == 'ceomessage' ? 'active':'' }}">
+                                <i class="nav-icon  far fa-circle"></i>
+                                <p>Ceo Message</p>
+                            </a>
+                        </li>
+                        @endif
+                        <li class="nav-item">
+                            <a href="{{ URL('admin/sliders') }}" class="nav-link {{ $url_1 == 'sliders' ? 'active':'' }}">
+                                <i class="nav-icon far fa-circle"></i>
+                                <p>
+                                    Sliders
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ URL('admin/pages') }}" class="nav-link {{ $url_1 == 'pages' ? 'active':'' }}">
+                                <i class="nav-icon far fa-circle"></i>
+                                <p>
+                                    Pages
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ URL('admin/testimonials') }}" class="nav-link {{ $url_1 == 'testimonials' ? 'active':'' }}">
+                                <i class="nav-icon far fa-circle"></i>
+                                <p>
+                                    Testimonials
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+
+                </li>
+                @endif
+
+                @if(have_right('View-Location'))
+                <li class="nav-item">
+                    <a href="{{ URL('admin/locations') }}" class="nav-link {{ $url_1 == 'locations' ? 'active':'' }}">
+                        <i class="fa fa-map-marker nav-icon"></i>
+                        <p>Locations</p>
+                    </a>
+                </li>
+                @endif
+
+                <li class="nav-item">
+                    <a href="{{ URL('admin/department') }}" class="nav-link {{ $url_1 == 'department' ? 'active':'' }}">
+                        <i class="nav-icon fa fa-graduation-cap"></i>
+                        <p>
+                            Departments
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ URL('admin/donations') }}" class="nav-link {{ $url_1 == 'donations' ? 'active':'' }}">
+
+                        <i class=" nav-icon fas fa-box"></i>
+                        <p>
+                            Donations
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

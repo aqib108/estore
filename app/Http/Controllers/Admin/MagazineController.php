@@ -160,7 +160,7 @@ class MagazineController extends Controller
                     unlink($image_url);
                 }
             } else {
-                unset($input['file']);
+                unset($input['thumbnail_image']);
             }
             // @for delete files
             unset($input['action']);
