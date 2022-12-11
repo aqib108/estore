@@ -6,7 +6,7 @@
                     <h5 class="text-yellow text-captilize green-heading">Help the Poor</h5>
                     <h2 class="orange-text-img">Donation for the Noble Cuases</h2>
                     <p class="para-1 text-opacity">
-                        “Those who in charity spend of their goods by night and by day, in secret and in public, have their reward with their Lord: on them shall be no fear, nor shall they grieve” (2:274)
+                        @php echo set_locale($donations->description) @endphp
                     </p>
                     <div class="buton-holder">
                         <button class="orange theme-button">Donate Now</button>

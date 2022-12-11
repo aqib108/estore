@@ -7,7 +7,10 @@ use App\Models\Admin\Page;
 use App\Models\Admin\Post;
 use App\Models\Admin\Category;
 use App\Models\Admin\Tag;
+use App\Models\Admin\LibraryType;
+use App\Models\Admin\Library;
 use App\Models\Admin\Slider;
+use App\Models\Admin\Donation;
 use App\Models\Admin\CeoMessage;
 
 class HomeController extends Controller
@@ -31,6 +34,8 @@ class HomeController extends Controller
         // dd(App::getLocale());
         $data['sliders'] =  Slider::wherestatus(1)->get();
         $data['ceo_message'] =  CeoMessage::wherestatus(1)->value('message');
+        $data['donations'] = Donation::where(['is_featured'=>1,'status'=>1,'is_featured'=>1])->first();
+        $data['libraryTypes'] = LibraryType::wherestatus(1)->get();
         $data['sliderPosts'] = Post::where(['slider_post'=>1,'status'=>1])->get();
         return view('home.index')->with($data);
     }
@@ -85,5 +90,23 @@ class HomeController extends Controller
     function setLocal(Request $request){
         $request->session()->put('locale',$request->set_language);
         return redirect('/');
+    }
+
+    public function librarySections()
+    {
+        $data = [];
+
+        if (!isset($_GET['all'])) {
+            $data['results'] = Library::where('type_id', $_GET['type'])->limit(8)->get();
+        } else {
+            $data['results'] = Library::where('type_id', $_GET['type'])->get();
+        }
+        $data['type'] = $_GET['type'];
+        $data['libratype'] =  LibraryType::where('id', $data['type'])->first();
+        $html = (string) View('home.partial.library-tabs-partial', $data);
+        $response = [];
+        $response['html'] = $html;
+        echo json_encode($response);
+        exit();
     }
 }

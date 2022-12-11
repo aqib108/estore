@@ -24,6 +24,7 @@ Route::get('/run-cmd', function () {
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::post('/set-local', [App\Http\Controllers\HomeController::class, 'setLocal']);
+Route::get('/library-tabs', [App\Http\Controllers\HomeController::class, 'librarySections'])->name('library.tabs');
 
 // Authentication Routes...
 Route::get('admin', [App\Http\Controllers\Auth\Admin\LoginController::class, 'login'])->name('admin.auth.login');
