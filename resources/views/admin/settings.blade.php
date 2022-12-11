@@ -203,19 +203,19 @@
                             <div class="col-sm-4">
                               <div class="form-group ">
                               <label>About us in English</label>
-                              <input type="text" class="form-control" placeholder="About us English" name="about_english"   value="{{isset($settings['about_english']) ? $settings['about_english'] : ''}}">
+                              <input type="text" class="form-control" placeholder="About us English" name="about_en"   value="{{isset($settings['about_en']) ? $settings['about_en'] : ''}}">
                               </div>
                             </div>
                             <div class="col-sm-4">
                               <div class="form-group ">
                               <label>About us in Urdu</label>
-                              <input type="text" class="form-control" placeholder="About us Urdu" name="about_urdu"  value="{{isset($settings['about_urdu']) ? $settings['about_urdu'] : ''}}">
+                              <input type="text" class="form-control" placeholder="About us Urdu" name="about_ur"  value="{{isset($settings['about_ur']) ? $settings['about_ur'] : ''}}">
                               </div>
                             </div>
                             <div class="col-sm-4">
                               <div class="form-group ">
                               <label>About us in Arabic</label>
-                              <input type="text" class="form-control" placeholder="About us Arabic" name="address_arabic"   value="{{isset($settings['address_arabic']) ? $settings['address_arabic'] : ''}}">
+                              <input type="text" class="form-control" placeholder="About us Arabic" name="about_ar"   value="{{isset($settings['about_ar']) ? $settings['about_ar'] : ''}}">
                               </div>
                             </div>
                           </div>

@@ -5,7 +5,7 @@
                 <div class="col-lg-3 col-12 mb-lg-0 mb-md-5 mb-3">
                     <div class="footer-info">
                         <h5>About us</h5>
-                        <p>Phasellus dignissim, tellus in pellentesque mollis, mauris orci dignissim nisl, id gravida nunc enim quis nibh.</p>
+                        <p>{{$setting['about_'.app()->getLocale()]}}</p>
                         <div class="footer-logo">
                             <a class="navbar-brand" href="index.html">
                                 <img src="{{asset($setting['logo'])}}" class="img-fluid" alt="" />
@@ -55,7 +55,7 @@
                                 <a href="#"><span class="icon fa fa-map-marker"></span><span>1Halqa Noor ul Iman Ornalado Road USA</span></a>
                             </li>
                             <li>
-                                <a href="#"><span class="icon fa fa-clock-o"></span> <span>{{$setting['phone']}}</span></a>
+                                <a href="#"><span class="icon fa fa-clock-o"></span> <span>{{$setting['opening_time']}}</span></a>
                             </li>
                         </ul>
                         <div class="follow-us">
