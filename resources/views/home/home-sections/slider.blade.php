@@ -4,7 +4,7 @@
             <div class="main-banner-slider">
                 <div id="owl-one" class="owl-carousel owl-theme">
                     @foreach($sliders as $key => $slide)
-                    <div class="slider-item-1">
+                    <div class="slider-item-1" style='background-image : url("{{'slider-images/'.$slide->image}}")'>
                         <div class="slider-centent">
                             <div class="baner-logo">
                                 <img src="{{ asset('assets/front/images/baner-slider-1-logo.png') }}" alt="image not found" class="img-fluid" />

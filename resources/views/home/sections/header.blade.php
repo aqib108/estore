@@ -4,7 +4,7 @@
             <nav class="navbar navbar-expand-lg navbar-light navbar-bg">
                 <a class="navbar-brand" href="index.html">
                     <div class="logo">
-                        <img src="{{asset('assets/front/images/site-logo.png')}}" alt="image not found" class="img-fluid" />
+                        <img src="{{$setting['logo']}}" alt="image not found" class="img-fluid" />
                     </div>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

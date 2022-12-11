@@ -12,6 +12,11 @@ use App\Models\Admin\Library;
 use App\Models\Admin\Slider;
 use App\Models\Admin\Donation;
 use App\Models\Admin\CeoMessage;
+use App\Models\Admin\News;
+use App\Models\Admin\Department;
+use App\Models\Admin\Testimonial;
+use App\Models\Admin\Setting;
+
 
 class HomeController extends Controller
 {
@@ -37,6 +42,17 @@ class HomeController extends Controller
         $data['donations'] = Donation::where(['is_featured'=>1,'status'=>1,'is_featured'=>1])->first();
         $data['libraryTypes'] = LibraryType::wherestatus(1)->get();
         $data['sliderPosts'] = Post::where(['slider_post'=>1,'status'=>1])->get();
+        $data['news'] = News::wherestatus(1)->get();
+        $data['departments'] = Department::wherestatus(1)->get();
+        $data['Testimonials'] = Testimonial::wherestatus(1)->get();
+        if (!session()->has('settings')) {
+            $data['setting'] = Setting::all()->toArray();
+            $data['setting'] = array_column($data['setting'],'option_value','option_name');
+            session()->put('settings', $data['setting']);
+            $data['setting'] = session()->get('settings');
+        }else{
+            $data['setting'] = session()->get('settings');
+        }
         return view('home.index')->with($data);
     }
 
