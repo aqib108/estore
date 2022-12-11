@@ -8,7 +8,7 @@
                         <p>Phasellus dignissim, tellus in pellentesque mollis, mauris orci dignissim nisl, id gravida nunc enim quis nibh.</p>
                         <div class="footer-logo">
                             <a class="navbar-brand" href="index.html">
-                                <img src="{{asset('assets/front/images/site-logo.png')}}" class="img-fluid" alt="" />
+                                <img src="{{asset($setting['logo'])}}" class="img-fluid" alt="" />
                             </a>
                         </div>
                         <div class="store-logos">
@@ -59,42 +59,42 @@
                         <ul class="list-unstyled contact-info">
                            
                             <li>
-                                <a href="#"><span class="icon fa fa-envelope"></span><span> Info@halqanooruliman.com</span></a>
+                                <a href="#"><span class="icon fa fa-envelope"></span><span> {{$setting['email']}}</span></a>
                             </li>
                             <li>
-                                <a href="#"><span class="icon fa fa-phone"></span> <span>1800-123-456-7</span></a>
+                                <a href="#"><span class="icon fa fa-phone"></span> <span>{{$setting['phone']}}</span></a>
                             </li>
                             <li>
                                 <a href="#"><span class="icon fa fa-map-marker"></span><span>1Halqa Noor ul Iman Ornalado Road USA</span></a>
                             </li>
                             <li>
-                                <a href="#"><span class="icon fa fa-clock-o"></span> <span>1800-123-456-7</span></a>
+                                <a href="#"><span class="icon fa fa-clock-o"></span> <span>{{$setting['phone']}}</span></a>
                             </li>
                         </ul>
                         <div class="follow-us">
                             <ul class="list-unstyled">
                                 <li>
-                                    <a href="#" class="facebook">
+                                    <a href="{{$setting['facebook']}}" class="facebook">
                                         <span class="fa fa-facebook"></span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="linkedin">
+                                    <a href="{{$setting['linkedin']}}" class="linkedin">
                                         <span class="fa fa-linkedin"></span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="twitter">
+                                    <a href="{{$setting['twitter']}}" class="twitter">
                                         <span class="fa fa-twitter"></span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="pinterest">
+                                    <a href="{{$setting['pinterest']}}" class="pinterest">
                                         <span class="fa fa-pinterest"></span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="youtube">
+                                    <a href="{{$setting['youtube']}}" class="youtube">
                                         <span class="fa fa-youtube"></span>
                                     </a>
                                 </li>
@@ -136,7 +136,7 @@
                 </div>
             </div>
             <div class="copyrights">
-                <p>Halqa Noor Ul Iman 2022 - All Rights Reserved</p>
+                <p>Halqa Noor Ul Iman @php echo date('Y'); @endphp - All Rights Reserved</p>
             </div>
         </div>
     </div>
