@@ -1,5 +1,4 @@
 <?php
-
 function rights()
 {
     $result = DB::table('rights')
@@ -46,6 +45,15 @@ function have_right($right_id)
 function access_denied()
 {
     abort(403, 'You have no right to perform this action.');
+}
+//get app languages
+function getLanguages(){
+   return DB::table('languages')->wherestatus(1)->get();
+}
+//set language
+function set_locale($content=''){
+    $content = (array)json_decode($content);
+    return $content[App::getLocale()];    
 }
 
 ?>

@@ -185,25 +185,19 @@
                             </div>
                         </li>
                         <li class="nav-item custom-design-drop-down">
-                            <div class="about-drop-down">
-                                <div id="adropDown" class="drop-down__button">
-                                    <a class="nav-link d-flex align-items-center"> About Us <span class="next00"></span></a>
-                                </div>
-                                <div class="drop-down__menu-box">
-                                    <ul class="drop-down__menu">
-                                        <li><a href="donate.html" class="drop-down__item" title=""></a>Your Profile</li>
-                                        <li><a href="newsfeed.html" class="drop-down__item" title=""></a>Your Dashboard</li>
-                                        <li><a href="" class="drop-down__item" title=""></a>Your Profile</li>
-                                        <li class="menu-item-has-children">
-                                            <a class="drop-down__item" href="#" title="">Nested drop down</a>
-                                            <ul>
-                                                <li><a class="drop-down__item" href="index.html" title="">Header Style 1</a></li>
-                                                <li><a class="drop-down__item" href="index2.html" title="">Header Style 2</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            <form action="/set-local" method="POST">
+                                @csrf
+                            <select onChange="this.form.submit()" name="set_language" id='language_selector'>
+                            @foreach(getLanguages() as $lang)
+                            @if(app()->getLocale()==$lang->short_name)
+                            <option value="{{$lang->short_name}}" selected >{{$lang->name}}</option>
+                            @else
+                            <option value="{{$lang->short_name}}">{{$lang->name}}</option>
+                            @endif
+                            @endforeach
+                           
+                           </select>
+                            </form>
                         </li>
                     </ul>
                 </div>

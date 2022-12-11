@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App;
 use Illuminate\Http\Request;
 use App\Models\Admin\Page;
 use App\Models\Admin\Post;
 use App\Models\Admin\Category;
 use App\Models\Admin\Tag;
+use App\Models\Admin\Slider;
+use App\Models\Admin\CeoMessage;
 
 class HomeController extends Controller
 {
@@ -26,8 +28,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $sliderPosts = Post::where(['slider_post'=>1,'status'=>1])->get();
-        return view('home.index')->with(['slider_posts'=>$sliderPosts]);
+        // dd(App::getLocale());
+        $data['sliders'] =  Slider::wherestatus(1)->get();
+        $data['ceo_message'] =  CeoMessage::wherestatus(1)->value('message');
+        $data['sliderPosts'] = Post::where(['slider_post'=>1,'status'=>1])->get();
+        return view('home.index')->with($data);
     }
 
     public function page($slug)
@@ -76,5 +81,9 @@ class HomeController extends Controller
         echo  'Your browser does not support the video tag.'; 
         echo  '</video>'; 
         echo  '</div>';
+    }
+    function setLocal(Request $request){
+        $request->session()->put('locale',$request->set_language);
+        return redirect('/');
     }
 }
