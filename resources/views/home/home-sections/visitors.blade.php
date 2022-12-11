@@ -18,7 +18,7 @@
                         <div class="col-lg-4">
                             <div class="visiter-states">
                                 <div class="img-wrap-1">
-                                    <img src="./images/visit-img-3.svg" class="img-fluid">
+                                    <img src="{{ asset('assets/front/images/visit-img-3.svg') }}" class="img-fluid">
                                 </div>
                                 <h3 class="text-center">45760</h3>
                                 <p class="text-center">Website Visited</p>

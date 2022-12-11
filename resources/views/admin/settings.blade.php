@@ -191,7 +191,7 @@
                     <div class="card-header" id="title-heading">
                       <h2 class="mb-0">
                         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#address" aria-expanded="true" aria-controls="address">
-                          Address
+                          About Us
                         </button>
                       </h2>
                     </div>
@@ -202,20 +202,20 @@
                           <div class="row" >
                             <div class="col-sm-4">
                               <div class="form-group ">
-                              <label>Address English</label>
-                              <input type="text" class="form-control" placeholder="Adrress English" name="address_english"   value="{{isset($settings['address_english']) ? $settings['address_english'] : ''}}">
+                              <label>About us in English</label>
+                              <input type="text" class="form-control" placeholder="About us English" name="about_english"   value="{{isset($settings['about_english']) ? $settings['about_english'] : ''}}">
                               </div>
                             </div>
                             <div class="col-sm-4">
                               <div class="form-group ">
-                              <label>Address Urdu</label>
-                              <input type="text" class="form-control" placeholder="Adrress Urdu" name="address_urdu"  value="{{isset($settings['address_urdu']) ? $settings['address_urdu'] : ''}}">
+                              <label>About us in Urdu</label>
+                              <input type="text" class="form-control" placeholder="About us Urdu" name="about_urdu"  value="{{isset($settings['about_urdu']) ? $settings['about_urdu'] : ''}}">
                               </div>
                             </div>
                             <div class="col-sm-4">
                               <div class="form-group ">
-                              <label>Address Arabic</label>
-                              <input type="text" class="form-control" placeholder="Adrress Arabic" name="address_arabic"   value="{{isset($settings['address_arabic']) ? $settings['address_arabic'] : ''}}">
+                              <label>About us in Arabic</label>
+                              <input type="text" class="form-control" placeholder="About us Arabic" name="address_arabic"   value="{{isset($settings['address_arabic']) ? $settings['address_arabic'] : ''}}">
                               </div>
                             </div>
                           </div>
