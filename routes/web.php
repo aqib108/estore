@@ -24,6 +24,8 @@ Route::get('/run-cmd', function () {
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::post('/set-local', [App\Http\Controllers\HomeController::class, 'setLocal']);
+Route::post('/subscription', [App\Http\Controllers\HomeController::class, 'subscription']);
+Route::post('/contact_us', [App\Http\Controllers\HomeController::class, 'Contact_us']);
 Route::get('/library-tabs', [App\Http\Controllers\HomeController::class, 'librarySections'])->name('library.tabs');
 
 // Authentication Routes...

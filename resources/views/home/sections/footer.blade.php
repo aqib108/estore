@@ -23,33 +23,20 @@
                     <div class="footer-links">
                         <h5>Latest Blog</h5>
                         <ul class="list-unstyled">
-                            <li class="d-flex">
-                                <div class="imag-blog d-flex">
-                                    <img src="{{asset('assets/front/images/f-blog-1.png')}}" class="img-fluid">
-                                </div>
-                                <div class="d-flex flex-column blog-detail">
-                                    Is Islam old philosophy?
-                                    <p><span class="icon fa fa-calendar text-yellow me-3"></span>Mar 28, 2022</p>
-                                </div>
-                            </li>
-                            <li class="d-flex">
-                                <div class="imag-blog">
-                                    <img src="{{asset('assets/front/images/f-blog-2.png')}}" class="img-fluid">
-                                </div>
-                                <div class="d-flex flex-column blog-detail">
-                                    Ulama Khutabaat on Islam.
-                                    <p><span class="icon fa fa-calendar me-3 text-yellow"></span>Aug 18, 2022</p>
-                                </div>
-                            </li>
-                            <li class="d-flex">
-                                <div class="imag-blog">
-                                    <img src="{{asset('assets/front/images/f-blog-1.png')}}" class="img-fluid">
-                                </div>
-                                <div class="d-flex flex-column blog-detail">
-                                    Quran life guide Book.
-                                    <p> <span class="icon fa fa-calendar me-3 text-yellow"></span>Sep 20, 2022</p>
-                                </div>
-                            </li>
+                           @foreach($posts as $key => $post)
+                           <li class="d-flex">
+                            <div class="imag-blog d-flex">
+                                <img style="height: 75px !important;
+                                width: 90px !important
+                            ;" src="{{asset('feature-images/'.$post->image)}}" class="img-fluid">
+                            </div>
+                            <div class="d-flex flex-column blog-detail">
+                                @php echo set_locale($post->title) @endphp
+                                <p><span class="icon fa fa-calendar text-yellow me-3"></span>@php echo date('M, d Y', strtotime($post->date)); @endphp</p>
+                            </div>
+                        </li>
+                           @endforeach
+                            
                         </ul>
                     </div>
                 </div>
@@ -105,20 +92,26 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-links">
                         <h5>Quick Contact</h5>
-                        <div class="footer-contact-form">
+                        <form method="post" action="/contact_us">
+                       @csrf
+                            <div class="footer-contact-form">
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                <input type="email" required class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
                                 <label for="floatingInput">Email address</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                                <label for="floatingPassword">Password</label>
+                                <input type="text" required class="form-control" name="subject" id="floatingPassword" placeholder="subject">
+                                <label for="floatingPassword">subject</label>
                             </div>
                             <div class="form-floating">
-                                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                                <textarea required class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="message"></textarea>
                                 <label for="floatingTextarea2">Comments</label>
                               </div>
+                              <div class="form-floating mt-3">
+                                <input type="submit" class="btn btn-success">
+                            </div>
                         </div>
+                    </form>
                     </div>
                 </div>
             </div>
@@ -128,10 +121,13 @@
                 <div class="col-lg-6">
                     <div class="footer-newsletter">
                         <h6 class="text-center text-white">SUBSCRIBE OUR NEWSLETTER</h6>
+                    <form action="/subscription" method="post">
+                        @csrf
                         <div class="field-wrapper">
-                            <input class="form-control" name="email" type="text" placeholder="ENTER EMAIL" />
-                            <button class="orange theme-button">SUBSCRIBE</button>
+                            <input required class="form-control" name="email" type="email" placeholder="ENTER EMAIL" />
+                            <button type="submit" class="orange theme-button">SUBSCRIBE</button>
                         </div>
+                    </form>
                     </div>
                 </div>
             </div>

@@ -35,6 +35,7 @@
       </main>
       @include('home.sections.footer')
     </div>
+    
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="{{ asset('assets/front/js/jquery.js') }}"></script>
@@ -54,10 +55,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js" integrity="sha512-5/OHwmQzDSBS0Ous4/hlYoWLHd06/d2r7LdKZQVBXOA6PvOqWVXtdboiLTU7lQTGyVoKVTNkwi0ol4gHGlw5ww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js" integrity="sha512-5efjkDjhldlK+BrHauVYJpbjKrtNemLZksZWxd6Wdxvm06dceqWGLLNjZywOkvW7BF032ktHRMUOarbK9d60bg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TimelineMax.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.15/sweetalert2.all.js" integrity="sha512-HKvssviZjuAw/ZSnp0DC8SK7yYGxv9SslEBTe/+kNfe97fpmx7UTNQsj5JG9NOqYGz8M/vJSiosTvr3AAKT0cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
     <script>
       AOS.init();
     </script>
+    <script>
+      swal('work');
+    </script>
+    @if (\Session::has('msg'))
+    @php $message = \Session::get('msg');  @endphp
+    <script>
+      Swal.fire({
+  position: 'center',
+  icon: 'success',
+  title: 'Successfully perform you Action',
+  showConfirmButton: false,
+  timer: 2000
+     })
+    </script>
+    @endif
     <script>
       $(".search-icon").click(function () {
           $(".search-wrapper").toggleClass("active");
@@ -102,6 +119,7 @@
         },
       });
       $(document).ready(function () {
+        
           $("#adropDown").click(function () {
               $(".about-drop-down").toggleClass("drop-down--active");
           });
@@ -116,7 +134,8 @@
               $(".more-drop-down").toggleClass("drop-down--active");
           });
       });
-    </script>
+
+</script>
   @stack('footer-scripts')
 
 </body>

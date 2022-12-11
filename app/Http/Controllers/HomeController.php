@@ -16,7 +16,8 @@ use App\Models\Admin\News;
 use App\Models\Admin\Department;
 use App\Models\Admin\Testimonial;
 use App\Models\Admin\Setting;
-
+use App\Models\Subscription\NewSubscription;
+use App\Models\ContactForm\ContactRecord;
 
 class HomeController extends Controller
 {
@@ -45,6 +46,7 @@ class HomeController extends Controller
         $data['news'] = News::wherestatus(1)->get();
         $data['departments'] = Department::wherestatus(1)->get();
         $data['Testimonials'] = Testimonial::wherestatus(1)->get();
+        $data['posts'] = Post::wherestatus(1)->join('post_feature_images','post_id','posts.id')->get(['posts.title as title','post_feature_images.image as image','posts.created_at as date','posts.id as id']);
         if (!session()->has('settings')) {
             $data['setting'] = Setting::all()->toArray();
             $data['setting'] = array_column($data['setting'],'option_value','option_name');
@@ -124,5 +126,19 @@ class HomeController extends Controller
         $response['html'] = $html;
         echo json_encode($response);
         exit();
+    }
+    function subscription(Request $request){
+       $subscription = new NewSubscription();
+       $subscription->email = $request->email;
+       $subscription->status = 1;
+       $subscription->save();
+       return redirect('/')->with('msg','successfully subscripted');
+    }
+    function Contact_us(Request $request){
+       $contact = new ContactRecord();
+       $contact->name = $request->name;
+       $contact->subject = $request->subject;
+       $contact->message = $request->message;
+       $contact->save();return redirect('/')->with('msg','successfully contact created'); return redirect()->with('msg','successfully contact created'); 
     }
 }
