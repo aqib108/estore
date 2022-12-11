@@ -36,8 +36,8 @@ class SettingController extends Controller
         if ($validator->fails()) {
             return redirect('admin/site-setting')->with('error', $validator->messages());
         }
-        if (session()->has('settingsArray')) {
-            session()->forget('settingsArray');
+        if (session()->has('settings')) {
+            session()->forget('settings');
         }
         $input = $request->all();
         unset($input['_token']);
@@ -56,7 +56,7 @@ class SettingController extends Controller
                 DB::table('settings')->where('option_name', $key)->update(['option_value' => $value]);
                 $settingsdata = Setting::all()->toArray();
                 $sortedArray = array_column($settingsdata, 'option_value', 'option_name');
-                session()->put('settingsArray', $sortedArray);
+                session()->put('settings', $sortedArray);
 
             }
         }

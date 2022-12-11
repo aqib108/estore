@@ -6,86 +6,19 @@
         </div>
         <div class="serving-humanity-slider">
             <div id="owl-two" class="owl-carousel owl-theme">
+                @foreach($departments as $key => $department)
                 <div class="serve-slider-item">
-                    <img src="./images/hum-ladies-dars.svg" alt="image not found" class="img-fluid" />
+                    <img src="{{asset('department-image/'.$department->file)}}" alt="image not found" class="img-fluid" />
                     <div class="serv-human-content">
-                        <h6>Ladies Dars</h6>
-                        <p class="text-opacity">Quisque suscipit ipsum est, eu venenatis cleo ornare eget. Ut porta facilis elementum. Sed condimentum sed massa.</p>
+                        <h6>@php echo set_locale($department->name); @endphp</h6>
+                        <p class="text-opacity">@php echo set_locale($department->description) @endphp</p>
                         <div class="read-more-link d-flex justify-content-center align-items-center">
-                            <a href="/">Learn More <span class="ms-3 next-mark-img"><img src="./images/next-mark.svg" alt=""></span></a>
+                            <a href="/{{$department->url}}">Learn More <span class="ms-3 next-mark-img"><img src="./images/next-mark.svg" alt=""></span></a>
                         </div>
                     </div>
-                </div>
-                <div class="serve-slider-item">
-                    <img src="{{asset('assets/front/images/hum-youth-wing.svg')}}" alt="image not found" class="img-fluid" />
-                    <div class="serv-human-content">
-                        <h6>Yuni - Youth Wing of HNI</h6>
-                        <p class="text-opacity">Quisque suscipit ipsum est, eu venenatis cleo ornare eget. Ut porta facilis elementum. Sed condimentum sed massa.</p>
-                        <div class="read-more-link d-flex justify-content-center align-items-center">
-                            <a href="/">Learn More <span class="ms-3 next-mark-img"><img src="./images/next-mark.svg" alt=""></span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="serve-slider-item">
-                    <img src="{{asset('assets/front/images/humteacher-teaching-to-the-class-circular-symbol-svgrepo-com.svg')}}" alt="image not found" class="img-fluid" />
-                    <div class="serv-human-content">
-                        <h6>Kids - Noor School</h6>
-                        <p class="text-opacity">Quisque suscipit ipsum est, eu venenatis cleo ornare eget. Ut porta facilis elementum. Sed condimentum sed massa.</p>
-                        <div class="read-more-link d-flex justify-content-center align-items-center">
-                            <a href="/">Learn More <span class="ms-3 next-mark-img"><img src="./images/next-mark.svg" alt=""></span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="serve-slider-item">
-                    <img src="{{asset('assets/front/images/humquran-rehal-svgrepo-com.svg')}}" alt="image not found" class="img-fluid" />
-                    <div class="serv-human-content">
-                        <h6>Quran</h6>
-                        <p class="text-opacity">Quisque suscipit ipsum est, eu venenatis cleo ornare eget. Ut porta facilis elementum. Sed condimentum sed massa.</p>
-                        <div class="read-more-link d-flex justify-content-center align-items-center">
-                            <a href="/">Learn More <span class="ms-3 next-mark-img"><img src="./images/next-mark.svg" alt=""></span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="serve-slider-item">
-                    <img src="{{ asset('assets/front/images/hum-ladies-dars.svg') }}" alt="image not found" class="img-fluid" />
-                    <div class="serv-human-content">
-                        <h6>Ladies Dars</h6>
-                        <p class="text-opacity">Quisque suscipit ipsum est, eu venenatis cleo ornare eget. Ut porta facilis elementum. Sed condimentum sed massa.</p>
-                        <div class="read-more-link d-flex justify-content-center align-items-center">
-                            <a href="/">Learn More <span class="ms-3 next-mark-img"><img src="./images/next-mark.svg" alt=""></span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="serve-slider-item">
-                    <img src="{{asset('assets/front/images/hum-youth-wing.svg')}}" alt="image not found" class="img-fluid" />
-                    <div class="serv-human-content">
-                        <h6>Yuni - Youth Wing of HNI</h6>
-                        <p class="text-opacity">Quisque suscipit ipsum est, eu venenatis cleo ornare eget. Ut porta facilis elementum. Sed condimentum sed massa.</p>
-                        <div class="read-more-link d-flex justify-content-center align-items-center">
-                            <a href="/">Learn More <span class="ms-3 next-mark-img"><img src="./images/next-mark.svg" alt=""></span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="serve-slider-item">
-                    <img src="{{asset('assets/front/images/humteacher-teaching-to-the-class-circular-symbol-svgrepo-com.svg')}}" alt="image not found" class="img-fluid" />
-                    <div class="serv-human-content">
-                        <h6>Kids - Noor School</h6>
-                        <p class="text-opacity">Quisque suscipit ipsum est, eu venenatis cleo ornare eget. Ut porta facilis elementum. Sed condimentum sed massa.</p>
-                        <div class="read-more-link d-flex justify-content-center align-items-center">
-                            <a href="/">Learn More <span class="ms-3 next-mark-img"><img src="./images/next-mark.svg" alt=""></span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="serve-slider-item">
-                    <img src="{{asset('assets/front/images/humquran-rehal-svgrepo-com.svg')}}" alt="image not found" class="img-fluid" />
-                    <div class="serv-human-content">
-                        <h6>Quran</h6>
-                        <p class="text-opacity">Quisque suscipit ipsum est, eu venenatis cleo ornare eget. Ut porta facilis elementum. Sed condimentum sed massa.</p>
-                        <div class="read-more-link d-flex justify-content-center align-items-center">
-                            <a href="/">Learn More <span class="ms-3 next-mark-img"><img src="./images/next-mark.svg" alt=""></span></a>
-                        </div>
-                    </div>
-                </div>
+                </div>   
+                @endforeach
+               
             </div>
         </div>
     </div>
