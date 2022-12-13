@@ -59,7 +59,7 @@
 								$location = (array)json_decode($row->location);
 								$content = (array)json_decode($row->content);
 						 }
-								@endphp
+						@endphp
 			              <!-- /.card-header -->
 			              <div class="card-body">
 			                <form id="page-form" class="form-horizontal label-left" action="{{ URL('admin/news') }}" enctype="multipart/form-data" method="POST">

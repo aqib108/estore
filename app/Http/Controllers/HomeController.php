@@ -46,15 +46,6 @@ class HomeController extends Controller
         $data['news'] = News::wherestatus(1)->get();
         $data['departments'] = Department::wherestatus(1)->get();
         $data['Testimonials'] = Testimonial::wherestatus(1)->get();
-        $data['posts'] = Post::wherestatus(1)->join('post_feature_images','post_id','posts.id')->get(['posts.title as title','post_feature_images.image as image','posts.created_at as date','posts.id as id']);
-        if (!session()->has('settings')) {
-            $data['setting'] = Setting::all()->toArray();
-            $data['setting'] = array_column($data['setting'],'option_value','option_name');
-            session()->put('settings', $data['setting']);
-            $data['setting'] = session()->get('settings');
-        }else{
-            $data['setting'] = session()->get('settings');
-        }
         return view('home.index')->with($data);
     }
 
@@ -107,7 +98,7 @@ class HomeController extends Controller
     }
     function setLocal(Request $request){
         $request->session()->put('locale',$request->set_language);
-        return redirect('/');
+        return back();
     }
 
     public function librarySections()

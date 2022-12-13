@@ -1,3 +1,6 @@
+@php
+    $posts = App\Models\Admin\Post::wherestatus(1)->join('post_feature_images','post_id','posts.id')->take(3)->orderBy('id', 'DESC')->get(['posts.title as title','post_feature_images.image as image','posts.created_at as date','posts.id as id']);
+@endphp
 <footer class="footer">
     <div class="container-fluid container-width">
         <div class="top-footer common-card">
@@ -5,10 +8,10 @@
                 <div class="col-lg-3 col-12 mb-lg-0 mb-md-5 mb-3">
                     <div class="footer-info">
                         <h5>About us</h5>
-                        <p>{{$setting['about_'.app()->getLocale()]}}</p>
+                        <p>{{getSettingDataHelper('about_'.app()->getLocale())}}</p>
                         <div class="footer-logo">
                             <a class="navbar-brand" href="index.html">
-                                <img src="{{asset($setting['logo'])}}" class="img-fluid" alt="" />
+                                <img src="{{asset(getSettingDataHelper('logo'))}}" class="img-fluid" alt="" />
                             </a>
                         </div>
                         <div class="store-logos">
@@ -46,42 +49,42 @@
                         <ul class="list-unstyled contact-info">
                            
                             <li>
-                                <a href="#"><span class="icon fa fa-envelope"></span><span> {{$setting['email']}}</span></a>
+                                <a href="#"><span class="icon fa fa-envelope"></span><span> {{getSettingDataHelper('email')}}</span></a>
                             </li>
                             <li>
-                                <a href="#"><span class="icon fa fa-phone"></span> <span>{{$setting['phone']}}</span></a>
+                                <a href="#"><span class="icon fa fa-phone"></span> <span>{{getSettingDataHelper('phone')}}</span></a>
                             </li>
                             <li>
                                 <a href="#"><span class="icon fa fa-map-marker"></span><span>1Halqa Noor ul Iman Ornalado Road USA</span></a>
                             </li>
                             <li>
-                                <a href="#"><span class="icon fa fa-clock-o"></span> <span>{{$setting['opening_time']}}</span></a>
+                                <a href="#"><span class="icon fa fa-clock-o"></span> <span>{{getSettingDataHelper('opening_time')}}</span></a>
                             </li>
                         </ul>
                         <div class="follow-us">
                             <ul class="list-unstyled">
                                 <li>
-                                    <a href="{{$setting['facebook']}}" class="facebook">
+                                    <a href="{{getSettingDataHelper('facebook')}}" class="facebook">
                                         <span class="fa fa-facebook"></span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{$setting['linkedin']}}" class="linkedin">
+                                    <a href="{{getSettingDataHelper('linkedin')}}" class="linkedin">
                                         <span class="fa fa-linkedin"></span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{$setting['twitter']}}" class="twitter">
+                                    <a href="{{getSettingDataHelper('twitter')}}" class="twitter">
                                         <span class="fa fa-twitter"></span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{$setting['pinterest']}}" class="pinterest">
+                                    <a href="{{getSettingDataHelper('pinterest')}}" class="pinterest">
                                         <span class="fa fa-pinterest"></span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{$setting['youtube']}}" class="youtube">
+                                    <a href="{{getSettingDataHelper('youtube')}}" class="youtube">
                                         <span class="fa fa-youtube"></span>
                                     </a>
                                 </li>

@@ -56,4 +56,14 @@ function set_locale($content=''){
     return $content[App::getLocale()];    
 }
 
+function getSettingDataHelper($key)
+{
+    $settingsArray = Session::get('settings');
+    if (!empty($settingsArray[$key])) {
+        return $settingsArray[$key];
+    } else {
+        return '#';
+    }
+}
+
 ?>

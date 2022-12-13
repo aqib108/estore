@@ -33,6 +33,12 @@ class PagesController extends Controller
 
             $datatable = Datatables::of($db_record);
             $datatable = $datatable->addIndexColumn();
+            $datatable = $datatable->editColumn('title', function($row)
+            {
+                $title = (array)json_decode($row->title);
+                return $title['en'];
+
+            });
             $datatable = $datatable->editColumn('status', function($row)
             {
                 $status = '<span class="badge badge-danger">Disable</span>';
@@ -102,8 +108,8 @@ class PagesController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+        // dd($input);
         $validator = Validator::make($request->all(), [
-            'title' => 'required|string|max:255',
             'url' => 'required|string|max:255',
         ]);
 
@@ -120,7 +126,17 @@ class PagesController extends Controller
 
             $input['admin_id'] = auth()->user()->id;
             $model = new Page();
-            $model->fill($input);
+            $model->title=json_encode($request->title);
+            $model->short_description=json_encode($request->short_description);
+            $model->description=json_encode($request->description);
+            $model->url=$request->url;
+            $model->in_header=$request->in_header;
+            $model->in_footer=$request->in_footer;
+            $model->status=$request->status;
+            $model->meta_title=$request->meta_title;
+            $model->meta_description=$request->meta_description;
+            $model->meta_keywords=$request->meta_keywords;
+            $model->admin_id=auth()->user()->id;
             $model->save();
 
             return redirect('admin/pages')->with('message','Data added Successfully');
@@ -134,7 +150,17 @@ class PagesController extends Controller
             $hashids = new Hashids('',10);
             $id = $hashids->decode($id)[0];
             $model = Page::find($id);
-            $model->fill($input);
+            $model->title=json_encode($request->title);
+            $model->short_description=json_encode($request->short_description);
+            $model->description=json_encode($request->description);
+            $model->url=$request->url;
+            $model->in_header=$request->in_header;
+            $model->in_footer=$request->in_footer;
+            $model->status=$request->status;
+            $model->meta_title=$request->meta_title;
+            $model->meta_description=$request->meta_description;
+            $model->meta_keywords=$request->meta_keywords;
+            $model->admin_id=auth()->user()->id;
             $model->update();
             return redirect('admin/pages')->with('message','Data updated Successfully');
         }

@@ -45,6 +45,17 @@
 			              <div class="card-header">
 			                <h3 class="card-title">Page Form</h3>
 			              </div>
+						  @php
+							$title = [];
+							$author_name = [];
+							$location = [];
+							$content = []; 
+							if(!empty($row)){
+								$title = (array)json_decode($row->title);
+								$short_description = (array)json_decode($row->short_description);
+								$description = (array)json_decode($row->description);
+							}
+							@endphp
 			              <!-- /.card-header -->
 			              <div class="card-body">
 			                <form id="page-form" class="form-horizontal label-left" action="{{ URL('admin/pages') }}" enctype="multipart/form-data" method="POST"> 
@@ -52,12 +63,14 @@
 			                	<input type="hidden" name="action" value="{{$action}}">
 			                	<input type="hidden" name="id" value="{{ isset($id) ? $id : '' }}">
 			                	<div class="card-body">
-			                		<div class="form-group row">
-				                        <label class="col-sm-2 col-form-label">Title</label>
-				                        <div class="col-sm-6">
-				                        	<input type="text" class="form-control" placeholder="Enter Title" name="title" value="{{ $row->title }}" required="">
-				                        </div>
-				                    </div>
+									@foreach(getLanguages() as $lang)
+										<div class="form-group row">
+											<label class="col-sm-2 col-form-label">Title ({{ $lang->name }})</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" placeholder="Enter Title in {{ $lang->name }}" name="title[{{ $lang->short_name }}]" value="{{ isset($title[$lang->short_name]) ? $title[$lang->short_name] : '' }}" required="">
+											</div>
+										</div>
+									@endforeach
 
 				                    <div class="form-group row">
 				                        <label class="col-sm-2 col-form-label">URL</label>
@@ -66,21 +79,22 @@
 				                        </div>
 				                    </div>
 
-				                
-				                    <div class="form-group row">
-				                        <label class="col-sm-2 col-form-label">Short Description</label>
-				                        <div class="col-sm-6">
-				                        	<textarea class="form-control" name="short_description" placeholder="Enter Short Description" required="">{{$row->short_description}}</textarea>
-				                        </div>
-				                    </div>
-
-				                    <div class="form-group row">
-				                        <label class="col-sm-2 col-form-label">Content</label>
-				                        <div class="col-sm-6">
-				                        	<textarea id="summernote" name="description">{{$row->description}}</textarea>
-				                        </div>
-				                    </div>
-
+									@foreach(getLanguages() as $lang)
+										<div class="form-group row">
+											<label class="col-sm-2 col-form-label">Short Description ({{ $lang->name }})</label>
+											<div class="col-sm-6">
+												<textarea class="form-control" name="short_description[{{ $lang->short_name }}]" placeholder="Enter Short Description in {{ $lang->name }}" required="">{{ isset($short_description[$lang->short_name]) ? $short_description[$lang->short_name] : '' }}</textarea>
+											</div>
+										</div>
+									@endforeach
+									@foreach(getLanguages() as $lang)
+										<div class="form-group row">
+											<label class="col-sm-2 col-form-label">Content ({{ $lang->name }})</label>
+											<div class="col-sm-6">
+												<textarea id="summernote" name="description[{{ $lang->short_name }}]">{{ isset($description[$lang->short_name]) ? $description[$lang->short_name] : '' }}</textarea>
+											</div>
+										</div>
+									@endforeach
 				                    <div class="form-group row">
 				                        <label class="col-sm-2 col-form-label">Show In Header</label>
 				                        <div class="col-sm-6">
@@ -95,8 +109,8 @@
 				                        <label class="col-sm-2 col-form-label">Show In Footer</label>
 				                        <div class="col-sm-6">
 				                        	<select name="in_footer" class="custom-select rounded-0" required="">
-							                    <option value="1 {{($row->in_footer==1)?'selected':''}}">Yes</option>
-							                    <option value="0" {{($row->in_footer==1)?'selected':''}}>No</option>
+							                    <option value="1" {{($row->in_footer==1)?'selected':''}}>Yes</option>
+							                    <option value="0" {{($row->in_footer==0)?'selected':''}}>No</option>
 							                </select>
 				                        </div>
 				                    </div>
@@ -190,7 +204,7 @@
 	<script>
 	  $(function () {
 		  	// Summernote
-	    	$('#summernote').summernote({
+			  $("textarea[id^='summernote']").summernote({
 	    		height: ($(window).height() - 300),
 			    callbacks: {
 			        onImageUpload: function(image) {
