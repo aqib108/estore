@@ -4,7 +4,7 @@
             <div class="col-lg-5">
                 <div class="our-aim-content">
                     <h5 class="text-yellow text-captilize green-heading">Help the Poor</h5>
-                    <h2 class="orange-text-img">Donation for the Noble Cuases</h2>
+                    <h2 class="orange-text-img">@php echo set_locale($donations->title) @endphp</h2>
                     <p class="para-1 text-opacity">
                         @php echo set_locale($donations->description) @endphp
                     </p>
@@ -19,10 +19,10 @@
                     <div class="percent">
                         <svg>
                         <circle cx="105" cy="105" r="100"></circle>
-                        <circle cx="105" cy="105" r="100" style="--percent: 70"></circle>
+                        <circle cx="105" cy="105" r="100" style="--percent: {{ ($donations->received_amount/$donations->price)*100 }}"></circle>
                         </svg>
                         <div class="number">
-                        <h3>70<span>%</span></h3>
+                        <h3>{{ ($donations->received_amount/$donations->price)*100 }}<span>%</span></h3>
                         </div>
                     </div>
                     <!-- <div class="title">
@@ -32,11 +32,11 @@
                 <div class="d-flex justify-content-between mt-3">
                     <div class="donation-calculation d-flex">
                         <p class="text-center">Amount Recieved</p>
-                        <h4 class="text-center mt-3">$65000</h4>
+                        <h4 class="text-center mt-3">{{ $donations->received_amount }}$</h4>
                     </div>
                     <div class="donation-calculation d-flex">
-                        <p class="text-center">Amount Recieved</p>
-                        <h4 class="text-center mt-3">$65000</h4>
+                        <p class="text-center">Targeted Amount</p>
+                        <h4 class="text-center mt-3">{{ $donations->price }}$</h4>
                     </div>
                 </div>
               </div>

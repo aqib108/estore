@@ -74,6 +74,8 @@ Route::prefix('admin')->namespace('Admin')->group(static function()
         Route::resource('library', '\App\Http\Controllers\Admin\LibraryController');
         Route::resource('classes', '\App\Http\Controllers\Admin\ClassesController');
         Route::post('update-thumb-img/{id}', '\App\Http\Controllers\Admin\LibraryController@updateThumbImg');
+
+        Route::any('donation/recieved-amount', [\App\Http\Controllers\Admin\DonationController::class, 'recievedAmount'])->name('admin.donation-recieved-amount');
     });
 });
 

@@ -70,16 +70,19 @@ class DonationController extends Controller
                 if (have_right('Edit-Doantions')) {
                     $actions .= '<a class="btn btn-primary" style="margin-left:02px;" href="' . url("admin/donations/" . $row->id . '/edit') . '" title="Edit"><i class="far fa-edit"></i></a>';
                 }
-
-                if (have_right('Delete-Doantions')) {
-                    $actions .= '<form method="POST" action="' . url("admin/donations/" . $row->id) . '" accept-charset="UTF-8" style="display:inline;">';
-                    $actions .= '<input type="hidden" name="_method" value="DELETE">';
-                    $actions .= '<input name="_token" type="hidden" value="' . csrf_token() . '">';
-                    $actions .= '<button class="btn btn-danger" style="margin-left:02px;" onclick="return confirm(\'Are you sure you want to delete this record?\');" title="Delete">';
-                    $actions .= '<i class="far fa-trash-alt"></i>';
-                    $actions .= '</button>';
-                    $actions .= '</form>';
+                if (have_right('Edit-Received-Amount')) {
+                    $actions .= '&nbsp;<a data-toggle="modal" data-target="#showNoteModal" class="btn btn-secondary show_note" href="javascript:void(0)" data-donation-id="' . $row->id . '" title="Show"><i class="fa fa-sticky-note"></i></a>';
                 }
+
+                // if (have_right('Delete-Doantions')) {
+                //     $actions .= '<form method="POST" action="' . url("admin/donations/" . $row->id) . '" accept-charset="UTF-8" style="display:inline;">';
+                //     $actions .= '<input type="hidden" name="_method" value="DELETE">';
+                //     $actions .= '<input name="_token" type="hidden" value="' . csrf_token() . '">';
+                //     $actions .= '<button class="btn btn-danger" style="margin-left:02px;" onclick="return confirm(\'Are you sure you want to delete this record?\');" title="Delete">';
+                //     $actions .= '<i class="far fa-trash-alt"></i>';
+                //     $actions .= '</button>';
+                //     $actions .= '</form>';
+                // }
 
                 $actions .= '</span>';
                 return $actions;
@@ -195,140 +198,6 @@ class DonationController extends Controller
     }
 
 
-    function reciepts($id, Request $request)
-    {
-        if (!have_right('View-Reciepts-Doantions'))
-            access_denied();
-
-        $db_record = DonationReceipt::where('donation_id', $id)->orderBy('created_at', 'DESC')->get();
-
-        $data = [];
-        if ($request->ajax()) {
-            $db_record = DonationReceipt::where('donation_id', $id)->orderBy('created_at', 'DESC')->get();
-            $datatable = Datatables::of($db_record);
-            $datatable = $datatable->addIndexColumn();
-
-            $datatable = $datatable->addColumn('status', function ($row) {
-                if ($row->status == 1) {
-                    $checked = 'checked';
-                } else {
-                    $checked = '';
-                }
-                $featured = '<label class="switch"> <input type="checkbox" name="status" onclick="statusChange($(this),' . $row->id . ')" ' . $checked . ' > <span class="slider round"></span></label>';
-                return $featured;
-            });
-
-            $datatable = $datatable->editColumn('receipt', function ($row) {
-                $status = '<a target="_blank" href="' . asset($row->receipt) . '">receipt</a>';
-                return $status;
-            });
-
-            $datatable = $datatable->addColumn('action', function ($row) {
-                $actions = '<span class="actions">';
-
-                if (have_right('Edit-Blood-Donors')) {
-                    $actions .= '&nbsp;<a class="btn btn-primary" href="javascript:void(0)" title="Payment Details" onclick="get_tranfer_payment_details(' . $row->id . ')"><i class="far fa-eye"></i></a>';
-                }
-
-
-                if (have_right('Delete-Doantions')) {
-                    $actions .= '<form method="POST" action="' . url("admin/donations/reciept-delete/" . $row->id) . '" accept-charset="UTF-8" style="display:inline;">';
-                    $actions .= '<input name="_token" type="hidden" value="' . csrf_token() . '">';
-                    $actions .= '<button class="btn btn-danger" style="margin-left:02px;" type="button" onclick="showConfirmAlert(this)" title="Delete">';
-                    $actions .= '<i class="far fa-trash-alt"></i>';
-                    $actions .= '</button>';
-                    $actions .= '</form>';
-                }
-
-                $actions .= '</span>';
-                return $actions;
-            });
-
-            $datatable = $datatable->rawColumns(['status', 'receipt', 'action']);
-            $datatable = $datatable->make(true);
-            return $datatable;
-        }
-        $data['id'] = $id;
-        return view('admin.donation.reciepts-listing', $data);
-    }
-
-    function recieptDelete($id)
-    {
-        if (!have_right('delete-reciept'))
-            access_denied();
-
-        $model = DonationReceipt::find($id);
-        $image_url =  $model->reciept;
-        if (!empty($image_url)) {
-            if (file_exists(public_path($image_url))) {
-                unlink($image_url);
-            }
-        }
-        $data = [];
-        $data['row'] = DonationReceipt::destroy($id);
-        return redirect()->back()->with('message', 'Data deleted Successfully');
-    }
-
-    function recieptStatus($id)
-    {
-        $status = $_GET['status'];
-        if ($status == 0) {
-            $donationStatus = "is Rejected";
-            $donationStatusUrdu = "مسترد کر دی گئی ہے ";
-            $donationStatusArabic = "مرفوض";
-        } else {
-            $donationStatus = "is Approved";
-            $donationStatusUrdu = "قبول کر لیا گیا ہے ";
-            $donationStatusArabic = "تم قبوله ";
-        }
-        $donationModel = DonationReceipt::where('id', $id)->first();
-        DonationReceipt::where('id', $id)->update(['status' => $_GET['status']]);
-        if (!empty($donationModel->user_id) && $status != 0) {
-            $details = [
-                'subject' => "Donation received",
-                'user_name' => $donationModel->user->user_name,
-                'content'  => "<p>Your donation has been received successfully.</p><p>Thanks for your contribution.</p><p>Donation Details: " . $donationModel->Donation->title_english . "</p>",
-                'links' => "<a href='" . url('/') . "'>Click here to donate more</a>",
-            ];
-            // notification to user
-            $user_id = $donationModel->user->id;
-            $notification = Notification::create([
-                'title' => 'Your donation ' . Str::words($donationModel->Donation->title_english, '4', '...') . ' is ' . $donationStatus,
-                'title_english' => 'Your donation ' . Str::words($donationModel->Donation->title_english, '4', '...') . ' is ' . $donationStatus,
-                'title_urdu' =>  $donationStatusUrdu . Str::words($donationModel->Donation->title_urdu, '4', '...') . 'آپ کا عطیہ',
-                'title_arabic' => $donationStatusArabic . Str::words($donationModel->Donation->title_arabic, '4', '...') . 'تبرعك',
-
-            ]);
-            $notification->users()->attach($user_id, ['notification_type' => 0, 'from_id' => auth()->user()->id]); // type 0 = notification_from_admin
-            // sendEmail($donationModel->user->email, $details);
-            saveEmail($donationModel->user->email, $details);
-        } else {
-            if (!empty($donationModel->email) && $status != 0) {
-
-                $details = [
-                    'subject' => 'Donation Approved Successfully',
-                    'user_name' => (!empty($donationModel->name) ? $donationModel->name : $donationModel->email),
-                    'content'  => "<p>Your donation has been approved successfully.</p><p>Thanks for your contribution</p>",
-                    'links' => "<a href='" . url('/') . "'>Click here to donate more</a>",
-                ];
-                // sendEmail($donationModel->email, $details);
-                saveEmail($donationModel->email, $details);
-            }
-        }
-
-        if ($status == 0) {
-            $details = [
-                'subject' => 'Donation rejected',
-                'user_name' => (!empty(($donationModel->user_id)) ? $donationModel->user->user_name : $donationModel->email),
-                'content'  => "<p>Unfortunately your donation has been rejected for certain reasons. .</p><p>Apologize for the inconvenience</p>",
-                'links' => "<a href='" . url('/') . "'>Click here</a> to donate again",
-            ];
-            // sendEmail((!empty($donationModel->user_id) ? $donationModel->user->email : $donationModel->email), $details);
-            saveEmail((!empty($donationModel->user_id) ? $donationModel->user->email : $donationModel->email), $details);
-        }
-        echo true;
-        exit();
-    }
     /**
      * Remove the specified resource from storage.
      *
@@ -385,5 +254,31 @@ class DonationController extends Controller
         // dd($data['donationRecieptData']);
         $html = (string)View('admin.partial.donation-reciept-details-partial', $data);
         echo $html;
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function recievedAmount(Request $request)
+    {
+        if ($request->isMethod('get')) {
+            $donation = Donation::find($request->id);
+            $html = view('admin.partial.show-received-amount', get_defined_vars())->render();
+
+            return response()->json(['html' => $html, 'status' => 200]);
+        }
+        if ($request->isMethod('post')) {
+            // dd($request->received_amount);
+            $donation = Donation::find($request->donation_id);
+            $donation->received_amount=$request->received_amount;
+            if ($donation->save()) {
+                $response['status'] = 'success';
+                $response['message'] = 'Amount submitted successfully!!';
+            }
+            echo json_encode($response);
+            exit();
+        }
     }
 }

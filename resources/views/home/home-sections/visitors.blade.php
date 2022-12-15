@@ -2,8 +2,9 @@
     <div class="container-fluid container-width">
         <div class="row">
             <div class="col-lg-5">
+                {{-- http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4 --}}
                 <video controls width="100%" height="100%" poster="./images/vide-bg.png">
-                    <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                    <source src="{{ asset(getSettingDataHelper('video')) }}"
                     type="video/mp4">
                 </video>
             </div>
@@ -29,7 +30,7 @@
                                 <div class="img-wrap-1">
                                     <img src="{{ asset('assets/front/images/visit-img-1.svg') }}" class="img-fluid">
                                 </div>
-                                <h3 class="text-center">45760</h3>
+                                <h3 class="text-center">{{ $course_count }}</h3>
                                 <p class="text-center" >Courses</p>
                             </div>
                         </div>
@@ -38,7 +39,7 @@
                                 <div class="img-wrap-1">
                                     <img src="{{asset('assets/front/images/visit-img-2.svg')}}" class="img-fluid">
                                 </div>
-                                <h3 class="text-center">45760</h3>
+                                <h3 class="text-center">{{ $department_count }}</h3>
                                 <p class="text-center">Departments</p>
                             </div>
                         </div>
