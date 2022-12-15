@@ -104,13 +104,13 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header">
+                            {{-- <div class="card-header">
                                 @if (have_right('Create-Donation'))
                                     <h3 class="card-title">
                                         <a href="{{ URL('admin/donations/create') }}" class="btn btn-primary"> Add New </a>
                                     </h3>
                                 @endif
-                            </div>
+                            </div> --}}
                             <div class="card-body">
                                 <table id="pages-datatable" class="table table-bordered table-striped" style="width:100%">
                                     <thead>
@@ -141,6 +141,29 @@
             </div>
         </section>
         <!-- Main content -->
+            <!-- Modal -->
+    <div class="modal fade" id="showNoteModal" tabindex="-1" role="dialog" aria-labelledby="showPostModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Donation Recieved Amount</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body note_data">
+                    <!-- dynamic body append here -->
+                </div>
+                <div class="modal-footer">
+                    {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
+                    <button onclick="updateNote()" type="button" class="btn btn-primary note_close_button">
+                        Add Note
+                    </button>
+                    {{-- <button type="button" class="btn btn-primary">Save changes</button>--}}
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 @endsection
 
@@ -266,6 +289,54 @@
                     swal("Done!", "Status Changed.", "success")
                 },
                 error: function(data) {}
+            });
+        }
+        $(document).on('click', '.show_note', function () {
+            let id = $(this).attr('data-donation-id');
+
+            $.ajax({
+                type: "get",
+                url: "{{route('admin.donation-recieved-amount')}}",
+                data: {
+                    '_token': "{{csrf_token()}}",
+                    'id': id
+                },
+                success: function(result) {
+                    if (result.status === 200) {
+                        $('.note_data').html(result.html)
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+        function updateNote()
+        {
+            var formData = new FormData($('#noteForm')[0]);
+            $.ajax({
+                type: "POST",
+                url: "{{route('admin.donation-recieved-amount')}}",
+                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: 'JSON',
+                beforeSend: function () {
+                    $('.preloader').show();
+                },
+                success: function (data) {
+                    if (data.status == 'success') {
+                        try {
+                            swal.fire('Done', data.message, 'success')
+                        }
+                        catch (err) {
+                            swal('Done', data.message, 'success')
+                        }
+                    } 
+                    $('.preloader').hide();
+                    $('#showNoteModal .close').click();
+                }
             });
         }
     </script>

@@ -14,6 +14,7 @@ use App\Models\Admin\Donation;
 use App\Models\Admin\CeoMessage;
 use App\Models\Admin\News;
 use App\Models\Admin\Department;
+use App\Models\Admin\Course;
 use App\Models\Admin\Testimonial;
 use App\Models\Admin\Setting;
 use App\Models\Admin\OurAims;
@@ -39,6 +40,11 @@ class HomeController extends Controller
     public function index()
     {
         // dd(App::getLocale());
+        if (!session()->has('settings')) {
+            $settingsdata = Setting::all()->toArray();
+            $sortedArray = array_column($settingsdata, 'option_value', 'option_name');
+            session()->put('settings', $sortedArray);
+        }
         $data['sliders'] =  Slider::wherestatus(1)->get();
         $data['ceo_message'] =  CeoMessage::wherestatus(1)->value('message');
         $data['donations'] = Donation::where(['is_featured'=>1,'status'=>1,'is_featured'=>1])->first();
@@ -47,6 +53,8 @@ class HomeController extends Controller
         $data['news'] = News::wherestatus(1)->get();
         $data['departments'] = Department::wherestatus(1)->get();
         $data['aims'] = OurAims::get()->first();
+        $data['department_count'] = Department::count();
+        $data['course_count'] = Course::count();
         $data['Testimonials'] = Testimonial::wherestatus(1)->get();
         return view('home.index')->with($data);
     }

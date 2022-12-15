@@ -47,6 +47,10 @@ class SettingController extends Controller
             $imagePath = $this->uploadimage($request);
             $input['logo'] = $imagePath;
         }
+        if (isset($input['video'])) {
+            $imagePath = $this->uploadVideo($request);
+            $input['video'] = $imagePath;
+        }
         foreach ($input as $key => $value) {
             $result = DB::table('settings')->where('option_name', $key)->get();
 
@@ -61,7 +65,7 @@ class SettingController extends Controller
             }
         }
         Session::flash('flash_success', 'Site Settings has been updated successfully.');
-        return redirect()->back();
+        return redirect()->back()->with('message','Site Settings has been updated successfully.');
     }
 
     /**
@@ -80,4 +84,15 @@ class SettingController extends Controller
         return $path;
     }
 
+    public function uploadVideo(Request $request)
+    {
+        $path = '';
+        if ($request->video) {
+            $videoName = 'video' . time() . '.' . $request->video->extension();
+            if ($request->video->move(public_path('videos/video'), $videoName)) {
+                $path = 'videos/video/' . $videoName;
+            }
+        }
+        return $path;
+    }
 }

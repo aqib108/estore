@@ -85,25 +85,25 @@
                         </div>
                       </div>
                        <!-- For Video -->
-                       {{--  <div class="card-header" id="title-heading">
+                        <div class="card-header" id="title-heading">
                         <h2 class="mb-0">
                           <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#video" aria-expanded="true" aria-controls="video">
                             Video
                           </button>
                         </h2>
-                      </div>  --}}
+                      </div> 
 
-                      {{--  <div id="video" class="collapse" aria-labelledby="message-title-heading" data-parent="#accordionExample">
+                      <div id="video" class="collapse" aria-labelledby="message-title-heading" data-parent="#accordionExample">
                         <div class="card-body">
                           <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Banner video *</label>
+                            <label class="col-sm-2 col-form-label">Visit video *</label>
                             <div class="col-sm-6">
                               <input type="file"  class="form-control" placeholder="Select video" id="videoinpt" name="video" accept="video/mp4,video/x-m4v,video/*"  value="" onchange="Filevalidation()">
                             </div>
                           </div>
 
                         </div>
-                      </div>  --}}
+                      </div> 
                         <!-- For  title   -->
                           <div class="card-header" id="title-heading">
                             <h2 class="mb-0">
