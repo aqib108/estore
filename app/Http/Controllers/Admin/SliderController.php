@@ -131,6 +131,10 @@ class SliderController extends Controller
                     $model->image=$timageName;
                 }   
             }
+            if($request->hasFile('slider_logo'))
+            {
+                $input['slider_logo'] = $this->uploadfile($request);      
+            }
             $model->save();
             $msg = 'Data added Successfully';
         }
@@ -154,13 +158,36 @@ class SliderController extends Controller
                     $model->image=$timageName;
                 }   
             }
+            if (isset($input['slider_logo'])) {
+                
+                $filePath = $this->uploadfile($request);
+                $model->slider_logo= $filePath;
+                $file_url =  $model->slider_logo;
+                if (file_exists(public_path($file_url))) {
+                    // if(isset($file_url))
+                    // unlink($file_url);
+                }
+            } else {
+                unset($input['slider_logo']);
+            }
+            
             $model->update();
             $msg = 'Data updated Successfully';
         }
 
         return redirect('admin/sliders')->with('message',$msg);
     }
-
+    public function uploadfile(Request $request)
+    {
+        $path = '';
+        if ($request->slider_logo) {
+            $fileName = 'slider-logo' . time() . '.' . $request->slider_logo->extension();
+            if ($request->slider_logo->move(public_path('slider-logo'), $fileName)) {
+                $path =  'slider-logo/' . $fileName;
+            }
+        }
+        return $path;
+    }
     /**
      * Display the specified resource.
      *

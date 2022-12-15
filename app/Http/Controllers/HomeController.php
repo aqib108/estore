@@ -16,6 +16,7 @@ use App\Models\Admin\News;
 use App\Models\Admin\Department;
 use App\Models\Admin\Testimonial;
 use App\Models\Admin\Setting;
+use App\Models\Admin\OurAims;
 use App\Models\Subscription\NewSubscription;
 use App\Models\ContactForm\ContactRecord;
 
@@ -45,6 +46,7 @@ class HomeController extends Controller
         $data['sliderPosts'] = Post::where(['slider_post'=>1,'status'=>1])->get();
         $data['news'] = News::wherestatus(1)->get();
         $data['departments'] = Department::wherestatus(1)->get();
+        $data['aims'] = OurAims::get()->first();
         $data['Testimonials'] = Testimonial::wherestatus(1)->get();
         return view('home.index')->with($data);
     }

@@ -135,8 +135,7 @@
 				                        	<img id="theme-image" src="{{$tImage}}" alt="your image" style="width: 100%;height: 100%;{{ ($tImage == '#') ? 'display: none;':''  }}" />
 				                        </div>
 				                    </div>
-
-
+								
 				                    <div class="form-group row">
 				                        <label class="col-sm-2 col-form-label">Title</label>
 				                        <div class="col-sm-6">
@@ -396,5 +395,6 @@
 		    reader.readAsDataURL(input.files[0]);
 		  }
 		}
+		
 	</script>
 @endpush

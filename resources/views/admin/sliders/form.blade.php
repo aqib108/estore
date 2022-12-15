@@ -128,6 +128,26 @@
 				                        	<img id="theme-image" src="{{$tImage}}" alt="your image" style="width: 100%;height: 100%;{{ ($tImage == '#') ? 'display: none;':''  }}" />
 				                        </div>
 				                    </div>
+									@if(isset($row->slider_logo) && $action=='edit')
+									@php $slider_logo = asset($row->slider_logo); @endphp
+								@else
+									@php $slider_logo = '#'; @endphp
+								@endif
+									<div class="form-group row">
+				                        <label class="col-sm-2 col-form-label">Slider logo</label>
+				                        <div class="col-sm-6">
+				                        	<input type="file" class="form-control" name="slider_logo" value="{{ $row->slider_logo }}" {{ ($slider_logo == "#") ? 'required=""' : '' }} onchange="readURL3(this)">
+				                        </div>
+				                    </div>
+
+				                    <div class="form-group row">
+				                    	<label class="col-sm-2 col-form-label"></label>
+				                    	<div class="col-sm-6">
+				                        	<img id="slider-logo" src="{{$slider_logo}}" alt="your logo" style="width: 100%;height: 100%;{{ ($slider_logo == '#') ? 'display: none;':''  }}" />
+				                        </div>
+				                    </div>
+
+
 									@foreach($languages as $language)
 				                    <div class="form-group row">
 				                        <label class="col-sm-2 col-form-label">Content {{$language->name}}</label>
@@ -277,6 +297,20 @@
 		    {
 			    $('#theme-image').css('display','block');
 	 		    $('#theme-image').attr('src', e.target.result);
+		    };
+		    reader.readAsDataURL(input.files[0]);
+		  }
+		}
+		function readURL3(input) 
+		 {
+		  if (input.files && input.files[0]) 
+		  {
+		  	console.log(input.files[0]);
+		    var reader = new FileReader();
+		    reader.onload = function (e) 
+		    {
+			    $('#slider-logo').css('display','block');
+	 		    $('#slider-logo').attr('src', e.target.result);
 		    };
 		    reader.readAsDataURL(input.files[0]);
 		  }

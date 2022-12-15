@@ -331,6 +331,14 @@ $url_3 = Request::segment(4);
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ URL('admin/aims') }}" class="nav-link {{ $url_1 == 'aims' ? 'active':'' }}">
+                                <i class="nav-icon far fa-circle"></i>
+                                <p>
+                                    Our Aims
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ URL('admin/pages') }}" class="nav-link {{ $url_1 == 'pages' ? 'active':'' }}">
                                 <i class="nav-icon far fa-circle"></i>
                                 <p>
