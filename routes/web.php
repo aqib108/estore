@@ -21,7 +21,25 @@ Route::get('/run-cmd', function () {
     Artisan::call('schedule:run');
     dump('Running');
 });
-
+Route::get('/blog', [App\Http\Controllers\HomeController::class, 'BlogDetail']);
+Route::get('/news', [App\Http\Controllers\HomeController::class, 'NewsDetail'])->name('news');
+Route::get('/library', [App\Http\Controllers\HomeController::class, 'LibraryDetail'])->name('library');
+Route::get('/magzine', [App\Http\Controllers\HomeController::class, 'MagzineDetail'])->name('magzine');
+// Route::get('/blog',function(){
+//     return view('home.pages.blog-detail');
+// });
+// Route::get('/news',function(){
+//     return view('home.pages.news-detail');
+// });
+// Route::get('/library',function(){
+//     return view('home.pages.library-detail');
+// });
+// Route::get('/magzine',function(){
+//     return view('home.pages.magzine-detail');
+// });
+// Route::get('/blog',function(){
+//     return view('home.pages.blog-detail');
+// });
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::post('/set-local', [App\Http\Controllers\HomeController::class, 'setLocal']);
 Route::post('/subscription', [App\Http\Controllers\HomeController::class, 'subscription']);
@@ -93,7 +111,19 @@ Route::get('post/{slug}', [App\Http\Controllers\HomeController::class, 'post'])-
 Route::get('category/{slug}', [App\Http\Controllers\HomeController::class, 'category'])->name('category');
 Route::get('tag/{slug}', [App\Http\Controllers\HomeController::class, 'tag'])->name('tag');
 Route::get('search/query', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
-Route::get('blog', [App\Http\Controllers\HomeController::class, 'Blog'])->name('blog');
-Route::get('news', [App\Http\Controllers\HomeController::class, 'NewsDetails'])->name('news');
-Route::get('library', [App\Http\Controllers\HomeController::class, 'Library'])->name('library');
-Route::get('magzine', [App\Http\Controllers\HomeController::class, 'magzine'])->name('magzine');
+// Route::get('/blog',function(){
+//     return view('home.pages.blog-detail');
+// });
+// Route::get('/news',function(){
+//     return view('home.pages.news-detail');
+// });
+// Route::get('/library',function(){
+//     return view('home.pages.library-detail');
+// });
+// Route::get('/magzine',function(){
+//     return view('home.pages.magzine-detail');
+// });
+// Route::get('/blog', [App\Http\Controllers\HomeController::class, 'BlogDetail']);
+// Route::get('/news', [App\Http\Controllers\HomeController::class, 'NewsDetail'])->name('news');
+// Route::get('/library', [App\Http\Controllers\HomeController::class, 'LibraryDetail'])->name('library');
+// Route::get('/magzine', [App\Http\Controllers\HomeController::class, 'MagzineDetail'])->name('magzine');

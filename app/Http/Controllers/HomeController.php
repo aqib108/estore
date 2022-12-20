@@ -30,6 +30,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+       
     }
 
     /**
@@ -142,16 +143,16 @@ class HomeController extends Controller
        $contact->message = $request->message;
        $contact->save();return redirect('/')->with('msg','successfully contact created'); return redirect()->with('msg','successfully contact created'); 
     }
-    function BlogDetail(){
+    public function BlogDetail(){
         return view('home.pages.blog-detail');
     }
-    function NewsDetails(){
+    public function NewsDetail(){
         return view('home.pages.news-detail');
     }
-    function LibraryDetail(){
+    public function LibraryDetail(){
         return view('home.pages.library-detail');
     }
-    function MagzineDetail(){
+    public function MagzineDetail(){
         return view('home.pages.magzine-detail');
     }
 }
