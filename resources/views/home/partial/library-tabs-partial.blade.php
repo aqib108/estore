@@ -32,7 +32,7 @@
 @elseif($type == 4)
     <div class="col-lg-3 col-md-6 col-sm-6  mb-3">
         <div class="image-galary">
-            <a href="https://docs.google.com/viewerng/viewer?url=http://infolab.stanford.edu/pub/papers/google.pdf&embedded=true" frameborder="0" height="100%" width="100%">
+            <a target="_blank" href="https://docs.google.com/viewerng/viewer?url={{ asset($result->file) }}&embedded=true" frameborder="0" height="100%" width="100%">
                 <img src="{{!empty($result->img_thumb_nail)? asset($result->img_thumb_nail) : asset('images/thumbnails/books.png') }}" alt="image not found" class="img-fluid" />
             </a>
             
