@@ -142,4 +142,16 @@ class HomeController extends Controller
        $contact->message = $request->message;
        $contact->save();return redirect('/')->with('msg','successfully contact created'); return redirect()->with('msg','successfully contact created'); 
     }
+    function AboutUs(){
+        return view('home.pages.about_us');
+    }
+    function FeedbackUs(){
+        return view('home.pages.feedback');
+    }
+    function Library(){
+        return view('home.pages.library');
+    }
+    function magzine(){
+        return view('home.pages.magzine');
+    }
 }

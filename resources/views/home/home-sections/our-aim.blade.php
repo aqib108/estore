@@ -20,7 +20,7 @@
                     
                     <div class="buton-holder">
                         <button class="orange theme-button me-md-3">read more</button>
-                        <button class="orange theme-button">donate now</button>
+                        <a class="orange theme-button" href="@php echo \Config::get('constants.paypal_url'); @endphp">donate now</a>
                     </div>
                 </div>
             </div>

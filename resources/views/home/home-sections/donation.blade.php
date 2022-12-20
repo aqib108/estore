@@ -9,7 +9,7 @@
                         @php echo set_locale($donations->description) @endphp
                     </p>
                     <div class="buton-holder">
-                        <button class="orange theme-button">Donate Now</button>
+                        <a href="{{\Config::get('constants.paypal_url');}}" class="orange theme-button">Donate Now</a>
                     </div>
                 </div>
             </div>
