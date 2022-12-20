@@ -304,8 +304,8 @@ $url_3 = Request::segment(4);
                 @endif
 
                 @if(have_right('View-Magazines-Category') || have_right('View-Magazines') )
-                <li class="nav-item {{ ($url_1 == 'ceomessage'|| $url_1=='sliders' || $url_1 == 'pages' || $url_1 == 'testimonials') ? 'menu-open':'' }}">
-                    <a href="#" class="nav-link {{ ($url_1 == 'sliders' || $url_1 == 'ceomessage'|| $url_1 == 'pages'|| $url_1 == 'testimonials') ? 'active':'' }}">
+                <li class="nav-item {{ ($url_1 == 'ceomessage' || $url_1 == 'aims'|| $url_1=='sliders' || $url_1 == 'pages' || $url_1 == 'testimonials') ? 'menu-open':'' }}">
+                    <a href="#" class="nav-link {{ ($url_1 == 'sliders' ||$url_1 == 'aims' || $url_1 == 'ceomessage'|| $url_1 == 'pages'|| $url_1 == 'testimonials') ? 'active':'' }}">
                         <i class="nav-icon fa fa-home"></i>
                         <p>
                             Home Setting
