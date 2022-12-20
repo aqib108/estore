@@ -21,8 +21,14 @@
                     </p>
                     
                     <div class="buton-holder">
-                        <button class="orange theme-button me-md-3">read more</button>
-                        <a class="orange theme-button" href="@php echo \Config::get('constants.paypal_url'); @endphp">donate now</a>
+                        <div class="d-flex" >
+                            <button class="orange theme-button me-md-3">read more</button>
+                            <form action="https://www.paypal.com/donate" method="post" target="_top"><input name="hosted_button_id" type="hidden" value="KA3Q4526LZZ7Q">
+                                {{-- <button type="submit"  name="submit" class="orange theme-button">Donate Now</button> --}}
+                                <button class="orange theme-button" type="submit"  name="submit">Donate Now</button>
+                            </form>
+                        </div>
+                        {{-- <a class="orange theme-button" href="@php echo \Config::get('constants.paypal_url'); @endphp">donate now</a> --}}
                     </div>
                 </div>
             </div>
