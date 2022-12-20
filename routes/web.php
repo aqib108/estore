@@ -93,7 +93,7 @@ Route::get('post/{slug}', [App\Http\Controllers\HomeController::class, 'post'])-
 Route::get('category/{slug}', [App\Http\Controllers\HomeController::class, 'category'])->name('category');
 Route::get('tag/{slug}', [App\Http\Controllers\HomeController::class, 'tag'])->name('tag');
 Route::get('search/query', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
-Route::get('about-us', [App\Http\Controllers\HomeController::class, 'AboutUs'])->name('about_us');
-Route::get('feedback-us', [App\Http\Controllers\HomeController::class, 'FeedbackUs'])->name('feedback_us');
-Route::get('library-us', [App\Http\Controllers\HomeController::class, 'Library'])->name('library_us');
+Route::get('blog', [App\Http\Controllers\HomeController::class, 'Blog'])->name('blog');
+Route::get('news', [App\Http\Controllers\HomeController::class, 'NewsDetails'])->name('news');
+Route::get('library', [App\Http\Controllers\HomeController::class, 'Library'])->name('library');
 Route::get('magzine', [App\Http\Controllers\HomeController::class, 'magzine'])->name('magzine');

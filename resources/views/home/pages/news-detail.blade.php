@@ -1,4 +1,4 @@
 @extends('home.layout.app')
 @section('content')
-    <h1>Library</h1>
+    <h1>News detail</h1>
 @endsection	

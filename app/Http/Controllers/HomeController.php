@@ -142,16 +142,16 @@ class HomeController extends Controller
        $contact->message = $request->message;
        $contact->save();return redirect('/')->with('msg','successfully contact created'); return redirect()->with('msg','successfully contact created'); 
     }
-    function AboutUs(){
-        return view('home.pages.about_us');
+    function BlogDetail(){
+        return view('home.pages.blog-detail');
     }
-    function FeedbackUs(){
-        return view('home.pages.feedback');
+    function NewsDetails(){
+        return view('home.pages.news-detail');
     }
-    function Library(){
-        return view('home.pages.library');
+    function LibraryDetail(){
+        return view('home.pages.library-detail');
     }
-    function magzine(){
-        return view('home.pages.magzine');
+    function MagzineDetail(){
+        return view('home.pages.magzine-detail');
     }
 }
