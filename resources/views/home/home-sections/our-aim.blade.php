@@ -16,7 +16,9 @@
                 <div class="our-aim-content">
                     <h5 class="text-yellow text-captilize green-heading">OUR MISSION</h5>
                     <h2 class="orange-text-img">{{ set_locale($aims->title) }}</h2>
-                    @php echo set_locale($aims->content) @endphp
+                    <p class="m-3">
+                        @php echo set_locale($aims->content) @endphp
+                    </p>
                     
                     <div class="buton-holder">
                         <button class="orange theme-button me-md-3">read more</button>

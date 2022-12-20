@@ -1,3 +1,10 @@
+@php
+    $departments = App\Models\Admin\Department::wherestatus(1)->orderBy('id', 'DESC')->get();
+    $locations = App\Models\Admin\Location::wherestatus(1)->orderBy('id', 'DESC')->get();
+    $classes = App\Models\Admin\Classes::wherestatus(1)->orderBy('id', 'DESC')->get();
+    $library_types = App\Models\Admin\LibraryType::wherestatus(1)->orderBy('id', 'DESC')->get();
+    $news = App\Models\Admin\News::wherestatus(1)->take(3)->orderBy('id', 'DESC')->get();
+@endphp
 <header class="header">
     <div class="bottom-header">
         <div class="container-fluid container-width">
@@ -22,16 +29,17 @@
                                 </div>
                                 <div class="drop-down__menu-box">
                                     <ul class="drop-down__menu">
-                                        <li><a href="index.html" class="drop-down__item" title=""></a>Your Profile</li>
-                                        <li><a href="newsfeed.html" class="drop-down__item" title=""></a>Your Dashboard</li>
-                                        <li><a href="" class="drop-down__item" title=""></a>Your Profile</li>
-                                        <li class="menu-item-has-children">
+                                        <li><a href="index.html" class="drop-down__item" title=""></a>Aims and Object</li>
+                                        <li><a href="newsfeed.html" class="drop-down__item" title=""></a>Satzung</li>
+                                        <li><a href="" class="drop-down__item" title=""></a>Membership Form</li>
+                                        <li><a href="" class="drop-down__item" title=""></a>Union</li>
+                                        {{-- <li class="menu-item-has-children">
                                             <a class="drop-down__item" href="#" title="">Nested drop down</a>
                                             <ul>
                                                 <li><a class="drop-down__item" href="index.html" title="">Header Style 1</a></li>
                                                 <li><a class="drop-down__item" href="index2.html" title="">Header Style 2</a></li>
                                             </ul>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </div>
                             </div>
@@ -43,16 +51,18 @@
                                 </div>
                                 <div class="drop-down__menu-box">
                                     <ul class="drop-down__menu">
-                                        <li><a href="index.html" class="drop-down__item" title=""></a>Your Profile</li>
-                                        <li><a href="newsfeed.html" class="drop-down__item" title=""></a>Your Dashboard</li>
-                                        <li><a href="" class="drop-down__item" title=""></a>Your Profile</li>
-                                        <li class="menu-item-has-children">
+                                        @foreach ($departments as $depart)
+                                            <li><a href="{{ $depart->url }}" class="drop-down__item" title=""></a>@php echo set_locale($depart->name) @endphp</li>
+                                        @endforeach
+                                        {{-- <li><a href="newsfeed.html" class="drop-down__item" title=""></a>Your Dashboard</li>
+                                        <li><a href="" class="drop-down__item" title=""></a>Your Profile</li> --}}
+                                        {{-- <li class="menu-item-has-children">
                                             <a class="drop-down__item" href="#" title="">Nested drop down</a>
                                             <ul>
                                                 <li><a class="drop-down__item" href="index.html" title="">Header Style 1</a></li>
                                                 <li><a class="drop-down__item" href="index2.html" title="">Header Style 2</a></li>
                                             </ul>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </div>
                             </div>
@@ -64,8 +74,10 @@
                                 </div>
                                 <div class="drop-down__menu-box">
                                     <ul class="drop-down__menu">
-                                        <li><a href="index.html" class="drop-down__item" title=""></a>Your Profile</li>
-                                        <li><a href="newsfeed.html" class="drop-down__item" title=""></a>Your Dashboard</li>
+                                        @foreach ($locations as $loc)
+                                            <li><a href="{{ $loc->location_link }}" class="drop-down__item" title=""></a>@php echo set_locale($loc->location_address) @endphp</li>
+                                        @endforeach
+                                        {{-- <li><a href="newsfeed.html" class="drop-down__item" title=""></a>Your Dashboard</li>
                                         <li><a href="" class="drop-down__item" title=""></a>Your Profile</li>
                                         <li class="menu-item-has-children">
                                             <a class="drop-down__item" href="#" title="">Nested drop down</a>
@@ -73,7 +85,7 @@
                                                 <li><a class="drop-down__item" href="index.html" title="">Header Style 1</a></li>
                                                 <li><a class="drop-down__item" href="index2.html" title="">Header Style 2</a></li>
                                             </ul>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </div>
                             </div>
@@ -85,8 +97,10 @@
                                 </div>
                                 <div class="drop-down__menu-box">
                                     <ul class="drop-down__menu">
-                                        <li><a href="index.html" class="drop-down__item" title=""></a>Your Profile</li>
-                                        <li><a href="newsfeed.html" class="drop-down__item" title=""></a>Your Dashboard</li>
+                                        @foreach ($classes as $class)
+                                            <li><a href="{{ $class->url }}" class="drop-down__item" title=""></a>@php echo set_locale($class->title) @endphp</li> 
+                                        @endforeach
+                                        {{-- <li><a href="newsfeed.html" class="drop-down__item" title=""></a>Your Dashboard</li>
                                         <li><a href="" class="drop-down__item" title=""></a>Your Profile</li>
                                         <li class="menu-item-has-children">
                                             <a class="drop-down__item" href="#" title="">Nested drop down</a>
@@ -94,7 +108,7 @@
                                                 <li><a class="drop-down__item" href="index.html" title="">Header Style 1</a></li>
                                                 <li><a class="drop-down__item" href="index2.html" title="">Header Style 2</a></li>
                                             </ul>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </div>
                             </div>
@@ -106,8 +120,10 @@
                                 </div>
                                 <div class="drop-down__menu-box">
                                     <ul class="drop-down__menu">
-                                        <li><a href="index.html" class="drop-down__item" title=""></a>Your Profile</li>
-                                        <li><a href="newsfeed.html" class="drop-down__item" title=""></a>Your Dashboard</li>
+                                        @foreach ($library_types as $library_type)
+                                            <li><a href="index.html" class="drop-down__item" title=""></a>@php echo set_locale($library_type->title) @endphp</li>
+                                        @endforeach
+                                        {{-- <li><a href="newsfeed.html" class="drop-down__item" title=""></a>Your Dashboard</li>
                                         <li><a href="" class="drop-down__item" title=""></a>Your Profile</li>
                                         <li class="menu-item-has-children">
                                             <a class="drop-down__item" href="#" title="">Nested drop down</a>
@@ -115,7 +131,7 @@
                                                 <li><a class="drop-down__item" href="index.html" title="">Header Style 1</a></li>
                                                 <li><a class="drop-down__item" href="index2.html" title="">Header Style 2</a></li>
                                             </ul>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </div>
                             </div>
@@ -123,9 +139,9 @@
                         <li class="nav-item custom-design-drop-down">
                             <div class="about-drop-down">
                                 <div id="adropDown" class="drop-down__button">
-                                    <a class="nav-link d-flex align-items-center">Magzine <span class="next00"></span></a>
+                                    <a class="nav-link d-flex align-items-center">Magzine</a>
                                 </div>
-                                <div class="drop-down__menu-box">
+                                {{-- <div class="drop-down__menu-box">
                                     <ul class="drop-down__menu">
                                         <li><a href="index.html" class="drop-down__item" title=""></a>Your Profile</li>
                                         <li><a href="newsfeed.html" class="drop-down__item" title=""></a>Your Dashboard</li>
@@ -138,7 +154,7 @@
                                             </ul>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> --}}
                             </div>
                         </li>
                         <li class="nav-item custom-design-drop-down">
@@ -148,16 +164,9 @@
                                 </div>
                                 <div class="drop-down__menu-box">
                                     <ul class="drop-down__menu">
-                                        <li><a href="index.html" class="drop-down__item" title=""></a>Your Profile</li>
-                                        <li><a href="newsfeed.html" class="drop-down__item" title=""></a>Your Dashboard</li>
-                                        <li><a href="" class="drop-down__item" title=""></a>Your Profile</li>
-                                        <li class="menu-item-has-children">
-                                            <a class="drop-down__item" href="#" title="">Nested drop down</a>
-                                            <ul>
-                                                <li><a class="drop-down__item" href="index.html" title="">Header Style 1</a></li>
-                                                <li><a class="drop-down__item" href="index2.html" title="">Header Style 2</a></li>
-                                            </ul>
-                                        </li>
+                                        @foreach ($news as $new)
+                                            <li><a href="" class="drop-down__item" title=""></a>@php echo set_locale($new->title) @endphp</li> 
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
@@ -170,8 +179,8 @@
                                 </div>
                                 <div class="drop-down__menu-box">
                                     <ul class="drop-down__menu">
-                                        <li><a href="index.html" class="drop-down__item" title=""></a>Your Profile</li>
-                                        <li><a href="newsfeed.html" class="drop-down__item" title=""></a>Your Dashboard</li>
+                                        <li><a href="index.html" class="drop-down__item" title=""></a>Contact Us</li>
+                                        {{-- <li><a href="newsfeed.html" class="drop-down__item" title=""></a>Your Dashboard</li>
                                         <li><a href="" class="drop-down__item" title=""></a>Your Profile</li>
                                         <li class="menu-item-has-children">
                                             <a class="drop-down__item" href="#" title="">Nested drop down</a>
@@ -179,7 +188,7 @@
                                                 <li><a class="drop-down__item" href="index.html" title="">Header Style 1</a></li>
                                                 <li><a class="drop-down__item" href="index2.html" title="">Header Style 2</a></li>
                                             </ul>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </div>
                             </div>
