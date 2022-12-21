@@ -1,5 +1,6 @@
 @php
     $posts = App\Models\Admin\Post::wherestatus(1)->join('post_feature_images','post_id','posts.id')->take(3)->orderBy('id', 'DESC')->get(['posts.title as title','post_feature_images.image as image','posts.created_at as date','posts.id as id']);
+    $location=App\Models\Admin\Location::where(['status'=>1,'featured'=>1])->first();
 @endphp
 <footer class="footer">
     <div class="container-fluid container-width">
@@ -15,10 +16,9 @@
                             </a>
                         </div>
                         <div class="store-logos">
-                            <a href="#"><span class="icon fa fa-map-marker text-yellow"></span>
-                                <span class="graish-color"> Halqa Noor ul Iman Ornalado Road USA</span>
+                            <a href="{{ $location->location_link }}" target="_blank"><span class="icon fa fa-map-marker text-yellow"></span>
+                                <span class="graish-color"> @php echo set_locale($location->location_address) @endphp</span>
                             </a>
-
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                                 <a href="#"><span class="icon fa fa-phone"></span> <span>{{getSettingDataHelper('phone')}}</span></a>
                             </li>
                             <li>
-                                <a href="#"><span class="icon fa fa-map-marker"></span><span>1Halqa Noor ul Iman Ornalado Road USA</span></a>
+                                <a href="{{ $location->location_link }}" target="_blank"><span class="icon fa fa-map-marker"></span><span>@php echo set_locale($location->location_address) @endphp</span></a>
                             </li>
                             <li>
                                 <a href="#"><span class="icon fa fa-clock-o"></span> <span>{{getSettingDataHelper('opening_time')}}</span></a>

@@ -24,7 +24,7 @@ Route::get('/run-cmd', function () {
 Route::get('/blog', [App\Http\Controllers\HomeController::class, 'BlogDetail']);
 Route::get('/news', [App\Http\Controllers\HomeController::class, 'NewsDetail'])->name('news');
 Route::get('/library', [App\Http\Controllers\HomeController::class, 'LibraryDetail'])->name('library');
-Route::get('/magzine', [App\Http\Controllers\HomeController::class, 'MagzineDetail'])->name('magzine');
+Route::get('/magazine', [App\Http\Controllers\HomeController::class, 'MagzineDetail'])->name('magazine');
 // Route::get('/blog',function(){
 //     return view('home.pages.blog-detail');
 // });
