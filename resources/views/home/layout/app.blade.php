@@ -134,6 +134,9 @@
               $(".more-drop-down").toggleClass("drop-down--active");
           });
       });
+      $(document).on('click', '#clickWay', function() {
+      $("#donate-now-btn").click();
+      });
 
 </script>
   @stack('footer-scripts')

@@ -10,7 +10,7 @@
                     </p>
                     <div class="buton-holder">
                         <form action="https://www.paypal.com/donate" method="post" target="_top"><input name="hosted_button_id" type="hidden" value="KA3Q4526LZZ7Q">
-                            <button type="submit"  name="submit" class="orange theme-button">Donate Now</button>
+                            <button type="submit"  name="submit" class="orange theme-button" id="donate-now-btn">Donate Now</button>
                         </form>
                     </div>
                 </div>

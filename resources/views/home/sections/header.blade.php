@@ -29,10 +29,10 @@
                                 </div>
                                 <div class="drop-down__menu-box">
                                     <ul class="drop-down__menu">
-                                        <li><a href="index.html" class="drop-down__item" title=""></a>Aims and Object</li>
-                                        <li><a href="newsfeed.html" class="drop-down__item" title=""></a>Satzung</li>
-                                        <li><a href="" class="drop-down__item" title=""></a>Membership Form</li>
-                                        <li><a href="" class="drop-down__item" title=""></a>Union</li>
+                                        <li><a href="/aims-&-object" class="drop-down__item" title="">Aims and Object</a></li>
+                                        <li><a href="/satzung" class="drop-down__item" title="">Satzung</a></li>
+                                        <li><a href="/membership-form" class="drop-down__item" title="">Membership Form</a></li>
+                                        <li><a href="/union" class="drop-down__item" title="">Union</a></li>
                                         {{-- <li class="menu-item-has-children">
                                             <a class="drop-down__item" href="#" title="">Nested drop down</a>
                                             <ul>
@@ -52,7 +52,7 @@
                                 <div class="drop-down__menu-box">
                                     <ul class="drop-down__menu">
                                         @foreach ($departments as $depart)
-                                            <li><a href="{{ $depart->url }}" class="drop-down__item" title=""></a>@php echo set_locale($depart->name) @endphp</li>
+                                            <li><a href="{{ $depart->url }}" class="drop-down__item" title="">@php echo set_locale($depart->name) @endphp</a></li>
                                         @endforeach
                                         {{-- <li><a href="newsfeed.html" class="drop-down__item" title=""></a>Your Dashboard</li>
                                         <li><a href="" class="drop-down__item" title=""></a>Your Profile</li> --}}
@@ -75,7 +75,7 @@
                                 <div class="drop-down__menu-box">
                                     <ul class="drop-down__menu">
                                         @foreach ($locations as $loc)
-                                            <li><a href="{{ $loc->location_link }}" class="drop-down__item" title=""></a>@php echo set_locale($loc->location_address) @endphp</li>
+                                            <li><a href="{{ $loc->location_link }}" class="drop-down__item" title="">@php echo set_locale($loc->location_address) @endphp</a></li>
                                         @endforeach
                                         {{-- <li><a href="newsfeed.html" class="drop-down__item" title=""></a>Your Dashboard</li>
                                         <li><a href="" class="drop-down__item" title=""></a>Your Profile</li>
@@ -98,7 +98,7 @@
                                 <div class="drop-down__menu-box">
                                     <ul class="drop-down__menu">
                                         @foreach ($classes as $class)
-                                            <li><a href="{{ $class->url }}" class="drop-down__item" title=""></a>@php echo set_locale($class->title) @endphp</li> 
+                                            <li><a href="{{ $class->url }}" class="drop-down__item" title="">@php echo set_locale($class->title) @endphp</a></li> 
                                         @endforeach
                                         {{-- <li><a href="newsfeed.html" class="drop-down__item" title=""></a>Your Dashboard</li>
                                         <li><a href="" class="drop-down__item" title=""></a>Your Profile</li>
@@ -121,7 +121,7 @@
                                 <div class="drop-down__menu-box">
                                     <ul class="drop-down__menu">
                                         @foreach ($library_types as $library_type)
-                                            <li><a href="index.html" class="drop-down__item" title=""></a>@php echo set_locale($library_type->title) @endphp</li>
+                                            <li><a href="index.html" class="drop-down__item" title="">@php echo set_locale($library_type->title) @endphp</a></li>
                                         @endforeach
                                         {{-- <li><a href="newsfeed.html" class="drop-down__item" title=""></a>Your Dashboard</li>
                                         <li><a href="" class="drop-down__item" title=""></a>Your Profile</li>
@@ -165,7 +165,7 @@
                                 <div class="drop-down__menu-box">
                                     <ul class="drop-down__menu">
                                         @foreach ($news as $new)
-                                            <li><a href="" class="drop-down__item" title=""></a>@php echo set_locale($new->title) @endphp</li> 
+                                            <li><a href="" class="drop-down__item" title="">@php echo set_locale($new->title) @endphp</a></li> 
                                         @endforeach
                                     </ul>
                                 </div>
@@ -179,7 +179,7 @@
                                 </div>
                                 <div class="drop-down__menu-box">
                                     <ul class="drop-down__menu">
-                                        <li><a href="index.html" class="drop-down__item" title=""></a>Contact Us</li>
+                                        <li><a href="index.html" class="drop-down__item" title="">Contact Us</a></li>
                                         {{-- <li><a href="newsfeed.html" class="drop-down__item" title=""></a>Your Dashboard</li>
                                         <li><a href="" class="drop-down__item" title=""></a>Your Profile</li>
                                         <li class="menu-item-has-children">

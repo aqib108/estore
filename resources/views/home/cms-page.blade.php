@@ -11,6 +11,7 @@
                     </div>
                     <div class="cms-page-content">
                         {!! str_replace('src="http://127.0.0.1:8000','src="'.url('').'', set_locale($page->description))  !!}
+                        <p>hghjnknk</p>
                     </div>
                 </div>
             </div>
