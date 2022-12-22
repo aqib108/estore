@@ -1332,6 +1332,28 @@ section.video-libaray {
 .main-banner-slider .owl-theme .owl-nav button.owl-next {
     right: -7px;
 }
+.csm-pages-wraper{
+    padding: 0 0 400px;
+}
+.cms-page-title {
+    background-color: #D37121;
+    padding: 50px 0;
+    color: #fff;
+}
+.cms-page-content{
+    padding: 70px 0 0;
+}
+.img-holder {
+    width: 100%;
+    height: 300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img-holder img{
+    object-fit: contain;
+}
 @media (max-width: 1700px) {
     .container-width {
         padding: 0px 60px;
