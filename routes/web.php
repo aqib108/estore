@@ -26,21 +26,9 @@ Route::get('/news', [App\Http\Controllers\HomeController::class, 'NewsDetail'])-
 Route::get('/library', [App\Http\Controllers\HomeController::class, 'LibraryDetail'])->name('library');
 Route::get('/magazine-categories', [App\Http\Controllers\HomeController::class, 'MagzineCategories'])->name('home.magazine.categories');
 Route::get('/magazine-category-detail/{id?}', [App\Http\Controllers\HomeController::class, 'MagzineDetail'])->name('home.magazine.detail');
-// Route::get('/blog',function(){
-//     return view('home.pages.blog-detail');
-// });
-// Route::get('/news',function(){
-//     return view('home.pages.news-detail');
-// });
-// Route::get('/library',function(){
-//     return view('home.pages.library-detail');
-// });
-// Route::get('/magzine',function(){
-//     return view('home.pages.magzine-detail');
-// });
-// Route::get('/blog',function(){
-//     return view('home.pages.blog-detail');
-// });
+Route::get('/courses', [App\Http\Controllers\HomeController::class, 'courses'])->name('home.courses');
+Route::get('/classes/{id?}', [App\Http\Controllers\HomeController::class, 'classes'])->name('home.classes');
+
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::post('/set-local', [App\Http\Controllers\HomeController::class, 'setLocal']);
 Route::post('/subscription', [App\Http\Controllers\HomeController::class, 'subscription']);

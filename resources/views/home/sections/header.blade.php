@@ -1,7 +1,6 @@
 @php
     $departments = App\Models\Admin\Department::wherestatus(1)->orderBy('id', 'DESC')->get();
     $locations = App\Models\Admin\Location::wherestatus(1)->orderBy('id', 'DESC')->get();
-    $classes = App\Models\Admin\Classes::wherestatus(1)->orderBy('id', 'DESC')->get();
     $library_types = App\Models\Admin\LibraryType::wherestatus(1)->orderBy('id', 'DESC')->get();
     $news = App\Models\Admin\News::wherestatus(1)->take(3)->orderBy('id', 'DESC')->get();
 @endphp
@@ -11,7 +10,7 @@
             <nav class="navbar navbar-expand-lg navbar-light navbar-bg">
                 <a class="navbar-brand" href="index.html">
                     <div class="logo">
-                        <img src="{{getSettingDataHelper('logo')}}" alt="image not found" class="img-fluid" />
+                        <img src="{{asset(getSettingDataHelper('logo'))}}" alt="image not found" class="img-fluid" />
                     </div>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,23 +92,7 @@
                         <li class="nav-item custom-design-drop-down">
                             <div class="about-drop-down">
                                 <div id="adropDown" class="drop-down__button">
-                                    <a class="nav-link d-flex align-items-center">Online Classes <span class="next00"></span></a>
-                                </div>
-                                <div class="drop-down__menu-box">
-                                    <ul class="drop-down__menu">
-                                        @foreach ($classes as $class)
-                                            <li><a href="{{ $class->url }}" class="drop-down__item" title="">@php echo set_locale($class->title) @endphp</a></li> 
-                                        @endforeach
-                                        {{-- <li><a href="newsfeed.html" class="drop-down__item" title=""></a>Your Dashboard</li>
-                                        <li><a href="" class="drop-down__item" title=""></a>Your Profile</li>
-                                        <li class="menu-item-has-children">
-                                            <a class="drop-down__item" href="#" title="">Nested drop down</a>
-                                            <ul>
-                                                <li><a class="drop-down__item" href="index.html" title="">Header Style 1</a></li>
-                                                <li><a class="drop-down__item" href="index2.html" title="">Header Style 2</a></li>
-                                            </ul>
-                                        </li> --}}
-                                    </ul>
+                                    <a href="{{ route('home.courses') }}" class="nav-link d-flex align-items-center">Courses</a>
                                 </div>
                             </div>
                         </li>
