@@ -139,7 +139,7 @@
                         <li class="nav-item custom-design-drop-down">
                             <div class="about-drop-down">
                                 <div id="adropDown" class="drop-down__button">
-                                    <a class="nav-link d-flex align-items-center">Magzine</a>
+                                    <a href="/magazine-categories" class="nav-link d-flex align-items-center">Magzine</a>
                                 </div>
                                 {{-- <div class="drop-down__menu-box">
                                     <ul class="drop-down__menu">

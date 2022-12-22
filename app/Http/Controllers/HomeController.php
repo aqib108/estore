@@ -11,6 +11,8 @@ use App\Models\Admin\Slider;
 use App\Models\Admin\LibraryType;
 use App\Models\Admin\Library;
 use App\Models\Admin\Donation;
+use App\Models\Admin\Magazine;
+use App\Models\Admin\MagazineCategory;
 use App\Models\Admin\CeoMessage;
 use App\Models\Admin\News;
 use App\Models\Admin\Department;
@@ -152,7 +154,13 @@ class HomeController extends Controller
     public function LibraryDetail(){
         return view('home.pages.library-detail');
     }
-    public function MagzineDetail(){
-        return view('home.pages.magzine-detail');
+    public function MagzineCategories(){
+        $magCategories =   MagazineCategory::wherestatus(1)->paginate(8);
+        // dd($magCategories);
+        return view('home.pages.magzine-categories',['categories'=>$magCategories]);
+    }
+    function MagzineDetail($id){
+        $magazines =   Magazine::wheremagazine_category_id($id)->wherestatus(1)->paginate(8);
+        return view('home.pages.magzine-detail',['magazines'=>$magazines]);
     }
 }
