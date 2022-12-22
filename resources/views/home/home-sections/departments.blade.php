@@ -13,7 +13,7 @@
                         <h6>@php echo set_locale($department->name); @endphp</h6>
                         <p class="text-opacity">@php echo set_locale($department->description) @endphp</p>
                         <div class="read-more-link d-flex justify-content-center align-items-center">
-                            <a href="/{{$department->url}}">Learn More <span class="ms-3 next-mark-img"><img src="./images/next-mark.svg" alt=""></span></a>
+                            <a href="{{$department->url}}">Learn More <span class="ms-3 next-mark-img"><img src="./images/next-mark.svg" alt=""></span></a>
                         </div>
                     </div>
                 </div>   

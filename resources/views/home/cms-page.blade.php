@@ -11,7 +11,6 @@
                 <div class="container-fluid container-width">
                     <div class="d-flex flex-column justify-content-center align-items-center">
                         {!! str_replace('src="http://127.0.0.1:8000','src="'.url('').'', set_locale($page->description))  !!}
-                        <p>hghjnknk</p>
                     </div>
                 </div>
             </div>

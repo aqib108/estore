@@ -11,6 +11,7 @@ use App\Models\Admin\Slider;
 use App\Models\Admin\LibraryType;
 use App\Models\Admin\Library;
 use App\Models\Admin\Donation;
+use App\Models\Admin\Classes;
 use App\Models\Admin\CeoMessage;
 use App\Models\Admin\News;
 use App\Models\Admin\Department;
@@ -155,4 +156,13 @@ class HomeController extends Controller
     public function MagzineDetail(){
         return view('home.pages.magzine-detail');
     }
+    public function courses(){
+        $courses=Course::wherestatus(1)->orderBy('id', 'DESC')->get();
+        return view('home.pages.home-courses',compact('courses'));
+    }
+    public function classes($id){
+        $classes=Classes::where(['status'=>1,'course_id'=>$id])->orderBy('id', 'DESC')->get();
+        return view('home.pages.home-classes',compact('classes'));
+    }
+
 }
