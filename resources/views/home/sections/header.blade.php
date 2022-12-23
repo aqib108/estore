@@ -1,7 +1,7 @@
 @php
     $departments = App\Models\Admin\Department::wherestatus(1)->orderBy('id', 'DESC')->get();
     $locations = App\Models\Admin\Location::wherestatus(1)->orderBy('id', 'DESC')->get();
-    $library_types = App\Models\Admin\LibraryType::wherestatus(1)->orderBy('id', 'DESC')->get();
+    $library_types = App\Models\Admin\LibraryType::wherestatus(1)->orderBy('id', 'AsC')->get();
     $news = App\Models\Admin\News::wherestatus(1)->take(3)->orderBy('id', 'DESC')->get();
 @endphp
 <header class="header">
@@ -104,7 +104,7 @@
                                 <div class="drop-down__menu-box">
                                     <ul class="drop-down__menu">
                                         @foreach ($library_types as $library_type)
-                                            <li><a href="index.html" class="drop-down__item" title="">@php echo set_locale($library_type->title) @endphp</a></li>
+                                            <li><a href="{{ route('home.library',['id'=>$library_type->id]) }}" class="drop-down__item" title="">@php echo set_locale($library_type->title) @endphp</a></li>
                                         @endforeach
                                         {{-- <li><a href="newsfeed.html" class="drop-down__item" title=""></a>Your Dashboard</li>
                                         <li><a href="" class="drop-down__item" title=""></a>Your Profile</li>

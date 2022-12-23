@@ -152,8 +152,10 @@ class HomeController extends Controller
     public function NewsDetail(){
         return view('home.pages.news-detail');
     }
-    public function LibraryDetail(){
-        return view('home.pages.library-detail');
+    public function LibraryDetail($id){
+        $libraries =   Library::wheretype_id($id)->wherestatus(1)->paginate(8);
+        $libraryType=LibraryType::where('id',$id)->first();
+        return view('home.pages.library-detail',compact('libraries','libraryType'));
     }
     public function MagzineCategories(){
         $magCategories =   MagazineCategory::wherestatus(1)->paginate(8);
