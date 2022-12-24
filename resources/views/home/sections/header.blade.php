@@ -8,7 +8,7 @@
     <div class="bottom-header">
         <div class="container-fluid container-width">
             <nav class="navbar navbar-expand-lg navbar-light navbar-bg">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     <div class="logo">
                         <img src="{{asset(getSettingDataHelper('logo'))}}" alt="image not found" class="img-fluid" />
                     </div>

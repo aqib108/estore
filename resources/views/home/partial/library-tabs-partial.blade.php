@@ -12,7 +12,7 @@
 @elseif($type == 2)
 <div class="col-lg-3 col-md-6 col-sm-6  mb-3">
     <div class="image-galary">
-        <video controls src="{{ asset($result->file) }}" style="height: 200px; width: 270px;"></video>
+        <video controls src="{{ asset($result->file) }}" style="height: 100%; width: 100%;"></video>
         <div class="seacrh-btn">
             <span class="seach-hover"> <i class="fa fa-search" aria-hidden="true"></i></span>
         </div>
@@ -21,7 +21,7 @@
 @elseif($type == 3)
 <div class="col-lg-3 col-md-6 col-sm-6  mb-3">
     <div class="image-galary">
-        <audio controls style="width: 270px;">
+        <audio controls style="width: 100%;">
             <source src="{{ asset($result->file) }}" type="audio/ogg">
         </audio>
         <div class="seacrh-btn">

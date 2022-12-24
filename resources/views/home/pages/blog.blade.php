@@ -8,12 +8,17 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
+                        @foreach ($posts as $key => $post)
                             <div class="card mb-5">
                                 <h2 class="m-3">@php echo set_locale($post->title) @endphp</h2>
                                 <h5 class="m-3"><p><span class="icon fa fa-calendar text-yellow me-3"></span>@php echo date('M, d Y', strtotime($post->date)); @endphp</p></h5>
                                 <div class="fakeimg" style="height:200px;"><img  style="width: 700px;height: 180px;object-fit: cover;" src="{{asset('feature-images/'.$post->image)}}" class="img-fluid"></div>
-                                <p class="m-3">@php echo !empty($post->description) ? set_locale($post->description) : '' @endphp</p>
+                                <p class="m-3">@php echo set_locale($post->short_description) @endphp</p>
+                                <div class="buton-holder d-flex justify-content-end m-3">
+                                    <button class="orange theme-button">read more</button>
+                                </div>
                             </div>
+                        @endforeach
                     </div>
                     <div class="col-lg-4">
                         <div class="card">
@@ -29,6 +34,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="mt-5 d-flex justify-content-center">
+                    {!! $posts->links() !!}
                 </div>
             </div>
         </div>

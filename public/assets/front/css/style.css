@@ -1354,6 +1354,41 @@ section.video-libaray {
 .img-holder img{
     object-fit: contain;
 }
+/* Fake image */
+.fakeimg {
+    background-color: #aaa;
+    width: 100%;
+    padding: 20px;
+}
+.widget-title {
+	position: relative;
+	display: block;
+	font-size: 24px;
+	font-weight: 600;
+	color: #1a1a1a;
+	padding-left: 15px;
+	line-height: 1;
+	margin-top: 0px;
+    padding: 25px;
+}
+.recent-posts {
+	padding-left: 15px;
+	margin: 0;
+}
+.recent-posts li a {
+	color: #000;
+	display: block;
+	padding: 10px 0;
+}
+.recent-posts li {
+	border-bottom: 1px solid #eeeeee;
+    list-style-type: none;
+}
+.blog-widget {
+	margin-bottom: 45px;
+	border: 1px solid #eee;
+	padding: 25px;
+}
 @media (max-width: 1700px) {
     .container-width {
         padding: 0px 60px;
@@ -1771,6 +1806,12 @@ section.video-libaray {
     }
 }
 @media (max-width: 767px) {
+    .library-tabs video{
+        height: 250px !important;
+    }
+    .our-aim-content p{
+        text-align: center;
+    }
     .footer-info p {
         margin-top: 15px;
         margin-bottom: 15px;

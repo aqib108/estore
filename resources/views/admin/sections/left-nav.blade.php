@@ -8,7 +8,7 @@ $url_3 = Request::segment(4);
     <!-- Brand Logo -->
     <a href="{{ route('admin.dashboard') }}" class="brand-link">
         <img src="{{ asset('assets/admin/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">IMPACT</span>
+        <span class="brand-text font-weight-light">HNI</span>
     </a>
 
     <!-- Sidebar -->
@@ -19,7 +19,7 @@ $url_3 = Request::segment(4);
                 <img src="{{ asset('assets/admin/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="{{ URL('admin/profile') }}" class="d-block">ArhamSoft Admin</a>
+                <a href="{{ URL('admin/profile') }}" class="d-block">HNI Admin</a>
             </div>
         </div>
 

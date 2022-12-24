@@ -27,17 +27,17 @@
                         <h5>Latest Blog</h5>
                         <ul class="list-unstyled">
                            @foreach($posts as $key => $post)
-                           <li class="d-flex">
-                            <div class="imag-blog d-flex">
-                                <img style="height: 75px !important;
-                                width: 90px !important
-                            ;" src="{{asset('feature-images/'.$post->image)}}" class="img-fluid">
-                            </div>
-                            <div class="d-flex flex-column blog-detail">
-                                @php echo set_locale($post->title) @endphp
-                                <p><span class="icon fa fa-calendar text-yellow me-3"></span>@php echo date('M, d Y', strtotime($post->date)); @endphp</p>
-                            </div>
-                        </li>
+                           <a style="color: black" href="{{ route('home.blog-detail', ['id' => $post->id]) }}">
+                            <li class="d-flex">
+                                <div class="imag-blog d-flex">
+                                    <img style="height: 75px !important; width: 90px !important;" src="{{asset('feature-images/'.$post->image)}}" class="img-fluid">
+                                </div>
+                                <div class="d-flex flex-column blog-detail">
+                                    @php echo set_locale($post->title) @endphp
+                                    <p><span class="icon fa fa-calendar text-yellow me-3"></span>@php echo date('M, d Y', strtotime($post->date)); @endphp</p>
+                                </div>
+                            </li>
+                          </a>
                            @endforeach
                             
                         </ul>

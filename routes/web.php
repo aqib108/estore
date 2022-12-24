@@ -21,7 +21,8 @@ Route::get('/run-cmd', function () {
     Artisan::call('schedule:run');
     dump('Running');
 });
-Route::get('/blog', [App\Http\Controllers\HomeController::class, 'BlogDetail']);
+Route::get('/blog', [App\Http\Controllers\HomeController::class, 'Blog']);
+Route::get('/blog-detail/{id?}', [App\Http\Controllers\HomeController::class, 'BlogDetail'])->name('home.blog-detail');
 Route::get('/news', [App\Http\Controllers\HomeController::class, 'NewsDetail'])->name('news');
 Route::get('/library/{id?}', [App\Http\Controllers\HomeController::class, 'LibraryDetail'])->name('home.library');
 Route::get('/magazine-categories', [App\Http\Controllers\HomeController::class, 'MagzineCategories'])->name('home.magazine.categories');

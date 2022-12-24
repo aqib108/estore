@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Impact Login</title>
+  <title>HNI Login</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -17,7 +17,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="{{ URL('admin') }}"><b>Impact</b> Login</a>
+    <a href="{{ URL('admin') }}"><b>HNI</b> Login</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">

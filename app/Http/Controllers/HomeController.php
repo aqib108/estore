@@ -146,8 +146,15 @@ class HomeController extends Controller
        $contact->message = $request->message;
        $contact->save();return redirect('/')->with('msg','successfully contact created'); return redirect()->with('msg','successfully contact created'); 
     }
-    public function BlogDetail(){
-        return view('home.pages.blog-detail');
+    public function Blog(){
+        $posts = App\Models\Admin\Post::wherestatus(1)->leftjoin('post_feature_images','post_id','posts.id')->orderBy('id', 'DESC')->paginate(8,['posts.title as title','posts.short_description as short_description','post_feature_images.image as image','posts.created_at as date','posts.id as id']);
+        $recent_posts = App\Models\Admin\Post::wherestatus(1)->take(5)->orderBy('id', 'DESC')->get(['title','id']);
+        return view('home.pages.blog',compact('posts','recent_posts'));
+    }
+    public function BlogDetail($id){
+        $post = App\Models\Admin\Post::where('posts.id',$id)->leftjoin('post_feature_images','post_id','posts.id')->get(['posts.title as title','posts.description as description','post_feature_images.image as image','posts.created_at as date','posts.id as id'])->first();
+        $recent_posts = App\Models\Admin\Post::wherestatus(1)->take(5)->orderBy('id', 'DESC')->get(['title','id']);
+        return view('home.pages.blog-detail',compact('post','recent_posts'));
     }
     public function NewsDetail(){
         return view('home.pages.news-detail');

@@ -27,7 +27,7 @@
                         <a href="{{asset($library->file)}}" target="_blank">
                             <div class="card" style="width: 18rem;">
                                 <div class="img-holder image-galary">
-                                    <video controls src="{{ asset($library->file) }}" style="height: 200px; width: 270px;"></video>
+                                    <video controls src="{{ asset($library->file) }}" style="height: 100%; width: 100%;"></video>
                                 </div>
                                 <div class="card-body">
                                 <h5 class="card-title">{{ !empty($library->file_title) ? $library->file_title : ''}}</h5>
@@ -41,7 +41,7 @@
                         <a href="{{asset($library->file)}}" target="_blank">
                             <div class="card" style="width: 18rem;">
                                 <div class="img-holder image-galary">
-                                    <audio controls style="width: 270px;">
+                                    <audio controls style="width: 100%;">
                                         <source src="{{ asset($library->file) }}" type="audio/ogg">
                                     </audio>
                                 </div>
