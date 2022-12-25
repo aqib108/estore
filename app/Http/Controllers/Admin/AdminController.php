@@ -178,19 +178,68 @@ class AdminController extends Controller
         return redirect('admin/admins')->with('message','Data deleted Successfully');
     }
 
+    //________________Admin Update Profile_____________//
     public function profile()
     {
-    	if(\Request::isMethod('post'))
-    	{
-    		unset($_POST['_token']);
-    		$data = $_POST;
-    		$id = auth()->user()->id;
-    		$admin = Admin::find($id);
-    		$admin->fill($data);
-    		$admin->save();
-    		return redirect()->back()->withInput();
-    	}
-    	$user = auth()->user();
-    	return View('admin.admins.profile',$user);
+        if (\Request::isMethod('post')) {
+            unset($_POST['_token']);
+            $data = $_POST;
+            // dd($data);
+            if (isset($data['password']) && !empty($data['password'])) {
+                $hashedPassword = Auth::user()->password;
+                if (!\Hash::check($data['old_password'], $hashedPassword)) {
+                    return redirect()->back()->withInput()->with('error', 'Old Password Is Not Correct');
+                } else {
+                    unset($data['old_password']);
+                    unset($data['confirm_password']);
+                    $data['origional_password'] = $data['password'];
+                    $data['password'] = Hash::make($data['password']);
+                }
+            } else {
+                unset($data['password']);
+                unset($data['old_password']);
+                unset($data['confirm_password']);
+            }
+            $id = auth()->user()->id;
+            $admin = Admin::find($id);
+            $admin->fill($data);
+            $admin->save();
+            return redirect()->back()->withInput()->with('message', 'Save Record Successfully');
+        }
+        $user = auth()->user();
+        return View('admin.admins.profile', $user);
+    }
+    public function profilePic(Request $request)
+    {
+        $input = $request->all();
+        $id = Auth::user()->id;
+        $model = Admin::find($id);
+        if (isset($input['image'])) {
+            $imagePath = $this->uploadimage($request);
+            $input['profile'] = $imagePath;
+        }
+        unset($input['image']);
+        $model->fill($input);
+        if ($model->update()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * upload the image .
+     *
+     */
+    public function uploadimage(Request $request)
+    {
+        $path = '';
+        if ($request->image) {
+            $imageName = 'profile' . time() . '.' . $request->image->extension();
+            if ($request->image->move(public_path('images/profile'), $imageName)) {
+                $path =  'images/profile/' . $imageName;
+            }
+        }
+        return $path;
     }
 }

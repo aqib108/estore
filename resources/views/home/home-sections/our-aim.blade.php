@@ -22,7 +22,7 @@
                     
                     <div class="buton-holder">
                         <div class="d-flex" >
-                            <button class="orange theme-button me-3">read more</button>
+                            <a class="orange theme-button me-3" href="/aims-&-object"> read more</a>
                             <form action="https://www.paypal.com/donate" method="post" target="_top"><input name="hosted_button_id" type="hidden" value="KA3Q4526LZZ7Q">
                                 {{-- <button type="submit"  name="submit" class="orange theme-button">Donate Now</button> --}}
                                 <button class="orange theme-button" type="submit"  name="submit" id="donate-now-btn">Donate Now</button>
