@@ -148,7 +148,7 @@
                                 <div class="drop-down__menu-box">
                                     <ul class="drop-down__menu">
                                         @foreach ($news as $new)
-                                            <li><a href="" class="drop-down__item" title="">@php echo set_locale($new->title) @endphp</a></li> 
+                                            <li><a href="{{ route('home.news-events-detail', ['id' => $new->id]) }}" class="drop-down__item" title="">@php echo set_locale($new->title) @endphp</a></li> 
                                         @endforeach
                                     </ul>
                                 </div>

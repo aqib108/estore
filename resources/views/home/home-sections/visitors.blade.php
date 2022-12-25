@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-5">
                 {{-- http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4 --}}
-                <video controls width="100%" height="100%" poster="./images/vide-bg.png">
+                <video controls width="100%" height="100%" poster="{{ asset('assets/front/images/vide-bg.png') }}">
                     <source src="{{ asset(getSettingDataHelper('video')) }}"
                     type="video/mp4">
                 </video>

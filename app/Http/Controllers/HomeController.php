@@ -156,8 +156,15 @@ class HomeController extends Controller
         $recent_posts = App\Models\Admin\Post::wherestatus(1)->take(5)->orderBy('id', 'DESC')->get(['title','id']);
         return view('home.pages.blog-detail',compact('post','recent_posts'));
     }
-    public function NewsDetail(){
-        return view('home.pages.news-detail');
+    public function News(){
+        $news =   News::wherestatus(1)->paginate(8);
+        $recent_news =   News::wherestatus(1)->latest()->take(5)->orderBy('id', 'DESC')->paginate(8);
+        return view('home.pages.news',compact('news','recent_news'));
+    }
+    public function NewsDetail($id){
+        $news =   News::where('id',$id)->first();
+        $recent_news =   News::wherestatus(1)->latest()->take(5)->orderBy('id', 'DESC')->paginate(8);
+        return view('home.pages.news-detail',compact('news','recent_news'));
     }
     public function LibraryDetail($id){
         $libraries =   Library::wheretype_id($id)->wherestatus(1)->paginate(8);

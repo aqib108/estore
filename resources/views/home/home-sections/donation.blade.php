@@ -46,18 +46,20 @@
                     <h5 class="text-yellow">Latest News & Updates</h5>
                     <ul class="news-list">
                         @foreach($news as $key => $n)
-                        <li class="d-flex align-items-center">
-                            <span class="me-3">
-                                <img src="{{asset('assets/front/images/rectangle.svg')}}" class="img-fluid">
-                            </span>
-                            @php echo set_locale($n->title); @endphp
-                        </li>
+                        <a style="color: black" href="{{ route('home.news-events-detail', ['id' => $n->id]) }}">
+                            <li class="d-flex align-items-center">
+                                <span class="me-3">
+                                    <img src="{{asset('assets/front/images/rectangle.svg')}}" class="img-fluid">
+                                </span>
+                                @php echo set_locale($n->title); @endphp
+                            </li>
+                        </a>
                         @endforeach
 
 
                     </ul>
                     <div class="read-more-link d-flex justify-content-end align-items-center">
-                        <a href="/">View More <span class="ms-3 next-mark-img"><img src="{{asset('assets/front/images/next-mark.svg')}}" alt=""></span></a>
+                        <a href="{{ url('news-events') }}">View More <span class="ms-3 next-mark-img"><img src="{{asset('assets/front/images/next-mark.svg')}}" alt=""></span></a>
                     </div>
                 </div>
             </div>
