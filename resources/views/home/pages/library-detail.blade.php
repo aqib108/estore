@@ -2,7 +2,7 @@
 @section('content')
 <div class="csm-pages-wraper">
     <div class="cms-page-title">
-        <h3 class="about-h-1 text-center">@php echo set_locale($libraryType->title) @endphp Library</h3>
+        <h3 class="about-h-1 text-center">@php echo set_locale($libraryType->title) @endphp {{ __('app.library') }}</h3>
     </div>
     <div class="cms-page-content">
         <div class="container-fluid container-width">

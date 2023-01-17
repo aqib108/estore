@@ -2,7 +2,7 @@
 @section('content')
     <div class="csm-pages-wraper">
         <div class="cms-page-title">
-            <h3 class="about-h-1 text-center">Magazine Categories</h3>
+            <h3 class="about-h-1 text-center">{{ __('app.magazine-categories') }}</h3>
         </div>
         <div class="cms-page-content">
             <div class="container-fluid container-width">

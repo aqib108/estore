@@ -4,7 +4,7 @@
     @if(count($classes))
         <div class="csm-pages-wraper">
             <div class="cms-page-title">
-                <h3 class="about-h-1 text-center">Classes</h3>
+                <h3 class="about-h-1 text-center">{{ __('app.classes') }}</h3>
             </div>
                 <div class="cms-page-content">
                     <div class="container-fluid container-width">

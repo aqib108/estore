@@ -2,7 +2,7 @@
 @section('content')
     <div class="csm-pages-wraper">
         <div class="cms-page-title">
-            <h3 class="about-h-1 text-center">Blog</h3>
+            <h3 class="about-h-1 text-center">{{ __('app.blog') }}</h3>
         </div>
         <div class="cms-page-content blog-pg">
             <div class="container">
@@ -15,14 +15,14 @@
                                 <div class="fakeimg" style="height:200px;"><img  style="width: 700px;height: 180px;object-fit: cover;" src="{{asset('feature-images/'.$post->image)}}" class="img-fluid"></div>
                                 <p class="m-3">@php echo  !empty($post->short_description) ? set_locale($post->short_description) : '' @endphp</p>
                                 <div class="buton-holder d-flex justify-content-end m-3">
-                                    <button class="orange theme-button">read more</button>
+                                    <button class="orange theme-button">{{ __('app.read-more') }}</button>
                                 </div>
                             </div>
                         @endforeach
                     </div>
                     <div class="col-lg-4">
                         <div class="card">
-                            <h2 class="widget-title">Recent Posts</h2>
+                            <h2 class="widget-title">{{ __('app.recent-posts') }}</h2>
                             <div class="blog-widget blog-products">
                                 <ul class="recent-posts">
                                     @foreach ($recent_posts as $key => $recent_post)

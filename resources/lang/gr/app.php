@@ -47,6 +47,14 @@ return[
     'enter-email'=>"EMAIL EINGEBEN",
     'sorry'=>"Es tut uns leid",
     'no-page-found'=>"Keine Seite gefunden",
+
+    'blog'=>"Bloggen",
+    'recent-posts'=>"kürzliche Posts",
+    'read-more'=>"Weiterlesen",
+    'classes'=>"Klassen",
+    'magazine-categories'=>"Magazin-Kategorien",
+    'recent-news'=>"Aktuelle Neuigkeiten und Veranstaltungen",
+
     'visitor-message'=>"Willkommen auf unserer Webseite! Wir freuen uns, dass Sie vorbeigeschaut haben. Wir hoffen, dass Sie die Informationen und Ressourcen auf unserer Website hilfreich und informativ finden. Wenn Sie Fragen haben oder Hilfe benötigen, zögern Sie bitte nicht, uns zu kontaktieren. Danke für Ihren Besuch!",
     'library-content'=>"Bibliotheken spielen eine sehr wichtige Rolle bei der Wissensvermittlung. Die Bibliothek ist ein Haus der Weisheit, ein Schlüssel und Geheimnis des Erfolgs und eine Schatzkammer, die unendliches Wissen enthält. Durch regelmäßiges Studium kann ein Mann die Ursachen des Scheiterns des Lebens und Tipps zur Verbesserung des zukünftigen Lebens kennen.",
 

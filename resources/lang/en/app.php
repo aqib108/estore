@@ -47,6 +47,12 @@ return [
     'enter-email'=>"ENTER EMAIL",
     'sorry'=>"Sorry",
     'no-page-found'=>"No Page Found",
+    'blog'=>"Blog",
+    'recent-posts'=>"Recent Posts",
+    'read-more'=>"Read More",
+    'classes'=>"Classes",
+    'magazine-categories'=>"Magazine Categories",
+    'recent-news'=>"Recent New and Events",
     'visitor-message'=>"Welcome to our website! We are glad you stopped by. We hope you find the information and resources on our site helpful and informative. If you have any questions or need assistance, please do not hesitate to contact us. Thank you for visiting!",
     'library-content'=>"Libraries play a very important role in the promotion of knowledge. The Library is a house of wisdom a key and secret of success and a treasure- house that has no end knowledge. By regular study A man can know the causes of failure life and tips for improving future life.",
 
