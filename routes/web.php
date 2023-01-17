@@ -59,6 +59,7 @@ Route::prefix('admin')->namespace('Admin')->group(static function()
         Route::resource('admins', '\App\Http\Controllers\Admin\AdminController');
         Route::get('profile', '\App\Http\Controllers\Admin\AdminController@profile');
         Route::post('profile', '\App\Http\Controllers\Admin\AdminController@profile');
+        Route::post('update-pic', '\App\Http\Controllers\Admin\AdminController@profilePic');
         Route::resource('roles', '\App\Http\Controllers\Admin\RoleController');
         Route::resource('customers', '\App\Http\Controllers\Admin\CustomerController');
         Route::resource('site-setting', '\App\Http\Controllers\Admin\SettingController');

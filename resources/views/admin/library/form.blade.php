@@ -203,7 +203,7 @@
 																</a>
 																<div class="cross_icon"> <a href="javascript:void(0)" onclick="removeRow({{$loop->iteration}})">+</a> </div>
 															</div>
-															<div class="description-box">
+															{{-- <div class="description-box">
 																<div class="box-content">
 																	<label class="form-label">File Title</label>
 																	<div class="form-group mb-0">
@@ -217,7 +217,7 @@
 																		<textarea name="description[]" class="form-control" placeholder="Message" required>{{$val->description}}</textarea>
 																	</div>
 																</div>
-															</div>
+															</div> --}}
 														</div>
 												 </div>
 												  @elseif($libraryType->id ==2)
@@ -239,11 +239,11 @@
 																</div>
 															</div>
 														</div>
-														<div class="description-box">
+														{{-- <div class="description-box">
 															<div class="box-content">
 																<label class="form-label">File Title</label>
 																<div class="form-group mb-0">
-																	{{-- <textarea name="file_title[]" value="{{$val->file_title}}" class="form-control" placeholder="Enter File Title" required>{{$val->file_title}}</textarea> --}}
+																	<textarea name="file_title[]" value="{{$val->file_title}}" class="form-control" placeholder="Enter File Title" required>{{$val->file_title}}</textarea>
 																	<input type="text" class="form-control" placeholder="File Title" name="file_title[]" value="{{$val->file_title}}">
 																</div>
 															</div>
@@ -254,7 +254,7 @@
 																	<textarea name="description[]" class="form-control" placeholder="Message" required>{{$val->description}}</textarea>
 																</div>
 															</div>
-														</div>
+														</div> --}}
 												    </div>
 												</div>
 												  @elseif($libraryType->id ==3)
@@ -283,11 +283,11 @@
 																		</div>
 																	</div>
 															</div>
-															<div class="description-box">
+															{{-- <div class="description-box">
 																<div class="box-content">
 																	<label class="form-label">File Title</label>
 																	<div class="form-group mb-0">
-																		{{-- <textarea name="file_title[]" value="{{$val->file_title}}" class="form-control" placeholder="Enter File Title" required>{{$val->file_title}}</textarea> --}}
+																		<textarea name="file_title[]" value="{{$val->file_title}}" class="form-control" placeholder="Enter File Title" required>{{$val->file_title}}</textarea>
 																		<input type="text" class="form-control" placeholder="File Title" name="file_title[]" value="{{$val->file_title}}">
 																	</div>
 																</div>
@@ -298,7 +298,7 @@
 																		<textarea name="description[]" class="form-control" placeholder="Message" required>{{$val->description}}</textarea>
 																	</div>
 																</div>
-															</div>
+															</div> --}}
 														</div>
 													</div>
 
@@ -321,11 +321,11 @@
 																		<a href="javacript:void(0)"  class="btn btn-lg "   onclick="changeThumbnail('{{$val->id}}')">Change Thumbnail</a>
 																	</div>
 															</div>
-															<div class="description-box">
+															{{-- <div class="description-box">
 																<div class="box-content">
 																	<label class="form-label">File Title</label>
 																	<div class="form-group mb-0">
-																		{{-- <textarea name="file_title[]" value="{{$val->file_title}}" class="form-control" placeholder="Enter File Title" required>{{$val->file_title}}</textarea> --}}
+																		<textarea name="file_title[]" value="{{$val->file_title}}" class="form-control" placeholder="Enter File Title" required>{{$val->file_title}}</textarea>
 																		<input type="text" class="form-control" placeholder="File Title" name="file_title[]" value="{{$val->file_title}}">
 																	</div>
 																</div>
@@ -336,7 +336,7 @@
 																		<textarea name="description[]" class="form-control" placeholder="Message" required>{{$val->description}}</textarea>
 																	</div>
 																</div>
-															</div>
+															</div> --}}
 														</div>
 													</div>
 												  @elseif( $libraryType->id ==5)
@@ -355,11 +355,11 @@
 																		<a href="javacript:void(0)"   class="btn btn-lg "   onclick="changeThumbnail('{{$val->id}}')">Change Thumbnail</a>
 																	</div>
 															</div>
-															<div class="description-box">
+															{{-- <div class="description-box">
 																<div class="box-content">
 																	<label class="form-label">File Title</label>
 																	<div class="form-group mb-0">
-																		{{-- <textarea name="file_title[]" value="{{$val->file_title}}" class="form-control" placeholder="Enter File Title" required>{{$val->file_title}}</textarea> --}}
+																		<textarea name="file_title[]" value="{{$val->file_title}}" class="form-control" placeholder="Enter File Title" required>{{$val->file_title}}</textarea>
 																		<input type="text" class="form-control" placeholder="File Title" name="file_title[]" value="{{$val->file_title}}">
 																	</div>
 																</div>
@@ -370,7 +370,7 @@
 																		<textarea name="description[]" class="form-control" placeholder="Message" required>{{$val->description}}</textarea>
 																	</div>
 																</div>
-															</div>
+															</div> --}}
 														</div>
 													</div>
 												   @else
@@ -570,7 +570,6 @@
 					}
 				}
 			})
-
 			});
 
 			function removeRow(row_id){
@@ -647,15 +646,15 @@
 			response = JSON.parse(response)
 			let type=$('#library_type').val();
 			if(type == 1){
-				$('.preview-area').append('<div class="col-lg-2 col-md-3 col-sm-4" id="dynamic_row_'+response.libId+'"><input type="hidden" name="lib_id" value="'+type+'"> <input type="hidden" name="old_libraries_ids[]" value="'+ response.libId +'"><div class="box_item"><div class="image_overlay"><img src="'+ response.path +'"><div class="cross_icon"><a href="javascript:void(0)" onclick="removeRow('+response.libId+')">+</a></div></div><div class="description-box"><div class="box-content"><label class="form-label">File Title</label><div class="form-group mb-0"><input class="form-control" placeholder="File Title" name="file_title[]"></div></div><div class="box-content"><label class="form-label">Description</label><div class="form-group mb-0"><textarea name="description[]" class="form-control" placeholder="Message" required></textarea></div></div></div></div></div>');
+				$('.preview-area').append('<div class="col-lg-2 col-md-3 col-sm-4" id="dynamic_row_'+response.libId+'"><input type="hidden" name="lib_id" value="'+type+'"> <input type="hidden" name="old_libraries_ids[]" value="'+ response.libId +'"><div class="box_item"><div class="image_overlay"><img src="'+ response.path +'"><div class="cross_icon"><a href="javascript:void(0)" onclick="removeRow('+response.libId+')">+</a></div></div></div></div>');
 			}else if(type == 2){
-				$('.preview-area').append('<div class="col-lg-2 col-md-3 col-sm-4" id="dynamic_row_'+response.libId+'"><input type="hidden" name="lib_id" value="'+type+'"> <input type="hidden" name="old_libraries_ids[]" value="' + response.libId +'"><div class="box_item"><div class="image_overlay"><img id="thumb_specific_'+response.libId+'" src="{{asset('images/thumbnails/video.png')}}" alt="upload-icon"><div class="cross_icon"><a href="javascript:void(0)" onclick="removeRow('+response.libId+')">+</a></div><div class="d-flex justify-content-center align-items-center flex-column library-hover-buttons"><div class="show-video-btn"><a href="javacript:void(0)" class="btn btn-lg video" data-val="video" data-video="'+ response.path +'" data-toggle="modal" data-target="#videoModal">Preview</a></div><div class="change_thumb_btn"><a href="javacript:void(0)" class="btn btn-lg" onclick="changeThumbnail('+response.libId+')">Change Thumbnail</a></div></div></div><div class="description-box"><div class="box-content"><label class="form-label">File Title</label><div class="form-group mb-0"><input class="form-control" placeholder="File Title" name="file_title[]"></div></div><div class="box-content"><label class="form-label">Description</label><div class="form-group mb-0"><textarea name="description[]" class="form-control" placeholder="Message" required></textarea></div></div></div></div></div>')
+				$('.preview-area').append('<div class="col-lg-2 col-md-3 col-sm-4" id="dynamic_row_'+response.libId+'"><input type="hidden" name="lib_id" value="'+type+'"> <input type="hidden" name="old_libraries_ids[]" value="' + response.libId +'"><div class="box_item"><div class="image_overlay"><img id="thumb_specific_'+response.libId+'" src="{{asset('images/thumbnails/video.png')}}" alt="upload-icon"><div class="cross_icon"><a href="javascript:void(0)" onclick="removeRow('+response.libId+')">+</a></div><div class="d-flex justify-content-center align-items-center flex-column library-hover-buttons"><div class="show-video-btn"><a href="javacript:void(0)" class="btn btn-lg video" data-val="video" data-video="'+ response.path +'" data-toggle="modal" data-target="#videoModal">Preview</a></div><div class="change_thumb_btn"><a href="javacript:void(0)" class="btn btn-lg" onclick="changeThumbnail('+response.libId+')">Change Thumbnail</a></div></div></div></div></div>')
 			}else if(type ==3){
-				$('.preview-area').append('<div class="col-lg-2 col-md-3 col-sm-4" id="dynamic_row_'+response.libId+'"><input type="hidden" name="lib_id" value="'+type+'"> <input type="hidden" name="old_libraries_ids[]" value="' + response.libId +'"><div class="box_item"><div class="image_overlay"><img id="thumb_specific_'+ response.libId +'" src="{{asset('images/thumbnails/audio.png')}}" alt="upload-icon"><div class="cross_icon"><a href="javascript:void(0)" onclick="removeRow('+response.libId+')">+</a></div><div class="d-flex justify-content-center align-items-center flex-column library-hover-buttons"><div class="show-video-btn"><a href="javacript:void(0)" class="btn btn-lg video" data-val="audio" data-video="'+ response.path +'" data-toggle="modal" data-target="#videoModal">Preview</a></div><div class="change_thumb_btn"><a href="javacript:void(0)" class="btn btn-lg" onclick="changeThumbnail('+ response.libId +')">Change Thumbnail</a></div></div></div><div class="description-box"><div class="box-content"><label class="form-label">File Title</label><div class="form-group mb-0"><input class="form-control" placeholder="File Title" name="file_title[]"></div></div><div class="box-content"><label class="form-label">Description</label><div class="form-group mb-0"><textarea name="description[]" class="form-control" placeholder="Message"></textarea></div></div></div></div></div>')
+				$('.preview-area').append('<div class="col-lg-2 col-md-3 col-sm-4" id="dynamic_row_'+response.libId+'"><input type="hidden" name="lib_id" value="'+type+'"> <input type="hidden" name="old_libraries_ids[]" value="' + response.libId +'"><div class="box_item"><div class="image_overlay"><img id="thumb_specific_'+ response.libId +'" src="{{asset('images/thumbnails/audio.png')}}" alt="upload-icon"><div class="cross_icon"><a href="javascript:void(0)" onclick="removeRow('+response.libId+')">+</a></div><div class="d-flex justify-content-center align-items-center flex-column library-hover-buttons"><div class="show-video-btn"><a href="javacript:void(0)" class="btn btn-lg video" data-val="audio" data-video="'+ response.path +'" data-toggle="modal" data-target="#videoModal">Preview</a></div><div class="change_thumb_btn"><a href="javacript:void(0)" class="btn btn-lg" onclick="changeThumbnail('+ response.libId +')">Change Thumbnail</a></div></div></div></div></div>')
 			}else if(type ==4 ){
-				$('.preview-area').append('<div class="col-lg-2 col-md-3 col-sm-4" id="dynamic_row_'+response.libId+'"><input type="hidden" name="lib_id" value="'+type+'"> <input type="hidden" name="old_libraries_ids[]" value="' + response.libId +'"><div class="box_item"><div class="image_overlay"><a href="'+ response.path +'" download><img id="thumb_specific_' + response.libId +'" src="{{asset('images/thumbnails/books.png')}}" alt="upload-icon"></a><div class="cross_icon"><a href="javacript:void(0)" onclick="removeRow('+response.libId+')">+</a></div></div><div class="d-flex justify-content-center align-items-center flex-column library-hover-buttons"><div class="change_thumb_btn"><a href="javacript:void(0)" class="btn btn-lg" onclick="changeThumbnail('+ response.libId +')">Change Thumbnail</a></div></div><div class="description-box"><div class="box-content"><label class="form-label">File Title</label><div class="form-group mb-0"><input class="form-control" placeholder="File Title" name="file_title[]"></div></div><div class="box-content"><label class="form-label">Description</label><div class="form-group mb-0"><textarea name="description[]" class="form-control" placeholder="Message"></textarea></div></div></div></div></div>')
+				$('.preview-area').append('<div class="col-lg-2 col-md-3 col-sm-4" id="dynamic_row_'+response.libId+'"><input type="hidden" name="lib_id" value="'+type+'"> <input type="hidden" name="old_libraries_ids[]" value="' + response.libId +'"><div class="box_item"><div class="image_overlay"><a href="'+ response.path +'" download><img id="thumb_specific_' + response.libId +'" src="{{asset('images/thumbnails/books.png')}}" alt="upload-icon"></a><div class="cross_icon"><a href="javacript:void(0)" onclick="removeRow('+response.libId+')">+</a></div></div><div class="d-flex justify-content-center align-items-center flex-column library-hover-buttons"><div class="change_thumb_btn"><a href="javacript:void(0)" class="btn btn-lg" onclick="changeThumbnail('+ response.libId +')">Change Thumbnail</a></div></div></div></div>')
 			}else if(type==5){
-				$('.preview-area').append('<div class="col-lg-2 col-md-3 col-sm-4" id="dynamic_row_'+response.libId+'"><input type="hidden" name="lib_id" value="'+type+'"> <input type="hidden" name="old_libraries_ids[]" value="' + response.libId +'"><div class="box_item"><div class="image_overlay"><a href="'+ response.path +'" download><img id="thumb_specific_' + response.libId +'" src="{{asset('images/thumbnails/documents.png')}}" alt="upload-icon"></a><div class="cross_icon"><a href="javacript:void(0)" onclick="removeRow('+response.libId+')">+</a></div></div><div class="d-flex justify-content-center align-items-center flex-column library-hover-buttons"><div class="change_thumb_btn"><a href="javacript:void(0)" class="btn btn-lg" onclick="changeThumbnail('+ response.libId +')">Change Thumbnail</a></div></div><div class="description-box"><div class="box-content"><label class="form-label">File Title</label><div class="form-group mb-0"><input class="form-control" placeholder="File Title" name="file_title[]"></div></div><div class="box-content"><label class="form-label">Description</label><div class="form-group mb-0"><textarea name="description[]" class="form-control" placeholder="Message"></textarea></div></div></div></div></div>')
+				$('.preview-area').append('<div class="col-lg-2 col-md-3 col-sm-4" id="dynamic_row_'+response.libId+'"><input type="hidden" name="lib_id" value="'+type+'"> <input type="hidden" name="old_libraries_ids[]" value="' + response.libId +'"><div class="box_item"><div class="image_overlay"><a href="'+ response.path +'" download><img id="thumb_specific_' + response.libId +'" src="{{asset('images/thumbnails/documents.png')}}" alt="upload-icon"></a><div class="cross_icon"><a href="javacript:void(0)" onclick="removeRow('+response.libId+')">+</a></div></div><div class="d-flex justify-content-center align-items-center flex-column library-hover-buttons"><div class="change_thumb_btn"><a href="javacript:void(0)" class="btn btn-lg" onclick="changeThumbnail('+ response.libId +')">Change Thumbnail</a></div></div></div></div>')
 
 			}
 
@@ -675,6 +674,7 @@
 			progress.find('.progress-bar').removeClass('bg-success');
 			progress.show();
 		}
+
 
 		function updateProgress(value) {
 			progress.find('.progress-bar').css('width', `${value}%`)

@@ -106,27 +106,32 @@ class LibraryController extends Controller
             unset($input['action']);
             // if (!have_right('edit-Library'))
             //     access_denied();
+            if($request->old_libraries_ids==null){
+                DB::table('libraries')->where('type_id', $request->type_id)->delete();
+            }
             if (isset($request->old_libraries_ids)) {
 
                 $old_ids = $request->old_libraries_ids;
+                // dd($old_ids);
                 $old_data_for_delete_file = DB::table('libraries')->whereNotIn('id', $old_ids)->where('type_id', $request->type_id)->get();
 
                 foreach ($old_data_for_delete_file as $key => $val) {
                     $this->deleteEditoImage($val->file);
                 }
 
+
                 DB::table('libraries')->whereNotIn('id', $old_ids)->where('type_id', $request->type_id)->delete();
                 //________________old_libraries_ids contain all ids for update library data_____//
                 foreach ($request->old_libraries_ids as $key => $val) {
                     $model  = Library::find($val);
                     $model->type_id = $request->type_id;
-                    $model->description = $request->description[$key];
-                    $model->file_title = $request->file_title[$key];
+                    // $model->description = $request->description[$key];
+                    // $model->file_title = $request->file_title[$key];
                     $model->update();
                 }
             }
             $model = LibraryType::find($request->type_id);
-            $model->content = json_encode($request->content);;
+            $model->content = json_encode($request->content);
             $model->status = $request->status;
             $model->update();
             return redirect('admin/library/' . $request->type_id . '/edit')->with('message', 'Data added Successfully');
