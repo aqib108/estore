@@ -1,8 +1,8 @@
 <section class="noor-libarary">
     <div class="container-fluid container-width">
         <div class="d-flex flex-column justify-content-center align-items-center library-content">
-            <h5 class="text-yellow text-captilize text-center">Assets</h5>
-            <h2 class="center-image-heading orange-text-img text-center">Our Library</h2>
+            <h5 class="text-yellow text-captilize text-center">{{__('app.assets')}}</h5>
+            <h2 class="center-image-heading orange-text-img text-center">{{__('app.our_library')}}</h2>
             <p class="text-center para-3">Quisque suscipit ipsum est, eu venenatis leo ornare eget. Ut porta facilisis elementum. Sed condimentum sed massa quis ullamcorper. Donec at scelerisque neque. Pellentesque sagittis.</p>
         </div>
         <div class="row library-tabs">

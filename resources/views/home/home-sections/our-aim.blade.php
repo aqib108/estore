@@ -14,7 +14,7 @@
             </div>
             <div class="col-lg-7">
                 <div class="our-aim-content">
-                    <h5 class="text-yellow text-captilize green-heading">OUR MISSION</h5>
+                    <h5 class="text-yellow text-captilize green-heading">{{__('app.our_mission')}}</h5>
                     <h2 class="orange-text-img">{{ set_locale($aims->title) }}</h2>
                     <p class="m-3">
                         @php echo set_locale($aims->content) @endphp
@@ -22,10 +22,10 @@
                     
                     <div class="buton-holder">
                         <div class="d-flex" >
-                            <a class="orange theme-button me-3" href="/aims-&-object"> read more</a>
+                            <a class="orange theme-button me-3" href="/aims-&-object">{{__('app.read_more')}}</a>
                             <form action="https://www.paypal.com/donate" method="post" target="_top"><input name="hosted_button_id" type="hidden" value="KA3Q4526LZZ7Q">
                                 {{-- <button type="submit"  name="submit" class="orange theme-button">Donate Now</button> --}}
-                                <button class="orange theme-button" type="submit"  name="submit" id="donate-now-btn">Donate Now</button>
+                                <button class="orange theme-button" type="submit"  name="submit" id="donate-now-btn">{{__('app.donate_now')}}</button>
                             </form>
                         </div>
                         {{-- <a class="orange theme-button" href="@php echo \Config::get('constants.paypal_url'); @endphp">donate now</a> --}}

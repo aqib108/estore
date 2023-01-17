@@ -10,8 +10,8 @@
             </div>
             <div class="col-lg-7">
                 <div class="our-aim-content">
-                    <h5 class="text-yellow text-captilize green-heading">Interdum maximus</h5>
-                    <h2 class="orange-text-img">Visitors Count</h2>
+                    <h5 class="text-yellow text-captilize green-heading">{{__('app.interdum_maximus')}}</h5>
+                    <h2 class="orange-text-img">{{__('app.vist_count')}}</h2>
                     <p class="para-1 text-opacity">
                         Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan justo, quis tempor ligula. Quisque quis pharetra felis. Ut quis consequat orci, at consequat felis. Suspendisse auctor laoreet placerat.
                     </p>

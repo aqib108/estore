@@ -1,8 +1,8 @@
 <section class="testimonials common-top-padding common-bottom-padding">
     <div class="container">
         <div class="d-flex flex-column justify-content-center align-items-center">
-            <h5 class="text-yellow text-captilize green-heading">Testimonials</h5>
-            <h2 class="center-image-heading orange-text-img">People love with us</h2>
+            <h5 class="text-yellow text-captilize green-heading">{{__('app.testo')}}</h5>
+            <h2 class="center-image-heading orange-text-img">{{__('app.p_love')}}</h2>
         </div>
         <div class="testimonial-slider">
             <div id="owl-three" class="owl-carousel owl-theme">
