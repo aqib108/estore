@@ -100,18 +100,19 @@
                             <div class="footer-contact-form">
                             <div class="form-floating mb-3">
                                 <input type="email" required class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
-                                <label for="floatingInput">Email address</label>
+                                <label for="floatingInput">{{ __('app.email-address') }}</label>
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="text" required class="form-control" name="subject" id="floatingPassword" placeholder="subject">
-                                <label for="floatingPassword">subject</label>
+                                <label for="floatingPassword">{{ __('app.subject') }}</label>
                             </div>
                             <div class="form-floating">
                                 <textarea required class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="message"></textarea>
-                                <label for="floatingTextarea2">Comments</label>
+                                <label for="floatingTextarea2">{{ __('app.comments') }}</label>
                               </div>
                               <div class="form-floating mt-3">
-                                <input type="submit" class="btn btn-success">
+                                <button type="submit" class="btn btn-success">{{ __('app.submit') }}</button>
+                                {{-- <input type="submit" class="btn btn-success"> --}}
                             </div>
                         </div>
                     </form>
@@ -123,12 +124,12 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-6">
                     <div class="footer-newsletter">
-                        <h6 class="text-center text-white">SUBSCRIBE OUR NEWSLETTER</h6>
+                        <h6 class="text-center text-white">{{ __('app.subscribe-news') }}</h6>
                     <form action="/subscription" method="post">
                         @csrf
                         <div class="field-wrapper">
-                            <input required class="form-control" name="email" type="email" placeholder="ENTER EMAIL" />
-                            <button type="submit" class="orange theme-button">SUBSCRIBE</button>
+                            <input required class="form-control" name="email" type="email" placeholder="{{ __('app.enter-email') }}" />
+                            <button type="submit" class="orange theme-button">{{ __('app.subscribe') }}</button>
                         </div>
                     </form>
                     </div>

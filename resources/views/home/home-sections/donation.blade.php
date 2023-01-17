@@ -33,11 +33,11 @@
                     </div>
                     <div class="d-flex justify-content-between mt-3">
                         <div class="donation-calculation d-flex">
-                            <p class="text-center">Amount Recieved</p>
+                            <p class="text-center">{{ __('app.amount-recieved') }}</p>
                             <h4 class="text-center mt-3">{{ $donations->received_amount }}$</h4>
                         </div>
                         <div class="donation-calculation d-flex">
-                            <p class="text-center">Targeted Amount</p>
+                            <p class="text-center">{{ __('app.targeted-recieved') }}</p>
                             <h4 class="text-center mt-3">{{ $donations->price }}$</h4>
                         </div>
                     </div>

@@ -13,7 +13,7 @@
                     <h5 class="text-yellow text-captilize green-heading">{{__('app.interdum_maximus')}}</h5>
                     <h2 class="orange-text-img">{{__('app.vist_count')}}</h2>
                     <p class="para-1 text-opacity">
-                        Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan justo, quis tempor ligula. Quisque quis pharetra felis. Ut quis consequat orci, at consequat felis. Suspendisse auctor laoreet placerat.
+                        {{ __('app.visitor-message') }}
                     </p>
                     <div class="row">
                         <div class="col-lg-6">
@@ -22,7 +22,7 @@
                                     {{-- <img src="{{ asset('assets/front/images/visit-img-3.svg') }}" class="img-fluid"> --}}
                                     <a href="https://info.flagcounter.com/S7r4"><img src="https://s11.flagcounter.com/count/S7r4/bg_FFFFFF/txt_000000/border_CCCCCC/columns_4/maxflags_12/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
                                 </div>
-                                <p class="text-center">Website Visited</p>
+                                <p class="text-center">{{ __('app.website-visited') }}</p>
                             </div>
                         </div>
                         <div class="col-lg-3">
@@ -31,7 +31,7 @@
                                     <img src="{{ asset('assets/front/images/visit-img-1.svg') }}" class="img-fluid">
                                 </div>
                                 <h3 class="text-center">{{ $course_count }}</h3>
-                                <p class="text-center" >Courses</p>
+                                <p class="text-center" >{{ __('app.courses') }}</p>
                             </div>
                         </div>
                         <div class="col-lg-3">
@@ -40,7 +40,7 @@
                                     <img src="{{asset('assets/front/images/visit-img-2.svg')}}" class="img-fluid">
                                 </div>
                                 <h3 class="text-center">{{ $department_count }}</h3>
-                                <p class="text-center">Departments</p>
+                                <p class="text-center">{{ __('app.departments') }}</p>
                             </div>
                         </div>
                     </div>
