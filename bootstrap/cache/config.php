@@ -195,7 +195,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\laragon\\www\\halqaenoor_school\\storage\\framework/cache/data',
+        'path' => 'C:\\laragon\\www\\halqaenoor\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -420,12 +420,12 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\laragon\\www\\halqaenoor_school\\storage\\app',
+        'root' => 'C:\\laragon\\www\\halqaenoor\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\laragon\\www\\halqaenoor_school\\storage\\app/public',
+        'root' => 'C:\\laragon\\www\\halqaenoor\\storage\\app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
@@ -443,7 +443,7 @@
     ),
     'links' => 
     array (
-      'C:\\laragon\\www\\halqaenoor_school\\public\\storage' => 'C:\\laragon\\www\\halqaenoor_school\\storage\\app/public',
+      'C:\\laragon\\www\\halqaenoor\\public\\storage' => 'C:\\laragon\\www\\halqaenoor\\storage\\app/public',
     ),
   ),
   'flare' => 
@@ -535,13 +535,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\laragon\\www\\halqaenoor_school\\storage\\logs/laravel.log',
+        'path' => 'C:\\laragon\\www\\halqaenoor\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\laragon\\www\\halqaenoor_school\\storage\\logs/laravel.log',
+        'path' => 'C:\\laragon\\www\\halqaenoor\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -592,7 +592,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\laragon\\www\\halqaenoor_school\\storage\\logs/laravel.log',
+        'path' => 'C:\\laragon\\www\\halqaenoor\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -658,7 +658,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\laragon\\www\\halqaenoor_school\\resources\\views/vendor/mail',
+        0 => 'C:\\laragon\\www\\halqaenoor\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -763,7 +763,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\laragon\\www\\halqaenoor_school\\storage\\framework/sessions',
+    'files' => 'C:\\laragon\\www\\halqaenoor\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -796,16 +796,16 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\laragon\\www\\halqaenoor_school\\resources\\views',
+      0 => 'C:\\laragon\\www\\halqaenoor\\resources\\views',
     ),
-    'compiled' => 'C:\\laragon\\www\\halqaenoor_school\\storage\\framework\\views',
+    'compiled' => 'C:\\laragon\\www\\halqaenoor\\storage\\framework\\views',
   ),
   'generators' => 
   array (
     'config' => 
     array (
-      'migration_template_path' => 'C:\\laragon\\www\\halqaenoor_school\\vendor\\kitloong\\laravel-migrations-generator\\src\\config/../MigrationsGenerator/stub/migration.stub',
-      'migration_target_path' => 'C:\\laragon\\www\\halqaenoor_school\\database/migrations',
+      'migration_template_path' => 'C:\\laragon\\www\\halqaenoor\\vendor\\kitloong\\laravel-migrations-generator\\src\\config/../MigrationsGenerator/stub/migration.stub',
+      'migration_target_path' => 'C:\\laragon\\www\\halqaenoor\\database/migrations',
       'filename_pattern' => 
       array (
         'table' => '[datetime_prefix]_create_[table]_table.php',

@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-lg-3 col-12 mb-lg-0 mb-md-5 mb-3">
                     <div class="footer-info">
-                        <h5>About us</h5>
+                        <h5>{{__('app.about_us')}}</h5>
                         <p>{{getSettingDataHelper('about_'.app()->getLocale())}}</p>
                         <div class="footer-logo">
                             <a class="navbar-brand" href="index.html">
@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-links">
-                        <h5>Latest Blog</h5>
+                        <h5>{{__('app.l_blog')}}</h5>
                         <ul class="list-unstyled">
                            @foreach($posts as $key => $post)
                            <a style="color: black" href="{{ route('home.blog-detail', ['id' => $post->id]) }}">
@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-links">
-                        <h5>Contact Information</h5>
+                        <h5>{{__('app.con_info')}}</h5>
                         <ul class="list-unstyled contact-info">
                            
                             <li>
@@ -94,7 +94,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-links">
-                        <h5>Quick Contact</h5>
+                        <h5>{{__('app.q_con')}}</h5>
                         <form method="post" action="/contact_us">
                        @csrf
                             <div class="footer-contact-form">

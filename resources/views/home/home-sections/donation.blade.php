@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-5">
                 <div class="our-aim-content">
-                    <h5 class="text-yellow text-captilize green-heading">Help the Poor</h5>
+                    <h5 class="text-yellow text-captilize green-heading">{{__('app.p_love')}}</h5>
                     <h2 class="orange-text-img">@php echo set_locale($donations->title) @endphp</h2>
                     <p class="para-1 text-opacity">
                         @php echo set_locale($donations->description) @endphp
@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="latest-news">
-                    <h5 class="text-yellow">Latest News & Updates</h5>
+                    <h5 class="text-yellow">{{__('app.last_news')}}</h5>
                     <ul class="news-list">
                         @foreach($news as $key => $n)
                         <a style="color: black" href="{{ route('home.news-events-detail', ['id' => $n->id]) }}">
@@ -59,7 +59,7 @@
 
                     </ul>
                     <div class="read-more-link d-flex justify-content-end align-items-center">
-                        <a href="{{ url('news-events') }}">View More <span class="ms-3 next-mark-img"><img src="{{asset('assets/front/images/next-mark.svg')}}" alt=""></span></a>
+                        <a href="{{ url('news-events') }}">{{__('app.view_more')}} <span class="ms-3 next-mark-img"><img src="{{asset('assets/front/images/next-mark.svg')}}" alt=""></span></a>
                     </div>
                 </div>
             </div>
