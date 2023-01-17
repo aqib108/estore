@@ -21,7 +21,7 @@ class ClassesController extends Controller
      */
     public function index(Request $request)
     {
-        if (!have_right('View-Ceo-Message'))
+        if (!have_right('Access-Classes'))
         access_denied();
     $data = [];
     if ($request->ajax()) {
@@ -44,11 +44,11 @@ class ClassesController extends Controller
         $datatable = $datatable->addColumn('action', function ($row) {
             $actions = '<span class="actions">';
 
-            if (have_right('Edit-Ceo-Message')) {
+            if (have_right('Access-Classes')) {
                 $actions .= '<a class="btn btn-primary" href="' . url("admin/classes/" . $row->id . '/edit') . '" title="Edit"><i class="far fa-edit"></i></a>';
             }
 
-            if (have_right('Delete-Ceo-Message')) {
+            if (have_right('Access-Classes')) {
                 $actions .= '<form method="POST" action="' . url("admin/classes/" . $row->id) . '" accept-charset="UTF-8" style="display:inline;">';
                 $actions .= '<input type="hidden" name="_method" value="DELETE">';
                 $actions .= '<input name="_token" type="hidden" value="' . csrf_token() . '">';
@@ -76,7 +76,7 @@ class ClassesController extends Controller
      */
     public function create()
     {
-        if (!have_right('Create-Ceo-Message'))
+        if (!have_right('Access-Classes'))
             access_denied();
         $data = [];
         $data['row'] = new Classes();
@@ -124,7 +124,7 @@ class ClassesController extends Controller
         }
         else
         {
-            if(!have_right('edit-admin') || 0)
+            if(!have_right('Access-Classes') || 0)
                 access_denied();
                 $id = $input['id'];
             $model = Classes::find($id);
@@ -177,7 +177,7 @@ class ClassesController extends Controller
      */
     public function edit($id)
     {
-        if(!have_right('edit-customer'))
+        if(!have_right('Access-Classes'))
         access_denied();
 
     $data = [];
@@ -209,7 +209,7 @@ class ClassesController extends Controller
      */
     public function destroy($id)
     {
-        if(!have_right('delete-admin'))
+        if(!have_right('Access-Classes'))
         access_denied();
 
         $data = [];

@@ -41,11 +41,11 @@
 				  <div class="col-12">
 				    <div class="card">
 				      <div class="card-header">
-				      	@if(have_right('Create-Ceo-Message'))
+				      	{{-- @if(have_right('Access-Message'))
 					        <h3 class="card-title">
 					        	<a href="{{ URL('admin/ceomessage/create') }}" class="btn btn-primary"> Add New </a>
 					        </h3>
-				        @endif
+				        @endif --}}
 				      </div>
 				      <div class="card-body">
 				        <table id="pages-datatable" class="table table-bordered table-striped" style="width:100%">

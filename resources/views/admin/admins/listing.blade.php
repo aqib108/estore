@@ -41,7 +41,7 @@
 				  <div class="col-12">
 				    <div class="card">
 				      <div class="card-header">
-				      	@if(have_right('add-admin'))
+				      	@if(have_right('Access-Admin'))
 					        <h3 class="card-title">
 					        	<a href="{{ URL('admin/admins/create') }}" class="btn btn-primary"> Add New </a>
 					        </h3>
@@ -52,7 +52,7 @@
 				          <thead>
 				              <tr>
 				                <th>ID</th>
-				                <th>Role</th>
+				                {{-- <th>Role</th> --}}
 				                <th>Name</th>
 				                <th>Email</th>
 				                <th>D-O-B</th>
@@ -65,7 +65,7 @@
 				          <tfoot>
 				              <tr>
 				                <th>ID</th>
-				                <th>Role</th>
+				                {{-- <th>Role</th> --}}
 				                <th>Name</th>
 				                <th>Email</th>
 				                <th>D-O-B</th>
@@ -126,7 +126,7 @@
 			ajax: "{{ url('admin/admins') }}",
 			columns: [
 				{data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
-				{data: 'role', name: 'role'},
+				// {data: 'role', name: 'role'},
 				{data: 'name', name: 'name'},
 				{data: 'email', name: 'email'},
 				{data: 'dob', name: 'dob'},

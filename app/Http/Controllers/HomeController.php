@@ -21,9 +21,10 @@ use App\Models\Admin\Course;
 use App\Models\Admin\Testimonial;
 use App\Models\Admin\Setting;
 use App\Models\Admin\OurAims;
+use App\Models\Admin\DocumentUploader as DocumentModel;
 use App\Models\Subscription\NewSubscription;
 use App\Models\ContactForm\ContactRecord;
-
+use Response;
 class HomeController extends Controller
 {
     /**
@@ -188,5 +189,31 @@ class HomeController extends Controller
         $classes=Classes::where(['status'=>1,'course_id'=>$id])->orderBy('id', 'DESC')->get();
         return view('home.pages.home-classes',compact('classes'));
     }
-
+   public function downloadFile($document_id){
+    $file =  DocumentModel::where(['document_id'=>$document_id])->get()->first();
+    if(isset($file)){
+        if($file->status==0)
+        {
+            return 'Document Downloader is InActive From Admin';
+        }
+       if(isset($file->path))
+        {
+            // dd($file->path);
+             $filepath = public_path().'/'.$file->path;
+            if (file_exists($filepath)) {
+                return Response::download($filepath);
+            }
+            else
+            return 'File Not Exist on Server';
+             
+        }
+        else{
+         return '404 file Not Exist of Server';
+        }
+    }
+    else{
+        return '403 download link is expired';
+    }
+    
+   }
 }

@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Admin\Department;
+use App\Models\Admin\DocumentUploader as DocumentModel;
 use App\Models\Admin\Language;
 use Hash;
 use DataTables;
 use Hashids\Hashids;
-class DepartmentController extends Controller
+
+class DocumentUploader extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,14 +19,14 @@ class DepartmentController extends Controller
      */
     public function index(Request $request)
     {
-        if(!have_right('Access-Our-Departments'))
-        access_denied();
+        // if(!have_right('Access-Our-Departments'))
+        // access_denied();
 
     $data = [];
     $hashids = new Hashids('',10);
     if($request->ajax())
     {
-        $db_record = Department::all();
+        $db_record = DocumentModel::all();
         $datatable = Datatables::of($db_record);
         $datatable = $datatable->addIndexColumn();
        
@@ -38,35 +39,34 @@ class DepartmentController extends Controller
             }
             return $status;
         });
-        $datatable = $datatable->editColumn('name', function($row)
+        $datatable = $datatable->editColumn('path', function($row)
         {
-            $name = json_decode($row->name);
-            return $name->en;
+            return env('APP_URL').'/download/'.$row->document_id;
         });
-        $datatable = $datatable->editColumn('description', function($row)
-        {
-            $description = json_decode($row->description);
-            return strip_tags($description->en);
-        });
+        // $datatable = $datatable->editColumn('description', function($row)
+        // {
+        //     $description = json_decode($row->description);
+        //     return strip_tags($description->en);
+        // });
         $datatable = $datatable->addColumn('action', function($row) use($hashids)
         {
             $actions = '<span class="actions">';
 
-            if(have_right('Access-Our-Departments'))
-            {
-                $actions .= '&nbsp;<a class="btn btn-primary" href="'.url("admin/department/" .$hashids->encode($row->id).'/edit').'" title="Edit"><i class="far fa-edit"></i></a>';
-            }
+            // if(have_right('Access-Our-Departments'))
+            // {
+                $actions .= '&nbsp;<a class="btn btn-primary" href="'.url("admin/document-uploader/" .$hashids->encode($row->id).'/edit').'" title="Edit"><i class="far fa-edit"></i></a>';
+            // }
                 
-            if(have_right('Access-Our-Departments'))
-                {
-                    $actions .= '<form method="POST" action="'.url("admin/department/" . $hashids->encode($row->id)).'" accept-charset="UTF-8" style="display:inline;">';
+            // if(have_right('Access-Our-Departments'))
+            //     {
+                    $actions .= '<form method="POST" action="'.url("admin/document-uploader/" . $hashids->encode($row->id)).'" accept-charset="UTF-8" style="display:inline;">';
                     $actions .= '<input type="hidden" name="_method" value="DELETE">';
                     $actions .= '<input name="_token" type="hidden" value="'.csrf_token().'">';
                     $actions .= '<button class="btn btn-danger" style="margin-left:02px;" onclick="return confirm(\'Are you sure you want to delete this record?\');" title="Delete">';
                     $actions .= '<i class="far fa-trash-alt"></i>';
                     $actions .= '</button>';
                     $actions .= '</form>';
-                }
+                // }
             
             $actions .= '</span>';
             return $actions;
@@ -76,7 +76,7 @@ class DepartmentController extends Controller
         $datatable = $datatable->make(true);
         return $datatable;
     }
-        return view('admin.department.listing',$data);
+        return view('admin.document-uploader.listing',$data);
     }
 
     /**
@@ -86,14 +86,14 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        if(!have_right('Access-Our-Departments'))
-            access_denied();
+        // if(!have_right('Access-Our-Departments'))
+        //     access_denied();
 
         $data = [];
-        $data['row'] = new Department();
+        $data['row'] = new DocumentModel();
         $data['languages'] = Language::all();
         $data['action'] = 'add';
-        return View('admin.department.form',$data);
+        return View('admin.document-uploader.form',$data);
     }
 
     /**
@@ -107,51 +107,55 @@ class DepartmentController extends Controller
         $input = $request->all();
         if($input['action'] == 'add')
         {
-        $input['name'] = json_encode($request->name);
-        $input['description'] = json_encode($request->description);
-        $input['url'] = isset($request->url) ? $request->url : null;
-        if($request->hasFile('image'))
+        
+            if($request->hasFile('file'))
             {
-                $timageName = 'department-image'.time().'.'.$request->image->extension();  
-                if($request->image->move(public_path('department-image/'), $timageName))
-                {
-                    $input['file'] = $timageName;
-                }   
+               $input['path'] = $this->uploadfile($request);   
             }
-        $model = new Department();
+        $input['document_id'] = uniqid();
+        $model = new DocumentModel();
         $model->fill($input);
         $model->save();
-        return redirect('admin/department')->with('message','Data saved Successfully');
+        return redirect('admin/document-uploader')->with('message','Data saved Successfully');
         }
         else
         {
-            if(!have_right('Access-Our-Departments') || 0)
-                access_denied();
+            // if(!have_right('Access-Our-Departments') || 0)
+            //     access_denied();
 
             $hashids = new Hashids('',10);
             $id = $input['id'];
             $id = $hashids->decode($id)[0];
-            $model = Department::find($id);
-            $input['name'] = json_encode($request->name);
-            $input['description'] = json_encode($request->description); 
-            $input['url'] = isset($request->url) ? $request->url : null;
-            if($request->hasFile('image'))
-            {
-                $timageName = 'department-image'.time().'.'.$request->image->extension();  
-                if($request->image->move(public_path('department-image/'), $timageName))
-                {
-                    $input['file'] = $timageName;
-                }   
+            $model = DocumentModel::find($id);
+            
+            if (isset($input['file'])) {
+                $filePath = $this->uploadfile($request);
+                $model->file= $filePath;
+                $file_url =  $model->path;
+                if (file_exists(public_path($file_url))) {
+                    if(isset($file_url))
+                       unlink($file_url);
+                }
+            } else {
+                unset($input['file']);
             }
             $model->fill($input);
             $model->update();
-            return redirect('admin/department')->with('message','Data update Successfully');
-           
-           
+            return redirect('admin/document-uploader')->with('message','Data update Successfully');      
         }
        
     }
-
+    public function uploadfile(Request $request)
+    {
+        $path = '';
+        if ($request->file) {
+            $fileName = 'document-uploader' . time() . '.' . $request->file->extension();
+            if ($request->file->move(public_path('files/document-uploader'), $fileName)) {
+                $path =  'files/document-uploader/' . $fileName;
+            }
+        }
+        return $path;
+    }
     /**
      * Display the specified resource.
      *
@@ -171,17 +175,17 @@ class DepartmentController extends Controller
      */
     public function edit($id)
     {
-        if(!have_right('Access-Our-Departments'))
-            access_denied();
+        // if(!have_right('Access-Our-Departments'))
+        //     access_denied();
 
         $data = [];
         $data['id'] = $id;
         $hashids = new Hashids('',10);
         $id = $hashids->decode($id)[0];
-        $data['row'] = Department::find($id);
-        $data['languages'] = Language::all();
         $data['action'] = 'edit';
-        return View('admin.department.form',$data);
+        $data['row'] = DocumentModel::find($id);
+        $data['languages'] = Language::all();
+        return View('admin.document-uploader.form',$data);
     }
 
     /**

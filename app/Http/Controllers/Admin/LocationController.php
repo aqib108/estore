@@ -13,7 +13,7 @@ class LocationController extends Controller
 {
     public function index(Request $request)
     {
-        if (!have_right('View-Location'))
+        if (!have_right('Access-Our-Locations'))
             access_denied();
 
         $data = [];
@@ -42,7 +42,7 @@ class LocationController extends Controller
                 } else {
                     $checked = '';
                 }
-                if (have_right('Featured-Location')) {
+                if (have_right('Access-Our-Locations')) {
 
                     $featured = '<label class="switch"> <input type="checkbox" class="is_featured" id="chk_' . $row->id . '" name="is_featured" onclick="is_featured($(this),' . $row->id . ')" ' . $checked . ' > <span class="slider round"></span></label>';
                     return $featured;
@@ -53,11 +53,11 @@ class LocationController extends Controller
             $datatable = $datatable->addColumn('action', function ($row) {
                 $actions = '<span class="actions">';
 
-                if (have_right('Edit-Location')) {
+                if (have_right('Access-Our-Locations')) {
                     $actions .= '&nbsp;<a class="btn btn-primary" href="' . url("admin/locations/" . $row->id) . '/edit' . '" title="Edit"><i class="far fa-edit"></i></a>';
                 }
 
-                if (have_right('Delete-Location')) {
+                if (have_right('Access-Our-Locations')) {
                     $actions .= '<form method="POST" action="' . url("admin/locations/" . $row->id) . '" accept-charset="UTF-8" style="display:inline;">';
                     $actions .= '<input type="hidden" name="_method" value="DELETE">';
                     $actions .= '<input name="_token" type="hidden" value="' . csrf_token() . '">';
@@ -81,7 +81,7 @@ class LocationController extends Controller
 
     public function create()
     {
-        if (!have_right('Create-Location'))
+        if (!have_right('Access-Our-Locations'))
             access_denied();
 
         $data = [];
@@ -96,7 +96,7 @@ class LocationController extends Controller
         $input = $request->all();
         if ($input['action'] == 'add') {
             unset($input['action']);
-            if (!have_right('Create-Location'))
+            if (!have_right('Access-Our-Locations'))
                 access_denied();
 
             $model = new Location();
@@ -108,7 +108,7 @@ class LocationController extends Controller
 
             return redirect('admin/locations')->with('message', 'Data added Successfully');
         } else {
-            if (!have_right('Edit-Location'))
+            if (!have_right('Access-Our-Locations'))
                 access_denied();
 
             unset($input['action']);
@@ -125,7 +125,7 @@ class LocationController extends Controller
 
     public function edit($id)
     {
-        if (!have_right('Edit-Location'))
+        if (!have_right('Access-Our-Locations'))
             access_denied();
 
         $data = [];
@@ -138,7 +138,7 @@ class LocationController extends Controller
 
     public function destroy($id)
     {
-        if (!have_right('Delete-Location'))
+        if (!have_right('Access-Our-Locations'))
             access_denied();
 
         $data = [];
@@ -148,7 +148,7 @@ class LocationController extends Controller
     }
     public function setFeaturedAddress($id = null)
     {
-        if (!have_right('Featured-Location'))
+        if (!have_right('Access-Our-Locations'))
             access_denied();
             Location::where('featured', 1)->update(['featured' => 0]);
         $update_product = Location::where('id', $id)->update(['featured' => $_GET['status']]);

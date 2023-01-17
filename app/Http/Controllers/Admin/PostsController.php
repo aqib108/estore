@@ -29,7 +29,7 @@ class PostsController extends Controller
 
     public function index(Request $request)
     {
-        if(!have_right('view-admins'))
+        if(!have_right('Access-Posts'))
             access_denied();
 
         $data = [];
@@ -59,12 +59,12 @@ class PostsController extends Controller
             {
                 $actions = '<span class="actions">';
 
-                if(have_right('edit-admin'))
+                if(have_right('Access-Posts'))
                 {
                     $actions .= '<a class="btn btn-primary" href="'.url("admin/posts/" .$hashids->encode($row->id).'/edit').'" title="Edit"><i class="far fa-edit"></i></a>';
                 }
                     
-                if(have_right('delete-admin'))
+                if(have_right('Access-Posts'))
                 {
                     $actions .= '<form method="POST" action="'.url("admin/posts/" . $hashids->encode($row->id)).'" accept-charset="UTF-8" style="display:inline;">';
                     $actions .= '<input type="hidden" name="_method" value="DELETE">';
@@ -89,7 +89,7 @@ class PostsController extends Controller
 
     public function create()
     {
-        if(!have_right('add-admin'))
+        if(!have_right('Access-Posts'))
             access_denied();
 
         $data = [];
@@ -104,7 +104,7 @@ class PostsController extends Controller
 
     public function edit($id)
     {
-        if(!have_right('edit-admin'))
+        if(!have_right('Access-Posts'))
             access_denied();
 
         $data = [];
@@ -136,7 +136,7 @@ class PostsController extends Controller
 
         if($input['action'] == 'add')
         {
-            if(!have_right('add-admin'))
+            if(!have_right('Access-Posts'))
                 access_denied();
 
             $model = new Post();
@@ -157,7 +157,7 @@ class PostsController extends Controller
         }
         else
         {
-            if(!have_right('edit-admin'))
+            if(!have_right('Access-Posts'))
                 access_denied();
 
             $id = $input['id'];
@@ -233,7 +233,7 @@ class PostsController extends Controller
 
     public function destroy($id)
     {
-        if(!have_right('delete-admin'))
+        if(!have_right('Access-Posts'))
             access_denied();
 
         $data = [];

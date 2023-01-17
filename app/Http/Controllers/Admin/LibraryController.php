@@ -25,7 +25,7 @@ class LibraryController extends Controller
     public function index(Request $request)
     {
 
-        if (!have_right('view-Library'))
+        if (!have_right('Access-Library-Image')&& !have_right('Access-Library-Video') && !have_right('Access-Library-Book') && !have_right('Access-Library-Audio') )
             access_denied();
 
         return redirect('/admin');
@@ -46,11 +46,11 @@ class LibraryController extends Controller
             $datatable = $datatable->addColumn('action', function ($row) {
                 $actions = '<span class="actions">';
 
-                if (have_right('edit-library')) {
+                if (have_right('Access-Library-Image')|| have_right('Access-Library-Video') || have_right('Access-Library-Book') || have_right('Access-Library-Audio')) {
                     $actions .= '&nbsp;<a class="btn btn-primary" href="' . url("admin/library/" . $row->id) . '/edit' . '" title="Edit"><i class="far fa-edit"></i></a>';
                 }
 
-                if (have_right('delete-library')) {
+                if (have_right('Access-Library-Image')|| have_right('Access-Library-Video') || have_right('Access-Library-Book') || have_right('Access-Library-Audio')) {
                     $actions .= '<form method="POST" action="' . url("admin/library/" . $row->id) . '" accept-charset="UTF-8" style="display:none;">';
                     $actions .= '<input type="hidden" name="_method" value="DELETE">';
                     $actions .= '<input name="_token" type="hidden" value="' . csrf_token() . '">';

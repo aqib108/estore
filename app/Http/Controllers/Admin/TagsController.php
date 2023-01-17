@@ -23,7 +23,7 @@ class TagsController extends Controller
 
     public function index(Request $request)
     {
-        if(!have_right('view-admins') || 0)
+        if(!have_right('Access-Tags') || 0)
             access_denied();
 
         $data = [];
@@ -47,12 +47,12 @@ class TagsController extends Controller
             {
                 $actions = '<span class="actions">';
 
-                if(have_right('edit-admin'))
+                if(have_right('Access-Tags'))
                 {
                     $actions .= '<a class="btn btn-primary" href="'.url("admin/tags/" .$hashids->encode($row->id).'/edit').'" title="Edit"><i class="far fa-edit"></i></a>';
                 }
                     
-                if(have_right('delete-admin'))
+                if(have_right('Access-Tags'))
                 {
                     $actions .= '<form method="POST" action="'.url("admin/tags/" . $hashids->encode($row->id)).'" accept-charset="UTF-8" style="display:inline;">';
                     $actions .= '<input type="hidden" name="_method" value="DELETE">';
@@ -77,7 +77,7 @@ class TagsController extends Controller
 
     public function create()
     {
-        if(!have_right('add-admin'))
+        if(!have_right('Access-Tags'))
             access_denied();
 
         $data = [];
@@ -88,7 +88,7 @@ class TagsController extends Controller
 
     public function edit($id)
     {
-        if(!have_right('edit-admin'))
+        if(!have_right('Access-Tags'))
             access_denied();
 
         $data = [];
@@ -116,7 +116,7 @@ class TagsController extends Controller
 
         if($input['action'] == 'add')
         {
-            if(!have_right('add-admin'))
+            if(!have_right('Access-Tags'))
                 access_denied();
 
             $model = new Tag();
@@ -127,7 +127,7 @@ class TagsController extends Controller
         }
         else
         {
-            if(!have_right('edit-admin'))
+            if(!have_right('Access-Tags'))
                 access_denied();
 
             $id = $input['id'];
@@ -142,7 +142,7 @@ class TagsController extends Controller
 
     public function destroy($id)
     {
-        if(!have_right('delete-admin'))
+        if(!have_right('Access-Tags'))
             access_denied();
 
         $data = [];

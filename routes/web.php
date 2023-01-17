@@ -21,6 +21,12 @@ Route::get('/run-cmd', function () {
     Artisan::call('schedule:run');
     dump('Running');
 });
+
+Route::get('/storage', function () {
+    Artisan::call('storage:link');
+    dump('storage linked');
+});
+
 Route::get('/blog', [App\Http\Controllers\HomeController::class, 'Blog']);
 Route::get('/blog-detail/{id?}', [App\Http\Controllers\HomeController::class, 'BlogDetail'])->name('home.blog-detail');
 Route::get('/news-events', [App\Http\Controllers\HomeController::class, 'News']);
@@ -86,6 +92,7 @@ Route::prefix('admin')->namespace('Admin')->group(static function()
         Route::post('update-thumb-img/{id}', '\App\Http\Controllers\Admin\LibraryController@updateThumbImg');
 
         Route::any('donation/recieved-amount', [\App\Http\Controllers\Admin\DonationController::class, 'recievedAmount'])->name('admin.donation-recieved-amount');
+        Route::resource('document-uploader', '\App\Http\Controllers\Admin\DocumentUploader');
     });
 });
 
@@ -102,9 +109,8 @@ Route::get('post/{slug}', [App\Http\Controllers\HomeController::class, 'post'])-
 Route::get('category/{slug}', [App\Http\Controllers\HomeController::class, 'category'])->name('category');
 Route::get('tag/{slug}', [App\Http\Controllers\HomeController::class, 'tag'])->name('tag');
 Route::get('search/query', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
-// Route::get('/blog',function(){
-//     return view('home.pages.blog-detail');
-// });
+Route::get('/download/{document_id?}', [App\Http\Controllers\HomeController::class, 'downloadFile'])->name('download-file');
+
 // Route::get('/news',function(){
 //     return view('home.pages.news-detail');
 // });

@@ -8,7 +8,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>{{getSettingDataHelper('title')}}</title>
   <!-- Favicon -->
-  <link rel="icon" href="{{asset('storage/front/img/core-img/favicon.ico')}}">
+  <link rel="icon" href="{{asset('images/favicon.png')}}">
   <!-- Style CSS -->
    <!-- Bootstrap-5 CSS -->
    <link rel="stylesheet" href="{{ asset('assets/front/css/bootstrap-5.min.css') }}" />
@@ -60,9 +60,6 @@
     <script>
       AOS.init();
     </script>
-    <script>
-      swal('work');
-    </script>
     @if (\Session::has('msg'))
     @php $message = \Session::get('msg');  @endphp
     <script>
@@ -86,7 +83,9 @@
           $(".font-wrapper").removeClass("active");
       });
       $("#owl-one").owlCarousel({
-        
+          autoplay: true,
+          autoPlaySpeed: 2000,
+          autoPlayTimeout: 2000,
           items: 1,
           dots: false,
           nav: true,
@@ -94,6 +93,9 @@
           navText: ["<div class='nav-button owl-prev'><i class='fa fa-angle-left'></i></div>", "<div class='nav-button owl-next'><i class='fa fa-angle-right'></i></div>"],
       });
       $("#owl-three").owlCarousel({
+          autoplay: true,
+          autoPlaySpeed: 5000,
+          autoPlayTimeout: 5000,
           items: 1,
           dots: true,
           nav: false,

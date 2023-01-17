@@ -11,6 +11,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        if(!have_right('Access-Dashboard'))
+            access_denied();
         $users = User::count();
         $posts = Post::count();
         $departments = Department::count();

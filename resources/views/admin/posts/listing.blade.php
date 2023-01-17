@@ -41,7 +41,7 @@
 				  <div class="col-12">
 				    <div class="card">
 				      <div class="card-header">
-				      	@if(have_right('add-admin'))
+				      	@if(have_right('Access-Posts'))
 					        <h3 class="card-title">
 					        	<a href="{{ URL('admin/posts/create') }}" class="btn btn-primary"> Add New </a>
 					        </h3>

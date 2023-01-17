@@ -21,7 +21,7 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
-        if(!have_right('view-roles'))
+        if(!have_right('Access-Roles-Managment'))
             access_denied();
 
         $data = [];
@@ -45,12 +45,12 @@ class RoleController extends Controller
             {
                 $actions = '<span class="actions">';
 
-                if(have_right('edit-role') && $row->id != 1 && auth()->user()->role_id != $row->id)
+                if(have_right('Access-Roles-Managment') && $row->id != 1 && auth()->user()->role_id != $row->id)
                 {
                     $actions .= '<a class="btn btn-primary" href="'.url("admin/roles/" . $hashids->encode($row->id).'/edit').'" title="Edit"><i class="far fa-edit"></i></a>';
                 }
 
-                if(have_right('delete-role') && $row->id != 1 && auth()->user()->role_id != $row->id)
+                if(have_right('Access-Roles-Managment') && $row->id != 1 && auth()->user()->role_id != $row->id)
                 {
                     $actions .= '&nbsp;<form method="POST" action="'.url("admin/roles/" . $hashids->encode($row->id)).'" accept-charset="UTF-8" style="display:inline">';
                     $actions .= '<input type="hidden" name="_method" value="DELETE">';
@@ -79,7 +79,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        if(!have_right('add-role'))
+        if(!have_right('Access-Roles-Managment'))
             access_denied();
         $data['row'] = new Role();
         $data['action'] = "Add";
@@ -100,7 +100,7 @@ class RoleController extends Controller
 
         if($input['action'] == 'Add')
         {
-            if(!have_right('add-role'))
+            if(!have_right('Access-Roles-Managment'))
                 access_denied();
 
             $validator = Validator::make($request->all(), [
@@ -112,7 +112,7 @@ class RoleController extends Controller
         }
         else
         {
-            if(!have_right('edit-role'))
+            if(!have_right('Access-Roles-Managment'))
                 access_denied();
 
             $hashids = new Hashids('',10);
@@ -149,7 +149,7 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        if(!have_right('edit-role'))
+        if(!have_right('Access-Roles-Managment'))
             access_denied();
         
         
@@ -172,7 +172,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        if(!have_right('delete-role'))
+        if(!have_right('Access-Roles-Managment'))
             access_denied();
         
         $hashids = new Hashids('',10);

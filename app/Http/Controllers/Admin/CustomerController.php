@@ -23,7 +23,7 @@ class CustomerController extends Controller
 
     public function index(Request $request)
     {
-        if(!have_right('view-customers'))
+        if(!have_right('Access-User'))
             access_denied();
 
         $data = [];
@@ -48,12 +48,12 @@ class CustomerController extends Controller
             {
                 $actions = '<span class="actions">';
 
-                if(have_right('edit-customer'))
+                if(have_right('Access-User'))
                 {
                     $actions .= '&nbsp;<a class="btn btn-primary" href="'.url("admin/customers/" .$hashids->encode($row->id).'/edit').'" title="Edit"><i class="far fa-edit"></i></a>';
                 }
                     
-                if(have_right('delete-customer'))
+                if(have_right('Access-User'))
                 {
                     $actions .= '<form method="POST" action="'.url("admin/customers/" . $row->id).'" accept-charset="UTF-8" style="display:inline;">';
                     $actions .= '<input type="hidden" name="_method" value="DELETE">';
@@ -78,7 +78,7 @@ class CustomerController extends Controller
 
     public function create()
     {
-        if(!have_right('add-customer'))
+        if(!have_right('Access-User'))
             access_denied();
 
         $data = [];
@@ -89,7 +89,7 @@ class CustomerController extends Controller
 
     public function edit($id)
     {
-        if(!have_right('edit-customer'))
+        if(!have_right('Access-User'))
             access_denied();
 
         $data = [];
@@ -128,7 +128,7 @@ class CustomerController extends Controller
 
         if($input['action'] == 'add')
         {
-            if(!have_right('add-customer'))
+            if(!have_right('Access-User'))
                 access_denied();
 
             $model = new User();
@@ -139,7 +139,7 @@ class CustomerController extends Controller
         }
         else
         {
-            if(!have_right('edit-customer'))
+            if(!have_right('Access-User'))
                 access_denied();
 
             $id = $input['id'];
@@ -154,7 +154,7 @@ class CustomerController extends Controller
 
     public function destroy($id)
     {
-        if(!have_right('delete-customer'))
+        if(!have_right('Access-User'))
             access_denied();
 
         $data = [];

@@ -20,6 +20,7 @@ function rights()
 function have_right($right_id)
 {
     $user = \Auth::user();
+    // dd($user);
     if ($user['role_id'] == 1)
     {
         return true;
@@ -53,7 +54,7 @@ function getLanguages(){
 //set language
 function set_locale($content=''){
     $content = (array)json_decode($content);
-    return $content[App::getLocale()];    
+    return (isset($content[App::getLocale()])) ? $content[App::getLocale()] : $content['en'];    
 }
 
 function getSettingDataHelper($key)

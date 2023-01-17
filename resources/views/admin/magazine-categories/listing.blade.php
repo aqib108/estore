@@ -50,7 +50,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                @if (have_right('Create-Magazines-Category'))
+                                @if (have_right('Access-Magazine-Categories'))
                                     <h3 class="card-title">
                                         <a href="{{ URL('admin/magazine-categories/create') }}" class="btn btn-primary"> Add
                                             New </a>

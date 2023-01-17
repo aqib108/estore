@@ -16,16 +16,16 @@
                         Donec dapibus mauris id odio ornare tempus. Duis sit amet accumsan justo, quis tempor ligula. Quisque quis pharetra felis. Ut quis consequat orci, at consequat felis. Suspendisse auctor laoreet placerat.
                     </p>
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <div class="visiter-states">
                                 <div class="img-wrap-1">
-                                    <img src="{{ asset('assets/front/images/visit-img-3.svg') }}" class="img-fluid">
+                                    {{-- <img src="{{ asset('assets/front/images/visit-img-3.svg') }}" class="img-fluid"> --}}
+                                    <a href="https://info.flagcounter.com/S7r4"><img src="https://s11.flagcounter.com/count/S7r4/bg_FFFFFF/txt_000000/border_CCCCCC/columns_4/maxflags_12/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
                                 </div>
-                                <h3 class="text-center">45760</h3>
                                 <p class="text-center">Website Visited</p>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <div class="visiter-states">
                                 <div class="img-wrap-1">
                                     <img src="{{ asset('assets/front/images/visit-img-1.svg') }}" class="img-fluid">
@@ -34,7 +34,7 @@
                                 <p class="text-center" >Courses</p>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <div class="visiter-states">
                                 <div class="img-wrap-1">
                                     <img src="{{asset('assets/front/images/visit-img-2.svg')}}" class="img-fluid">

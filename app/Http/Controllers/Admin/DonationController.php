@@ -26,7 +26,7 @@ class DonationController extends Controller
      */
     public function index(Request $request)
     {
-        if (!have_right('View-Doantions'))
+        if (!have_right('Access-Doantions'))
             access_denied();
 
         $data = [];
@@ -53,7 +53,7 @@ class DonationController extends Controller
                 } else {
                     $checked = '';
                 }
-                if (have_right('Set-Featured-Doantions')) {
+                if (have_right('Access-Doantions')) {
                     $featured = '<label class="switch"> <input type="checkbox" class="is_featured" id="chk_' . $row->id . '" name="is_featured" onclick="is_featured($(this),' . $row->id . ')" ' . $checked . ' > <span class="slider round"></span></label>';
                     return $featured;
                 } else {
@@ -67,10 +67,10 @@ class DonationController extends Controller
                 //     $actions .= '<a class="btn btn-primary" href="' . url("admin/donations/reciepts/" . $row->id) . '" title="Reciepts"><i class="far fa-eye"></i></a>';
                 // }
 
-                if (have_right('Edit-Doantions')) {
+                if (have_right('Access-Doantions')) {
                     $actions .= '<a class="btn btn-primary" style="margin-left:02px;" href="' . url("admin/donations/" . $row->id . '/edit') . '" title="Edit"><i class="far fa-edit"></i></a>';
                 }
-                if (have_right('Edit-Received-Amount')) {
+                if (have_right('Access-Doantions')) {
                     $actions .= '&nbsp;<a data-toggle="modal" data-target="#showNoteModal" class="btn btn-secondary show_note" href="javascript:void(0)" data-donation-id="' . $row->id . '" title="Show"><i class="fa fa-sticky-note"></i></a>';
                 }
 
@@ -102,7 +102,7 @@ class DonationController extends Controller
      */
     public function create()
     {
-        if (!have_right('Create-Doantions'))
+        if (!have_right('Access-Doantions'))
             access_denied();
         $data = [];
         $data['row'] = new Donation;
@@ -132,7 +132,7 @@ class DonationController extends Controller
         }
 
         if ($input['action'] == 'add') {
-            if (!have_right('Create-Doantions'))
+            if (!have_right('Access-Doantions'))
                 access_denied();
             $model = new Donation();
             if (isset($input['file'])) {
@@ -148,7 +148,7 @@ class DonationController extends Controller
             $model->save();
             return redirect('admin/donations')->with('message', 'Data added Successfully');
         } else {
-            if (!have_right('Edit-Doantions'))
+            if (!have_right('Access-Doantions'))
                 access_denied();
 
             $id = $input['id'];
@@ -185,7 +185,7 @@ class DonationController extends Controller
      */
     public function edit($id)
     {
-        if (!have_right('Edit-Doantions'))
+        if (!have_right('Access-Doantions'))
             access_denied();
 
         $data = [];
@@ -206,7 +206,7 @@ class DonationController extends Controller
      */
     public function destroy($id)
     {
-        if (!have_right('Delete-Doantions'))
+        if (!have_right('Access-Doantions'))
             access_denied();
 
         $model = Donation::find($id);

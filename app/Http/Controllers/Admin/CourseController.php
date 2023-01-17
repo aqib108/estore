@@ -19,7 +19,7 @@ class CourseController extends Controller
      */
     public function index(Request $request)
     {
-        if(!have_right('view-customers'))
+        if(!have_right('Access-Courses'))
         access_denied();
 
     $data = [];
@@ -48,12 +48,12 @@ class CourseController extends Controller
         {
             $actions = '<span class="actions">';
 
-            if(have_right('edit-customer'))
+            if(have_right('Access-Courses'))
             {
                 $actions .= '&nbsp;<a class="btn btn-primary" href="'.url("admin/courses/" .$hashids->encode($row->id).'/edit').'" title="Edit"><i class="far fa-edit"></i></a>';
             }
                 
-            if(have_right('delete-admin'))
+            if(have_right('Access-Courses'))
                 {
                     $actions .= '<form method="POST" action="'.url("admin/courses/" . $hashids->encode($row->id)).'" accept-charset="UTF-8" style="display:inline;">';
                     $actions .= '<input type="hidden" name="_method" value="DELETE">';
@@ -82,7 +82,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        if(!have_right('add-admin'))
+        if(!have_right('Access-Courses'))
             access_denied();
 
         $data = [];
@@ -112,7 +112,7 @@ class CourseController extends Controller
         }
         else
         {
-            if(!have_right('edit-admin') || 0)
+            if(!have_right('Access-Courses') || 0)
                 access_denied();
 
             $hashids = new Hashids('',10);
@@ -149,7 +149,7 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        if(!have_right('edit-customer'))
+        if(!have_right('Access-Courses'))
             access_denied();
 
         $data = [];
@@ -182,7 +182,7 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        if(!have_right('delete-admin'))
+        if(!have_right('Access-Courses'))
         access_denied();
 
         $data = [];

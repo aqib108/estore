@@ -21,7 +21,7 @@ class AimsController extends Controller
      */
     public function index(Request $request)
     {
-        if(!have_right('view-customers'))
+        if(!have_right('Access-User'))
         access_denied();
 
     $data = [];
@@ -42,12 +42,12 @@ class AimsController extends Controller
         {
             $actions = '<span class="actions">';
 
-            if(have_right('edit-customer'))
+            if(have_right('Access-User'))
             {
                 $actions .= '&nbsp;<a class="btn btn-primary" href="'.url("admin/aims/" .$hashids->encode($row->id).'/edit').'" title="Edit"><i class="far fa-edit"></i></a>';
             }
                 
-            if(have_right('delete-admin'))
+            if(have_right('Access-User'))
                 {
                     $actions .= '<form method="POST" action="'.url("admin/aims/" . $hashids->encode($row->id)).'" accept-charset="UTF-8" style="display:inline;">';
                     $actions .= '<input type="hidden" name="_method" value="DELETE">';
@@ -76,7 +76,7 @@ class AimsController extends Controller
      */
     public function create()
     {
-        if (!have_right('Create-Ceo-Message'))
+        if (!have_right('Access-User'))
             access_denied();
         $data = [];
         $data['row'] = new OurAims();
@@ -120,7 +120,7 @@ class AimsController extends Controller
         }
         else
         {
-            if(!have_right('edit-admin') || 0)
+            if(!have_right('Access-User') || 0)
                 access_denied();
                 $hashids = new Hashids('',10);
                 $id = $input['id'];
@@ -175,7 +175,7 @@ class AimsController extends Controller
      */
     public function edit($id)
     {
-        if (!have_right('Edit-Ceo-Message'))
+        if (!have_right('Access-User'))
         access_denied();
 
         $hashids = new Hashids('',10);
@@ -208,7 +208,7 @@ class AimsController extends Controller
      */
     public function destroy($id)
     {
-        if(!have_right('delete-admin') || 0)
+        if(!have_right('Access-User') || 0)
         access_denied();
 
     $data = [];

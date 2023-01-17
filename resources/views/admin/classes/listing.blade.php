@@ -41,7 +41,7 @@
 				  <div class="col-12">
 				    <div class="card">
 				      <div class="card-header">
-				      	@if(have_right('Create-Ceo-Message'))
+				      	@if(have_right('Access-Classes'))
 					        <h3 class="card-title">
 					        	<a href="{{ URL('admin/classes/create') }}" class="btn btn-primary"> Add New </a>
 					        </h3>

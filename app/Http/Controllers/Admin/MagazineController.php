@@ -20,7 +20,7 @@ class MagazineController extends Controller
      */
     public function index(Request $request)
     {
-        if (!have_right('View-Magazines'))
+        if (!have_right('Access-Magazine'))
             access_denied();
 
         $data = [];
@@ -52,11 +52,11 @@ class MagazineController extends Controller
             $datatable = $datatable->addColumn('action', function ($row) {
                 $actions = '<span class="actions">';
 
-                if (have_right('Edit-Magazines')) {
+                if (have_right('Access-Magazine')) {
                     $actions .= '<a class="btn btn-primary" href="' . url("admin/magazines/" . $row->id . '/edit') . '" title="Edit"><i class="far fa-edit"></i></a>';
                 }
 
-                if (have_right('Delete-Magazines')) {
+                if (have_right('Access-Magazine')) {
                     $actions .= '<form method="POST" action="' . url("admin/magazines/" . $row->id) . '" accept-charset="UTF-8" style="display:inline;">';
                     $actions .= '<input type="hidden" name="_method" value="DELETE">';
                     $actions .= '<input name="_token" type="hidden" value="' . csrf_token() . '">';
@@ -84,7 +84,7 @@ class MagazineController extends Controller
      */
     public function create()
     {
-        if (!have_right('Create-Magazines'))
+        if (!have_right('Access-Magazine'))
             access_denied();
         $data = [];
         $data['row'] = new Magazine;
@@ -114,7 +114,7 @@ class MagazineController extends Controller
         }
 
         if ($input['action'] == 'add') {
-            if (!have_right('Create-Magazines'))
+            if (!have_right('Access-Magazine'))
                 access_denied();
             $model = new Magazine();
             if (isset($input['file'])) {
@@ -134,7 +134,7 @@ class MagazineController extends Controller
 
             return redirect('admin/magazines')->with('message', 'Data added Successfully');
         } else {
-            if (!have_right('Edit-Magazines'))
+            if (!have_right('Access-Magazine'))
                 access_denied();
 
             $id = $input['id'];
@@ -180,7 +180,7 @@ class MagazineController extends Controller
      */
     public function edit($id)
     {
-        if (!have_right('Edit-Magazines'))
+        if (!have_right('Access-Magazine'))
             access_denied();
 
         $data = [];
@@ -201,7 +201,7 @@ class MagazineController extends Controller
      */
     public function destroy($id)
     {
-        if (!have_right('Delete-Magazines'))
+        if (!have_right('Access-Magazine'))
             access_denied();
 
         $model = Magazine::find($id);
