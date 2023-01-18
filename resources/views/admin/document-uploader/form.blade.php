@@ -26,7 +26,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ URL('admin/document-uploader') }}">Departmemts</a></li>
+                        <li class="breadcrumb-item"><a href="{{ URL('admin/document-uploader') }}">Document Uploader</a></li>
                         <li class="breadcrumb-item active">Create Document Uploader</li>
                     </ol>
                 </div><!-- /.col -->
@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="form-group text-right">
                                     <div class="col-sm-12">
-                                        <a href="{{ URL('admin/department') }}" class="btn btn-info mr-2"> Cancel </a>
+                                        <a href="{{ URL('admin/document-uploader') }}" class="btn btn-info mr-2"> Cancel </a>
                                         <button type="submit" class="btn btn-primary float-right"> {{ ($action=='add') ? 'Save' : 'Update' }} </button>
                                     </div>
                                 </div>

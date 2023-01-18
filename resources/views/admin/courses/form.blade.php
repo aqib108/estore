@@ -140,7 +140,7 @@
 				                    <hr>
 				                  	<div class="form-group text-right">
 				                  		<div class="col-sm-12">
-				                  			<a href="{{ URL('admin/sliders') }}" class="btn btn-info" style="margin-right:05px;"> Cancel </a>
+				                  			<a href="{{ URL('admin/courses') }}" class="btn btn-info" style="margin-right:05px;"> Cancel </a>
 				                  			<button type="submit" class="btn btn-primary float-right"> {{ ($action=='add') ? 'Save' : 'Update' }} </button>
 				                  		</div>
 				                  	</div>

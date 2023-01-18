@@ -24,8 +24,8 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-              <li class="breadcrumb-item"><a href="{{ URL('admin/admins') }}">Admin Users</a></li>
-              <li class="breadcrumb-item active">Create Admin User</li>
+              <li class="breadcrumb-item"><a href="{{ URL('admin/site-setting') }}">Site Setting</a></li>
+              <li class="breadcrumb-item active">Update Site Setting</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->

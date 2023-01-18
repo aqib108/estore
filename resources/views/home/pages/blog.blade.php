@@ -15,7 +15,7 @@
                                 <div class="fakeimg" style="height:200px;"><img  style="width: 700px;height: 180px;object-fit: cover;" src="{{asset('feature-images/'.$post->image)}}" class="img-fluid"></div>
                                 <p class="m-3">@php echo  !empty($post->short_description) ? set_locale($post->short_description) : '' @endphp</p>
                                 <div class="buton-holder d-flex justify-content-end m-3">
-                                    <button class="orange theme-button">{{ __('app.read-more') }}</button>
+                                    <a target="_blank" href="{{ route('home.blog-detail', ['id' => $post->id]) }}" class="orange theme-button">{{ __('app.read-more') }}</a>
                                 </div>
                             </div>
                         @endforeach

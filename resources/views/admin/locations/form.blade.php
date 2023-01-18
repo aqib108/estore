@@ -26,7 +26,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ URL('admin/office-addresses') }}">Locations</a></li>
+                        <li class="breadcrumb-item"><a href="{{ URL('admin/locations') }}">Locations</a></li>
                         <li class="breadcrumb-item active">Create Location</li>
                     </ol>
                 </div><!-- /.col -->
@@ -65,7 +65,7 @@
                                         <div class="card-header" id="title-heading">
                                             <h2 class="mb-0">
                                                 <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#name" aria-expanded="true" aria-controls="name">
-                                                    Office Address
+                                                    Location  Address
                                                 </button>
                                             </h2>
                                         </div>
