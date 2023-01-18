@@ -150,9 +150,9 @@
                                         <div id="thumbnail" class="collapse" aria-labelledby="message-title-heading" data-parent="#accordionExample">
                                             <div class="card-body">
                                                 <div class="form-group row">
-                                                    <label class="col-sm-2 col-form-label">Image <span class="text-red">*</span></label>
+                                                    <label class="col-sm-2 col-form-label">Image</label>
                                                     <div class="col-sm-6">
-                                                        <input type="file" class="form-control" placeholder="Select Image" id="imageinpt" name="thumbnail_image" value="" @if (!$row->thumbnail_image) required @endif>
+                                                        <input type="file" class="form-control" placeholder="Select Image" id="imageinpt" name="thumbnail_image" value="" @if (!$row->thumbnail_image)  @endif>
                                                     </div>
                                                     <div class="col-sm-2">
                                                         @if ($row->thumbnail_image)
@@ -187,8 +187,8 @@
                                                     <div class="col-sm-4">
                                                         <div class="form-group ">
                                                             <label class="col-form-label">Description
-                                                                {{ $language->name }} <span class="text-red">*</span></label>
-                                                            <textarea id="" name="description[{{ $language->short_name }}]" required rows="5" cols="30">{{ isset($description[$language->short_name]) ? $description[$language->short_name] : '' }}</textarea>
+                                                                {{ $language->name }} </label>
+                                                            <textarea id="" name="description[{{ $language->short_name }}]" rows="5" cols="30">{{ isset($description[$language->short_name]) ? $description[$language->short_name] : '' }}</textarea>
                                                         </div>
                                                     </div>
                                                     @endforeach

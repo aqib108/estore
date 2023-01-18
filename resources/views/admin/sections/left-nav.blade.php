@@ -61,12 +61,12 @@ $url_3 = Request::segment(4);
                         @endif
 
                         @if(have_right('Access-User'))
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{ URL('admin/customers') }}" class="nav-link {{ $url_1 == 'customers' ? 'active':'' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Customers</p>
                             </a>
-                        </li>
+                        </li> --}}
                         @endif
                         
                         @if(have_right('Access-Roles-Managment'))
