@@ -3171,7 +3171,16 @@ iframe {border: none;}
 	display: block;
 }
 
-.wrap-pic-w img {width: 100%;}
+.wrap-pic-w img {
+	width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+.product_image{
+	height: 250px;
+    width: 100%;
+    object-fit: cover;
+}
 .wrap-pic-max-w img {max-width: 100%;}
 
 .wrap-pic-h img {height: 100%;}
