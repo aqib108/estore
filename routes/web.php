@@ -82,6 +82,10 @@ Route::prefix('admin')->namespace('Admin')->group(static function()
         Route::resource('customers', '\App\Http\Controllers\Admin\RoomCustomerController');
         Route::resource('room-booking', '\App\Http\Controllers\Admin\RoomBookingController');
         Route::get('booking-invoice\{id?}','\App\Http\Controllers\Admin\RoomBookingController@printInvoice')->name('admin.print.invoice');
+
+        Route::resource('products', '\App\Http\Controllers\Admin\ProductsController');
+        Route::post('product-post', [\App\Http\Controllers\Admin\ProductsController::class, 'productPost'])->name('admin.product-post');
+        Route::get('products/featured-product/{id}', '\App\Http\Controllers\Admin\ProductsController@setFeaturedProduct');
         //end of rooms route
     });
 });
