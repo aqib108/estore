@@ -56,7 +56,7 @@
 @include('store.slider.slider')
 @include('store.banner.banner')
 <div id="app">
-@yield('content')]
+@yield('content')
 </div>
 @include('store.footer.footer')
 @include('store.footer.back_to_top')

@@ -65,7 +65,7 @@ Route::prefix('admin')->namespace('Admin')->group(static function()
         Route::get('profile', '\App\Http\Controllers\Admin\AdminController@profile');
         Route::post('profile', '\App\Http\Controllers\Admin\AdminController@profile');
         Route::post('update-pic', '\App\Http\Controllers\Admin\AdminController@profilePic');
-        // Route::resource('customers', '\App\Http\Controllers\Admin\CustomerController');
+        Route::resource('customers', '\App\Http\Controllers\Admin\CustomerController');
         Route::post('pages/uploadimage', '\App\Http\Controllers\Admin\PagesController@uploadimage')->name('admin.pages.uploadimage');
         Route::post('posts/uploadimage', '\App\Http\Controllers\Admin\PostsController@uploadimage')->name('admin.posts.uploadimage');
         Route::post('sliders/uploadimage', '\App\Http\Controllers\Admin\SliderController@uploadimage')->name('admin.sliders.uploadimage');
@@ -80,7 +80,7 @@ Route::prefix('admin')->namespace('Admin')->group(static function()
         Route::resource('document-uploader', '\App\Http\Controllers\Admin\DocumentUploader');
         //rooms route
         Route::resource('categories', '\App\Http\Controllers\Admin\CategoriesController');
-        Route::resource('customers', '\App\Http\Controllers\Admin\RoomCustomerController');
+        // Route::resource('customers', '\App\Http\Controllers\Admin\RoomCustomerController');
         Route::resource('room-booking', '\App\Http\Controllers\Admin\RoomBookingController');
         Route::get('booking-invoice\{id?}','\App\Http\Controllers\Admin\RoomBookingController@printInvoice')->name('admin.print.invoice');
 
@@ -101,12 +101,21 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/assigment', [App\Http\Controllers\HomeController::class, 'assigment'])->name('assigment');
 
-Route::get('/{slug}', [App\Http\Controllers\HomeController::class, 'page'])->name('page');
+// Route::get('/{slug}', [App\Http\Controllers\HomeController::class, 'page'])->name('page');
 Route::get('post/{slug}', [App\Http\Controllers\HomeController::class, 'post'])->name('post');
 Route::get('category/{slug}', [App\Http\Controllers\HomeController::class, 'category'])->name('category');
 Route::get('tag/{slug}', [App\Http\Controllers\HomeController::class, 'tag'])->name('tag');
 Route::get('search/query', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
 Route::get('/download/{document_id?}', [App\Http\Controllers\HomeController::class, 'downloadFile'])->name('download-file');
+
+Route::prefix('user')->namespace('user')->group(static function () {
+    Route::middleware('auth')->group(function () {
+
+        Route::get('/dashboard', [App\Http\Controllers\User\DashboardController::class, 'dashboard'])->name('user.dashboard');
+
+    });
+});
+
 
 // Route::get('/news',function(){
 //     return view('home.pages.news-detail');
