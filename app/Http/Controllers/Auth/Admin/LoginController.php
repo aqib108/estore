@@ -48,7 +48,7 @@ class LoginController extends Controller
         'email'   => 'required|email',
         'password' => 'required'
       ]);
-
+      // dd($request->all());
       // Attempt to log the user in
       if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) 
       {

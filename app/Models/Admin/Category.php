@@ -2,47 +2,19 @@
 
 namespace App\Models\Admin;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Category extends Authenticatable
+class Category extends Model
 {
-    use Notifiable;
-
-    protected $guard = 'admin';
-
+    protected $table='categories';
+    use HasFactory;
     protected $fillable = [
         'name',
-        'url',
-        'in_header',
-        'in_footer',
-        'position',
         'description',
-        'image',
-        'parent_id',
-        'meta_title',
-        'meta_description',
-        'meta_keywords',
-        'status',
+        'status'
     ];
+    public static $roomNumberPrefix='ROOM-NO-';
+    // Boot method to register the model event
 
-    public function ProductCategory()
-    {
-        return $this->hasMany($this, 'parent_id');
-    }
-
-    public function rootCategories()
-    {
-        return $this->where('parent_id', null)->with('ProductCategory')->get();
-    }
-
-    public function subCategories()
-    {
-        return $this->where(['parent_id'=>$this->id,'in_header'=>1,'status'=>1])->get();
-    }
-
-     function categoryPosts()
-    {
-        return $this->belongsToMany('App\Models\Admin\Post');
-    }
 }

@@ -4,57 +4,63 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\View;
+use App\Models\Admin\Department;
 use App\Models\Admin\Category;
-use App\Models\Admin\Role;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
+use App\Models\Admin\Language;
 use Hash;
-use Auth;
-use DB;
 use DataTables;
 use Hashids\Hashids;
-
 class CategoriesController extends Controller
 {
-    public function __construct()
-    {
+    protected $model;
+    public function __construct(Category $room){
+       $this->model = $room;
     }
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index(Request $request)
     {
-        if(!have_right('Access-Categories') || 0)
-            access_denied();
+        // if(!have_right('Access-Our-Departments'))
+        // access_denied();
 
-        $hashids = new Hashids('',10);
-        $data = [];
-        if($request->ajax())
+    $data = [];
+    $hashids = new Hashids('',10);
+    if($request->ajax())
+    {
+        $db_record = $this->model::all();
+        $datatable = Datatables::of($db_record);
+        $datatable = $datatable->addIndexColumn();
+       
+        $datatable = $datatable->editColumn('status', function($row)
         {
-            $db_record = Category::orderBy('created_at','DESC')->get();
-
-            $datatable = Datatables::of($db_record);
-            $datatable = $datatable->addIndexColumn();
-           
-            $datatable = $datatable->editColumn('status', function($row)
+            $status = '<span class="badge badge-danger">Disable</span>';
+            if ($row->status == 1)
             {
-                $status = '<span class="badge badge-danger">Disable</span>';
-                if ($row->status == 1)
-                {
-                    $status = '<span class="badge badge-success">Active</span>';
-                }
-                return $status;
-            });
-            $datatable = $datatable->addColumn('action', function($row) use($hashids)
-            {
-                $actions = '<span class="actions">';
+                $status = '<span class="badge badge-success">Active</span>';
+            }
+            return $status;
+        });
+        $datatable = $datatable->editColumn('name', function($row)
+        {
+            return $row->name;
+            
+        });
+        $datatable = $datatable->editColumn('description', function($row)
+        {
+            return $row->description;
+        });
+        $datatable = $datatable->addColumn('action', function($row) use($hashids)
+        {
+            $actions = '<span class="actions">';
 
-                if(have_right('Access-Categories'))
-                {
-                    $actions .= '<a class="btn btn-primary" href="'.url("admin/categories/" .$hashids->encode($row->id).'/edit').'" title="Edit"><i class="far fa-edit"></i></a>';
-                }
-                    
-                if(have_right('Access-Categories'))
-                {
+            
+                $actions .= '&nbsp;<a class="btn btn-primary" href="'.url("admin/categories/" .$hashids->encode($row->id).'/edit').'" title="Edit"><i class="far fa-edit"></i></a>';
+            
+                
+            
                     $actions .= '<form method="POST" action="'.url("admin/categories/" . $hashids->encode($row->id)).'" accept-charset="UTF-8" style="display:inline;">';
                     $actions .= '<input type="hidden" name="_method" value="DELETE">';
                     $actions .= '<input name="_token" type="hidden" value="'.csrf_token().'">';
@@ -62,104 +68,125 @@ class CategoriesController extends Controller
                     $actions .= '<i class="far fa-trash-alt"></i>';
                     $actions .= '</button>';
                     $actions .= '</form>';
-                }
+                
+            $actions .= '</span>';
+            return $actions;
+        });
 
-                $actions .= '</span>';
-                return $actions;
-            });
-
-            $datatable = $datatable->rawColumns(['status','action']);
-            $datatable = $datatable->make(true);
-            return $datatable;
-        }
-
+        $datatable = $datatable->rawColumns(['status','action']);
+        $datatable = $datatable->make(true);
+        return $datatable;
+    }
         return view('admin.categories.listing',$data);
     }
 
-    public function create(Category $category)
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
-        if(!have_right('Access-Categories') || 0)
-            access_denied();
+        // if(!have_right('Access-Our-Departments'))
+        //     access_denied();
 
         $data = [];
-        $data['row'] = $category;
-        $data['categories'] = $category->rootCategories();
+        $data['row'] = $this->model;
         $data['action'] = 'add';
         return View('admin.categories.form',$data);
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $input = $request->all();
+        if($input['action'] == 'add')
+        {
+        $input['name'] = $request->name;
+        $input['description'] = $request->description;
+        $model = new $this->model;
+        $model->fill($input);
+        $model->save();
+        return redirect('admin/categories')->with('message','Data saved Successfully');
+        }
+        else
+        {
+            $hashids = new Hashids('',10);
+            $id = $input['id'];
+            $id = $hashids->decode($id)[0];
+            $model = $this->model::find($id);
+            $input['name'] = $request->name;
+            $input['description'] = $request->description; 
+            $model->fill($input);
+            $model->update();
+            return redirect('admin/categories')->with('message','Data update Successfully');  
+        }
+       
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function edit($id)
     {
-        if(!have_right('Access-Categories') || 0)
-            access_denied();
+        // if(!have_right('Access-Our-Departments'))
+        //     access_denied();
 
-        $hashids = new Hashids('',10);
         $data = [];
         $data['id'] = $id;
+        $hashids = new Hashids('',10);
         $id = $hashids->decode($id)[0];
-        $category = new Category();
-        $data['row'] = Category::find($id);
-        $data['categories'] = $category->rootCategories();
+        $data['row'] = $this->model::find($id);
         $data['action'] = 'edit';
         return View('admin.categories.form',$data);
     }
 
-    public function store(Request $request)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
     {
-        $input = $request->all();
-
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'url' => 'required|string|max:255',
-            'description' => 'required|string',
-        ]);
-
-        if ($validator->fails())
-        {
-            Session::flash('flash_danger', $validator->messages());
-            return redirect()->back()->withInput();
-        }
-
-        if(!isset($input['parent_id']))
-        {
-            $input['parent_id'] = null;
-        }
-
-        if($input['action'] == 'add')
-        {
-            if(!have_right('Access-Categories') || 0)
-                access_denied();
-
-            $model = new Category();
-            $model->fill($input);
-            $model->save();
-
-            return redirect('admin/categories')->with('message','Data added Successfully');
-        }
-        else
-        {
-            if(!have_right('Access-Categories') || 0)
-                access_denied();
-
-            $hashids = new Hashids('',10);
-            $id = $input['id'];
-            $id = $hashids->decode($id)[0];
-            $model = Category::find($id);
-            $model->fill($input);
-            $model->update();
-            return redirect('admin/categories')->with('message','Data updated Successfully');
-        }
+        //
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
-        if(!have_right('Access-Categories') || 0)
-            access_denied();
+        // if(!have_right('Access-Our-Departments'))
+        // access_denied();
 
         $data = [];
         $hashids = new Hashids('',10);
         $id = $hashids->decode($id)[0];
-        $data['row'] = Category::destroy($id);
+        $data['row'] = $this->model::destroy($id);
         return redirect('admin/categories')->with('message','Data deleted Successfully');
     }
 }

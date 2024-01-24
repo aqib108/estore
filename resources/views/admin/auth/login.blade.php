@@ -17,7 +17,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="{{ URL('admin') }}"><b>HNI</b> Login</a>
+    <a href="{{ URL('admin') }}"><img height='100px' width='230px' src='{{asset('assets/front/images/logo.png')}}'></a>
   </div>
   <!-- /.login-logo -->
   <div class="card">

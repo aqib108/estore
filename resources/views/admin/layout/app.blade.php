@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}" />
-  <title>HNI CRM Dashboard</title>
+  <title>Sales Feild Service</title>
   @stack('header-scripts')
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
   <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/custom.css')}}">
@@ -15,7 +15,7 @@
   <div class="wrapper">
     <!-- Preloader -->
     <div class="preloader flex-column justify-content-center align-items-center">
-      <img class="animation__shake" src="{{ asset('assets/admin/dist/img/AdminLTELogo.png') }}" alt="HNI CRM" height="60" width="60">
+      <img class="animation__shake" src="{{ asset('assets/front/images/logo.png') }}" alt="HNI CRM" height="60" width="60">
     </div>
 
     @include('admin.sections.header')

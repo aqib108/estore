@@ -26,6 +26,10 @@ Route::get('/storage', function () {
     Artisan::call('storage:link');
     dump('storage linked');
 });
+//ecommerce store route
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+//end of ecommerce store route
+
 
 Route::get('/blog', [App\Http\Controllers\HomeController::class, 'Blog']);
 Route::get('/blog-detail/{id?}', [App\Http\Controllers\HomeController::class, 'BlogDetail'])->name('home.blog-detail');
@@ -60,40 +64,25 @@ Route::prefix('admin')->namespace('Admin')->group(static function()
         Route::get('profile', '\App\Http\Controllers\Admin\AdminController@profile');
         Route::post('profile', '\App\Http\Controllers\Admin\AdminController@profile');
         Route::post('update-pic', '\App\Http\Controllers\Admin\AdminController@profilePic');
-        Route::resource('roles', '\App\Http\Controllers\Admin\RoleController');
-        Route::resource('customers', '\App\Http\Controllers\Admin\CustomerController');
-        Route::resource('site-setting', '\App\Http\Controllers\Admin\SettingController');
-        Route::resource('categories', '\App\Http\Controllers\Admin\CategoriesController');
-        Route::resource('tags', '\App\Http\Controllers\Admin\TagsController');
-        Route::resource('posts', '\App\Http\Controllers\Admin\PostsController');
-        Route::resource('pages', '\App\Http\Controllers\Admin\PagesController');
-        Route::resource('sliders', '\App\Http\Controllers\Admin\SliderController');
-        Route::resource('courses', '\App\Http\Controllers\Admin\CourseController');
-        Route::resource('ceomessage', '\App\Http\Controllers\Admin\CeoMessageController');
-        Route::resource('testimonials', '\App\Http\Controllers\Admin\TestimonialController');
+        // Route::resource('customers', '\App\Http\Controllers\Admin\CustomerController');
         Route::post('pages/uploadimage', '\App\Http\Controllers\Admin\PagesController@uploadimage')->name('admin.pages.uploadimage');
         Route::post('posts/uploadimage', '\App\Http\Controllers\Admin\PostsController@uploadimage')->name('admin.posts.uploadimage');
         Route::post('sliders/uploadimage', '\App\Http\Controllers\Admin\SliderController@uploadimage')->name('admin.sliders.uploadimage');
-        Route::resource('department', '\App\Http\Controllers\Admin\DepartmentController');
-        Route::resource('contacts', '\App\Http\Controllers\Admin\ContactController');
         Route::get('/contacts-status', [App\Http\Controllers\Admin\ContactController::class, 'updateStatus']);
-        Route::resource('subscriptions', '\App\Http\Controllers\Admin\SubscriptionController');
-        Route::resource('donations', '\App\Http\Controllers\Admin\DonationController');
-        Route::resource('news', '\App\Http\Controllers\Admin\NewsController');
         Route::get('featured-donation/{id}', [App\Http\Controllers\Admin\DonationController::class, 'setFeaturedDonation'])->name('admin.featured.donation');
-        Route::resource('magazine-categories', '\App\Http\Controllers\Admin\MagazineCategoryController');
-        Route::resource('magazines', '\App\Http\Controllers\Admin\MagazineController');
-        Route::resource('locations', '\App\Http\Controllers\Admin\LocationController');
         Route::get('locations/featured-address/{id}', '\App\Http\Controllers\Admin\LocationController@setFeaturedAddress');
         //library route
         Route::post('save-files-ajax/{libId}', '\App\Http\Controllers\Admin\LibraryController@saveFilesAjax');
-        Route::resource('library', '\App\Http\Controllers\Admin\LibraryController');
-        Route::resource('classes', '\App\Http\Controllers\Admin\ClassesController');
-        Route::resource('aims', '\App\Http\Controllers\Admin\AimsController');
         Route::post('update-thumb-img/{id}', '\App\Http\Controllers\Admin\LibraryController@updateThumbImg');
 
         Route::any('donation/recieved-amount', [\App\Http\Controllers\Admin\DonationController::class, 'recievedAmount'])->name('admin.donation-recieved-amount');
         Route::resource('document-uploader', '\App\Http\Controllers\Admin\DocumentUploader');
+        //rooms route
+        Route::resource('categories', '\App\Http\Controllers\Admin\CategoriesController');
+        Route::resource('customers', '\App\Http\Controllers\Admin\RoomCustomerController');
+        Route::resource('room-booking', '\App\Http\Controllers\Admin\RoomBookingController');
+        Route::get('booking-invoice\{id?}','\App\Http\Controllers\Admin\RoomBookingController@printInvoice')->name('admin.print.invoice');
+        //end of rooms route
     });
 });
 

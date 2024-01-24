@@ -7,21 +7,14 @@ $url_3 = Request::segment(4);
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ route('admin.dashboard') }}" class="brand-link">
-        <img src="{{ asset('assets/admin/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">HNI</span>
+        <img src="{{ asset('assets/front/images/logo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">Admin</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="{{ asset(auth()->user()->profile) }}" class="img-circle elevation-2" alt="User Image">
-            </div>
-            <div class="info">
-                <a href="{{ URL('admin/profile') }}" class="d-block">HNI Admin</a>
-            </div>
-        </div>
+        
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -40,7 +33,7 @@ $url_3 = Request::segment(4);
 
                 <!-- menu-open -->
                 @if(have_right('Access-Admin') || have_right('Access-User') || have_right('Access-Roles-Managment'))
-                <li class="nav-item {{ ($url_1 == 'admins' || $url_1 == 'roles' || $url_1 == 'customers') ? 'menu-open':'' }}">
+                <li class="d-none nav-item {{ ($url_1 == 'admins' || $url_1 == 'roles' || $url_1 == 'customers') ? 'menu-open':'' }}">
                     <a href="#" class="nav-link {{ ($url_1 == 'admins' || $url_1 == 'roles' || $url_1 == 'customers') ? 'active':'' }}">
                         <i class="nav-icon fas fa-cogs"></i>
                         <p>
@@ -82,11 +75,36 @@ $url_3 = Request::segment(4);
 
                 </li>
                 @endif
-
+                {{--admin room--}}
+              <li class="nav-item">
+                    <a href="{{ URL('admin/categories') }}" class="nav-link {{ $url_1 == 'categories' ? 'active':'' }}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            categories
+                        </p>
+                    </a>
+                </li>
+                 <li class="nav-item">
+                    <a href="{{ URL('admin/customers') }}" class="nav-link {{ $url_1 == 'customers' ? 'active':'' }}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Products
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ URL('admin/room-booking') }}" class="nav-link {{ $url_1 == 'room-booking' ? 'active':'' }}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Customers
+                        </p>
+                    </a>
+                </li>
+                {{--end of admin room--}}
                 <!-- Contact & subscriptions menus by saad  -->
 
                 @if(have_right('Access-Contacts') || have_right('Access-Subscription'))
-                <li class="nav-item {{ ($url_1 == 'contacts' || $url_1 == 'subscriptions' ) ? 'menu-open':'' }}">
+                <li class="d-none nav-item {{ ($url_1 == 'contacts' || $url_1 == 'subscriptions' ) ? 'menu-open':'' }}">
                     <a href="#" class="nav-link {{ ($url_1 == 'contacts' || $url_1 == 'subscriptions' ) ? 'active':'' }}">
                         {{-- <i class="nav-icon fas fa-home"></i> --}}
                         <i class="nav-icon fas fa-folder"></i>
@@ -126,7 +144,7 @@ $url_3 = Request::segment(4);
 
                 {{-- Magazine section --}}
                 @if(have_right('Access-Magazine-Categories') || have_right('Access-Magazine') )
-                <li class="nav-item {{ ($url_1 == 'magazines'|| $url_1=='magazine-categories') ? 'menu-open':'' }}">
+                <li class="d-none nav-item {{ ($url_1 == 'magazines'|| $url_1=='magazine-categories') ? 'menu-open':'' }}">
                     <a href="#" class="nav-link {{ ($url_1 == 'magazine-categories' || $url_1 == 'magazines' ) ? 'active':'' }}">
                         <i class="nav-icon fas fa fa-book"></i>
                         <p>
@@ -165,7 +183,7 @@ $url_3 = Request::segment(4);
 
                 {{-- Blog section --}}
                 @if(have_right('Access-Posts') || have_right('Access-Categories') || have_right('Access-Tags')|| have_right('Access-News-Feed') )
-                <li class="nav-item {{ ($url_1 == 'posts'|| $url_1=='categories' || $url_1=='tags' || $url_1=='news' ) ? 'menu-open':'' }}">
+                <li class="d-none nav-item {{ ($url_1 == 'posts'|| $url_1=='categories' || $url_1=='tags' || $url_1=='news' ) ? 'menu-open':'' }}">
                     <a href="#" class="nav-link {{ ($url_1 == 'categories' || $url_1 == 'posts' || $url_1=='tags' || $url_1=='news') ? 'active':'' }}">
                         <i class="nav-icon fa fa-briefcase"></i>
                         <p>
@@ -175,9 +193,9 @@ $url_3 = Request::segment(4);
                         </p>
                     </a>
 
-                    <ul class="nav nav-treeview">
+                    <ul class="d-none nav nav-treeview">
                         @if (have_right('Access-Posts'))
-                        <li class="nav-item">
+                        <li class="d-none nav-item">
                             <a href="{{ URL('admin/posts') }}" class="nav-link {{ $url_1 == 'posts' ? 'active':'' }}">
                                 <i class="nav-icon far fa-circle"></i>
                                 <p>
@@ -187,7 +205,7 @@ $url_3 = Request::segment(4);
                         </li>                      
                         @endif
                         @if (have_right('Access-Categories'))
-                        <li class="nav-item">
+                        <li class="d-none nav-item">
                             <a href="{{ URL('admin/categories') }}" class="nav-link {{ $url_1 == 'categories' ? 'active':'' }}">
                                 <i class="nav-icon far fa-circle"></i>
                                 <p>
@@ -225,7 +243,7 @@ $url_3 = Request::segment(4);
 
 
                 @if(have_right('Access-Library-Image') || have_right('Access-Library-Video') || have_right('Access-Library-Audio') || have_right('Access-Library-Book') || have_right('Access-Library-Document'))
-                <li class="nav-item {{ ($url_1 == 'library'  ) ? 'menu-open':'' }}">
+                <li class="d-none nav-item {{ ($url_1 == 'library'  ) ? 'menu-open':'' }}">
                     <a href="#" class="nav-link {{ ($url_1 == 'library'  ) ? 'active':'' }}">
                         <i class="nav-icon fas fa-photo-video"></i>
                         <p>
@@ -235,7 +253,7 @@ $url_3 = Request::segment(4);
                         </p>
                     </a>
 
-                    <ul class="nav nav-treeview">
+                    <ul class="d-none nav nav-treeview">
 
                         @if(have_right('Access-Library-Image'))
                         <li class="nav-item">
@@ -280,7 +298,7 @@ $url_3 = Request::segment(4);
                 <!-- end of library section-->
 
                 @if(have_right('Access-Courses') || have_right('Access-Classes') )
-                <li class="nav-item {{ ($url_1 == 'courses'|| $url_1=='classes') ? 'menu-open':'' }}">
+                <li class="d-none nav-item {{ ($url_1 == 'courses'|| $url_1=='classes') ? 'menu-open':'' }}">
                     <a href="#" class="nav-link {{ ($url_1 == 'classes' || $url_1 == 'courses' ) ? 'active':'' }}">
                         <i class="nav-icon fa fa-users"></i>
                         <p>
@@ -289,7 +307,7 @@ $url_3 = Request::segment(4);
                         </p>
                     </a>
 
-                    <ul class="nav nav-treeview">
+                    <ul class="d-none nav nav-treeview">
                         @if(have_right('Access-Courses'))
                         <li class="nav-item">
                             <a href="{{ URL('admin/courses') }}" class="nav-link {{ $url_1 == 'courses' ? 'active':'' }}">
@@ -314,7 +332,7 @@ $url_3 = Request::segment(4);
                 @endif
 
                 @if(have_right('Access-Message') || have_right('Access-Slider') || have_right('Access-Our-Aims')|| have_right('Access-Pages') || have_right('Access-Our-Testimonials') )
-                <li class="nav-item {{ ($url_1 == 'ceomessage' || $url_1 == 'aims'|| $url_1=='sliders' || $url_1 == 'pages' || $url_1 == 'testimonials') ? 'menu-open':'' }}">
+                <li class="d-none nav-item {{ ($url_1 == 'ceomessage' || $url_1 == 'aims'|| $url_1=='sliders' || $url_1 == 'pages' || $url_1 == 'testimonials') ? 'menu-open':'' }}">
                     <a href="#" class="nav-link {{ ($url_1 == 'sliders' ||$url_1 == 'aims' || $url_1 == 'ceomessage'|| $url_1 == 'pages'|| $url_1 == 'testimonials') ? 'active':'' }}">
                         <i class="nav-icon fa fa-home"></i>
                         <p>
@@ -384,7 +402,7 @@ $url_3 = Request::segment(4);
                 @endif
 
                 @if(have_right('Access-Our-Locations'))
-                <li class="nav-item">
+                <li class="d-none nav-item">
                     <a href="{{ URL('admin/locations') }}" class="nav-link {{ $url_1 == 'locations' ? 'active':'' }}">
                         <i class="fa fa-map-marker nav-icon"></i>
                         <p>Locations</p>
@@ -392,7 +410,7 @@ $url_3 = Request::segment(4);
                 </li>
                 @endif
                 @if(have_right('Access-Our-Departments'))
-                <li class="nav-item">
+                <li class="d-none nav-item">
                     <a href="{{ URL('admin/department') }}" class="nav-link {{ $url_1 == 'department' ? 'active':'' }}">
                         <i class="nav-icon fa fa-graduation-cap"></i>
                         <p>
@@ -402,7 +420,7 @@ $url_3 = Request::segment(4);
                 </li>
                 @endif
                 @if(have_right('Access-Doantions'))
-                <li class="nav-item">
+                <li class="d-none nav-item">
                     <a href="{{ URL('admin/donations') }}" class="nav-link {{ $url_1 == 'donations' ? 'active':'' }}">
 
                         <i class=" nav-icon fas fa-box"></i>

@@ -21,12 +21,12 @@
 		  <div class="container-fluid">
 		    <div class="row mb-2">
 		      <div class="col-sm-6">
-		        <h1 class="m-0">Categories</h1>
+		        <h1 class="m-0">categories</h1>
 		      </div><!-- /.col -->
 		      <div class="col-sm-6">
 		        <ol class="breadcrumb float-sm-right">
 		          <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-		          <li class="breadcrumb-item active">Categories</li>
+		          <li class="breadcrumb-item active">categories</li>
 		        </ol>
 		      </div><!-- /.col -->
 		    </div><!-- /.row -->
@@ -41,19 +41,17 @@
 				  <div class="col-12">
 				    <div class="card">
 				      <div class="card-header">
-				      	@if(have_right('Access-Categories'))
 					        <h3 class="card-title">
-					        	<a href="{{ URL('admin/categories/create') }}" class="btn btn-primary"> Add New </a>
+					        	<a href="{{ URL('admin/categories/create') }}" class="btn btn-primary"> Add New Category </a>
 					        </h3>
-				        @endif
 				      </div>
 				      <div class="card-body">
-				        <table id="admins-datatable" class="table table-bordered table-striped" style="width:100%">
+				        <table id="tags-datatable" class="table table-bordered table-striped" style="width:100%">
 				          <thead>
 				              <tr>
 				                <th>ID</th>
-				                <th>Name</th>
-				                <th>URL</th>
+				                <th>Category Name</th>
+								<th>Description</th>
 				                <th>Status</th>
 				                <th>Actions</th>
 				              </tr>
@@ -63,8 +61,8 @@
 				          <tfoot>
 				              <tr>
 				                <th>ID</th>
-				                <th>Name</th>
-				                <th>URL</th>
+				                <th>Category Name</th>
+								<th>Description</th>
 				                <th>Status</th>
 				                <th>Actions</th>
 				              </tr>
@@ -105,7 +103,7 @@
 	<!-- Page specific script -->
 	<script>
 	  $(function () {
-	    $('#admins-datatable').dataTable(
+	    $('#tags-datatable').dataTable(
       	{
       		sort: false,
 			pageLength: 50,
@@ -123,7 +121,7 @@
 			columns: [
 				{data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
 				{data: 'name', name: 'name'},
-				{data: 'url', name: 'url'},
+				{data: 'description', name: 'description'},
 				{data: 'status', name: 'status'},
 				{data: 'action', name: 'action', orderable: false, searchable: false},
 			]
