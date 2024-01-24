@@ -22,6 +22,7 @@ use App\Models\Admin\Testimonial;
 use App\Models\Admin\Setting;
 use App\Models\Admin\OurAims;
 use App\Models\Admin\DocumentUploader as DocumentModel;
+use App\Models\Admin\Product;
 use App\Models\Subscription\NewSubscription;
 use App\Models\ContactForm\ContactRecord;
 use Response;
@@ -44,7 +45,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('store.pages.home')->with([]);
+        $categories = Category::whereStatus(1)->get();
+        $data['categories'] = $categories;
+        return view('store.pages.home',$data);
     }
 
     public function page($slug)
@@ -198,5 +201,16 @@ class HomeController extends Controller
         return '403 download link is expired';
     }
     
+   }
+   public function getProducts(Request $request){
+    $response['status'] = true;  
+    $category = $request->get('category');
+     if($category=='all'){
+      $products = Product::whereStatus(1)->with('productImages')->get();
+      } else {
+        $products = Product::whereStatus(1)->whereCategoryId($category)->with('productImages')->get();
+      }
+    $response['html'] = view('store.pages.products.product-cart',['products'=>$products])->render();
+    return response()->json($response);
    }
 }

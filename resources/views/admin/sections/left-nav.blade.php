@@ -93,6 +93,14 @@ $url_3 = Request::segment(4);
                 </a>
             </li>
             <li class="nav-item">
+                <a href="{{ URL('admin/offers') }}" class="nav-link {{ $url_1 == 'offers' ? 'active':'' }}">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        Offers
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="{{ URL('admin/room-booking') }}" class="nav-link {{ $url_1 == 'room-booking' ? 'active':'' }}">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>

@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Product;
+use App\Models\Admin\Offer;
 use App\Models\Admin\Category;
 use App\Models\Admin\ProductImage;
+use App\Models\Admin\OfferImage;
 use App\Models\Admin\Vendor;
 use App\Models\Posts\Post\Post;
 use App\Models\Posts\PostFile\PostFile;
@@ -18,16 +20,16 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class ProductsController extends Controller
+class OfferController extends Controller
 {
     public function index(Request $request)
     {
-        if (!have_right('View-Products'))
+        if (!have_right('View-Offers'))
             access_denied();
 
         $data = [];
         if ($request->ajax()) {
-            $db_record = Product::all();
+            $db_record = Offer::all();
 
             $datatable = Datatables::of($db_record);
             $datatable = $datatable->addIndexColumn();
@@ -58,11 +60,11 @@ class ProductsController extends Controller
                 $actions = '<span class="actions">';
 
                 if (have_right('Edit-Products')) {
-                    $actions .= '&nbsp;<a class="btn btn-primary" href="' . url("admin/products/" . $row->id) . '/edit' . '" title="Edit"><i class="far fa-edit"></i></a>';
+                    $actions .= '&nbsp;<a class="btn btn-primary" href="' . url("admin/offers/" . $row->id) . '/edit' . '" title="Edit"><i class="far fa-edit"></i></a>';
                 }
 
                 if (have_right('Delete-Products')) {
-                    $actions .= '<form method="POST" action="' . url("admin/products/" . $row->id) . '" accept-charset="UTF-8" style="display:inline;">';
+                    $actions .= '<form method="POST" action="' . url("admin/offers/" . $row->id) . '" accept-charset="UTF-8" style="display:inline;">';
                     $actions .= '<input type="hidden" name="_method" value="DELETE">';
                     $actions .= '<input name="_token" type="hidden" value="' . csrf_token() . '">';
                     $actions .= '<button class="btn btn-danger" style="margin-left:02px;" onclick="return confirm(\'Are you sure you want to delete this record?\');" title="Delete">';
@@ -80,7 +82,7 @@ class ProductsController extends Controller
             return $datatable;
         }
 
-        return view('admin.products.listing', $data);
+        return view('admin.offers.listing', $data);
     }
 
     public function create()
@@ -89,19 +91,16 @@ class ProductsController extends Controller
             access_denied();
 
         $data = [];
-        $data['row'] = new Product();
-        $data['categories'] = Category::where('status', 1)->get();
+        $data['row'] = new Offer();
         $data['action'] = 'add';
-        return View('admin.products.form', $data);
+        return View('admin.offers.form', $data);
     }
 
     public function store(Request $request)
     {
         $input = $request->all();
         
-
         $validator = Validator::make($request->all(), [
-            'category_id' => 'required',
             'title' => 'required|string|max:200',
             'price' => 'required',
             'description' => 'required|string',
@@ -116,25 +115,22 @@ class ProductsController extends Controller
             $imagePathsarray = $this->uploadimageMultiple($request);
         }
         unset($input['image']);
-
+    
         if ($input['action'] == 'add') {
             unset($input['action']);
-            if (!have_right('Create-Products'))
-                access_denied();
-
-            $model = new Product();
-            $input['sku'] = generateSku();
+            $model = new Offer();
+            $input['sku'] = generateOfferSku();
             $model->fill($input);
             $model->save();
             if (isset($imagePathsarray)) {
                 foreach ($imagePathsarray as $key => $val) {
-                    $model_image = new ProductImage();
+                    $model_image = new OfferImage();
                     $model_image->file_name = $val['image_url'];
                     $model_image->file_type = $val['image_extention'];
-                    $model->productImages()->save($model_image);
+                    $model->offerImages()->save($model_image);
                 }
             }
-            return redirect('admin/products')->with('message', 'Data added Successfully');
+            return redirect('admin/offers')->with('message', 'Data added Successfully');
         } else {
 
             // dd($request);
@@ -143,21 +139,21 @@ class ProductsController extends Controller
             if (isset($request->old_image_id)) {
 
                 $del_rows = $request->old_image_id;
-                $delete_image_row = DB::table('product_images')->whereNotIn('id', $del_rows)->get();
+                $delete_image_row = DB::table('offer_images')->whereNotIn('id', $del_rows)->get();
                 foreach ($delete_image_row as $keyy => $vall) {
                     $image_name = $vall->file_name;
                     $this->deleteEditoImage($image_name);
                 }
-                DB::table('product_images')->whereNotIn('id', $del_rows)->delete();
+                DB::table('offer_images')->whereNotIn('id', $del_rows)->delete();
             } else {
 
-                $delete_image_row = DB::table('product_images')->where('id', $request->id)->get();
+                $delete_image_row = DB::table('offer_images')->where('id', $request->id)->get();
                 foreach ($delete_image_row as $keyy => $vall) {
                     $image_name = $vall->file_name;
                     $this->deleteEditoImage($image_name);
                 }
                 // DB::enableQueryLog();
-                DB::table('product_images')->where('product_id', $request->id)->delete();
+                DB::table('offer_images')->where('offer_id', $request->id)->delete();
                 // dd(DB::getQueryLog());
             }
 
@@ -171,18 +167,18 @@ class ProductsController extends Controller
 
             unset($input['old_image_id']);
             $id = $input['id'];
-            $model = Product::find($id);
+            $model = Offer::find($id);
             $model->fill($input);
             $model->update();
             if (!empty($imagePathsarray)) {
                 foreach ($imagePathsarray as $key => $val) {
-                    $model_image = new ProductImage();
+                    $model_image = new OfferImage();
                     $model_image->file_name = $val['image_url'];
                     $model_image->file_type = $val['image_extention'];
-                    $model->productImages()->save($model_image);
+                    $model->offerImages()->save($model_image);
                 }
             }
-            return redirect('admin/products')->with('message', 'Data updated Successfully');
+            return redirect('admin/offers')->with('message', 'Data updated Successfully');
         }
     }
 
@@ -193,11 +189,11 @@ class ProductsController extends Controller
 
         $data = [];
         $data['id'] = $id;
-        $data['row'] = Product::find($id);
-        $data['product_images'] = $data['row']->productImages;
+        $data['row'] = Offer::find($id);
+        $data['offer_images'] = $data['row']->offerImages;
         $data['categories'] = Category::where('status', 1)->get();
         $data['action'] = 'edit';
-        return View('admin.products.form', $data);
+        return View('admin.offers.form', $data);
     }
 
     public function destroy($id)
@@ -206,18 +202,18 @@ class ProductsController extends Controller
             access_denied();
 
         $data = [];
-        $data['row'] = Product::destroy($id);
-        return redirect('admin/products')->with('message', 'Data deleted Successfully');
+        $data['row'] = Offer::destroy($id);
+        return redirect('admin/offers')->with('message', 'Data deleted Successfully');
     }
 
 
     function uploadimageMultiple(Request $request)
     {
-        $path = 'images/products-images';
+        $path = 'images/offer-images';
         $image_path_array = [];
         $counter = 0;
         foreach ($request->image as $key => $value) {
-            $imageName = 'product' . time() . uniqid() . '.' . $value->extension();
+            $imageName = 'offer' . time() . uniqid() . '.' . $value->extension();
             $imageExtention = $value->extension();
             $value->move(public_path($path), $imageName);
             $image_path_array[$counter]['image_url'] =  $path . "/" . $imageName;
@@ -268,13 +264,13 @@ class ProductsController extends Controller
         }
     }
 
-    public function setFeaturedProduct(Request $request , $id = null)
+    public function setFeaturedOffer(Request $request , $id = null)
     {
         if (!have_right('Featured-Products'))
             access_denied();
-        $update_product = Product::where('id', $id)->update(['is_feature' => $request->get('status')]);
+        $update_offer = Offer::where('id', $id)->update(['is_feature' => $request->get('status')]);
 
-        if ($update_product) {
+        if ($update_offer) {
 
             echo true;
             exit();

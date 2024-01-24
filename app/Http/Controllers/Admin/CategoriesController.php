@@ -10,6 +10,9 @@ use App\Models\Admin\Language;
 use Hash;
 use DataTables;
 use Hashids\Hashids;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 class CategoriesController extends Controller
 {
     protected $model;
@@ -104,6 +107,15 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            Session::flash('flash_danger', $validator->messages());
+            return redirect()->back()->withInput();
+        }
+
         $input = $request->all();
         if($input['action'] == 'add')
         {

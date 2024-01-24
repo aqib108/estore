@@ -28,6 +28,7 @@ Route::get('/storage', function () {
 });
 //ecommerce store route
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/get-products', [App\Http\Controllers\HomeController::class, 'getProducts']);
 //end of ecommerce store route
 
 
@@ -84,6 +85,8 @@ Route::prefix('admin')->namespace('Admin')->group(static function()
         Route::get('booking-invoice\{id?}','\App\Http\Controllers\Admin\RoomBookingController@printInvoice')->name('admin.print.invoice');
 
         Route::resource('products', '\App\Http\Controllers\Admin\ProductsController');
+        Route::resource('offers', '\App\Http\Controllers\Admin\OfferController');
+        Route::get('products/featured-offer/{id}', '\App\Http\Controllers\Admin\ProductsController@setFeaturedOffer');
         Route::post('product-post', [\App\Http\Controllers\Admin\ProductsController::class, 'productPost'])->name('admin.product-post');
         Route::get('products/featured-product/{id}', '\App\Http\Controllers\Admin\ProductsController@setFeaturedProduct');
         //end of rooms route

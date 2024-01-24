@@ -55,13 +55,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Create Product</h1>
+                    <h1 class="m-0">Create Offer</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ URL('admin/products') }}">Products</a></li>
-                        <li class="breadcrumb-item active">Create Product</li>
+                        <li class="breadcrumb-item"><a href="{{ URL('admin/offers') }}">Offers</a></li>
+                        <li class="breadcrumb-item active">Create Offer</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -77,37 +77,27 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Product Form</h3>
+                            <h3 class="card-title">Offer Form</h3>
                         </div>
 
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form id="announcement-form" class="form-horizontal label-left" action="{{ URL('admin/products') }}" enctype="multipart/form-data" method="POST">
+                            <form id="announcement-form" class="form-horizontal label-left" action="{{ URL('admin/offers') }}" enctype="multipart/form-data" method="POST">
                                 {!! csrf_field() !!}
 
                                 <input type="hidden" name="action" value="{{$action}}">
                                 <input type="hidden" name="id" value="{{ isset($id) ? $id : '' }}">
-                                <div class="form-group row">
-                                                    <label class="col-sm-2 col-form-label">Category <span class="text-red">*</span></label>
-                                                    <div class="col-sm-6">
-                                                        <select name="category_id" class="custom-select rounded-0" required="">
-                                                            <option value="">--Select Category--</option>
-                                                            @foreach($categories as $category)
-                                                            <option value="{{ $category->id }}" {{($row->category_id==$category->id)?'selected':''}}>{{ $category->name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
+                                
                                                 <div class="form-group row">
-                                                    <label class="col-sm-2 col-form-label">Product title <span class="text-red">*</span></label>
+                                                    <label class="col-sm-2 col-form-label">Offer title <span class="text-red">*</span></label>
                                                     <div class="col-sm-6">
-                                                        <input type="text" class="form-control" placeholder="Enter Name" name="title" value="{{$row->title}}" required="">
+                                                        <input type="text" class="form-control" placeholder="Enter Offer Title" name="title" value="{{$row->title}}" required="">
                                                     </div>
                                                 </div>
                                                   
                                                 
                                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Product Description</label>
+                                    <label class="col-sm-2 col-form-label">Offer Description</label>
                                     <div class="col-sm-6">
                                         <textarea id="summernote" name="description" >{{isset($row->description) ? $row->description : '' }}</textarea>
                                     </div>
@@ -141,8 +131,8 @@
 <hr>
  <div class="row">
                                                  <div class="col-sm-7">
-                                                    @if(!empty($product_images))
-                                                    @foreach($product_images as $key=>$val)
+                                                    @if(!empty($offer_images))
+                                                    @foreach($offer_images as $key=>$val)
                                                     <div class="mt-2 mb-2 img_div" id="img_div_{{$loop->iteration}}">
                                                         <img class="imageThumb" src="{{asset($val->file_name)}}" title="${f.name}" />
                                                         <input type="hidden" name="old_image_id[]" value="{{$val->id}}" />
@@ -153,14 +143,14 @@
                                                     @endforeach
                                                     @endif
                                                     <div id="newRow"></div>
-                                                    <button id="addRow" type="button" class="btn btn-primary">Add Product Image</button>
+                                                    <button id="addRow" type="button" class="btn btn-primary">Add Offer Image</button>
                                                 </div>
                                                 </div>
 <hr>
                                 <div class="card-body">
                                     <div class="form-group text-right">
                                         <div class="col-sm-12">
-                                            <a href="{{ URL('admin/products') }}" class="btn btn-info" style="margin-right:05px;"> Cancel </a>
+                                            <a href="{{ URL('admin/offers') }}" class="btn btn-info" style="margin-right:05px;"> Cancel </a>
                                             <button type="submit" class="btn btn-primary float-right"> {{ ($action == 'add') ? 'Save' : 'Update' }} </button>
                                         </div>
                                     </div>

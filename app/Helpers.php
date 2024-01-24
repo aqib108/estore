@@ -67,4 +67,11 @@ function getSettingDataHelper($key)
     }
 }
 
+function generateSku(){
+    return 'PRO-'.time();
+}
+function generateOfferSku(){
+    return 'OFFER-'.time();
+}
+
 ?>

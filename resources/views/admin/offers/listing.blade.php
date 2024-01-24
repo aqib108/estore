@@ -95,12 +95,12 @@ margin-top: -41px;
 		  <div class="container-fluid">
 		    <div class="row mb-2">
 		      <div class="col-sm-6">
-		        <h1 class="m-0">Products</h1>
+		        <h1 class="m-0">Offers</h1>
 		      </div><!-- /.col -->
 		      <div class="col-sm-6">
 		        <ol class="breadcrumb float-sm-right">
 		          <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-		          <li class="breadcrumb-item active">Products</li>
+		          <li class="breadcrumb-item active">Offers</li>
 		        </ol>
 		      </div><!-- /.col -->
 		    </div><!-- /.row -->
@@ -117,7 +117,7 @@ margin-top: -41px;
 				      <div class="card-header">
 				      	@if(have_right('Create-Products'))
 					        <h3 class="card-title">
-					        	<a href="{{ URL('admin/products/create') }}" class="btn btn-primary"> Add New </a>
+					        	<a href="{{ URL('admin/offers/create') }}" class="btn btn-primary"> Add New </a>
 					        </h3>
 				        @endif
 				      </div>
@@ -140,7 +140,8 @@ margin-top: -41px;
                                   <th>ID</th>
                                   <th>Title</th>
 												<th>Price</th>
-	<th>Price</th>
+	<th>SKU</th>
+	
 								  <th>Featured</th>
                                   <th>Actions</th>
 				              </tr>
@@ -229,7 +230,7 @@ margin-top: -41px;
 			lengthMenu: [[5, 10, 25, 50, 100, 200, -1], [5, 10, 25, 50, 100, 200, "All"]],
 			serverSide: true,
             ajax: {
-                    url: "{{ url('admin/products') }}",
+                    url: "{{ url('admin/offers') }}",
                     data: function(d) {
                     d._token = "{{ csrf_token() }}",
                     d.category = $('#select_category').val();
@@ -285,7 +286,7 @@ margin-top: -41px;
 
 	//___ add/remove feature donation function___//
 	function is_featured(_this,id){
-		var URL = "{{ URL('admin/products/featured-product') }}";
+		var URL = "{{ URL('admin/offers/featured-offer') }}";
 		var status = ($(_this).prop('checked') == true) ? 1:0;
 		$.ajax({
 			url: URL+'/'+id,

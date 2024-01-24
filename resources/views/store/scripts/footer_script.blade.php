@@ -99,3 +99,4 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="{{ asset('assets/store/js/main.js') }}"></script>
+	<script src="{{ asset('assets/store/js/product.js') }}"></script>
