@@ -88,75 +88,75 @@
                                 <input type="hidden" name="action" value="{{$action}}">
                                 <input type="hidden" name="id" value="{{ isset($id) ? $id : '' }}">
                                 <div class="form-group row">
-                                                    <label class="col-sm-2 col-form-label">Category <span class="text-red">*</span></label>
-                                                    <div class="col-sm-6">
-                                                        <select name="category_id" class="custom-select rounded-0" required="">
-                                                            <option value="">--Select Category--</option>
-                                                            @foreach($categories as $category)
-                                                            <option value="{{ $category->id }}" {{($row->category_id==$category->id)?'selected':''}}>{{ $category->name }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-2 col-form-label">Product title <span class="text-red">*</span></label>
-                                                    <div class="col-sm-6">
-                                                        <input type="text" class="form-control" placeholder="Enter Name" name="title" value="{{$row->title}}" required="">
-                                                    </div>
-                                                </div>
-                                                  
-                                                
-                                               <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Product Description</label>
+                                    <label class="col-sm-2 col-form-label">Category <span class="text-red">*</span></label>
                                     <div class="col-sm-6">
-                                        <textarea id="summernote" name="description" >{{isset($row->description) ? $row->description : '' }}</textarea>
+                                        <select name="category_id" class="custom-select rounded-0" required="">
+                                            <option value="">--Select Category--</option>
+                                            @foreach($categories as $category)
+                                            <option value="{{ $category->id }}" {{($row->category_id==$category->id)?'selected':''}}>{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
-                                               
-                                            
-                                               <div class="form-group row">
-                                                    <label class="col-sm-2 col-form-label">Price <span class="text-red">*</span></label>
-                                                    <div class="col-sm-6">
-                                                        <input type="number" class="form-control" placeholder="Enter Price" name="price" value="{{ $row->price }}" required="">
-                                                    </div>
-                                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Product title <span class="text-red">*</span></label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" placeholder="Enter Name" name="title" value="{{$row->title}}" required="">
+                                    </div>
+                                </div>
 
-                                                <div class="form-group row">
-                                                    <label class="col-sm-2 col-form-label">Status</label>
-                                                    <div class="col-sm-6">
-                                                        <div class="icheck-primary d-inline">
-                                                            Active
-                                                            <input type="radio" name="status" id="active-radio-status" value="1" {{ ($row->status==1) ? 'checked' : '' }}>
-                                                            <label for="active-radio-status">
-                                                            </label>
-                                                        </div>
-                                                        <div class="icheck-primary d-inline">
-                                                            In-Active
-                                                            <input type="radio" name="status" id="in-active-radio-status" value="0" {{ ($row->status==0) ? 'checked' : '' }}>
-                                                            <label for="in-active-radio-status">
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-<hr>
- <div class="row">
-                                                 <div class="col-sm-7">
-                                                    @if(!empty($product_images))
-                                                    @foreach($product_images as $key=>$val)
-                                                    <div class="mt-2 mb-2 img_div" id="img_div_{{$loop->iteration}}">
-                                                        <img class="imageThumb" src="{{asset($val->file_name)}}" title="${f.name}" />
-                                                        <input type="hidden" name="old_image_id[]" value="{{$val->id}}" />
-                                                        <button id="" type="button" onclick="delete_imag('img_div_{{$loop->iteration}}')" style="height:40px" class="btn btn-danger ml-2" style="width: 2%">Remove</button>
-                                                        <i class="fas fa-arrows-h"></i>
-                                                    </div>
 
-                                                    @endforeach
-                                                    @endif
-                                                    <div id="newRow"></div>
-                                                    <button id="addRow" type="button" class="btn btn-primary">Add Product Image</button>
-                                                </div>
-                                                </div>
-<hr>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Product Description</label>
+                                    <div class="col-sm-6">
+                                        <textarea id="summernote" name="description">{{isset($row->description) ? $row->description : '' }}</textarea>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Price <span class="text-red">*</span></label>
+                                    <div class="col-sm-6">
+                                        <input type="number" class="form-control" placeholder="Enter Price" name="price" value="{{ $row->price }}" required="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Status</label>
+                                    <div class="col-sm-6">
+                                        <div class="icheck-primary d-inline">
+                                            Active
+                                            <input type="radio" name="status" id="active-radio-status" value="1" {{ ($row->status==1) ? 'checked' : '' }}>
+                                            <label for="active-radio-status">
+                                            </label>
+                                        </div>
+                                        <div class="icheck-primary d-inline">
+                                            In-Active
+                                            <input type="radio" name="status" id="in-active-radio-status" value="0" {{ ($row->status==0) ? 'checked' : '' }}>
+                                            <label for="in-active-radio-status">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-7">
+                                        @if(!empty($product_images))
+                                        @foreach($product_images as $key=>$val)
+                                        <div class="mt-2 mb-2 img_div" id="img_div_{{$loop->iteration}}">
+                                            <img class="imageThumb" src="{{asset($val->file_name)}}" title="${f.name}" />
+                                            <input type="hidden" name="old_image_id[]" value="{{$val->id}}" />
+                                            <button id="" type="button" onclick="delete_imag('img_div_{{$loop->iteration}}')" style="height:40px" class="btn btn-danger ml-2" style="width: 2%">Remove</button>
+                                            <i class="fas fa-arrows-h"></i>
+                                        </div>
+
+                                        @endforeach
+                                        @endif
+                                        <div id="newRow"></div>
+                                        <button id="addRow" type="button" class="btn btn-primary">Add Product Image</button>
+                                    </div>
+                                </div>
+                                <hr>
                                 <div class="card-body">
                                     <div class="form-group text-right">
                                         <div class="col-sm-12">
@@ -201,7 +201,7 @@
 <script src="{{asset('assets/admin/dropify/dist/js/dropify.min.js')}}"></script>
 <!-- Page specific script -->
 <script>
-$('textarea').summernote({
+    $('textarea').summernote({
         height: ($(window).height() - 100)
         , callbacks: {
             onImageUpload: function(image) {
@@ -306,7 +306,6 @@ $('textarea').summernote({
             $('#download_div').show();
         }
     }
-    
 
 </script>
 @endpush

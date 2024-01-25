@@ -47,10 +47,6 @@ class SettingController extends Controller
             $imagePath = $this->uploadimage($request);
             $input['logo'] = $imagePath;
         }
-        if (isset($input['video'])) {
-            $imagePath = $this->uploadVideo($request);
-            $input['video'] = $imagePath;
-        }
         foreach ($input as $key => $value) {
             $result = DB::table('settings')->where('option_name', $key)->get();
 
@@ -79,18 +75,6 @@ class SettingController extends Controller
             $imageName = 'logo' . time() . '.' . $request->logo->extension();
             if ($request->logo->move(public_path('images/logo'), $imageName)) {
                 $path = 'images/logo/' . $imageName;
-            }
-        }
-        return $path;
-    }
-
-    public function uploadVideo(Request $request)
-    {
-        $path = '';
-        if ($request->video) {
-            $videoName = 'video' . time() . '.' . $request->video->extension();
-            if ($request->video->move(public_path('videos/video'), $videoName)) {
-                $path = 'videos/video/' . $videoName;
             }
         }
         return $path;
