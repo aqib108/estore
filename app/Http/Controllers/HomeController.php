@@ -126,13 +126,16 @@ class HomeController extends Controller
        $subscription->save();
        return redirect('/')->with('msg','successfully subscripted');
     }
-    function Contact_us(Request $request){
+    function SaveContactus(Request $request){
        $contact = new ContactRecord();
        $contact->name = $request->name;
        $contact->subject = $request->subject;
        $contact->message = $request->message;
        $contact->save();return redirect('/')->with('msg','successfully contact created'); return redirect()->with('msg','successfully contact created'); 
     }
+    function Contactus(Request $request){
+        return view('store.pages.contact_us');
+     }
     public function Blog(){
         $posts = App\Models\Admin\Post::wherestatus(1)->leftjoin('post_feature_images','post_id','posts.id')->orderBy('id', 'DESC')->paginate(8,['posts.title as title','posts.short_description as short_description','post_feature_images.image as image','posts.created_at as date','posts.id as id']);
         $recent_posts = App\Models\Admin\Post::wherestatus(1)->take(5)->orderBy('id', 'DESC')->get(['title','id']);

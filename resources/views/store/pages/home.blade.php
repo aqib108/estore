@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@include('store.banner.banner')
 @section('content')
 	<section class="bg0 p-t-23 p-b-140">
 		<div class="container">

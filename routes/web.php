@@ -45,7 +45,8 @@ Route::get('/classes/{id?}', [App\Http\Controllers\HomeController::class, 'class
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::post('/set-local', [App\Http\Controllers\HomeController::class, 'setLocal']);
 Route::post('/subscription', [App\Http\Controllers\HomeController::class, 'subscription']);
-Route::post('/contact_us', [App\Http\Controllers\HomeController::class, 'Contact_us']);
+Route::get('/contact_us', [App\Http\Controllers\HomeController::class, 'Contactus'])->name('contact_us');
+Route::post('/save_contact_us', [App\Http\Controllers\HomeController::class, 'SaveContactus']);
 Route::get('/library-tabs', [App\Http\Controllers\HomeController::class, 'librarySections'])->name('library.tabs');
 
 // Authentication Routes...

@@ -54,7 +54,6 @@
 @include('store.header.header')
 @include('store.cart.cart')
 @include('store.slider.slider')
-@include('store.banner.banner')
 <div id="app">
 @yield('content')
 </div>
