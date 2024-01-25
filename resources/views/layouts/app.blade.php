@@ -61,5 +61,6 @@
 @include('store.footer.back_to_top')
 @include('store.modal.product_overview_modal')
 @include('store.scripts.footer_script')
+@yield('scripts')
 </body>
 </html>

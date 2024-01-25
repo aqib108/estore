@@ -29,6 +29,9 @@ Route::get('/storage', function () {
 //ecommerce store route
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/get-products', [App\Http\Controllers\HomeController::class, 'getProducts']);
+Route::get('/products/{sku?}', [App\Http\Controllers\HomeController::class, 'getProductsDetailPage'])->name('get.product.detail');
+Route::get('/contact_us', [App\Http\Controllers\HomeController::class, 'Contactus'])->name('contact_us');
+Route::post('/save_contact_us', [App\Http\Controllers\HomeController::class, 'SaveContactus']);
 //end of ecommerce store route
 
 

@@ -50,6 +50,12 @@ class HomeController extends Controller
         return view('store.pages.home',$data);
     }
 
+    function getProductsDetailPage(Request $request, $sku)
+    {
+        $product = Product::whereSku($sku)->with('productImages')->first();
+        return view('store.pages.products.product_detail',['product'=>$product]);
+    }
+
     public function page($slug)
     {
         $page = Page::where('url',$slug)->first();
