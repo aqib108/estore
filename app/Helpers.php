@@ -1,4 +1,7 @@
 <?php
+
+use App\Models\Admin\Category;
+
 function rights()
 {
     $result = DB::table('rights')
@@ -84,5 +87,8 @@ function getCompanyLocationName(){
 }
 function getProductName(){
     return 'Crative Glass';
+}
+function getProductCategories(){
+   return DB::table('categories')->where('status',1)->get();
 }
 ?>

@@ -55,12 +55,17 @@
                     </li>
 
                     <li>
-                        <a href="index.html">Catlog</a>
+                        <a href="{{route('get.products',['category'=>'all'])}}">Catlog</a>
+                        @php
+                        $categories = getProductCategories();
+                        @endphp
+                        @if($categories->count()>0)
                         <ul class="sub-menu">
-                            <li><a href="index.html">Category 1</a></li>
-                            <li><a href="home-02.html">category 2</a></li>
-                            <li><a href="home-03.html">category 3</a></li>
+                        @foreach($categories as $category)
+                            <li><a href="{{route('get.products',['category'=>$category?->id])}}">{{$category?->name}}</a></li>
+                        @endforeach
                         </ul>
+                        @endif
                     </li>
 
                 

@@ -223,7 +223,16 @@ class HomeController extends Controller
       } else {
         $products = Product::whereStatus(1)->whereCategoryId($category)->with('productImages')->get();
       }
-    $response['html'] = view('store.pages.products.product-cart',['products'=>$products])->render();
-    return response()->json($response);
+    if($request->ajax()){
+        $response['html'] = view('store.pages.products.product-cart',['products'=>$products])->render();
+        return response()->json($response);
+    } else{
+        $categoryName = 'All';
+        if($category!='all'){
+            $categoryName = Category::whereId($category)->first()->name;
+        }
+        return view('store.pages.catlog',['products'=>$products,'category_name'=>$categoryName]);
+    }
+   
    }
 }
