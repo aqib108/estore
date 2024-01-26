@@ -14,27 +14,19 @@
             </div>
 
             <div class="right-top-bar flex-w h-full">
-               @guest
-                @if (Route::has('login'))
-                <a href="{{ route('login') }}" class="flex-c-m trans-04 p-lr-25">
+            @if (auth()->check())
+                <a href="#" class="flex-c-m trans-04 p-lr-25">
+                    My Account
+                </a>
+            @else
+              <a href="{{ route('login') }}" class="flex-c-m trans-04 p-lr-25">
                     Login
                 </a>
-                @endif
-                 @if (Route::has('register'))
                  <a href="{{ route('register') }}" class="flex-c-m trans-04 p-lr-25">
                     Register
                 </a>
-                 @endif
-            @endguest
-            @auth
-              <a href="#" class="flex-c-m trans-04 p-lr-25">
-                    My Account
-                </a>
-            @endauth
-
-               
-
-               
+            @endif               
+           
             </div>
         </div>
     </div>
@@ -81,10 +73,10 @@
                         <a href="{{route('contact_us')}}">Contact</a>
                     </li>
                       <li>
-                        <a href="{{route('contact_us')}}">Issue Booking</a>
+                        <a href="{{route('issue.booking.page')}}">Issue Booking</a>
                     </li>
                       <li>
-                        <a href="{{route('contact_us')}}">Offer</a>
+                        <a href="{{route('offer.list')}}">Offer</a>
                     </li>
                 </ul>
             </div>
@@ -94,10 +86,14 @@
                 <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search d-none">
                     <i class="zmdi zmdi-search"></i>
                 </div>
-
-                <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
-                    <i class="zmdi zmdi-shopping-cart"></i>
-                </div>
+                <div class="d-none cart-url" data-url='{{route('cart.list')}}'></div>
+               <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 {{ !Cart::isEmpty() ? 'icon-header-noti' : '' }} js-show-cart e-cart-count" 
+     @if (!Cart::isEmpty())
+         data-notify="{{ Cart::getTotalQuantity() }}"
+     @endif
+>
+    <i class="zmdi zmdi-shopping-cart"></i>
+</div>
 
                 <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti d-none"  data-notify="0">
                     <i class="zmdi zmdi-favorite-outline"></i>

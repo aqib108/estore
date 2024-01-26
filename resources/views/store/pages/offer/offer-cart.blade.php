@@ -1,16 +1,16 @@
 	<div class="row isotope-grid">
 			
-    @forelse($products as $product)
+    @forelse($offers as $offer)
     @php
-    $productImage = $product?->productImages()->first()?->file_name;
+    $offerImage = $offer?->offerImages()->first()?->file_name;
     @endphp
 				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img class="product_image img-fluid" src="{{$productImage}}" alt="IMG-PRODUCT">
+							<img class="product_image img-fluid" src="{{$offerImage}}" alt="IMG-OFFER">
 
-							<a href="{{route('get.product.detail',['sku'=>$product?->sku])}}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+							<a href="{{route('get.offer.detail',['sku'=>$offer?->sku])}}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
 								Quick View
 							</a>
 						</div>
@@ -18,11 +18,11 @@
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
 								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									{{$product?->title}}
+									{{$offer?->title}}
 								</a>
 
 								<span class="stext-105 cl3">
-									${{$product?->price}}
+									${{$offer?->price}}
 								</span>
 							</div>
 
@@ -36,7 +36,7 @@
 					</div>
 				</div>
        @empty
-       <div>No Product Found</div>
+       <div>No Offer Found</div>
        @endforelse
 			
 			</div>

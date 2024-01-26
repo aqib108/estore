@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 24, 2024 at 10:39 PM
+-- Generation Time: Jan 27, 2024 at 12:57 AM
 -- Server version: 8.0.35-0ubuntu0.22.04.1
 -- PHP Version: 8.1.9
 
@@ -97,6 +97,29 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `issue_bookings`
+--
+
+CREATE TABLE `issue_bookings` (
+  `id` int NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `location` varchar(255) DEFAULT NULL,
+  `description` text,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `issue_bookings`
+--
+
+INSERT INTO `issue_bookings` (`id`, `name`, `phone`, `location`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'dfds', 'dsdfedf', 'feefeq', NULL, '2024-01-26 14:55:55', '2024-01-26 14:55:55');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -152,7 +175,8 @@ CREATE TABLE `offer_images` (
 --
 
 INSERT INTO `offer_images` (`id`, `offer_id`, `file_name`, `file_type`, `created_at`, `updated_at`) VALUES
-(4, 5, 'images/offer-images/offer170611085365b12f85c946e.jpg', 'jpg', '2024-01-24 10:40:53', '2024-01-24 10:40:53');
+(5, 4, 'images/offer-images/offer170629384265b3fa52578da.jpg', 'jpg', '2024-01-26 13:30:42', '2024-01-26 13:30:42'),
+(6, 5, 'images/offer-images/offer170629388065b3fa781405e.jpg', 'jpg', '2024-01-26 13:31:20', '2024-01-26 13:31:20');
 
 -- --------------------------------------------------------
 
@@ -211,9 +235,9 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`id`, `title`, `description`, `sku`, `price`, `product_images`, `status`, `is_feature`, `category_id`, `created_at`, `updated_at`) VALUES
 (3, 'hello 123', 'best quailtuy', 'testku-12', 100, NULL, 1, 1, 1, '2024-01-24 05:15:17', '2024-01-24 07:03:41'),
 (4, 'aqib', 'sdjajf', 'Pro-1706096728', 100, NULL, 1, 1, 3, '2024-01-24 06:45:28', '2024-01-24 07:00:07'),
-(5, 'Azy', '<p>Test</p>', 'PRO-1706106905', 2000, NULL, 1, 0, 2, '2024-01-24 09:35:05', '2024-01-24 09:35:05'),
+(5, 'Azy', '<p><span style=\"color: rgb(136, 136, 136); font-family: Poppins-Regular; font-size: 14px;\">Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc.</span></p>', 'PRO-1706106905', 2000, NULL, 1, 0, 2, '2024-01-24 09:35:05', '2024-01-25 12:01:29'),
 (6, 'test', '<p>xccd</p>', 'PRO-1706108544', 20, NULL, 1, 0, 2, '2024-01-24 10:02:24', '2024-01-24 10:02:24'),
-(7, 'Test Produc6', '<p>Test</p>', 'PRO-1706110622', 20, NULL, 1, 0, 2, '2024-01-24 10:37:02', '2024-01-24 10:37:02');
+(7, 'Test Produc6', '<p><span style=\"color: rgb(136, 136, 136); font-family: Poppins-Regular; font-size: 14px;\">Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc.</span></p>', 'PRO-1706110622', 20, NULL, 1, 0, 2, '2024-01-24 10:37:02', '2024-01-25 05:37:11');
 
 -- --------------------------------------------------------
 
@@ -238,10 +262,12 @@ INSERT INTO `product_images` (`id`, `product_id`, `file_type`, `file_name`, `cre
 (9, 7, 'jpg', 'images/products-images/product170611062265b12e9ed7059.jpg', '2024-01-24 10:37:02', '2024-01-24 10:37:02'),
 (10, 7, 'jpg', 'images/products-images/product170611062265b12e9ed73d2.jpg', '2024-01-24 10:37:02', '2024-01-24 10:37:02'),
 (11, 7, 'jpg', 'images/products-images/product170611070465b12ef001041.jpg', '2024-01-24 10:38:24', '2024-01-24 10:38:24'),
-(12, 3, 'jpg', 'images/products-images/product170611749165b14973d94f1.jpg', '2024-01-24 12:31:31', '2024-01-24 12:31:31'),
-(13, 4, 'jpg', 'images/products-images/product170611752265b14992c44e6.jpg', '2024-01-24 12:32:02', '2024-01-24 12:32:02'),
-(14, 5, 'jpg', 'images/products-images/product170611756065b149b87b23f.jpg', '2024-01-24 12:32:40', '2024-01-24 12:32:40'),
-(15, 6, 'jpg', 'images/products-images/product170611759065b149d6aba66.jpg', '2024-01-24 12:33:10', '2024-01-24 12:33:10');
+(17, 6, 'jpg', 'images/products-images/product170619716265b280aabe416.jpg', '2024-01-25 10:39:22', '2024-01-25 10:39:22'),
+(18, 3, 'jpg', 'images/products-images/product170619718365b280bfe1baf.jpg', '2024-01-25 10:39:43', '2024-01-25 10:39:43'),
+(19, 4, 'jpg', 'images/products-images/product170619720365b280d38c6b1.jpg', '2024-01-25 10:40:03', '2024-01-25 10:40:03'),
+(20, 5, 'jpg', 'images/products-images/product170620208965b293e9de961.jpg', '2024-01-25 12:01:29', '2024-01-25 12:01:29'),
+(21, 5, 'jpg', 'images/products-images/product170620208965b293e9dee85.jpg', '2024-01-25 12:01:29', '2024-01-25 12:01:29'),
+(22, 5, 'jpg', 'images/products-images/product170620208965b293e9df2bc.jpg', '2024-01-25 12:01:29', '2024-01-25 12:01:29');
 
 -- --------------------------------------------------------
 
@@ -299,7 +325,10 @@ INSERT INTO `settings` (`id`, `option_name`, `option_value`) VALUES
 (30, 'twitter', 'https://www.qizifecoky.info'),
 (31, 'youtube', 'https://www.fimysi.us'),
 (32, 'logo', 'images/logo/logo1670782560.png'),
-(33, 'video', 'videos/video/video1671134562.mp4');
+(33, 'video', 'videos/video/video1671134562.mp4'),
+(34, 'location_1', NULL),
+(35, 'location_2', NULL),
+(36, 'about', NULL);
 
 -- --------------------------------------------------------
 
@@ -325,7 +354,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `origional_password`, `remember_token`, `status`, `created_at`, `updated_at`) VALUES
-(2, 'admin', 'admin@gmail.com', NULL, '$2a$12$MO337APKd3z0hz11OE5P5O40lxZg6IW9cHAfsvDVWW7tflTm/DLBe', NULL, '3nwO0yZHQBupjiPojukO0eFQPvrBycTyFrRM10QDXptVgxRmj7ue1U7bbttE', 1, '2022-11-20 06:20:09', '2022-11-20 06:20:09');
+(2, 'admin', 'admin@gmail.com', NULL, '$2a$12$MO337APKd3z0hz11OE5P5O40lxZg6IW9cHAfsvDVWW7tflTm/DLBe', NULL, '3nwO0yZHQBupjiPojukO0eFQPvrBycTyFrRM10QDXptVgxRmj7ue1U7bbttE', 1, '2022-11-20 06:20:09', '2022-11-20 06:20:09'),
+(3, 'aqib', 'aqib.mehmood@manafatech.com', NULL, '$2y$10$cmLq5Duc9s/hnl4efX9BZuponDg5Ve3yKR11k3XoZ74t0vcGUv.8S', NULL, NULL, 0, '2024-01-26 06:31:31', '2024-01-26 06:31:31');
 
 --
 -- Indexes for dumped tables
@@ -349,6 +379,12 @@ ALTER TABLE `categories`
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `issue_bookings`
+--
+ALTER TABLE `issue_bookings`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `migrations`
@@ -437,6 +473,12 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `issue_bookings`
+--
+ALTER TABLE `issue_bookings`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -452,7 +494,7 @@ ALTER TABLE `offers`
 -- AUTO_INCREMENT for table `offer_images`
 --
 ALTER TABLE `offer_images`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -470,7 +512,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -482,13 +524,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

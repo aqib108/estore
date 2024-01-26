@@ -32,7 +32,19 @@ Route::get('/get-products', [App\Http\Controllers\HomeController::class, 'getPro
 Route::get('/products/{sku?}', [App\Http\Controllers\HomeController::class, 'getProductsDetailPage'])->name('get.product.detail');
 Route::get('/contact-us', [App\Http\Controllers\HomeController::class, 'Contactus'])->name('contact_us');
 Route::get('/about-us', [App\Http\Controllers\HomeController::class, 'Aboutus'])->name('about_us');
+Route::get('/issue-booking', [App\Http\Controllers\HomeController::class, 'IssueBookingPage'])->name('issue.booking.page');
+Route::post('/save-issue-booking', [App\Http\Controllers\HomeController::class, 'SaveIssueBooking'])->name('issue.booking.save');
 Route::post('/save_contact_us', [App\Http\Controllers\HomeController::class, 'SaveContactus']);
+//add to cart
+Route::post('/remove-to-cart', [App\Http\Controllers\CartController::class, 'RemoveToCart']);
+Route::post('/update-cart-qty', [App\Http\Controllers\CartController::class, 'updateCartQty']);
+Route::post('/add-to-cart', [App\Http\Controllers\CartController::class, 'AddToCart']);
+Route::get('/cart', [App\Http\Controllers\CartController::class, 'cartList'])->name('cart.list');
+//end of cart
+//offers
+Route::get('/offers', [App\Http\Controllers\HomeController::class, 'offerLists'])->name('offer.list');
+Route::get('/offer/{sku?}', [App\Http\Controllers\HomeController::class, 'getOfferDetailPage'])->name('get.offer.detail');
+//end of offers
 //end of ecommerce store route
 
 

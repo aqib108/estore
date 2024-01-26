@@ -97,4 +97,10 @@ function encryptData($value){
 function decryptData($value){
     return Crypt::decrypt($value); 
 }
+function getCartTypeOffer(){
+    return 'Offer';
+}
+function getCartTypeProduct(){
+    return 'Product';
+}
 ?>

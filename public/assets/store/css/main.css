@@ -1795,6 +1795,12 @@ button.mfp-close {
   height: 100%;
   cursor: pointer;
 }
+.btn-num-product-detail-up,
+.btn-num-product-detail-down {
+  width: 45px;
+  height: 100%;
+  cursor: pointer;
+}
 
 .num-product {
   width: calc(100% - 90px);
