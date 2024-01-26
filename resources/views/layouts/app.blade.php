@@ -53,7 +53,9 @@
 <body class="animsition">
 @include('store.header.header')
 @include('store.cart.cart')
+@if(!isset($is_hide_slider))
 @include('store.slider.slider')
+@endif
 <div id="app">
 @yield('content')
 </div>

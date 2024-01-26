@@ -41,6 +41,7 @@ Route::post('/update-cart-qty', [App\Http\Controllers\CartController::class, 'up
 Route::post('/add-to-cart', [App\Http\Controllers\CartController::class, 'AddToCart']);
 Route::get('/cart', [App\Http\Controllers\CartController::class, 'cartList'])->name('cart.list');
 //end of cart
+Route::get('/account', [App\Http\Controllers\AccountController::class, 'getAccountPage'])->name('account.profile');
 //offers
 Route::get('/offers', [App\Http\Controllers\HomeController::class, 'offerLists'])->name('offer.list');
 Route::get('/offer/{sku?}', [App\Http\Controllers\HomeController::class, 'getOfferDetailPage'])->name('get.offer.detail');
