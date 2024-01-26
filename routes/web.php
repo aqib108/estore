@@ -94,6 +94,7 @@ Route::prefix('admin')->namespace('Admin')->group(static function()
         Route::get('products/featured-offer/{id}', '\App\Http\Controllers\Admin\ProductsController@setFeaturedOffer');
         Route::post('product-post', [\App\Http\Controllers\Admin\ProductsController::class, 'productPost'])->name('admin.product-post');
         Route::get('products/featured-product/{id}', '\App\Http\Controllers\Admin\ProductsController@setFeaturedProduct');
+        Route::resource('site-setting', '\App\Http\Controllers\Admin\SettingController');
         //end of rooms route
     });
 });
