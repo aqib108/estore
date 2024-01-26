@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Admin\Category;
-
+use Illuminate\Support\Facades\Crypt;
 function rights()
 {
     $result = DB::table('rights')
@@ -90,5 +90,11 @@ function getProductName(){
 }
 function getProductCategories(){
    return DB::table('categories')->where('status',1)->get();
+}
+function encryptData($value){
+    return Crypt::encrypt($value);   
+}
+function decryptData($value){
+    return Crypt::decrypt($value); 
 }
 ?>

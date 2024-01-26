@@ -62,7 +62,7 @@
                         @if($categories->count()>0)
                         <ul class="sub-menu">
                         @foreach($categories as $category)
-                            <li><a href="{{route('get.products',['category'=>$category?->id])}}">{{$category?->name}}</a></li>
+                            <li><a href="{{route('get.products',['category'=> $category?->id])}}">{{$category?->name}}</a></li>
                         @endforeach
                         </ul>
                         @endif

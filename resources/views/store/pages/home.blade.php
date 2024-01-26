@@ -16,7 +16,7 @@
 						All Products
 					</button>
            @foreach($categories as $category)
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" onclick="loadProducts('{{$category?->id}}')" data-filter=".women">
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" onclick="loadProducts('{{  $category?->id}}')" data-filter=".women">
 						{{$category?->name}}
 					</button>
 					@endforeach
