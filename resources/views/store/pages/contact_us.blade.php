@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('content')
-<section class="bg0 p-t-104 p-b-116">
+<section class="bg-img1 txt-center p-lr-15 p-tb-92" >
+		<h2 class="ltext-105  txt-center">
+			Contact Us
+		</h2>
+</section>	
+<section class="bg0  p-b-116">
 		<div class="container">
 			<div class="flex-w flex-tr">
 				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
@@ -36,7 +41,7 @@
 							</span>
 
 							<p class="stext-115 cl6 size-213 p-t-18">
-								Coza Store Center 8th floor, 379 Hudson St, New York, NY 10018 US
+								{{getCompanyLocationName()}}
 							</p>
 						</div>
 					</div>
@@ -52,7 +57,7 @@
 							</span>
 
 							<p class="stext-115 cl1 size-213 p-t-18">
-								+1 800 1236879
+								{{getCompanyPhoneNo()}}
 							</p>
 						</div>
 					</div>
@@ -68,7 +73,7 @@
 							</span>
 
 							<p class="stext-115 cl1 size-213 p-t-18">
-								contact@example.com
+								{{getCompanyEmail()}}
 							</p>
 						</div>
 					</div>

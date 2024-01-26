@@ -53,7 +53,7 @@
 				</li>
 
 				<li>
-					<a href="about.html">About</a>
+					<a href="{{route('about_us')}}">About</a>
 				</li>
 
 				<li>

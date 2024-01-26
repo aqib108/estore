@@ -73,5 +73,16 @@ function generateSku(){
 function generateOfferSku(){
     return 'OFFER-'.time();
 }
-
+function getCompanyEmail(){
+    return 'aliossman@hotmail.com';
+}
+function getCompanyPhoneNo(){
+    return '0383182778819132';
+}
+function getCompanyLocationName(){
+    return 'البقاع - الأنصار - الشارع الرئيسي';
+}
+function getProductName(){
+    return 'Crative Glass';
+}
 ?>

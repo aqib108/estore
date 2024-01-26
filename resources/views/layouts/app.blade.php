@@ -35,7 +35,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/store/css/util.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/store/css/main.css') }}">
 <!--===============================================================================================-->
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
     <!--end of template-->
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
