@@ -31,7 +31,7 @@
       <td>{{$order?->grand_total}}</td>
       <td>{{$order?->billing_address}}</td>
       <th scope="row">{!! $status !!}</th>
-      <td> <button class="btn btn-success">View Invoice</button></td>
+      <td> <a href='{{route('order-invoice',['order'=>$order?->id,'back_url'=>'account'])}}' class="btn btn-success">View Invoice</a></td>
     </tr>
     @endforeach
   </tbody>
