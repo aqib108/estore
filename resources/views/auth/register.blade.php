@@ -6,6 +6,7 @@
         Register
     </h2>
 </section>
+
 <section class="bg0  p-b-116">
     <div class="container">
         <div class="flex-w flex-tr">
@@ -14,37 +15,29 @@
                     @csrf
 
                     <div class="bor8 m-b-20 how-pos4-parent">
-                        <input id="name" type="text" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30 @error('name') is-invalid @enderror" placeholder="Enter Your Name" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-
+                        <input id="name" type="text" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30  @if ($errors->has('name')) is-invalid @endif" placeholder="Enter Your Name" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                         <img class="how-pos4 pointer-none" src="{{ asset('assets/store/images/icons/icon-user.png') }}" alt="ICON">
-                        @error('name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
                     </div>
+                    @if ($errors->has('name'))
+                    <span class="error text-danger">{{ $errors->first('name') }}</span>
+                    @endif
 
                     <div class="bor8 m-b-20 how-pos4-parent">
-                        <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30 @error('email') is-invalid @enderror" type="email" required autocomplete="email" autofocus name="email" value="{{ old('email') }}" placeholder="Your Email Address">
+                        <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30  @if ($errors->has('email')) is-invalid @endif" type="email" required autocomplete="email" autofocus name="email" value="{{ old('email') }}" placeholder="Your Email Address">
                         <img class="how-pos4 pointer-none" src="{{ asset('assets/store/images/icons/icon-email.png') }}" alt="ICON">
-                        @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
                     </div>
+                    @if ($errors->has('email'))
+                    <span class="error text-danger">{{ $errors->first('email') }}</span>
+                    @endif
 
                     <div class="bor8 m-b-20 how-pos4-parent">
-                        <input id="password" type="password" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30 @error('password') is-invalid @enderror" placeholder="Enter Password" name="password" required autocomplete="new-password">
+                        <input id="password" type="password" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30 @if ($errors->has('password')) is-invalid @endif" placeholder="Enter Password" name="password" required autocomplete="new-password">
                         <img class="how-pos4 pointer-none" src="{{ asset('assets/store/images/icons/icon-password.png') }}" alt="ICON">
-                        @error('password')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
 
                     </div>
+                    @if ($errors->has('password'))
+                    <span class="error text-danger">{{ $errors->first('password') }}</span>
+                    @endif
                     <div class="bor8 m-b-20 how-pos4-parent">
                         <input id="password-confirm" type="password" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" name="password_confirmation" placeholder="Enter Confirm Password" required autocomplete="new-password">
                         <img class="how-pos4 pointer-none" src="{{ asset('assets/store/images/icons/icon-password.png') }}" alt="ICON">

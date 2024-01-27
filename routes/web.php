@@ -34,6 +34,7 @@ Route::get('/contact-us', [App\Http\Controllers\HomeController::class, 'Contactu
 Route::get('/about-us', [App\Http\Controllers\HomeController::class, 'Aboutus'])->name('about_us');
 Route::get('/issue-booking', [App\Http\Controllers\HomeController::class, 'IssueBookingPage'])->name('issue.booking.page');
 Route::post('/save-issue-booking', [App\Http\Controllers\HomeController::class, 'SaveIssueBooking'])->name('issue.booking.save');
+
 Route::post('/save_contact_us', [App\Http\Controllers\HomeController::class, 'SaveContactus']);
 //add to cart
 Route::post('/remove-to-cart', [App\Http\Controllers\CartController::class, 'RemoveToCart']);
@@ -131,6 +132,8 @@ Route::prefix('user')->namespace('user')->group(static function () {
     Route::middleware('auth')->group(function () {
 
         Route::get('/dashboard', [App\Http\Controllers\User\DashboardController::class, 'dashboard'])->name('user.dashboard');
+        Route::get('/order', [App\Http\Controllers\HomeController::class, 'checkoutPage'])->name('order');
+        Route::post('/save-order', [App\Http\Controllers\HomeController::class, 'saveOrder'])->name('save.order');
 
     });
 });

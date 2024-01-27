@@ -164,6 +164,13 @@
                                     </div>
 
                                 </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label"> Shipping Charges</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" placeholder=" Enter shipping charges" name="shipping_charges" value="{{isset($settings['shipping_charges']) ? $settings['shipping_charges'] : ''}}">
+                                    </div>
+
+                                </div>
                                 <div class="d-flex justify-content-end mb-3 mr-3">
                                     <a href="{{ URL('admin/dashboard') }}" class="btn btn-info mr-3"> Cancel </a>
                                     <button type="submit" class="btn btn-primary float-right"> Update Settings </button>
