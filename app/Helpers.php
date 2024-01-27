@@ -103,4 +103,19 @@ function getCartTypeOffer(){
 function getCartTypeProduct(){
     return 'Product';
 }
+// Encryption
+// Encryption function
+function encryptOrderNumber($orderId) {
+    return 'Order-AB00G0'.$orderId;
+}
+
+// Decryption function
+// Decryption function (not secure, just for demonstration)
+function decryptOrderNumber($encryptedOrderId) {
+    // Remove the prefix 'Order-AB00G0'
+    $orderId = str_replace('Order-AB00G0', '', $encryptedOrderId);
+
+    return $orderId;
+}
+
 ?>
