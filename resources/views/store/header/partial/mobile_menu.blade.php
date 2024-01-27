@@ -2,27 +2,32 @@
     <ul class="topbar-mobile">
         <li>
             <div class="left-top-bar">
-                Free shipping for standard order over $100
+                <span class="fs-18 txt-center size-211">
+							<span class="lnr lnr-map-marker"></span>
+                            <span>{{getCompanyLocationName()}}</span>
+						</span>
+                        <span class="pl-2 fs-18  txt-center size-211">
+							<span class="lnr lnr-phone-handset"></span>
+                            <span>{{getCompanyPhoneNo()}}</span>
+						</span>
             </div>
+            
         </li>
 
         <li>
             <div class="right-top-bar flex-w h-full">
-                <a href="#" class="flex-c-m p-lr-10 trans-04">
-                    Help & FAQs
-                </a>
-
-                <a href="#" class="flex-c-m p-lr-10 trans-04">
+                  @if (auth()->check())
+                <a href="{{route('account.profile')}}" class="flex-c-m trans-04 p-lr-25">
                     My Account
                 </a>
-
-                <a href="#" class="flex-c-m p-lr-10 trans-04">
-                    EN
+            @else
+              <a href="{{ route('login') }}" class="flex-c-m trans-04 p-lr-25">
+                    Login
                 </a>
-
-                <a href="#" class="flex-c-m p-lr-10 trans-04">
-                    USD
+                 <a href="{{ route('register') }}" class="flex-c-m trans-04 p-lr-25">
+                    Register
                 </a>
+            @endif  
             </div>
         </li>
     </ul>
@@ -50,7 +55,7 @@
         </li>
 
         <li>
-            <a href="blog.html">Services</a>
+            <a href="{{route('services')}}">Services</a>
         </li>
 
         <li>
@@ -61,10 +66,10 @@
             <a href="{{route('contact_us')}}">Contact</a>
         </li>
         <li>
-            <a href="{{route('contact_us')}}">Issue Booking</a>
+            <a href="{{route('issue.booking.page')}}">Issue Booking</a>
         </li>
         <li>
-            <a href="{{route('contact_us')}}">Offer</a>
+            <a href="{{route('offer.list')}}">Offer</a>
         </li>
 
         @guest
