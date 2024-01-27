@@ -14,7 +14,7 @@
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1"  id="load-profile" data-filter="*">
 						Account Setting
 					</button>
-          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 "  id="load-orders" data-filter="*">
+          <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 "  id="load-orders" onclick="fetchOrderListing()" data-filter="*">
 						Orders
 					</button>
 				
@@ -39,4 +39,6 @@
 		</div>
 	</section>
 @endsection
-
+@section('scripts')
+<script src="{{ asset('assets/store/js/UserAccount.js') }}"></script>
+@endsection

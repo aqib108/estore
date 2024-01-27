@@ -35,9 +35,7 @@ Route::get('/about-us', [App\Http\Controllers\HomeController::class, 'Aboutus'])
 Route::get('/services', [App\Http\Controllers\HomeController::class, 'ServicesPage'])->name('services');
 Route::get('/issue-booking', [App\Http\Controllers\HomeController::class, 'IssueBookingPage'])->name('issue.booking.page');
 Route::post('/save-issue-booking', [App\Http\Controllers\HomeController::class, 'SaveIssueBooking'])->name('issue.booking.save');
-
 Route::post('/save_contact_us', [App\Http\Controllers\HomeController::class, 'SaveContactus']);
-
 //offers
 Route::get('/offers', [App\Http\Controllers\HomeController::class, 'offerLists'])->name('offer.list');
 Route::get('/offer/{sku?}', [App\Http\Controllers\HomeController::class, 'getOfferDetailPage'])->name('get.offer.detail');
@@ -48,6 +46,7 @@ Route::middleware('auth')->group(function(){
     Route::post('/add-to-cart', [App\Http\Controllers\CartController::class, 'AddToCart']);
     Route::get('/cart', [App\Http\Controllers\CartController::class, 'cartList'])->name('cart.list');
     Route::get('/account', [App\Http\Controllers\AccountController::class, 'getAccountPage'])->name('account.profile');
+    Route::get('/order-listing', [App\Http\Controllers\AccountController::class, 'getOrderListingPage'])->name('account.order.listing');
 });
 //end of ecommerce store route
 

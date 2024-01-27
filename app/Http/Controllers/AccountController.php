@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App;
-use App\Models\Admin\{Product,Offer};
+use App\Models\Admin\{Product,Offer,Order};
 use Illuminate\Http\Request;
 use Response;
 // use Gloudemans\Shoppingcart\Facades\Cart;
@@ -22,7 +22,14 @@ class AccountController extends Controller
     {
         return view('store.pages.account',[]);
     }
-   
+    public function getOrderListingPage()
+    {
+        $data['status'] = true;
+        $userId = auth()->user()->id;
+        $orders = Order::whereUserId($userId)->with('orderItems')->get();
+        $data['html'] =  view('store.pages.order-listing',['cart_items'=>[],'orders'=>$orders])->render();
+        return response()->json($data);
+    }
     
   
 }

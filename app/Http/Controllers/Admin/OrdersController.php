@@ -66,7 +66,7 @@ class OrdersController extends Controller
             $datatable = $datatable->editColumn('user_id', function ($row) use($hashids) {
                 if ($row->user_id) {
                     $userData = User::where('id', $row->user_id)->first();
-                    $name='<a href="'. url("admin/customers/" .$hashids->encode($userData->id).'/edit').'")">'.$userData->name.'</a>';
+                    $name='<a href="'. url("admin/customers/" .$hashids->encode($userData?->id).'/edit').'")">'.$userData?->name.'</a>';
                     return $name;
                 } else {
                     return "Guest User";
