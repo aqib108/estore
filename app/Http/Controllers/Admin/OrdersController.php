@@ -91,7 +91,7 @@ class OrdersController extends Controller
                         $actions .= '<a class="btn btn-secondary ml-2" href="javascript:void(0)" title="Reject" onclick="orderStatusChange(' . $row->id . ',4)"><i class="fa fa-times" aria-hidden="true"></i></a>';
                     }
                     if (have_right('Download-Orders-Invoice')) {
-                        $actions .= '<a class="btn btn-secondary ml-2" href="'.url("order-invoice/".$row->id).'" target="_blank" title="Download Invoice"><i class="fa fa-download" aria-hidden="true"></i></a>';
+                        $actions .= '<a class="btn btn-secondary ml-2" href="'.route("order-invoice",['order'=>$row->id,'back_url'=>'admin/orders']).'" target="_blank" title="Download Invoice"><i class="fa fa-download" aria-hidden="true"></i></a>';
                     }
                 }
 
@@ -141,12 +141,12 @@ class OrdersController extends Controller
 
     public function orderInvoice($order_id){
         $data = [];
-        $order_id = $order_id;
         $data['OrderItemdata'] = OrderItem::where('order_id', $order_id)->get();
         $data['orderData'] = Order::where('orders.id', $order_id)->first();
+        return view('admin.orders.invoice',$data);
           
-        $pdf = PDF::loadView('admin.orders.invoice', $data);
-    
-        return $pdf->download('itsolutionstuff.pdf');
+        // $pdf = PDF::loadView('admin.orders.invoice', $data);
+        // $pdfName = '8order-invoice-'.encryptOrderNumber($order_id);
+        // return $pdf->download($pdfName);
     } 
 }
