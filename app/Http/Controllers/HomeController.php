@@ -122,6 +122,8 @@ class HomeController extends Controller
 
         $orderModal->fill($request->all());
         $orderModal->fill(['user_id' => $userID]);
+        $orderModal->fill(['sub_total' => \Cart::getSubTotal()]);
+        $orderModal->fill(['grand_total' => \Cart::getTotal()]);
 
         if ($orderModal->save()) {
             // dd("ok");
@@ -134,8 +136,8 @@ class HomeController extends Controller
                 $items[$key]['product_id'] = preg_replace('/\D/', '', $item->id);
                 $items[$key]['quantity'] = $item->quantity;
                 $items[$key]['unit_price'] = $item->price;
-                $items[$key]['total'] =($item->quantity*$item->price);
-                $items[$key]['order_type'] =$item->attributes->type==getCartTypeOffer() ? 2 : 1;
+                $items[$key]['total'] = ($item->quantity * $item->price);
+                $items[$key]['order_type'] = $item->attributes->type == getCartTypeOffer() ? 2 : 1;
             }
 
             $orderModal->orderItems()->createMany($items);

@@ -86,22 +86,10 @@ Route::prefix('admin')->namespace('Admin')->group(static function()
         Route::post('update-pic', '\App\Http\Controllers\Admin\AdminController@profilePic');
         Route::resource('customers', '\App\Http\Controllers\Admin\CustomerController');
         Route::post('pages/uploadimage', '\App\Http\Controllers\Admin\PagesController@uploadimage')->name('admin.pages.uploadimage');
-        Route::post('posts/uploadimage', '\App\Http\Controllers\Admin\PostsController@uploadimage')->name('admin.posts.uploadimage');
-        Route::post('sliders/uploadimage', '\App\Http\Controllers\Admin\SliderController@uploadimage')->name('admin.sliders.uploadimage');
         Route::get('/contacts-status', [App\Http\Controllers\Admin\ContactController::class, 'updateStatus']);
-        Route::get('featured-donation/{id}', [App\Http\Controllers\Admin\DonationController::class, 'setFeaturedDonation'])->name('admin.featured.donation');
-        Route::get('locations/featured-address/{id}', '\App\Http\Controllers\Admin\LocationController@setFeaturedAddress');
-        //library route
-        Route::post('save-files-ajax/{libId}', '\App\Http\Controllers\Admin\LibraryController@saveFilesAjax');
-        Route::post('update-thumb-img/{id}', '\App\Http\Controllers\Admin\LibraryController@updateThumbImg');
-
-        Route::any('donation/recieved-amount', [\App\Http\Controllers\Admin\DonationController::class, 'recievedAmount'])->name('admin.donation-recieved-amount');
-        Route::resource('document-uploader', '\App\Http\Controllers\Admin\DocumentUploader');
         //rooms route
         Route::resource('categories', '\App\Http\Controllers\Admin\CategoriesController');
         // Route::resource('customers', '\App\Http\Controllers\Admin\RoomCustomerController');
-        Route::resource('room-booking', '\App\Http\Controllers\Admin\RoomBookingController');
-        Route::get('booking-invoice\{id?}','\App\Http\Controllers\Admin\RoomBookingController@printInvoice')->name('admin.print.invoice');
 
         Route::resource('products', '\App\Http\Controllers\Admin\ProductsController');
         Route::resource('offers', '\App\Http\Controllers\Admin\OfferController');
@@ -109,6 +97,9 @@ Route::prefix('admin')->namespace('Admin')->group(static function()
         Route::post('product-post', [\App\Http\Controllers\Admin\ProductsController::class, 'productPost'])->name('admin.product-post');
         Route::get('products/featured-product/{id}', '\App\Http\Controllers\Admin\ProductsController@setFeaturedProduct');
         Route::resource('site-setting', '\App\Http\Controllers\Admin\SettingController');
+        Route::resource('orders', '\App\Http\Controllers\Admin\OrdersController');
+        Route::get('order-details', '\App\Http\Controllers\Admin\OrdersController@orderDetails');
+        Route::get('order-change-status', '\App\Http\Controllers\Admin\OrdersController@updateOrderStatus');
         //end of rooms route
     });
 });
