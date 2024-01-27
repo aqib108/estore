@@ -60,12 +60,10 @@ class HomeController extends Controller
     function SaveContactus(Request $request)
     {
         $contact = new ContactRecord();
-        $contact->name = $request->name;
-        $contact->subject = $request->subject;
-        $contact->message = $request->message;
-        $contact->save();
-        return redirect('/')->with('msg', 'successfully contact created');
-        return redirect()->with('msg', 'successfully contact created');
+        $contact->email = $request->email;
+        $contact->description = $request->description;
+        $contact->sbooave();
+        return back()->with('msg', 'successfully Send Your Response');
     }
     function SaveIssueBooking(Request $request)
     {

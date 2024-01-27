@@ -18,10 +18,10 @@
    @foreach($orders as $order)
    @php
    $status = match($order?->status){
-    1=>'Pending',
-    2=>'Shipped',
-    3=>'Completed',
-    default=>'Pending'
+    1=>'<span class="badge badge-secondary">Pending</span>',
+    2=>'<span class="badge badge-success">Shipped</span>',
+    3=>'<span class="badge badge-dark">Completed</span>',
+    default=>'<span class="badge badge-secondary">Pending</span>'
    }
    @endphp
     <tr>
@@ -30,8 +30,8 @@
       <td>{{$order?->sub_total}}</td>
       <td>{{$order?->grand_total}}</td>
       <td>{{$order?->billing_address}}</td>
-      <td>{{$status}}</td>
-      <td>View Order</td>
+      <th scope="row">{!! $status !!}</th>
+      <td> <button class="btn btn-success">View Invoice</button></td>
     </tr>
     @endforeach
   </tbody>

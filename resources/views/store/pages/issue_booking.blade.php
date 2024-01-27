@@ -10,6 +10,11 @@
 		<div class="container">
 			<div class="flex-w flex-tr">
 				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
+				@if(session('msg'))
+     <div class="alert alert-success">
+        {{ session('msg') }}
+      </div>
+      @endif
 					<form method="POST" action="{{route('issue.booking.save')}}">
 						@csrf
             <div class="bor8 m-b-20 how-pos4-parent">

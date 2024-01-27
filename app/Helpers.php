@@ -106,14 +106,14 @@ function getCartTypeProduct(){
 // Encryption
 // Encryption function
 function encryptOrderNumber($orderId) {
-    return 'Order-AB00G0'.$orderId;
+    return 'ORDER-AB00G0'.$orderId;
 }
 
 // Decryption function
 // Decryption function (not secure, just for demonstration)
 function decryptOrderNumber($encryptedOrderId) {
     // Remove the prefix 'Order-AB00G0'
-    $orderId = str_replace('Order-AB00G0', '', $encryptedOrderId);
+    $orderId = str_replace('ORDER-AB00G0', '', $encryptedOrderId);
 
     return $orderId;
 }
