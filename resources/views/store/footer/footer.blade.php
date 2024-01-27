@@ -7,29 +7,17 @@
 					</h4>
 
 					<ul>
+						
+           @foreach(getProductCategories() as $category)
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Women
+							<a href="{{route('get.products',['category'=> $category?->id])}}" class="stext-107 cl7 hov-cl1 trans-04">
+								{{$category?->name}}
 							</a>
 						</li>
+           @endforeach
+					
 
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Men
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Shoes
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Watches
-							</a>
-						</li>
+						
 					</ul>
 				</div>
 
@@ -52,13 +40,13 @@
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="{{route('offer.list')}}" class="stext-107 cl7 hov-cl1 trans-04">
 								Offers
 							</a>
 						</li>
 
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a href="{{route('issue.booking.page')}}" class="stext-107 cl7 hov-cl1 trans-04">
 								Issue Booking
 							</a>
 						</li>
@@ -134,7 +122,7 @@
 
 				<p class="stext-107 cl6 txt-center">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">{{getProductName()}}</a> &amp; distributed by <a href="#" target="_blank">{{getProductName()}}</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="/" target="_blank">{{getProductName()}}</a> &amp; distributed by <a href="/" target="_blank">{{getProductName()}}</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
 				</p>
