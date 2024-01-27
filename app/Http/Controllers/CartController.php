@@ -42,7 +42,7 @@ class CartController extends Controller
             ]);
         } elseif($request->cart_type==getCartTypeOffer())
         {
-            $offer = Offer::where($request->product_id)->with('offerImages')->first();
+            $offer = Offer::where('id',$request->product_id)->with('offerImages')->first();
             $id = getCartTypeOffer().'-'.$request->product_id;
             \Cart::add([
                 'id'=>$id,
