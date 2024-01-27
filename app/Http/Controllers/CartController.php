@@ -20,14 +20,15 @@ class CartController extends Controller
     }
     public function cartList()
     {
-        $cartItems = \Cart::getContent();
+         $cartItems = \Cart::getContent();
         return view('store.pages.cart',['cart_items'=>$cartItems]);
     }
    
     public function AddToCart(Request $request){
+        // dd($request->all());
         if($request->cart_type==getCartTypeProduct())
         {
-            $product = Product::find($request->product_id)->with('productImages')->first();
+            $product = Product::where('id',$request->product_id)->with('productImages')->first();
             $id = getCartTypeProduct().'-'.$request->product_id;
             \Cart::add([
                 'id'=>$id,
@@ -41,7 +42,7 @@ class CartController extends Controller
             ]);
         } elseif($request->cart_type==getCartTypeOffer())
         {
-            $offer = Offer::find($request->product_id)->with('offerImages')->first();
+            $offer = Offer::where($request->product_id)->with('offerImages')->first();
             $id = getCartTypeOffer().'-'.$request->product_id;
             \Cart::add([
                 'id'=>$id,

@@ -55,7 +55,7 @@
         </li>
 
         <li>
-            <a href="blog.html">Services</a>
+            <a href="{{route('services')}}">Services</a>
         </li>
 
         <li>

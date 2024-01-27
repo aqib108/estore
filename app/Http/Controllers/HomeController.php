@@ -31,11 +31,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // \Cart::clear();
-        // \Cart::getContent()->dd();
         $categories = Category::whereStatus(1)->get();
         $data['categories'] = $categories;
+        $data['offers']  = Offer::whereStatus(1)->with('offerImages')->get()->take(3);
         return view('store.pages.home', $data);
+    }
+    public function ServicesPage(){
+        return view('store.pages.service');   
     }
 
     function getProductsDetailPage(Request $request, $sku)
