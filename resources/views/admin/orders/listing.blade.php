@@ -88,6 +88,10 @@
 				              <tr>
 				                <th>ID</th>
 				                <th>User Name</th>
+								<th>Phone</th>
+								<th>Address</th>
+                                <th>Subtotal</th>
+                                <th>Total</th>
 				                <th>Status</th>
 				                <th>Actions</th>
 				              </tr>
@@ -95,12 +99,16 @@
 				          <tbody>
 				          </tbody>
 				          <tfoot>
-				              <tr>
-                                  <th>ID</th>
-                                  <th>User Name</th>
-				                	<th>Status</th>
-                                  <th>Actions</th>
-				              </tr>
+							<tr>
+							<th>ID</th>
+							<th>User Name</th>
+							<th>Phone</th>
+							<th>Address</th>
+							<th>Subtotal</th>
+							<th>Total</th>
+							<th>Status</th>
+							<th>Actions</th>
+							</tr>
 				          </tfoot>
 				        </table>
 				      </div>
@@ -171,6 +179,10 @@
 			columns: [
 				{data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
 				{data: 'user_id', name: 'user_id'},
+				{data: 'billing_phone_number', name: 'billing_phone_number'},
+				{data: 'billing_address', name: 'billing_address'},
+				{data: 'sub_total', name: 'sub_total'},
+				{data: 'grand_total', name: 'grand_total'},
 				{data: 'status', name: 'status'},
 				{data: 'action', name: 'action', orderable: false, searchable: false},
 			]

@@ -15,26 +15,41 @@
                     <div class="bor8 m-b-20 how-pos4-parent">
                         <input required class="stext-111 cl2 plh3 size-116 p-l-30 " type="text" value="{{ Auth::check() ? auth()->user()->name : '' }}" name="billing_user_name" placeholder="Your Name">
                     </div>
+                    @if ($errors->has('billing_user_name'))
+                    <span class="error text-danger">{{ $errors->first('billing_user_name') }}</span>
+                    @endif
                     <div class="bor8 m-b-20 how-pos4-parent">
                         <input required class="stext-111 cl2 plh3 size-116 p-l-30 " type="email" name="billing_email" value="{{ Auth::check() ? auth()->user()->email : '' }}" placeholder="Your Email">
                     </div>
+                    @if ($errors->has('billing_email'))
+                    <span class="error text-danger">{{ $errors->first('billing_email') }}</span>
+                    @endif
                     <div class="bor8 m-b-20 how-pos4-parent">
                         <input required class="stext-111 cl2 plh3 size-116 p-l-30 " type="text" name="billing_phone_number" placeholder="Your Phone Number">
                     </div>
+                    @if ($errors->has('billing_phone_number'))
+                    <span class="error text-danger">{{ $errors->first('billing_phone_number') }}</span>
+                    @endif
                     <div class="bor8 m-b-20 how-pos4-parent">
                         <input required class="stext-111 cl2 plh3 size-116 p-l-30 " type="text" name="billing_city" placeholder="Your City">
                     </div>
+                    @if ($errors->has('billing_city'))
+                    <span class="error text-danger">{{ $errors->first('billing_city') }}</span>
+                    @endif
                     <div class="bor8 m-b-20 how-pos4-parent">
                         <input required class="stext-111 cl2 plh3 size-116 p-l-30 " type="text" name="billing_address" placeholder="Your Address Location">
                     </div>
+                    @if ($errors->has('billing_address'))
+                    <span class="error text-danger">{{ $errors->first('billing_address') }}</span>
+                    @endif
                     <div class="bor8 m-b-20 how-pos4-parent">
-						<select class="stext-111 cl2 plh3 size-116 p-l-30 ">
-							<option value="">Cash on Deliery</option>
-						</select>
+                        <select class="stext-111 cl2 plh3 size-116 p-l-30 ">
+                            <option value="">Cash on Deliery</option>
+                        </select>
                     </div>
 
                     <div class="bor8 m-b-30">
-                        <textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="order_comment" placeholder="Order Comment"></textarea>
+                        <textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="order_comment" placeholder="Order Comment (optional)"></textarea>
                     </div>
 
                     <button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">

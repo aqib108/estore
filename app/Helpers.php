@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Admin\Category;
+use App\Models\Admin\Setting;
 use Illuminate\Support\Facades\Crypt;
 function rights()
 {
@@ -67,6 +68,15 @@ function getSettingDataHelper($key)
         return $settingsArray[$key];
     } else {
         return '#';
+    }
+}
+function getSetting($key)
+{
+    $settings = Setting::where('option_name' , $key)->pluck('option_value')->first();
+    if (!empty($settings)) {
+        return $settings;
+    } else {
+        return '';
     }
 }
 

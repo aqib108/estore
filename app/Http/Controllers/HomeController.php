@@ -4,14 +4,11 @@ namespace App\Http\Controllers;
 
 use App;
 use Illuminate\Http\Request;
-use App\Models\Admin\Page;
-use App\Models\Admin\Post;
 use App\Models\Admin\Category;
-use App\Models\Admin\DocumentUploader as DocumentModel;
 use App\Models\Admin\{Product, Offer, IssueBooking, Order};
 use App\Models\ContactForm\ContactRecord;
-use Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -118,6 +115,17 @@ class HomeController extends Controller
     function saveOrder(Request $request)
     {
 
+        $validator = Validator::make($request->all(), [
+            'billing_user_name' => ['required', 'string', 'max:255'],
+            'billing_email' => ['required', 'string', 'email', 'max:255'],
+            'billing_phone_number' => ['required'],
+            'billing_city' => ['required'],
+            'billing_address' => ['required'],
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
         $userID = (Auth::check()) ? Auth::user()->id : null;
 
         $orderModal = new Order();

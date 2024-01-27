@@ -9,6 +9,7 @@ use App\Models\User;
 use DataTables;
 use Illuminate\Http\Request;
 use Hashids\Hashids;
+use PDF;
 
 class OrdersController extends Controller
 {
@@ -89,6 +90,9 @@ class OrdersController extends Controller
                     if (have_right('Reject-Orders')) {
                         $actions .= '<a class="btn btn-secondary ml-2" href="javascript:void(0)" title="Reject" onclick="orderStatusChange(' . $row->id . ',4)"><i class="fa fa-times" aria-hidden="true"></i></a>';
                     }
+                    if (have_right('Download-Orders-Invoice')) {
+                        $actions .= '<a class="btn btn-secondary ml-2" href="'.url("order-invoice/".$row->id).'" target="_blank" title="Download Invoice"><i class="fa fa-download" aria-hidden="true"></i></a>';
+                    }
                 }
 
                 if (have_right('Delete-Orders')) {
@@ -134,4 +138,15 @@ class OrdersController extends Controller
             exit();
         }
     }
+
+    public function orderInvoice($order_id){
+        $data = [];
+        $order_id = $order_id;
+        $data['OrderItemdata'] = OrderItem::where('order_id', $order_id)->get();
+        $data['orderData'] = Order::where('orders.id', $order_id)->first();
+          
+        $pdf = PDF::loadView('admin.orders.invoice', $data);
+    
+        return $pdf->download('itsolutionstuff.pdf');
+    } 
 }

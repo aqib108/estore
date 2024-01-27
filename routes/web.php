@@ -64,6 +64,7 @@ Route::post('admin', [App\Http\Controllers\Auth\Admin\LoginController::class, 'l
 
 Route::any('admin/logout', [App\Http\Controllers\Auth\Admin\LoginController::class, 'logout'])->name('admin.auth.logout');
 
+Route::get('order-invoice/{order}', '\App\Http\Controllers\Admin\OrdersController@orderInvoice')->name('order-invoice');
 
 Route::prefix('admin')->namespace('Admin')->group(static function() 
 {
@@ -90,6 +91,7 @@ Route::prefix('admin')->namespace('Admin')->group(static function()
         Route::resource('orders', '\App\Http\Controllers\Admin\OrdersController');
         Route::get('order-details', '\App\Http\Controllers\Admin\OrdersController@orderDetails');
         Route::get('order-change-status', '\App\Http\Controllers\Admin\OrdersController@updateOrderStatus');
+
         //end of rooms route
     });
 });
