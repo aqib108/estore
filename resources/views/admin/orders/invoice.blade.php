@@ -146,10 +146,10 @@
    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.js"></script>
     <script>    
-    var pdfredirectRoute:{
+    var pdfredirectRoute = {
         "userPdfRedirectRoute":"{{route('account.profile')}}",
         "adminPdfRedirectRoute":"{{route('orders.index')}}"
-    },
+    };
     function generatePDF() {
         const urlParams = new URLSearchParams(window.location.search);
 
