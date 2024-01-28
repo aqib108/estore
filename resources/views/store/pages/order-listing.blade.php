@@ -1,7 +1,7 @@
 <section>
     <div class="container">
                 <div class="row">
-                <table class="table">
+                <table class="table table-responsive">
   <caption>List of orders</caption>
   <thead>
     <tr>

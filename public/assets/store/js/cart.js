@@ -22,6 +22,7 @@ function AddToCart(type) {
     if(cartCount>0){
       $('.e-cart-count').addClass('icon-header-noti');
       $('.e-cart-count').attr('data-notify', cartCount);
+      swal('Successfully Product Add Into Cart')
     }
     
     },
