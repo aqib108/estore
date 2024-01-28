@@ -146,6 +146,10 @@
    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.js"></script>
     <script>    
+    var pdfredirectRoute:{
+        "userPdfRedirectRoute":"{{route('account.profile')}}",
+        "adminPdfRedirectRoute":"{{route('orders.index')}}"
+    },
     function generatePDF() {
         const urlParams = new URLSearchParams(window.location.search);
 
@@ -165,7 +169,13 @@
         // Call html2pdf function with the element and options
          html2pdf(element, options).then(() => {
             // PDF generation completed, navigate back to the previous page
-            window.location.href='/'+backUrl;
+            if(backUrl=='admin'){
+             window.location.href=pdfredirectRoute.adminPdfRedirectRoute;
+            } else if(backUrl=='user'){
+             window.location.href=pdfredirectRoute.userPdfRedirectRoute;
+            }
+            
+            
         });
     }
 </script>

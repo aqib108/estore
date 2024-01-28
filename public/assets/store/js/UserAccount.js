@@ -4,7 +4,7 @@ $(function(){
 function fetchOrderListing() {
   event.preventDefault();
   $.ajax({
-    url: '/order-listing',
+    url: urls.orderListing,
     type: 'GET', // Specify the request method
     data: {},
     success: function(response) {
@@ -20,7 +20,7 @@ function fetchOrderListing() {
 function fetchAccountSetting() {
   // event.preventDefault();
   $.ajax({
-    url: '/update-account-setting-page',
+    url: urls.accountSettingPage,
     type: 'GET', // Specify the request method
     data: {},
     success: function(response) {
@@ -38,7 +38,7 @@ function updateAccountSetting() {
   // Get the CSRF token from the meta tag in your HTML
   var csrfToken = $('meta[name="csrf-token"]').attr('content');
   $.ajax({
-    url: '/update-account-setting',
+    url: urls.saveAccountSetting,
     type: 'POST', // Specify the request method
     data: {
       'name': name,

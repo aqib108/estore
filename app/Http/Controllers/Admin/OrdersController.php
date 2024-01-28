@@ -91,7 +91,7 @@ class OrdersController extends Controller
                         $actions .= '<a class="btn btn-secondary ml-2" href="javascript:void(0)" title="Reject" onclick="orderStatusChange(' . $row->id . ',4)"><i class="fa fa-times" aria-hidden="true"></i></a>';
                     }
                     if (have_right('Download-Orders-Invoice')) {
-                        $actions .= '<a class="btn btn-secondary ml-2" href="'.route("order-invoice",['order'=>$row->id,'back_url'=>'admin/orders']).'" target="_blank" title="Download Invoice"><i class="fa fa-download" aria-hidden="true"></i></a>';
+                        $actions .= '<a class="btn btn-secondary ml-2" href="'.route("order-invoice",['order'=>$row->id,'back_url'=>'admin']).'" target="_blank" title="Download Invoice"><i class="fa fa-download" aria-hidden="true"></i></a>';
                     }
                 }
 

@@ -1,3 +1,4 @@
+
 <!--===============================================================================================-->	
 	<script src="{{ asset('assets/store/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
 <!--===============================================================================================-->
@@ -8,6 +9,14 @@
 <!--===============================================================================================-->
 	<script src="{{ asset('assets/store/vendor/select2/select2.min.js') }}"></script>
 	<script>
+	const urls = {
+   'addToCart':"{{route('add.to.cart')}}",
+	 'updateToQty':"{{route('update.to.qty')}}",
+	 'removeToCart':"{{route('remove.to.cart')}}",
+	 'orderListing':"{{route('account.order.listing')}}",
+	 "accountSettingPage":"{{route('account.update.profile')}}",
+	 "saveAccountSetting":"{{route('account.update.data.profile')}}",
+	};
 		$(".js-select2").each(function(){
 			$(this).select2({
 				minimumResultsForSearch: 20,

@@ -6,7 +6,7 @@ function AddToCart(type) {
   // Get the CSRF token from the meta tag in your HTML
   var csrfToken = $('meta[name="csrf-token"]').attr('content');
   $.ajax({
-    url: '/add-to-cart',
+    url: urls.addToCart,
     type: 'POST', // Specify the request method
     data: {
       'product_price': productPrice,
@@ -32,7 +32,7 @@ function AddToCart(type) {
 }
 function removeToCart(itemId){
 $.ajax({
-  url: '/remove-to-cart',
+  url: urls.removeToCart,
   type: 'POST', // Specify the request method
   data: {
     'item_id': itemId,
@@ -51,7 +51,7 @@ $.ajax({
 function updateCartItemQty(itemId){
   var qty = $('#product_qty_'+itemId).val();
   $.ajax({
-    url: '/update-cart-qty',
+    url: urls.updateToQty,
     type: 'POST', // Specify the request method
     data: {
       'item_id': itemId,

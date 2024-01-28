@@ -41,9 +41,9 @@ Route::get('/offers', [App\Http\Controllers\HomeController::class, 'offerLists']
 Route::get('/offer/{sku?}', [App\Http\Controllers\HomeController::class, 'getOfferDetailPage'])->name('get.offer.detail');
 //end of offers
 Route::middleware('auth')->group(function(){
-    Route::post('/remove-to-cart', [App\Http\Controllers\CartController::class, 'RemoveToCart']);
-    Route::post('/update-cart-qty', [App\Http\Controllers\CartController::class, 'updateCartQty']);
-    Route::post('/add-to-cart', [App\Http\Controllers\CartController::class, 'AddToCart']);
+    Route::post('/remove-to-cart', [App\Http\Controllers\CartController::class, 'RemoveToCart'])->name('remove.to.cart');
+    Route::post('/update-cart-qty', [App\Http\Controllers\CartController::class, 'updateCartQty'])->name('update.to.qty');
+    Route::post('/add-to-cart', [App\Http\Controllers\CartController::class, 'AddToCart'])->name('add.to.cart');
     Route::get('/cart', [App\Http\Controllers\CartController::class, 'cartList'])->name('cart.list');
     Route::get('/account', [App\Http\Controllers\AccountController::class, 'getAccountPage'])->name('account.profile');
     Route::get('/order-listing', [App\Http\Controllers\AccountController::class, 'getOrderListingPage'])->name('account.order.listing');
