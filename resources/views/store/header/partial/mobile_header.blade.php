@@ -1,7 +1,7 @@
 <div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="/"><img src="{{ asset('assets/front/images/logo.png') }}" alt="IMG-LOGO"></a>
+				<a href="{{route('main.home')}}"><img src="{{ asset('assets/front/images/logo.png') }}" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->

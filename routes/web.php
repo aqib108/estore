@@ -27,7 +27,7 @@ Route::get('/storage', function () {
     dump('storage linked');
 });
 //ecommerce store route
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('main.home');
 Route::get('/get-products', [App\Http\Controllers\HomeController::class, 'getProducts'])->name('get.products');
 Route::get('/products/{sku?}', [App\Http\Controllers\HomeController::class, 'getProductsDetailPage'])->name('get.product.detail');
 Route::get('/contact-us', [App\Http\Controllers\HomeController::class, 'Contactus'])->name('contact_us');

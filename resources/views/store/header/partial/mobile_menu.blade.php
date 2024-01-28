@@ -34,7 +34,7 @@
 
     <ul class="main-menu-m">
         <li>
-            <a href="/">Home</a>
+            <a href="{{route('main.home')}}">Home</a>
         </li>
 
         <li>
