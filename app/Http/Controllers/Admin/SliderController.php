@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Hashids\Hashids;
 use App\Models\Admin\Slider;
+use Illuminate\Support\Facades\Validator;
+use Session;
+use Illuminate\Http\Request;
 use DataTables;
-use App\Models\Admin\Language;
+
 
 class SliderController extends Controller
 {
@@ -18,46 +19,32 @@ class SliderController extends Controller
      */
     public function index(Request $request)
     {
-        if(!have_right('Access-Slider'))
+        if (!have_right('View-Slider'))
             access_denied();
 
         $data = [];
-        $hashids = new Hashids('',10);
-        if($request->ajax())
-        {
-            $db_record = Slider::orderBy('created_at','DESC')->get();
-
+        if ($request->ajax()) {
+            $db_record = Slider::orderBy('created_at', 'DESC')->get();
             $datatable = Datatables::of($db_record);
             $datatable = $datatable->addIndexColumn();
-            $datatable = $datatable->editColumn('name', function($row)
-            {
-                $slidername = (array)json_decode($row->name);
-                return $slidername['en'];
-
-            });
-            $datatable = $datatable->editColumn('status', function($row)
-            {
+            $datatable = $datatable->editColumn('status', function ($row) {
                 $status = '<span class="badge badge-danger">Disable</span>';
-                if ($row->status == 1)
-                {
+                if ($row->status == 1) {
                     $status = '<span class="badge badge-success">Active</span>';
                 }
                 return $status;
             });
-            $datatable = $datatable->addColumn('action', function($row) use($hashids)
-            {
+            $datatable = $datatable->addColumn('action', function ($row) {
                 $actions = '<span class="actions">';
 
-                if(have_right('Access-Slider'))
-                {
-                    $actions .= '<a class="btn btn-primary" href="'.url("admin/sliders/" .$hashids->encode($row->id).'/edit').'" title="Edit"><i class="far fa-edit"></i></a>';
+                if (have_right('Edit-Slider')) {
+                    $actions .= '<a class="btn btn-primary" href="' . url("admin/slider/" . $row->id . '/edit') . '" title="Edit"><i class="far fa-edit"></i></a>';
                 }
-                    
-                if(have_right('Access-Slider'))
-                {
-                    $actions .= '<form method="POST" action="'.url("admin/sliders/" . $hashids->encode($row->id)).'" accept-charset="UTF-8" style="display:inline;">';
+
+                if (have_right('Delete-Products')) {
+                    $actions .= '<form method="POST" action="' . url("admin/slider/" . $row->id) . '" accept-charset="UTF-8" style="display:inline;">';
                     $actions .= '<input type="hidden" name="_method" value="DELETE">';
-                    $actions .= '<input name="_token" type="hidden" value="'.csrf_token().'">';
+                    $actions .= '<input name="_token" type="hidden" value="' . csrf_token() . '">';
                     $actions .= '<button class="btn btn-danger" style="margin-left:02px;" onclick="return confirm(\'Are you sure you want to delete this record?\');" title="Delete">';
                     $actions .= '<i class="far fa-trash-alt"></i>';
                     $actions .= '</button>';
@@ -68,12 +55,11 @@ class SliderController extends Controller
                 return $actions;
             });
 
-            $datatable = $datatable->rawColumns(['status','action']);
+            $datatable = $datatable->rawColumns(['status', 'action']);
             $datatable = $datatable->make(true);
             return $datatable;
         }
-
-        return view('admin.sliders.listing',$data);
+        return view('admin.slider.listing', $data);
     }
 
     /**
@@ -83,14 +69,12 @@ class SliderController extends Controller
      */
     public function create()
     {
-        if(!have_right('Access-Slider'))
+        if (!have_right('Create-Slider'))
             access_denied();
-
         $data = [];
-        $data['row'] = new Slider();
-        $data['languages'] = Language::all();
+        $data['row'] = new Slider;
         $data['action'] = 'add';
-        return View('admin.sliders.form',$data);
+        return View('admin.slider.form', $data);
     }
 
     /**
@@ -102,103 +86,56 @@ class SliderController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'image' => 'mimes:jpeg,png,jpg',
+            'status' => 'required',
+        ]);
 
-        // $validator = Validator::make($request->all(), [
-        //     'title' => 'required|string|max:255',
-        //     'url' => 'required|string|max:255',
-        // ]);
+        if ($validator->fails()) {
+            Session::flash('flash_danger', $validator->messages());
+            return redirect()->back()->withInput();
+        }
+        $url_image = array();
 
-        // if ($validator->fails())
-        // {
-        //     Session::flash('flash_danger', $validator->messages());
-        //     return redirect()->back()->withInput();
-        // }
 
-        if($input['action'] == 'add')
-        {
-            if(!have_right('Access-Slider'))
+        if ($input['action'] == 'add') {
+            if (!have_right('Create-Slider'))
                 access_denied();
 
+            if (isset($input['image'])) {
+                $imagePath = $this->uploadimage($request);
+                $input['image'] = $imagePath;
+            }
+            $input['admin_id'] = auth()->user()->id;
             $model = new Slider();
-            $model->name=json_encode($request->name);
-            $model->content=json_encode($request->content);
-            $model->status=$request->status;
-            if($request->hasFile('image'))
-            {
-                $timageName = 'slider-image'.time().'.'.$request->image->extension();  
-                if($request->image->move(public_path('slider-images/'), $timageName))
-                {
-                    $model->image=$timageName;
-                }   
-            }
-            if($request->hasFile('slider_logo'))
-            {
-                $input['slider_logo'] = $this->uploadfile($request);      
-            }
+            $model->fill($input);
             $model->save();
-            $msg = 'Data added Successfully';
-        }
-        else
-        {
-            if(!have_right('Access-Slider'))
+
+            return redirect('admin/slider')->with('message', 'Data added Successfully');
+        } else {
+            if (!have_right('Edit-Slider'))
                 access_denied();
 
             $id = $input['id'];
-            $hashids = new Hashids('',10);
-            $id = $hashids->decode($id)[0];
             $model = Slider::find($id);
-            $model->name=json_encode($request->name);
-            $model->content=json_encode($request->content);
-            $model->status=$request->status;
-            if($request->hasFile('image'))
-            {
-                $timageName = 'slider-image'.time().'.'.$request->image->extension();
-                if($request->image->move(public_path('slider-images/'), $timageName))
-                {
-                    $model->image=$timageName;
-                }   
-            }
-            if (isset($input['slider_logo'])) {
-                
-                $filePath = $this->uploadfile($request);
-                $model->slider_logo= $filePath;
-                $file_url =  $model->slider_logo;
-                if (file_exists(public_path($file_url))) {
-                    // if(isset($file_url))
-                    // unlink($file_url);
+            // @for delete images
+            if (isset($input['image'])) {
+                $imagePath = $this->uploadimage($request);
+                $input['image'] = $imagePath;
+                $image_url =  $model->image;
+                if (file_exists(public_path($image_url))) {
+                    unlink($image_url);
                 }
             } else {
-                unset($input['slider_logo']);
+                unset($input['image']);
             }
-            
+            // @for delete images
+            $model->fill($input);
             $model->update();
-            $msg = 'Data updated Successfully';
+            return redirect('admin/slider')->with('message', 'Data updated Successfully');
         }
-
-        return redirect('admin/sliders')->with('message',$msg);
     }
-    public function uploadfile(Request $request)
-    {
-        $path = '';
-        if ($request->slider_logo) {
-            $fileName = 'slider-logo' . time() . '.' . $request->slider_logo->extension();
-            if ($request->slider_logo->move(public_path('slider-logo'), $fileName)) {
-                $path =  'slider-logo/' . $fileName;
-            }
-        }
-        return $path;
-    }
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -207,29 +144,15 @@ class SliderController extends Controller
      */
     public function edit($id)
     {
-        if(!have_right('Access-Slider'))
+        if (!have_right('Edit-Slider'))
             access_denied();
 
         $data = [];
         $data['id'] = $id;
-        $hashids = new Hashids('',10);
-        $id = $hashids->decode($id)[0];
+        // $id = Hashids::decode($id)[0];
         $data['row'] = Slider::find($id);
-        $data['languages'] = Language::all();
         $data['action'] = 'edit';
-        return View('admin.sliders.form',$data);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        return View('admin.slider.form', $data);
     }
 
     /**
@@ -240,22 +163,32 @@ class SliderController extends Controller
      */
     public function destroy($id)
     {
-        if(!have_right('Access-Slider'))
-        access_denied();
+        if (!have_right('Delete-Slider'))
+            access_denied();
 
+        $model = Slider::find($id);
+        $image_url =  $model->image;
+        if (file_exists(public_path($image_url))) {
+            unlink($image_url);
+        }
         $data = [];
-        $hashids = new Hashids('',10);
-        $id = $hashids->decode($id)[0];
         $data['row'] = Slider::destroy($id);
-        return redirect('admin/sliders')->with('message','Data deleted Successfully');
+        return redirect('admin/slider')->with('message', 'Data deleted Successfully');
     }
 
+    /**
+     * upload the image .
+     *
+     */
     public function uploadimage(Request $request)
     {
-        $imageName = 'slider'.time().'.'.$request->image->extension();  
-        if($request->image->move(public_path('sliders-images'), $imageName))
-        {
-            echo asset('slider-images/'.$imageName);exit();
+        $path = '';
+        if ($request->image) {
+            $imageName = 'slider' . time() . '.' . 'webp';
+            if ($request->image->move(public_path('images/slider'), $imageName)) {
+                $path =  'images/slider/' . $imageName;
+            }
         }
-    } 
+        return $path;
+    }
 }

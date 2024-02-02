@@ -93,6 +93,7 @@ Route::prefix('admin')->namespace('Admin')->group(static function()
         Route::resource('orders', '\App\Http\Controllers\Admin\OrdersController');
         Route::get('order-details', '\App\Http\Controllers\Admin\OrdersController@orderDetails');
         Route::get('order-change-status', '\App\Http\Controllers\Admin\OrdersController@updateOrderStatus');
+        Route::resource('slider', '\App\Http\Controllers\Admin\SliderController');
 
         //end of rooms route
     });

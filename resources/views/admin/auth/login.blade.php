@@ -17,7 +17,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="{{ URL('admin') }}"><img height='100px' width='230px' src='{{asset('assets/front/images/logo.png')}}'></a>
+    <a href="{{ URL('admin') }}"><img height='100px' src='{{asset('assets/front/images/logo.png')}}' style="width: 50%;object-fit: cover;"></a>
   </div>
   <!-- /.login-logo -->
   <div class="card">

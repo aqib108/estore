@@ -25,9 +25,19 @@
     overflow-y: auto;
 }
 
-img.animation__shake {
-    -webkit-animation: rotation 2s infinite linear;
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
+
+.img.animation__shake {
+    animation: fadeIn 2s ease-in-out;
+    opacity: 0; /* Start the element as invisible */
+}
+
+/* img.animation__shake {
+    -webkit-animation: rotation 2s infinite linear;
+} */
 
 label.sort-form-select.lable-select {
     width: 42%;

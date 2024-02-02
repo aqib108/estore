@@ -21,12 +21,12 @@
 		  <div class="container-fluid">
 		    <div class="row mb-2">
 		      <div class="col-sm-6">
-		        <h1 class="m-0">Posts</h1>
+		        <h1 class="m-0">Slider</h1>
 		      </div><!-- /.col -->
 		      <div class="col-sm-6">
 		        <ol class="breadcrumb float-sm-right">
 		          <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-		          <li class="breadcrumb-item active">Posts</li>
+		          <li class="breadcrumb-item active">Slider</li>
 		        </ol>
 		      </div><!-- /.col -->
 		    </div><!-- /.row -->
@@ -41,19 +41,18 @@
 				  <div class="col-12">
 				    <div class="card">
 				      <div class="card-header">
-				      	@if(have_right('add-admin'))
+				      	@if(have_right('Create-Slider'))
 					        <h3 class="card-title">
-					        	<a href="{{ URL('admin/posts/create') }}" class="btn btn-primary"> Add New </a>
+					        	<a href="{{ URL('admin/slider/create') }}" class="btn btn-primary"> Add New </a>
 					        </h3>
 				        @endif
 				      </div>
 				      <div class="card-body">
-				        <table id="posts-datatable" class="table table-bordered table-striped" style="width:100%">
+				        <table id="pages-datatable" class="table table-bordered table-striped" style="width:100%">
 				          <thead>
 				              <tr>
 				                <th>ID</th>
 				                <th>Title</th>
-				                <th>URL</th>
 				                <th>Status</th>
 				                <th>Actions</th>
 				              </tr>
@@ -64,7 +63,6 @@
 				              <tr>
 				                <th>ID</th>
 				                <th>Title</th>
-				                <th>URL</th>
 				                <th>Status</th>
 				                <th>Actions</th>
 				              </tr>
@@ -100,12 +98,14 @@
 	<script src="{{asset('assets/admin/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
 	<!-- AdminLTE App -->
 	<script src="{{asset('assets/admin/dist/js/adminlte.min.js')}}"></script>
+    <!-- Global Var -->
+	<script src="{{asset('assets/admin/dist/js/binary-image.js')}}"></script>
 	<!-- AdminLTE for demo purposes -->
 	<script src="{{asset('assets/admin/dist/js/demo.js')}}"></script>
 	<!-- Page specific script -->
 	<script>
 	  $(function () {
-	    $('#posts-datatable').dataTable(
+	    $('#pages-datatable').dataTable(
       	{
       		sort: false,
 			pageLength: 50,
@@ -116,14 +116,13 @@
 		        hideOverlayLoader();
 		    },
 			responsive: true,
-			// dom: 'Bfrtip',
+			dom: 'lfrtip',
 			lengthMenu: [[5, 10, 25, 50, 100, 200, -1], [5, 10, 25, 50, 100, 200, "All"]],
 			serverSide: true,
-			ajax: "{{ url('admin/posts') }}",
+			ajax: "{{ url('admin/slider') }}",
 			columns: [
 				{data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
-				{data: 'title', name: 'title'},
-				{data: 'url', name: 'url'},
+				{data: 'name', name: 'name'},
 				{data: 'status', name: 'status'},
 				{data: 'action', name: 'action', orderable: false, searchable: false},
 			]

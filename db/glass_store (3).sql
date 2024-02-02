@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1deb5ubuntu1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Jan 27, 2024 at 12:57 AM
--- Server version: 8.0.35-0ubuntu0.22.04.1
--- PHP Version: 8.1.9
+-- Host: localhost
+-- Generation Time: Feb 02, 2024 at 10:34 PM
+-- Server version: 5.7.33
+-- PHP Version: 8.1.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,19 +28,19 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admins` (
-  `id` int NOT NULL,
-  `role_id` int DEFAULT NULL,
-  `first_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `last_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `title` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `origional_password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `role_id` int(11) DEFAULT NULL,
+  `first_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` text COLLATE utf8mb4_unicode_ci,
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `origional_password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `dob` date DEFAULT NULL,
-  `profile` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` tinyint NOT NULL DEFAULT '0' COMMENT '0=inactive,1=active',
+  `profile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0=inactive,1=active',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -59,11 +59,11 @@ INSERT INTO `admins` (`id`, `role_id`, `first_name`, `last_name`, `title`, `emai
 --
 
 CREATE TABLE `categories` (
-  `id` int NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `parent_id` int DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` int NOT NULL DEFAULT '1',
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT '1',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -85,12 +85,12 @@ INSERT INTO `categories` (`id`, `name`, `parent_id`, `description`, `status`, `c
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint UNSIGNED NOT NULL,
-  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -101,11 +101,11 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `issue_bookings` (
-  `id` int NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `location` varchar(255) DEFAULT NULL,
-  `description` text,
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `location` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -124,9 +124,9 @@ INSERT INTO `issue_bookings` (`id`, `name`, `phone`, `location`, `description`, 
 --
 
 CREATE TABLE `migrations` (
-  `id` int UNSIGNED NOT NULL,
-  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -136,12 +136,12 @@ CREATE TABLE `migrations` (
 --
 
 CREATE TABLE `offers` (
-  `id` int NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` int(11) NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sku` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` int NOT NULL DEFAULT '1',
-  `is_feature` int NOT NULL DEFAULT '1',
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1',
+  `is_feature` int(11) NOT NULL DEFAULT '1',
   `price` double NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -162,10 +162,10 @@ INSERT INTO `offers` (`id`, `title`, `sku`, `description`, `status`, `is_feature
 --
 
 CREATE TABLE `offer_images` (
-  `id` int NOT NULL,
-  `offer_id` int NOT NULL,
-  `file_name` varchar(255) DEFAULT NULL,
-  `file_type` varchar(255) DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `offer_id` int(11) NOT NULL,
+  `file_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `file_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -181,12 +181,82 @@ INSERT INTO `offer_images` (`id`, `offer_id`, `file_name`, `file_type`, `created
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `billing_city` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billing_country_id` int(11) DEFAULT NULL,
+  `shipping_city_id` int(11) DEFAULT NULL,
+  `shipping_country_id` int(11) DEFAULT NULL,
+  `ip` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `receipt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billing_user_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billing_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billing_phone_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billing_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shipping_user_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shipping_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shipping_phone_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shipping_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shipment_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sub_total` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `grand_total` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_comment` text COLLATE utf8mb4_unicode_ci,
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '1=pending,2=shipped,3=completed',
+  `is_billing_address_is_shipping` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0=no,1=yes',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `billing_city`, `billing_country_id`, `shipping_city_id`, `shipping_country_id`, `ip`, `receipt`, `billing_user_name`, `billing_email`, `billing_phone_number`, `billing_address`, `shipping_user_name`, `shipping_email`, `shipping_phone_number`, `shipping_address`, `shipment_amount`, `sub_total`, `grand_total`, `order_comment`, `status`, `is_billing_address_is_shipping`, `created_at`, `updated_at`) VALUES
+(30, 4, 'Lahore', NULL, NULL, NULL, NULL, NULL, 'Muhammad Shahbaz', 'shahbaz.lgu@gmail.com', '0324234324', 'Lahore Punjab', NULL, NULL, NULL, NULL, NULL, '800', '800', 'My Order', 3, 0, '2024-01-26 19:16:53', '2024-01-27 04:27:47'),
+(31, 4, 'Lahore', NULL, NULL, NULL, NULL, NULL, 'Muhammad Shahbaz', 'shahbaz.lgu@gmail.com', '0324234324', 'Lahore Punjab', NULL, NULL, NULL, NULL, NULL, '1000', '1000', 'my order 2', 3, 0, '2024-01-27 03:39:07', '2024-01-27 04:25:13');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_items`
+--
+
+CREATE TABLE `order_items` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `order_id` int(11) DEFAULT NULL,
+  `ip` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `unit_price` int(11) DEFAULT NULL,
+  `total` int(11) DEFAULT NULL,
+  `order_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1=product,2=offer',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+--
+-- Dumping data for table `order_items`
+--
+
+INSERT INTO `order_items` (`id`, `order_id`, `ip`, `user_id`, `product_id`, `quantity`, `unit_price`, `total`, `order_type`, `created_at`, `updated_at`) VALUES
+(41, 30, NULL, 4, 3, 3, 100, 300, 1, '2024-01-26 19:16:53', '2024-01-26 19:16:53'),
+(42, 30, NULL, 4, 7, 3, 20, 60, 1, '2024-01-26 19:16:53', '2024-01-26 19:16:53'),
+(43, 31, NULL, 4, 5, 1, 1000, 1000, 2, '2024-01-27 03:39:07', '2024-01-27 03:39:07');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `password_resets`
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -197,12 +267,12 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -215,15 +285,15 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 CREATE TABLE `products` (
-  `id` int NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `sku` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `price` int NOT NULL,
-  `product_images` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `status` int NOT NULL DEFAULT '1',
-  `is_feature` int NOT NULL DEFAULT '0',
-  `category_id` int DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `sku` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` int(11) NOT NULL,
+  `product_images` text COLLATE utf8mb4_unicode_ci,
+  `status` int(11) NOT NULL DEFAULT '1',
+  `is_feature` int(11) NOT NULL DEFAULT '0',
+  `category_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -246,8 +316,8 @@ INSERT INTO `products` (`id`, `title`, `description`, `sku`, `price`, `product_i
 --
 
 CREATE TABLE `product_images` (
-  `id` int NOT NULL,
-  `product_id` int DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
   `file_type` varchar(255) DEFAULT NULL,
   `file_name` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -276,9 +346,9 @@ INSERT INTO `product_images` (`id`, `product_id`, `file_type`, `file_name`, `cre
 --
 
 CREATE TABLE `roles` (
-  `id` int UNSIGNED NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `right_ids` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `right_ids` text COLLATE utf8mb4_unicode_ci,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -299,9 +369,9 @@ INSERT INTO `roles` (`id`, `name`, `right_ids`, `status`, `deleted_at`, `created
 --
 
 CREATE TABLE `settings` (
-  `id` int NOT NULL,
-  `option_name` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `option_value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
+  `id` int(11) NOT NULL,
+  `option_name` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `option_value` text COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -328,7 +398,34 @@ INSERT INTO `settings` (`id`, `option_name`, `option_value`) VALUES
 (33, 'video', 'videos/video/video1671134562.mp4'),
 (34, 'location_1', NULL),
 (35, 'location_2', NULL),
-(36, 'about', NULL);
+(36, 'about', NULL),
+(37, 'shipping_charges', '20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sliders`
+--
+
+CREATE TABLE `sliders` (
+  `id` int(11) NOT NULL,
+  `name` longtext COLLATE utf32_unicode_ci,
+  `image` varchar(255) COLLATE utf32_unicode_ci DEFAULT NULL,
+  `slider_logo` varchar(255) COLLATE utf32_unicode_ci DEFAULT NULL,
+  `content` blob,
+  `status` tinyint(4) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
+--
+-- Dumping data for table `sliders`
+--
+
+INSERT INTO `sliders` (`id`, `name`, `image`, `slider_logo`, `content`, `status`, `created_at`, `updated_at`) VALUES
+(12, 'Fibaric Collection 2018', 'images/slider/slider1706912050.webp', NULL, NULL, 1, '2024-02-02 17:14:10', '2024-02-02 17:14:10'),
+(13, 'Mirror New-Season', 'images/slider/slider1706912084.webp', NULL, NULL, 1, '2024-02-02 17:14:44', '2024-02-02 17:14:44'),
+(14, 'Glass Collection 2018', 'images/slider/slider1706912142.webp', NULL, NULL, 1, '2024-02-02 17:15:42', '2024-02-02 17:15:42');
 
 -- --------------------------------------------------------
 
@@ -337,14 +434,14 @@ INSERT INTO `settings` (`id`, `option_name`, `option_value`) VALUES
 --
 
 CREATE TABLE `users` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `origional_password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` tinyint NOT NULL DEFAULT '0' COMMENT '0=in-active,1=active',
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `origional_password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0=in-active,1=active',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -355,7 +452,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `origional_password`, `remember_token`, `status`, `created_at`, `updated_at`) VALUES
 (2, 'admin', 'admin@gmail.com', NULL, '$2a$12$MO337APKd3z0hz11OE5P5O40lxZg6IW9cHAfsvDVWW7tflTm/DLBe', NULL, '3nwO0yZHQBupjiPojukO0eFQPvrBycTyFrRM10QDXptVgxRmj7ue1U7bbttE', 1, '2022-11-20 06:20:09', '2022-11-20 06:20:09'),
-(3, 'aqib', 'aqib.mehmood@manafatech.com', NULL, '$2y$10$cmLq5Duc9s/hnl4efX9BZuponDg5Ve3yKR11k3XoZ74t0vcGUv.8S', NULL, NULL, 0, '2024-01-26 06:31:31', '2024-01-26 06:31:31');
+(3, 'aqib', 'aqib.mehmood@manafatech.com', NULL, '$2y$10$cmLq5Duc9s/hnl4efX9BZuponDg5Ve3yKR11k3XoZ74t0vcGUv.8S', NULL, NULL, 0, '2024-01-26 06:31:31', '2024-01-26 06:31:31'),
+(4, 'Muhammad Shahbaz', 'shahbaz.lgu@gmail.com', NULL, '$2y$10$nbyWDLKgvFzDagdo03Zol.Nn7OCBonAtX5nOcP8Tv5Pwetmox0q6i', NULL, NULL, 0, '2024-01-26 16:14:23', '2024-01-26 16:14:23');
 
 --
 -- Indexes for dumped tables
@@ -405,6 +503,29 @@ ALTER TABLE `offer_images`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `orders_user_id_index` (`user_id`),
+  ADD KEY `orders_billing_city_id_index` (`billing_city`),
+  ADD KEY `orders_billing_country_id_index` (`billing_country_id`),
+  ADD KEY `orders_shipping_city_id_index` (`shipping_city_id`),
+  ADD KEY `orders_shipping_country_id_index` (`shipping_country_id`),
+  ADD KEY `orders_ip_index` (`ip`),
+  ADD KEY `orders_receipt_index` (`receipt`);
+
+--
+-- Indexes for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD KEY `order_items_order_id_index` (`order_id`) USING BTREE,
+  ADD KEY `order_items_ip_index` (`ip`) USING BTREE,
+  ADD KEY `order_items_user_id_index` (`user_id`) USING BTREE,
+  ADD KEY `order_items_product_id_index` (`product_id`) USING BTREE;
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -444,6 +565,12 @@ ALTER TABLE `settings`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `sliders`
+--
+ALTER TABLE `sliders`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -458,79 +585,97 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `issue_bookings`
 --
 ALTER TABLE `issue_bookings`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `offers`
 --
 ALTER TABLE `offers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `offer_images`
 --
 ALTER TABLE `offer_images`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT for table `order_items`
+--
+ALTER TABLE `order_items`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT for table `sliders`
+--
+ALTER TABLE `sliders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

@@ -32,7 +32,7 @@ $url_3 = Request::segment(4);
                 @endif
 
 
-                
+
                 <!-- menu-open -->
                 @if(have_right('Access-Admin') || have_right('Access-User') || have_right('Access-Roles-Managment'))
                 <li class="d-none nav-item {{ ($url_1 == 'admins' || $url_1 == 'roles' || $url_1 == 'customers') ? 'menu-open':'' }}">
@@ -55,28 +55,28 @@ $url_3 = Request::segment(4);
                         </li>
                         @endif
 
-                        {{--  @if(have_right('Access-User'))
+                        {{-- @if(have_right('Access-User'))
                         <li class="nav-item">
                             <a href="{{ URL('admin/customers') }}" class="nav-link {{ $url_1 == 'customers' ? 'active':'' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Customers</p>
-                            </a>
-                        </li>
-                        @endif  --}}
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Customers</p>
+                        </a>
+                </li>
+                @endif --}}
 
-                        @if(have_right('Access-Roles-Managment'))
-                        <li class="nav-item">
-                            <a href="{{ URL('admin/roles') }}" class="nav-link {{ $url_1 == 'roles' ? 'active':'' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Roles Managment</p>
-                            </a>
-                        </li>
-                        @endif
-
-                    </ul>
-
+                @if(have_right('Access-Roles-Managment'))
+                <li class="nav-item">
+                    <a href="{{ URL('admin/roles') }}" class="nav-link {{ $url_1 == 'roles' ? 'active':'' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Roles Managment</p>
+                    </a>
                 </li>
                 @endif
+
+            </ul>
+
+            </li>
+            @endif
             {{--admin room--}}
             <li class="nav-item">
                 <a href="{{ URL('admin/categories') }}" class="nav-link {{ $url_1 == 'categories' ? 'active':'' }}">
@@ -114,6 +114,15 @@ $url_3 = Request::segment(4);
                 <a href="{{ URL('admin/orders') }}" class="nav-link {{ $url_1 == 'orders' ? 'active':'' }}">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>Orders</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ URL('admin/slider') }}" class="nav-link {{ $url_1 == 'slider' ? 'active':'' }}">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        Sliders
+                    </p>
                 </a>
             </li>
 
