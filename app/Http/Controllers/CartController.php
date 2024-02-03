@@ -33,7 +33,7 @@ class CartController extends Controller
             \Cart::add([
                 'id'=>$id,
                 'name'=>$product->title,
-                'price'=>$request->product_price,
+                'price'=>findTheProductAmount($product?->price,$product?->tax,$product?->discount),
                 'quantity'=>$request->product_qty,
                 'attributes' => array(
                     'type'=>getCartTypeProduct()
@@ -47,7 +47,7 @@ class CartController extends Controller
             \Cart::add([
                 'id'=>$id,
                 'name'=>$offer->title,
-                'price'=>$request->product_price,
+                'price'=>findTheProductAmount($offer?->price,$offer?->tax,$offer?->discount),
                 'quantity'=>$request->product_qty,
                 'attributes' => array(
                     'type'=>getCartTypeOffer()

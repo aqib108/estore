@@ -2,6 +2,8 @@
 
 use App\Models\Admin\Category;
 use App\Models\Admin\Setting;
+use App\Models\Admin\Product;
+use App\Models\Admin\Offer;
 use Illuminate\Support\Facades\Crypt;
 function rights()
 {
@@ -127,5 +129,17 @@ function decryptOrderNumber($encryptedOrderId) {
 
     return $orderId;
 }
-
+function findTheProductAmount($productPrice,$tax=0,$discount=0){
+    $tax = $tax/100*$productPrice;
+    $discount = $discount/100*$productPrice;
+    return $productPrice+$tax-$discount;
+}
+function getProductByCol($id,$col,$orderType){
+    $att =match($orderType){
+     1=>Product::whereId($id)->get()->first()->toArray()[$col],
+     2=>Offer::whereId($id)->get()->first()->toArray()[$col],
+     default=>null
+    };
+    return $att;
+}
 ?>

@@ -22,7 +22,7 @@
 								</a>
 
 								<span class="stext-105 cl3">
-									${{$product?->price}}
+									${{ findTheProductAmount($product?->price,$product?->tax,$product?->discount) }}
 								</span>
 							</div>
 

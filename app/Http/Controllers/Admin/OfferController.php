@@ -103,6 +103,8 @@ class OfferController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:200',
             'price' => 'required',
+            'tax' => 'required',
+            'discount' => 'required',
             'description' => 'required|string',
         ]);
 

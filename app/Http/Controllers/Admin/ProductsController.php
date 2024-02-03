@@ -104,10 +104,13 @@ class ProductsController extends Controller
             'category_id' => 'required',
             'title' => 'required|string|max:200',
             'price' => 'required',
+            'tax'=>'required',
+            'discount'=>'required',
             'description' => 'required|string',
         ]);
 
-        if ($validator->fails()) {
+        if ($validator->fails()) 
+        {
             Session::flash('flash_danger', $validator->messages());
             return redirect()->back()->withInput();
         }

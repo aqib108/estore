@@ -120,6 +120,18 @@
                                         <input type="number" class="form-control" placeholder="Enter Price" name="price" value="{{ $row->price }}" required="">
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Tax <span class="text-red">*</span></label>
+                                    <div class="col-sm-6">
+                                        <input type="number" class="form-control" placeholder="Enter Tax value" name="tax" value="{{ $row->tax }}" required="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Discount <span class="text-red">*</span></label>
+                                    <div class="col-sm-6">
+                                        <input type="number" class="form-control" placeholder="Enter Discount value" name="discount" value="{{ $row->tax }}" required="">
+                                    </div>
+                                </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Status</label>

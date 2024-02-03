@@ -16,6 +16,8 @@ class Offer extends Model
       'title',
       'description',
       'price',
+      'tax',
+      'discount',
       'status',
       'sku'
   ];

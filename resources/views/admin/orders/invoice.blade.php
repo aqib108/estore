@@ -117,14 +117,19 @@
                 <th>Product Name</th>
                 <th>Qty</th>
                 <th>Price</th>
+                <th>Tax</th>
+                <th>Discount</th>
                 <th>Total</th>
             </tr>
             @foreach($OrderItemdata as $key=>$val)
+            {{-- @dd($val); --}}
             <tr class="items" style="text-align: center;">
                 <td >{{$loop->iteration}}</td>
-                <td>{{ $val->product->title }}</td>
+                <td>{{ getProductByCol($val->product_id,'title',$val?->order_type) }}</td>
                 <td>{{$val->quantity}}</td>
                 <td>{{$val->unit_price}}</td>
+                <td>{{getProductByCol($val->product_id,'tax',$val?->order_type)}}%</td>
+                 <td>{{getProductByCol($val->product_id,'discount',$val?->order_type)}}%</td>
                 <td>{{$val->total}}</td>
             </tr>
             @endforeach
