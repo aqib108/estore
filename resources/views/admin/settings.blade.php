@@ -51,7 +51,10 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Logo *</label>
                                     <div class="col-sm-6">
-                                        <input type="file" class="form-control" placeholder="Select Logo" id="imageinpt" name="logo" value="">
+                                        <input type="file" class="form-control" placeholder="Select Logo" id="imageinpt" name="logo" value="" style=" height: 65px; ">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <img src="{{ isset($settings['logo']) ?  asset($settings['logo']) : ''}}" class="rounded border" alt="logo" style=" width: 50%; object-fit: contain; ">
                                     </div>
                                 </div>
 
@@ -82,7 +85,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label"> Whatsapp *</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" placeholder="Enter First Name" name="whatsapp" value="{{isset($settings['whatsapp']) ? $settings['whatsapp'] : ''}}">
+                                        <input type="url" class="form-control" placeholder="Enter whatsapp link" name="whatsapp" value="{{isset($settings['whatsapp']) ? $settings['whatsapp'] : ''}}">
                                     </div>
 
                                 </div>
@@ -140,6 +143,14 @@
                                     <label class="col-sm-2 col-form-label"> Linkedin Link</label>
                                     <div class="col-sm-6">
                                         <input type="url" class="form-control" placeholder="Linkedin" name="linkedin" value="{{isset($settings['linkedin']) ? $settings['linkedin'] : ''}}">
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label"> Instagram</label>
+                                    <div class="col-sm-6">
+                                        <input type="url" class="form-control" placeholder="instagram" name="instagram" value="{{isset($settings['instagram']) ? $settings['instagram'] : ''}}">
                                     </div>
 
                                 </div>
