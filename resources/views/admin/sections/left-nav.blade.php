@@ -23,7 +23,7 @@ $url_3 = Request::segment(4);
                 @if(have_right('Access-Dashboard'))
                 <li class="nav-item">
                     <a href="{{ route('admin.dashboard') }}" class="nav-link {{ $url_1 == 'dashboard' ? 'active':'' }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-home"></i>
                         <p>
                             Dashboard
                         </p>
@@ -80,7 +80,7 @@ $url_3 = Request::segment(4);
             {{--admin room--}}
             <li class="nav-item">
                 <a href="{{ URL('admin/categories') }}" class="nav-link {{ $url_1 == 'categories' ? 'active':'' }}">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <i class="nav-icon fas fa-list"></i>
                     <p>
                         categories
                     </p>
@@ -88,7 +88,7 @@ $url_3 = Request::segment(4);
             </li>
             <li class="nav-item">
                 <a href="{{ URL('admin/products') }}" class="nav-link {{ $url_1 == 'products' ? 'active':'' }}">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <i class="nav-icon fas fa-list"></i>
                     <p>
                         Products
                     </p>
@@ -96,7 +96,7 @@ $url_3 = Request::segment(4);
             </li>
             <li class="nav-item">
                 <a href="{{ URL('admin/offers') }}" class="nav-link {{ $url_1 == 'offers' ? 'active':'' }}">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                   <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
                         Offers
                     </p>
@@ -104,7 +104,7 @@ $url_3 = Request::segment(4);
             </li>
             <li class="nav-item">
                 <a href="{{ URL('admin/customers') }}" class="nav-link {{ $url_1 == 'customers' ? 'active':'' }}">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <i class="nav-icon fas fa-users"></i>
                     <p>
                         Customers
                     </p>
