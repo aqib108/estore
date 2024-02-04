@@ -141,15 +141,15 @@ class OfferController extends Controller
             if (isset($request->old_image_id)) {
 
                 $del_rows = $request->old_image_id;
-                $delete_image_row = DB::table('offer_images')->whereNotIn('id', $del_rows)->get();
+                $delete_image_row = DB::table('offer_images')->whereNotIn('id', $del_rows)->where('offer_id', $request->id)->get();
                 foreach ($delete_image_row as $keyy => $vall) {
                     $image_name = $vall->file_name;
                     $this->deleteEditoImage($image_name);
                 }
-                DB::table('offer_images')->whereNotIn('id', $del_rows)->delete();
+                DB::table('offer_images')->whereNotIn('id', $del_rows)->where('offer_id', $request->id)->delete();
             } else {
 
-                $delete_image_row = DB::table('offer_images')->where('id', $request->id)->get();
+                $delete_image_row = DB::table('offer_images')->where('offer_id', $request->id)->get();
                 foreach ($delete_image_row as $keyy => $vall) {
                     $image_name = $vall->file_name;
                     $this->deleteEditoImage($image_name);

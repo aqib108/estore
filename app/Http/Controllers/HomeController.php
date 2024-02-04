@@ -108,7 +108,13 @@ class HomeController extends Controller
     function checkoutPage(Request $request)
     {
         $cartItems = \Cart::getContent();
-        return view('store.pages.order', ['cart_items' => $cartItems]);
+        if(!empty($cartItems) && count($cartItems)){
+            return view('store.pages.order', ['cart_items' => $cartItems]);
+        }
+        else{
+            return redirect()->back();
+        }
+
     }
     function saveOrder(Request $request)
     {

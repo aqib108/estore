@@ -139,22 +139,23 @@ class ProductsController extends Controller
             }
             return redirect('admin/products')->with('message', 'Data added Successfully');
         } else {
-
+            $id = $input['id'];
+            $model = Product::find($id);
             // dd($request);
             if (!have_right('Edit-Products'))
                 access_denied();
             if (isset($request->old_image_id)) {
 
                 $del_rows = $request->old_image_id;
-                $delete_image_row = DB::table('product_images')->whereNotIn('id', $del_rows)->get();
+                $delete_image_row = DB::table('product_images')->whereNotIn('id', $del_rows)->where('product_id', $request->id)->get();
                 foreach ($delete_image_row as $keyy => $vall) {
                     $image_name = $vall->file_name;
                     $this->deleteEditoImage($image_name);
                 }
-                DB::table('product_images')->whereNotIn('id', $del_rows)->delete();
+                DB::table('product_images')->whereNotIn('id', $del_rows)->where('product_id',$request->id)->delete();
             } else {
 
-                $delete_image_row = DB::table('product_images')->where('id', $request->id)->get();
+                $delete_image_row = DB::table('product_images')->where('product_id', $request->id)->get();
                 foreach ($delete_image_row as $keyy => $vall) {
                     $image_name = $vall->file_name;
                     $this->deleteEditoImage($image_name);
@@ -173,8 +174,8 @@ class ProductsController extends Controller
             }
 
             unset($input['old_image_id']);
-            $id = $input['id'];
-            $model = Product::find($id);
+
+            
             $model->fill($input);
             $model->update();
             if (!empty($imagePathsarray)) {
