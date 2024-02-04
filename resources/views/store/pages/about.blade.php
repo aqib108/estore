@@ -15,16 +15,11 @@
 						</h3>
 
 						<p class="stext-113 cl6 p-b-26">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consequat consequat enim, non auctor massa ultrices non. Morbi sed odio massa. Quisque at vehicula tellus, sed tincidunt augue. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas varius egestas diam, eu sodales metus scelerisque congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas gravida justo eu arcu egestas convallis. Nullam eu erat bibendum, tempus ipsum eget, dictum enim. Donec non neque ut enim dapibus tincidunt vitae nec augue. Suspendisse potenti. Proin ut est diam. Donec condimentum euismod tortor, eget facilisis diam faucibus et. Morbi a tempor elit.
+							
+Welcome to Creative Glass, your ultimate online destination for premium glass and mirrors. At Creative Glass, we are dedicated to redefining your living spaces with our exquisite selection of products. Our vision is to be the forefront of innovative glass and mirror solutions, offering a curated collection that combines quality craftsmanship with contemporary design. Explore our unparalleled range, carefully crafted by skilled artisans using the finest materials. We prioritize your satisfaction, providing a seamless shopping experience with a customer-centric approach. Sustainability is integral to our values, and we are committed to eco-friendly practices and responsible sourcing. Transform your space with Creative Glass – where each product tells a story of timeless beauty, creativity, and environmental consciousness. Thank you for choosing Creative Glass, let's embark on a journey to create something extraordinary together!
 						</p>
 
-						<p class="stext-113 cl6 p-b-26">
-							Donec gravida lorem elit, quis condimentum ex semper sit amet. Fusce eget ligula magna. Aliquam aliquam imperdiet sodales. Ut fringilla turpis in vehicula vehicula. Pellentesque congue ac orci ut gravida. Aliquam erat volutpat. Donec iaculis lectus a arcu facilisis, eu sodales lectus sagittis. Etiam pellentesque, magna vel dictum rutrum, neque justo eleifend elit, vel tincidunt erat arcu ut sem. Sed rutrum, turpis ut commodo efficitur, quam velit convallis ipsum, et maximus enim ligula ac ligula. 
-						</p>
-
-						<p class="stext-113 cl6 p-b-26">
-							Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
-						</p>
+						
 					</div>
 				</div>
 
@@ -45,7 +40,8 @@
 						</h3>
 
 						<p class="stext-113 cl6 p-b-26">
-							Mauris non lacinia magna. Sed nec lobortis dolor. Vestibulum rhoncus dignissim risus, sed consectetur erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam maximus mauris sit amet odio convallis, in pharetra magna gravida. Praesent sed nunc fermentum mi molestie tempor. Morbi vitae viverra odio. Pellentesque ac velit egestas, luctus arcu non, laoreet mauris. Sed in ipsum tempor, consequat odio in, porttitor ante. Ut mauris ligula, volutpat in sodales in, porta non odio. Pellentesque tempor urna vitae mi vestibulum, nec venenatis nulla lobortis. Proin at gravida ante. Mauris auctor purus at lacus maximus euismod. Pellentesque vulputate massa ut nisl hendrerit, eget elementum libero iaculis.
+						
+At Creative Glass, our mission is to revolutionize the way you experience and interact with glass and mirrors. We are driven by the commitment to offer not just products but transformative solutions that inspire creativity and elevate your spaces. Through a relentless pursuit of quality, craftsmanship, and innovation, we aim to provide our customers with a unique and unparalleled selection of glass and mirror offerings. Our mission extends beyond providing exceptional products; we strive to foster a community that values creativity, sustainability, and the enduring beauty of well-crafted glass. With every piece we offer, we aim to contribute to the creation of living spaces that are not only aesthetically pleasing but also tell a story of thoughtful design and conscious living. Join us on this mission, and let's redefine the possibilities of glass and mirrors togethe
 						</p>
 
 						<div class="bor16 p-l-29 p-b-9 m-t-22">
@@ -54,7 +50,7 @@
 							</p>
 
 							<span class="stext-111 cl8">
-								- Steve Job’s 
+								- Creative Owner 
 							</span>
 						</div>
 					</div>

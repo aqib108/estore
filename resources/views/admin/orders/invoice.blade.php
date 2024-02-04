@@ -22,6 +22,9 @@
         .margin-top {
             margin-top: 1.25rem;
         }
+        .footer-marging-top{
+         margin-top: 29.00rem;
+        }
 
         .footer {
             font-size: 0.875rem;
@@ -69,6 +72,15 @@
 
         .to {
             margin-top: 5px;
+        }
+        .custom-footer{
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: rgb(241 245 249);
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.875rem;
         }
 
     </style>
@@ -143,9 +155,18 @@
         Grand Total: ${{ $orderData->grand_total }} USD
     </div>
 
-    <div class="footer margin-top">
+    {{-- <div class="footer margin-top d-none">
         <div style="text-align: center;">Thank you</div>
         <div style="text-align: center;margin-top:10px">&copy; {{ getSetting('title') }}</div>
+    </div> --}}
+    <div class="footer footer-marging-top">
+        <div style="text-align: center;">Powered by</div>
+        <div style="text-align: center;margin-top:10px">&copy; 
+        <span><a href="https://wmktech.net/">WMK Tech</a></span> 
+        <span>Baalbek, Lebanon</span>
+        <span><a href="mailto:info@wmktech.net">info@wmktech.net</a></span>
+         <span><a href="tel:+961 81 203 933">+961 81 203 933</a></span>
+        </div>
     </div>
 </div>
    

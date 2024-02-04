@@ -15,16 +15,11 @@
 						</h3>
 
 						<p class="stext-113 cl6 p-b-26">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consequat consequat enim, non auctor massa ultrices non. Morbi sed odio massa. Quisque at vehicula tellus, sed tincidunt augue. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas varius egestas diam, eu sodales metus scelerisque congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas gravida justo eu arcu egestas convallis. Nullam eu erat bibendum, tempus ipsum eget, dictum enim. Donec non neque ut enim dapibus tincidunt vitae nec augue. Suspendisse potenti. Proin ut est diam. Donec condimentum euismod tortor, eget facilisis diam faucibus et. Morbi a tempor elit.
+						
+Welcome to Creative Glass, where our commitment goes beyond providing exquisite products; it extends to delivering unparalleled services that enrich your experience. Our dedicated team is here to guide you through every step, ensuring that you receive personalized and expert assistance. From expert advice on choosing the perfect glass or mirror for your space to seamless order processing and timely delivery, our service is designed with your satisfaction in mind. At Creative Glass, we take pride in not only offering top-tier products but also in building lasting relationships with our customers. Our mission is to make your journey with us effortless and enjoyable. Experience the difference with Creative Glass – where exceptional service meets the beauty of fine glass and mirrors
 						</p>
 
-						<p class="stext-113 cl6 p-b-26">
-							Donec gravida lorem elit, quis condimentum ex semper sit amet. Fusce eget ligula magna. Aliquam aliquam imperdiet sodales. Ut fringilla turpis in vehicula vehicula. Pellentesque congue ac orci ut gravida. Aliquam erat volutpat. Donec iaculis lectus a arcu facilisis, eu sodales lectus sagittis. Etiam pellentesque, magna vel dictum rutrum, neque justo eleifend elit, vel tincidunt erat arcu ut sem. Sed rutrum, turpis ut commodo efficitur, quam velit convallis ipsum, et maximus enim ligula ac ligula. 
-						</p>
-
-						<p class="stext-113 cl6 p-b-26">
-							Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
-						</p>
+						
 					</div>
 				</div>
 
@@ -45,7 +40,8 @@
 						</h3>
 
 						<p class="stext-113 cl6 p-b-26">
-							Mauris non lacinia magna. Sed nec lobortis dolor. Vestibulum rhoncus dignissim risus, sed consectetur erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam maximus mauris sit amet odio convallis, in pharetra magna gravida. Praesent sed nunc fermentum mi molestie tempor. Morbi vitae viverra odio. Pellentesque ac velit egestas, luctus arcu non, laoreet mauris. Sed in ipsum tempor, consequat odio in, porttitor ante. Ut mauris ligula, volutpat in sodales in, porta non odio. Pellentesque tempor urna vitae mi vestibulum, nec venenatis nulla lobortis. Proin at gravida ante. Mauris auctor purus at lacus maximus euismod. Pellentesque vulputate massa ut nisl hendrerit, eget elementum libero iaculis.
+						
+At Creative Glass, our mission is centered on transcending traditional notions of service in the realm of glass and mirror solutions. We are dedicated to not only providing superior products but elevating your experience through a commitment to exemplary service. Our mission is to be your trusted partner on the journey to transforming your living spaces. With a customer-centric approach, we strive to offer more than just transactions – we aim to create meaningful, lasting connections with every client. Our team is driven by the belief that exceptional service involves not only meeting but exceeding expectations. At Creative Glass, our mission is to ensure that each interaction, from product selection to delivery, embodies the values of quality, integrity, and personalized attention. Join us in our mission to redefine service standards in the world of glass and mirrors, where your satisfaction is our utmost priority.
 						</p>
 
 						<div class="bor16 p-l-29 p-b-9 m-t-22">
@@ -54,7 +50,7 @@
 							</p>
 
 							<span class="stext-111 cl8">
-								- Steve Job’s 
+								- Creative Owner 
 							</span>
 						</div>
 					</div>
