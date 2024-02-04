@@ -680,7 +680,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 .logo-mobile img {
   max-width: calc(100% - 20px);
-  max-height: 100%;
+  max-height: 223%;
   position:absolute;
   top: 0; 
   left: 0; 
@@ -734,7 +734,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 .main-menu-m {
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: #717fe0;
+  background-color: #d9a511;
 }
 
 .main-menu-m > li > a {
