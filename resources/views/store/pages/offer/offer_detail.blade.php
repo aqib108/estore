@@ -130,7 +130,28 @@
 					</div>
 				</div>
 			</div>
+<!--embed_url-->
+<div class="bor10 m-t-50 p-t-43 p-b-40 {{$offer?->embed_url?'':'d-none'}}">
+				<!-- Tab01 -->
+				<div class="tab01">
+					<!-- Nav tabs -->
+					<ul class="nav nav-tabs" role="tablist">
+						<li class="nav-item p-b-10">
+							<a class="nav-link active d-none" data-toggle="tab" href="#description" role="tab">Description</a>
+						</li>
+					</ul>
 
+					<!-- Tab panes -->
+					<div class="tab-content p-t-43">
+						<!-- - -->
+					<div class="tab-pane fade show active d-flex justify-content-center" id="description" role="tabpanel">
+    <div class="how-pos2 p-lr-15-md">
+       {!!$offer?->embed_url!!}
+    </div>
+</div>
+</div>
+</div>
+<!--end of embed_url-->
 		</div>
 
 	</section>

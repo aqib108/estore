@@ -45,6 +45,15 @@
 			              </div>
 			              <!-- /.card-header -->
 			              <div class="card-body">
+										@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 			                <form id="customer-form" action="{{ URL('admin/customers') }}" enctype="multipart/form-data" method="POST"> 
 			                	{!! csrf_field() !!}
 			                	<input type="hidden" name="action" value="{{$action}}">

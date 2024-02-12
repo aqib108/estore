@@ -14,6 +14,7 @@ use Auth;
 use DB;
 use DataTables;
 use Hashids\Hashids;
+use Session;
 
 class CustomerController extends Controller
 {
@@ -55,7 +56,7 @@ class CustomerController extends Controller
                     
                 if(have_right('Access-User'))
                 {
-                    $actions .= '<form method="POST" action="'.url("admin/customers/" . $row->id).'" accept-charset="UTF-8" style="display:inline;">';
+                    $actions .= '<form method="POST" action="'.url("admin/customers/" . $hashids->encode($row->id)).'" accept-charset="UTF-8" style="display:inline;">';
                     $actions .= '<input type="hidden" name="_method" value="DELETE">';
                     $actions .= '<input name="_token" type="hidden" value="'.csrf_token().'">';
                     $actions .= '<button class="btn btn-danger" style="margin-left:02px;" onclick="return confirm(\'Are you sure you want to delete this record?\');" title="Delete">';
@@ -115,15 +116,20 @@ class CustomerController extends Controller
             unset($input['password'],$input['origional_password']);
         }
 
-        $validator = Validator::make($request->all(), [
+        $rules = [
             'name' => 'required|string|max:200',
             'email' => 'required|string|max:100',
-        ]);
+        ];
+        
+        if ($request->action === 'add') {
+            $rules['email'] .= '|unique:users,email';
+        }
+        
+        $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails())
         {
-            Session::flash('flash_danger', $validator->messages());
-            return redirect()->back()->withInput();
+            return redirect()->back()->withErrors($validator)->withInput();
         }
 
         if($input['action'] == 'add')

@@ -122,6 +122,12 @@
                                                         <input type="number" class="form-control" placeholder="Enter Discount" name="discount" value="{{ $row->discount }}" required="">
                                                     </div>
                                                 </div>
+                                                 <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Embed YouTube Vedio Url</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" placeholder="Enter Youtube Embed Url" name="embed_url" value="{{ $row->embed_url }}" >
+                                    </div>
+                                </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Status</label>
                                                     <div class="col-sm-6">

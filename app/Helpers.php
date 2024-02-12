@@ -135,11 +135,12 @@ function findTheProductAmount($productPrice,$tax=0,$discount=0){
     return $productPrice+$tax-$discount;
 }
 function getProductByCol($id,$col,$orderType){
-    $att =match($orderType){
-     1=>Product::whereId($id)->get()->first()->toArray()[$col],
-     2=>Offer::whereId($id)->get()->first()->toArray()[$col],
-     default=>null
-    };
-    return $att;
+    if($orderType==1){
+       return Product::where('id',$id)->get()->first()->toArray()[$col];
+    } elseif($orderType==2){
+      return Offer::whereId($id)->get()->first()->toArray()[$col];   
+    }
+    return null;
+
 }
 ?>
