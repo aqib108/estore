@@ -1465,6 +1465,8 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 /*---------------------------------------------*/
 .wrap-slick3-dots {
   width: 11.111111%;
+  max-height: 250px;
+  overflow-y: scroll;
 }
 
 .slick3 {
