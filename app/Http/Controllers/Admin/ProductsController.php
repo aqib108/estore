@@ -92,7 +92,7 @@ class ProductsController extends Controller
         $data['row'] = new Product();
         $data['categories'] = Category::where('status', 1)->get();
         $data['action'] = 'add';
-        return View('admin.products.form', $data);
+        return view('admin.products.form', $data);
     }
 
     public function store(Request $request)

@@ -19,7 +19,8 @@ class Offer extends Model
       'tax',
       'discount',
       'status',
-      'sku'
+      'sku',
+      'embed_url'
   ];
     protected $guarded = [];
 

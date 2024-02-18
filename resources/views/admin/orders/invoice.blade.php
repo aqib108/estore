@@ -25,7 +25,8 @@
         .footer-marging-top{
          margin-top: 29.00rem;
         }
-
+//db_name creatppo_creative_glass
+//user name creatppo_creative_glass
         .footer {
             font-size: 0.875rem;
             padding: 1rem;
